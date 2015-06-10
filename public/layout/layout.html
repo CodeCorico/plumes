@@ -1,0 +1,58 @@
+<header class="header {{ light ? 'light' : '' }}">
+  {{#usebrand}}
+  <h1 class="layout-brand {{ start ? 'opened' : '' }}">
+    <span>{{brand}}</span>
+  </h1>
+  {{/usebrand}}
+
+  {{#usetitle}}
+  <rv-require
+    name="dropdown-title"
+    class="layout-title"
+    src="../dropdowns/dropdown-title"
+    data-placeholder="Apps"
+    data-bind-titles="apps"
+  ></rv-require>
+  {{/usetitle}}
+</header>
+
+<div class="layout-flyout">
+
+  {{> flyout}}
+
+  {{#useprofile}}
+  <rv-require
+    name="button-profile"
+    src="../buttons/button-profile"
+    data-bind-img="user.avatar"
+    data-bind-toggle="user-toggle"
+  ></rv-require>
+  {{/useprofile}}
+
+  {{#usehelp}}
+  <rv-require
+    name="help-button"
+    src="../help/help-button"
+    data-bind-toggle="help-toggle"
+  ></rv-require>
+  {{/usehelp}}
+
+</div>
+
+{{> content}}
+
+{{#usemask}}
+<div class="layout-mask {{ beforeStart ? 'out' : '' }}">
+  <div class="layout-mask-title-container">
+    <div class="layout-mask-title {{ loaded ? 'opened' : '' }}">
+      {{> mask-title}}
+    </div>
+  </div>
+</div>
+{{/usemask}}
+
+<rv-require
+  name="screen-message"
+  src="../screen-message/screen-message"
+  ondemand="screen-message"
+></rv-require>

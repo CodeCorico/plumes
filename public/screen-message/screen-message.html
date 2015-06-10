@@ -1,0 +1,13 @@
+<div class="screen-message {{playing ? 'playing' : ''}} {{playingDone ? 'done' : ''}}">
+
+  <div class="title">
+    <h1>{{> message-title}}</h1>
+  </div>
+
+  <div class="message" style="top: {{messageTop}}px">
+  {{#words}}
+    <span class="word {{display ? 'display' : ''}} {{out ? 'out' : ''}}">{{{word}}}</span>
+  {{/words}}
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+@import "../../common/less/common-mixins.less";
+@import "../../common/less/common-variables.less";
+
+.screen-message {
+  .noselect();
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+
+  .title {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    text-align: center;
+    overflow: hidden;
+
+    h1 {
+      position: relative;
+      .transform(translateY(3rem));
+      font-size: 2.2rem;
+      text-align: center;
+      line-height: 3rem;
+      margin: 0;
+
+      span {
+        color: @themeColor;
+      }
+    }
+  }
+
+  .message {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    text-align: center;
+
+    .word {
+      display: inline-block;
+      margin-left: 15px;
+      position: relative;
+      .transform(translateY(1rem));
+      opacity: 0;
+      font-size: 5rem;
+      line-height: 6rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.display {
+        opacity: 1;
+        .transform(translateY(0));
+        .transition(all 0.35s @easeOutQuart);
+      }
+
+      &.out {
+        opacity: 0;
+        .transform(translateY(-1rem));
+        .transition(all 0.35s @easeOutQuart);
+      }
+
+      strong {
+        color: @themeColor;
+        font-weight: 300;
+      }
+    }
+  }
+
+  &.playing {
+    .title h1 {
+      .transform(translateY(0));
+      .transition(all 0.55s @easeOutQuart);
+    }
+  }
+
+  &.done {
+    .title h1 {
+      .transform(translateY(-3rem));
+      .transition(all 0.55s @easeOutQuart);
+    }
+  }
+}
