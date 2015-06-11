@@ -12,7 +12,7 @@ Versions details history. For each version you can find:
 
 [Release 0.1.0](https://github.com/CodeCorico/plumes/releases/tag/0.1.0) - [Branch release/1.0.0](https://github.com/CodeCorico/plumes/tree/0.1.0)
 
-### Breeaking changes
+### Breaking changes
 
 - **Plumes**
   - Migration from the internal private project
