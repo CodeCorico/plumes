@@ -1,4 +1,4 @@
-logs
+/logs/*
 *.log
 *.node_modules
 *node_modules
@@ -10,3 +10,4 @@ lib-cov
 coverage
 build/Release
 .lock-wscript
+Thumbs.db
