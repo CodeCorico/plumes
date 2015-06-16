@@ -4,10 +4,8 @@
     <h1>{{> message-title}}</h1>
   </div>
 
-  <div class="message" style="top: {{messageTop}}px">
-  {{#words}}
-    <span class="word {{display ? 'display' : ''}} {{out ? 'out' : ''}}">{{{word}}}</span>
-  {{/words}}
+  <div class="screen-message-message" style="top: {{messageTop}}px">
+    <rv-require name="messages-message" src="../messages/messages-message"></rv-require>
   </div>
 
 </div>

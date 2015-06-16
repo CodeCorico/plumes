@@ -3,10 +3,7 @@
 
   window.Ractive.controller('screen-message', function(component, data, el, config, done) {
 
-    var DISPLAY_TEXT_TIME = 3000,
-        DISPLAY_WORD_TIME = 150,
-
-        _$el = {
+    var _$el = {
           window: $(window)
         },
         _playArgs = null;
@@ -15,11 +12,8 @@
       data: data
     });
 
-    _$el.el = $(ScreenMessage.el);
-    _$el.message = _$el.el.find('.message');
-
     function _play(playArgs) {
-      if (playArgs && playArgs != _play) {
+      if (playArgs && playArgs != _playArgs) {
         ScreenMessage.set('play', null);
 
         _playArgs = playArgs;
@@ -27,80 +21,15 @@
         ScreenMessage.set('playingDone', false);
 
         setTimeout(function() {
-          _playMessage(playArgs.message);
+          ScreenMessage.childrenRequire[0].set('play', {
+            message: playArgs.message,
+            callback: _done,
+            lineCallback: function(Message) {
+              ScreenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
+            }
+          });
         }, 550);
       }
-    }
-
-    function _hideMessage(index, callback) {
-      if (index === 0) {
-        callback();
-
-        return;
-      }
-
-      var words = ScreenMessage.get('words');
-
-      words.forEach(function(word, i) {
-        ScreenMessage.set('words[' + i + '].out', true);
-      });
-
-      setTimeout(function() {
-        callback();
-      }, 350);
-    }
-
-    function _displayMessage(message, index, callback) {
-      _hideMessage(index, function() {
-
-        if (message.length == index) {
-          if (callback) {
-            callback();
-          }
-
-          return;
-        }
-
-        var words = message[index].split(' ').map(function(word) {
-          return {
-            word: word,
-            display: false,
-            out: false
-          };
-        });
-
-        ScreenMessage.set('words', words);
-
-        ScreenMessage.set('messageTop', (_$el.window.height() - _$el.message.outerHeight()) / 2);
-
-        setTimeout(function() {
-          words.forEach(function(word, i) {
-
-            setTimeout(function() {
-              ScreenMessage.set('words[' + i + '].display', true);
-            }, DISPLAY_WORD_TIME * i);
-
-          });
-
-          setTimeout(function() {
-
-            index++;
-
-            setTimeout(function() {
-              _displayMessage(message, index, callback);
-            }, DISPLAY_TEXT_TIME);
-
-          }, DISPLAY_WORD_TIME * words.length + 350);
-
-        });
-
-      });
-    }
-
-    function _playMessage(message) {
-      message = typeof message == 'string' ? [message] : message;
-
-      _displayMessage(message, 0, _done);
     }
 
     function _done() {
@@ -124,7 +53,7 @@
       });
     });
 
-    done();
+    ScreenMessage.require().then(done);
   });
 
 })();
