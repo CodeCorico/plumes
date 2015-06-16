@@ -83,6 +83,10 @@
 
       page.set('beforerequire', function(layout, callback) {
 
+        if ($.cookie('intro') == 'done') {
+          return callback();
+        }
+
         layout.require('screen-message').then(function() {
 
           layout.childrenRequire.forEach(function(child) {
@@ -95,6 +99,8 @@
                   'Have a good day.'
                 ],
                 done: function() {
+                  $.cookie('intro', 'done');
+
                   child.teardown();
 
                   callback();
