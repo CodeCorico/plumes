@@ -15,6 +15,7 @@ var Plumes = function(gulp, config) {
       less: './features/**/css/*.less',
       js: './features/**/js/*.js',
       html: './features/**/html/*.html',
+      resources: './features/**/resources/*',
       public: './public'
     },
     default: null,
@@ -28,7 +29,7 @@ var Plumes = function(gulp, config) {
 
   config.default = config.default || [];
 
-  var defaultTask = ['less', 'minify', 'html'].concat(config.default);
+  var defaultTask = ['less', 'minify', 'html', 'resources'].concat(config.default);
   if (config.watcher) {
     defaultTask.push('watch');
   }
@@ -71,10 +72,18 @@ var Plumes = function(gulp, config) {
       .on('end', done);
   });
 
+  gulp.task('resources', function(done) {
+    gulp.src(config.path.resources)
+      .pipe(rename(_publicByFeature))
+      .pipe(gulp.dest(config.path.public))
+      .on('end', done);
+  });
+
   gulp.task('watch', function() {
     gulp.watch(config.path.less, ['less']);
     gulp.watch(config.path.js, ['minify']);
     gulp.watch(config.path.html, ['html']);
+    gulp.watch(config.path.html, ['resources']);
 
     if (config.watchs && config.watchs.length) {
       config.watchs.forEach(function(watchFunc) {
