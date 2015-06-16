@@ -1,0 +1,35 @@
+@import "../../common/less/common-mixins.less";
+@import "../../common/less/common-variables.less";
+
+.message {
+  position: relative;
+
+  .word {
+    display: inline-block;
+    margin-left: 1.5rem;
+    position: relative;
+    .transform(translateY(1rem));
+    opacity: 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.display {
+      opacity: 1;
+      .transform(translateY(0));
+      .transition(all 0.35s @easeOutQuart);
+    }
+
+    &.out {
+      opacity: 0;
+      .transform(translateY(-1rem));
+      .transition(all 0.35s @easeOutQuart);
+    }
+
+    strong {
+      color: @themeColor;
+      font-weight: 300;
+    }
+  }
+}
