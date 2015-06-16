@@ -34,41 +34,15 @@
     }
   }
 
-  .message {
+  .screen-message-message {
     position: absolute;
     left: 2rem;
     right: 2rem;
     text-align: center;
 
-    .word {
-      display: inline-block;
-      margin-left: 15px;
-      position: relative;
-      .transform(translateY(1rem));
-      opacity: 0;
+    .message .word {
       font-size: 5rem;
       line-height: 6rem;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &.display {
-        opacity: 1;
-        .transform(translateY(0));
-        .transition(all 0.35s @easeOutQuart);
-      }
-
-      &.out {
-        opacity: 0;
-        .transform(translateY(-1rem));
-        .transition(all 0.35s @easeOutQuart);
-      }
-
-      strong {
-        color: @themeColor;
-        font-weight: 300;
-      }
     }
   }
 
