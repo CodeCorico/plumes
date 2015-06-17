@@ -1,6 +1,12 @@
 @import "../../common/less/common-mixins.less";
 @import "../../common/less/common-variables.less";
 
+@-webkit-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-moz-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-ms-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-o-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+
 .screen-message {
   .noselect();
   z-index: 999999;
@@ -46,6 +52,16 @@
     }
   }
 
+  .title-border {
+    display: none;
+    width: 700px;
+    height: 1px;
+    margin: 1rem auto 0;
+    background: @themeColor;
+
+    .animation(title-border-show 1s @easeOutQuart);
+  }
+
   &.playing {
     .title h1 {
       .transform(translateY(0));
@@ -57,6 +73,23 @@
     .title h1 {
       .transform(translateY(-3rem));
       .transition(all 0.55s @easeOutQuart);
+    }
+  }
+
+  &.message-title {
+    .title-border {
+      display: block;
+    }
+
+    .screen-message-message {
+      .transition(all 1s @easeOutQuart);
+
+      .message .word {
+        font-size: 3rem;
+        lein-height: 3rem;
+        margin-left: 0.75rem;
+        .transition(all 1s @easeOutQuart);
+      }
     }
   }
 }

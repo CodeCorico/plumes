@@ -1,3 +1,43 @@
+@-webkit-keyframes title-border-show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 700px;
+  }
+}
+@-moz-keyframes title-border-show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 700px;
+  }
+}
+@-ms-keyframes title-border-show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 700px;
+  }
+}
+@-o-keyframes title-border-show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 700px;
+  }
+}
+@keyframes title-border-show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 700px;
+  }
+}
 .screen-message {
   cursor: default;
   -webkit-touch-callout: none;
@@ -48,6 +88,18 @@
   font-size: 5rem;
   line-height: 6rem;
 }
+.screen-message .title-border {
+  display: none;
+  width: 700px;
+  height: 1px;
+  margin: 1rem auto 0;
+  background: #ff6600;
+  -webkit-animation: title-border-show 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-animation: title-border-show 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-animation: title-border-show 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-animation: title-border-show 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: title-border-show 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 .screen-message.playing .title h1 {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -71,4 +123,24 @@
   -ms-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   -o-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.screen-message.message-title .title-border {
+  display: block;
+}
+.screen-message.message-title .screen-message-message {
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.screen-message.message-title .screen-message-message .message .word {
+  font-size: 3rem;
+  lein-height: 3rem;
+  margin-left: 0.75rem;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
