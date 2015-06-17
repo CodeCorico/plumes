@@ -1,4 +1,4 @@
-<div class="screen-message {{playing ? 'playing' : ''}} {{playingDone ? 'done' : ''}}">
+<div class="screen-message {{playing ? 'playing' : ''}} {{playingDone ? 'done' : ''}} {{messageTitle ? 'message-title' : ''}}">
 
   <div class="title">
     <h1>{{> message-title}}</h1>
@@ -6,6 +6,8 @@
 
   <div class="screen-message-message" style="top: {{messageTop}}px">
     <rv-require name="messages-message" src="../messages/messages-message"></rv-require>
+
+    <div class="title-border"></div>
   </div>
 
 </div>
