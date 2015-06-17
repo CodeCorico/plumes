@@ -55,20 +55,15 @@
 
       page.set('brand', 'Plumes');
       page.set('apps', [{
-        name: 'Example Layout',
+        name: 'Layout example',
         selected: true,
         select: function() {
-          console.log('Select Example Layout');
+          window.location.href = '/examples/layout.html';
         }
       }, {
-        name: 'Planning',
+        name: 'Login example',
         select: function() {
-          console.log('Select Planning');
-        }
-      }, {
-        name: 'Wiki',
-        select: function() {
-          console.log('Select Wiki');
+          window.location.href = '/examples/login.html';
         }
       }]);
       page.set('user', {
