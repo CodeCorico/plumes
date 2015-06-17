@@ -28,12 +28,12 @@
       }, 350);
     }
 
-    function _displayMessage(message, index, callback, lineCallback) {
+    function _displayMessage(message, index, args) {
       _hideMessage(index, function() {
 
         if (message.length == index) {
-          if (callback) {
-            callback();
+          if (args.callback) {
+            args.callback();
           }
 
           return;
@@ -49,30 +49,39 @@
 
         Message.set('words', words);
 
-        if (lineCallback) {
-          lineCallback(Message);
+        if (args.lineCallback) {
+          args.lineCallback(Message);
         }
-
-        // Message.set('messageTop', (_$el.window.height() - _$el.message.outerHeight()) / 2);
 
         setTimeout(function() {
           words.forEach(function(word, i) {
 
             setTimeout(function() {
               Message.set('words[' + i + '].display', true);
-            }, DISPLAY_WORD_TIME * i);
+            }, args.displayWordTime * i);
 
           });
 
           setTimeout(function() {
 
+            if (args.displayedLineCallback) {
+              args.displayedLineCallback(Message);
+            }
+
             index++;
 
             setTimeout(function() {
-              _displayMessage(message, index, callback, lineCallback);
-            }, DISPLAY_TEXT_TIME);
+              if (message.length == index && args.freezeLastLine) {
+                if (args.callback) {
+                  args.callback();
+                }
+              }
+              else {
+                _displayMessage(message, index, args);
+              }
+            }, args.displayTextTime);
 
-          }, DISPLAY_WORD_TIME * words.length + 350);
+          }, (args.displayWordTime * words.length) + 350);
 
         });
 
@@ -85,11 +94,23 @@
         return;
       }
 
-      args.message = typeof message == 'string' ? [args.message] : args.message;
+      args.message = typeof args.message == 'string' ? [args.message] : args.message;
 
       setTimeout(function() {
 
-        _displayMessage(args.message, 0, args.callback || null, args.lineCallback || null);
+        args = $.extend(true, {
+          callback: null,
+          lineCallback: null,
+          displayedLineCallback: null,
+          displayTextTime: DISPLAY_TEXT_TIME,
+          displayWordTime: DISPLAY_WORD_TIME,
+          freezeLastLine: false
+        }, args);
+
+        args.displayTextTime = !args.displayTextTime && args.displayTextTime !== 0 ? DISPLAY_TEXT_TIME : args.displayTextTime;
+        args.displayWordTime = !args.displayWordTime && args.displayWordTime !== 0 ? DISPLAY_WORD_TIME : args.displayWordTime;
+
+        _displayMessage(args.message, 0, args);
       });
     });
 
