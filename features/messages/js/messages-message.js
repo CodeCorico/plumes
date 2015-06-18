@@ -88,7 +88,7 @@
       });
     }
 
-    Message.observe('play', function(args) {
+    Message.on('play', function(args) {
       args = args || {};
       if (!args.message) {
         return;
