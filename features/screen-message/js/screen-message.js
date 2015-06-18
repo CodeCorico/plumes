@@ -70,10 +70,8 @@
       }, 350);
     }
 
-    ScreenMessage.observe('play', function(playArgs) {
-      setTimeout(function() {
-        _play(playArgs);
-      });
+    ScreenMessage.on('play', function(playArgs) {
+      _play(playArgs);
     });
 
     ScreenMessage.require().then(done);
