@@ -9,7 +9,7 @@
 
 .screen-message {
   .noselect();
-  z-index: 999999;
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@
     margin: 1rem auto 0;
     background: @themeColor;
 
-    .animation(title-border-show 1s @easeOutQuart);
+    .animation(title-border-show 0.65s @easeOutQuart);
   }
 
   &.playing {
@@ -76,11 +76,13 @@
     }
   }
 
-  &.message-title {
+  &.sb-title-1, &.sb-title-2 {
     .title-border {
       display: block;
     }
+  }
 
+  &.sb-title-2 {
     .screen-message-message {
       .transition(all 1s @easeOutQuart);
 
@@ -90,6 +92,26 @@
         margin-left: 0.75rem;
         .transition(all 1s @easeOutQuart);
       }
+    }
+  }
+
+  &.sb-title-out-1 {
+    .screen-message-message {
+      opacity: 0;
+      .transition(all 0.55s @easeOutQuart);
+
+      .message .word {
+        font-size: 3rem;
+        lein-height: 3rem;
+        margin-left: 0.75rem;
+        .transition(all 1s @easeOutQuart);
+      }
+    }
+  }
+
+  &.sb-title-out-2 {
+    .screen-message-message {
+      opacity: 0;
     }
   }
 }

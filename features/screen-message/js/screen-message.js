@@ -14,18 +14,20 @@
 
     function _play(playArgs) {
       if (playArgs && playArgs != _playArgs) {
-        ScreenMessage.set('play', null);
+        var Message = ScreenMessage.childrenRequire[0];
+
+        Message.fire('reset');
 
         _playArgs = playArgs;
         ScreenMessage.set('playing', true);
         ScreenMessage.set('playingDone', false);
-        ScreenMessage.set('messageTitle', false);
+        ScreenMessage.set('storyboard', false);
 
         setTimeout(function() {
-          ScreenMessage.childrenRequire[0].set('play', {
+          Message.fire('play', {
             message: playArgs.message,
             callback: _done,
-            lineCallback: function(Message) {
+            lineCallback: function() {
               ScreenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
 
               if (_playArgs.lineCallback) {
@@ -46,12 +48,22 @@
         if (_playArgs.done) {
           _playArgs.done();
         }
+        _playArgs = null;
 
         return;
       }
       else if (_playArgs.lastLineToTitle) {
-        ScreenMessage.set('messageTitle', true);
-        ScreenMessage.set('messageTop', 100);
+        ScreenMessage.set('storyboard', 'sb-title-1');
+
+        if (_playArgs.done) {
+          _playArgs.done();
+        }
+        _playArgs = null;
+
+        setTimeout(function() {
+          ScreenMessage.set('storyboard', 'sb-title-2');
+          ScreenMessage.set('messageTop', 100);
+        }, 650);
 
         return;
       }
@@ -69,6 +81,19 @@
         _playArgs = null;
       }, 350);
     }
+
+    ScreenMessage.on('closeTitle', function(callback) {
+      ScreenMessage.set('storyboard', 'sb-title-out-1');
+      ScreenMessage.set('messageTop', 70);
+
+      if (callback) {
+        setTimeout(function() {
+          ScreenMessage.set('storyboard', '');
+
+          callback();
+        }, 550);
+      }
+    });
 
     ScreenMessage.on('play', function(playArgs) {
       _play(playArgs);
