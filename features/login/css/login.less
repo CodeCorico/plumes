@@ -1,0 +1,209 @@
+@import "../../common/less/common-mixins.less";
+@import "../../common/less/common-variables.less";
+
+@-webkit-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-moz-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-ms-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-o-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+
+@-webkit-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+@-moz-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+@-ms-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+@-o-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+@keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+
+.login {
+  z-index: 1001;
+
+  .login-container {
+    overflow: hidden;
+    z-index: 1001;
+    position: fixed;
+    left: 2rem;
+    right: 2rem;
+  }
+
+  .bottom-border-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+
+    .bottom-border {
+      display: none;
+      width: 700px;
+      height: 1px;
+      margin: 0 auto;
+      background: @themeColor;
+
+      .animation(bottom-border-show 0.65s @easeOutQuart);
+    }
+  }
+
+  .login-content {
+    position: relative;
+    width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .login-form {
+      opacity: 0;
+      position: absolute;
+      background: @themeColor;
+      left: 375px;
+      right: 375px;
+      top: 50%;
+      height: 0;
+      margin-top: 0;
+      overflow: hidden;
+
+      .old-avatar {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 140px;
+        height: 140px;
+
+        &.show {
+          display: block;
+        }
+      }
+
+      .avatar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 140px;
+        width: 140px;
+        margin: -70px 0 0 -70px;
+        background: @themeColor;
+
+        &.show-again {
+          .animation(avatar-show-again 0.65s @easeOutQuart);
+        }
+      }
+
+      .input {
+        background: none;
+        color: white;
+        margin: 0 0 0 150px;
+        border: none;
+        font-size: 2rem;
+        line-height: 4rem;
+        height: 7rem;
+        width: 250px;
+
+        &::-webkit-input-placeholder {
+           color: white;
+           opacity: 0.5;
+        }
+
+        &:-moz-placeholder {
+           color: white;
+           opacity: 0.5;
+        }
+
+        &::-moz-placeholder {
+           color: white;
+           opacity: 0.5;
+        }
+
+        &:-ms-input-placeholder {
+           color: white;
+           opacity: 0.5;
+        }
+      }
+
+      .submit {
+        display: none;
+      }
+    }
+  }
+
+  &.sb-show-1, &.sb-show-2, &.sb-show-3, &.sb-hide-1 {
+    .bottom-border-container .bottom-border {
+      display: block;
+    }
+  }
+
+  &.sb-show-2 {
+    .login-container {
+      .transition(all 1s @easeOutQuart);
+    }
+
+    .login-content .login-form {
+      opacity: 1;
+      left: 280px;
+      right: 280px;
+      height: 140px;
+      margin-top: -70px;
+      .transition(all 0.45s @easeOutQuart);
+    }
+  }
+
+  &.sb-show-3 {
+    .login-content .login-form {
+      opacity: 1;
+      left: 150px;
+      right: 150px;
+      height: 140px;
+      margin-top: -70px;
+      .transition(all 0.45s @easeOutQuart);
+
+      .avatar {
+        left: 0;
+        top: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  &.sb-hide-1, &.sb-hide-2 {
+    .login-container {
+      .transition(all 0.55s @easeOutQuart);
+    }
+
+    .login-content .login-form {
+      opacity: 1;
+      left: 150px;
+      right: 150px;
+      height: 140px;
+      margin-top: -70px;
+      .transition(all 0.55s @easeOutQuart);
+
+      .avatar {
+        left: 0;
+        top: 0;
+        margin: 0;
+      }
+    }
+
+    .bottom-border-container {
+      opacity: 0;
+      .transition(all 0.55s @easeOutQuart);
+    }
+  }
+
+  &.sb-hide-2 {
+    .login-content .login-form {
+      left: 280px;
+      right: 280px;
+      .transition(all 0.45s @easeOutQuart);
+    }
+  }
+
+  &.sb-hide-3 {
+    .login-content .login-form {
+      opacity: 1;
+      left: 375px;
+      right: 375px;
+      height: 0px;
+      margin-top: 0;
+      .transition(all 0.15s linear);
+    }
+  }
+}
