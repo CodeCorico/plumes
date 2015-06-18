@@ -1,6 +1,25 @@
-<div class="login">
+<div class="login {{storyboard}}">
   <rv-require
     name="screen-message"
     src="../screen-message/screen-message"
   ></rv-require>
+
+  <div class="login-container" style="top: {{top}}px; height: {{height}}px;">
+
+    <div class="login-content">
+      <form class="login-form" on-submit="submit" action="#">
+
+        <img class="old-avatar {{oldAvatar ? 'show' : ''}}" src="{{oldAvatar}}" />
+        <img class="avatar {{oldAvatar ? 'show-again' : ''}}" src="{{avatar}}" />
+
+        <input class="input name" type="text" placeholder="{{texts.username}}" value="{{username}}" />
+        <input class="input password" type="password" placeholder="{{texts.userpassword}}" value="{{userpassword}}" on-focus="passwordFocus" />
+        <input class="submit" type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <div class="bottom-border-container">
+      <div class="bottom-border"></div>
+    </div>
+  </div>
 </div>
