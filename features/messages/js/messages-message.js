@@ -90,6 +90,11 @@
       });
     }
 
+    Message.on('reset', function() {
+      _message = null;
+      Message.set('words', null);
+    });
+
     Message.on('play', function(args) {
       args = args || {};
       if (!args.message) {
