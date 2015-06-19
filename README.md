@@ -1,5 +1,7 @@
 # Plumes
 
+[![Join the chat at https://gitter.im/CodeCorico/plumes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CodeCorico/plumes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Flying-fast Metro future vision components
 
 [![Microsoft: Productivity Future Vision](http://img.youtube.com/vi/w-tFdreZB94/0.jpg)](http://www.youtube.com/watch?v=w-tFdreZB94)
