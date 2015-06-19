@@ -6,7 +6,8 @@ var extend = require('extend'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    del = require('del');
 
 var Plumes = function(gulp, config) {
 
@@ -35,6 +36,8 @@ var Plumes = function(gulp, config) {
   }
 
   gulp.task('default', defaultTask);
+
+  del.sync([config.path.public]);
 
   gulp.task('less', function(done) {
     gulp.src(config.path.less)
