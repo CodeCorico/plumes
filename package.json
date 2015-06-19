@@ -25,6 +25,7 @@
     "gulp": "^3.8.11"
   },
   "dependencies": {
+    "del": "^1.2.0",
     "extend": "^2.0.0",
     "font-awesome": "^4.3.0",
     "gulp-less": "^3.0.1",
