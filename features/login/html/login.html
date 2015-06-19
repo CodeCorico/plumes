@@ -1,4 +1,4 @@
-<div class="login {{storyboard}}">
+<div class="login {{storyboard}} {{storyboardError}}">
   <rv-require
     name="screen-message"
     src="../screen-message/screen-message"
@@ -8,13 +8,18 @@
 
     <div class="login-content">
       <form class="login-form" on-submit="submit" action="#">
+        <div class="login-form-content">
+          <img class="old-avatar {{oldAvatar ? 'show' : ''}}" src="{{oldAvatar}}" />
+          <img class="avatar {{oldAvatar ? 'show-again' : ''}}" src="{{avatar}}" />
 
-        <img class="old-avatar {{oldAvatar ? 'show' : ''}}" src="{{oldAvatar}}" />
-        <img class="avatar {{oldAvatar ? 'show-again' : ''}}" src="{{avatar}}" />
+          <input class="input name" type="text" placeholder="{{texts.username}}" value="{{username}}" />
+          <input class="input password" type="password" placeholder="{{texts.userpassword}}" value="{{userpassword}}" on-focus="passwordFocus" />
+          <input class="submit" type="submit" value="Submit" />
+        </div>
 
-        <input class="input name" type="text" placeholder="{{texts.username}}" value="{{username}}" />
-        <input class="input password" type="password" placeholder="{{texts.userpassword}}" value="{{userpassword}}" on-focus="passwordFocus" />
-        <input class="submit" type="submit" value="Submit" />
+        <div class="login-form-error">
+          <p>{{{error}}}</p>
+        </div>
       </form>
     </div>
 

@@ -100,6 +100,37 @@
       event.original.preventDefault();
     });
 
+    Login.on('error', function(args) {
+      args = $.extend(true, {
+        message: 'You have an error in your credentials.',
+        clearUsername: false,
+        clearUserpassword: true
+      }, args || {});
+
+      Login.set('error', args.message);
+      Login.set('storyboardError', 'sb-error-1');
+
+      setTimeout(function() {
+        if (args.clearUsername) {
+          Login.set('username', '');
+        }
+        if (args.clearUserpassword) {
+          Login.set('userpassword', '');
+        }
+
+        Login.set('storyboardError', 'sb-error-2');
+        setTimeout(function() {
+          Login.set('storyboardError', 'sb-error-3');
+          setTimeout(function() {
+            Login.set('storyboardError', 'sb-error-4');
+            setTimeout(function() {
+              Login.set('storyboardError', null);
+            }, 350);
+          }, 250);
+        }, 3000);
+      }, 250);
+    });
+
     _$el.window.resize(function() {
       if (!Login) {
         return;
