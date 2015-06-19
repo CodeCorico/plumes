@@ -43,7 +43,7 @@
         ondemand="login"
 
         data-text-question="Who are you?"
-        data-text-username="Name"
+        data-text-username="Email"
         data-text-userpassword="Password"
       ></rv-require>
 
@@ -54,7 +54,7 @@
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
   <script type="text/javascript" src="http://cdn.ractivejs.org/latest/ractive.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ractive-require/0.2.4/ractive-require.js"></script>
+  <script type="text/javascript" src="/ractive-require.js"></script>
   <script type="text/javascript" src="https://www.myersdaily.org/joseph/javascript/md5.js"></script>
   <script type="text/javascript" src="/public/layout/layout-bootstrap.js"></script>
 
@@ -84,18 +84,29 @@
       page.set('beforerequire', function(Layout, callback) {
         Layout.require('login').then(function() {
 
-          var Login = Layout.childrenRequire[0];
+          var Login = Layout.childrenRequire[0],
+              submited = false;
 
           Login.on('usernameChanged', function(username) {
             if (username) {
               Login.set(
                 'avatar',
-                'https://www.gravatar.com/avatar/' + window.md5(username) + '.png'
+                'https://www.gravatar.com/avatar/' + window.md5(username) + '.png?s=140'
               );
             }
           });
 
           Login.on('login', function(args) {
+            if (!submited) {
+              submited = true;
+
+              Login.fire('error', {
+                message: 'The password entered is incorrect.'
+              });
+
+              return;
+            }
+
             if (args.username && args.userpassword) {
               Login.fire('logged', 'Welcome back <strong>' + args.username + '</strong>');
             }
