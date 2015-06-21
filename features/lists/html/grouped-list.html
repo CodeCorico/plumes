@@ -1,0 +1,22 @@
+{{#partial itemsList}}
+
+  {{#items}}
+    <div
+      class="grouped-list-item level-{{level(@keypath)}}"
+      data-level="{{level(@keypath)}}"
+    >
+      {{> itemTemplate}}
+    </div>
+
+    {{#if this.items.length}}
+      {{> itemsList}}
+    {{/if}}
+  {{/items}}
+
+{{/partial}}
+
+<div class="grouped-list">
+  <div class="grouped-list-content">
+    {{> itemsList}}
+  </div>
+</div>
