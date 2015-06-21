@@ -22,13 +22,16 @@
     }
 
     GroupedList.on('refresh', function() {
-      var scrollTop = _$el.list.get(0).scrollTop;
+      var scrollTop = _$el.list.get(0).scrollTop,
+          $lastItemMoved = null;
 
       _$el.content.children().each(function() {
         var $item = $(this),
             level = $item.data('level');
 
-        $item.css('top', '');
+        $item
+          .removeClass('grouped-list-fixed grouped-list-fixed-last')
+          .css('top', '');
 
         var top = $item.position().top;
 
@@ -49,8 +52,17 @@
             'z-index': 9999 - level,
             top: Math.min(scrollTop, nextTop) - top
           });
+
+          if (nextTop > scrollTop) {
+            $item.addClass('grouped-list-fixed');
+            $lastItemMoved = $item;
+          }
         }
       });
+
+      if ($lastItemMoved) {
+        $lastItemMoved.addClass('grouped-list-fixed-last');
+      }
     });
 
     _$el.list.scroll(_refresh);
