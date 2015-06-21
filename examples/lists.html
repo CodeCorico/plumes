@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plumes - Lists</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+  .example-mask {
+    z-index: 99998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+  }
+
+  .grouped-list {
+    position: fixed !important;
+    top: 80px;
+    left: 3rem;
+    right: 3rem;
+    bottom: 3rem;
+  }
+
+  .list-example {
+    font-size: 1.8rem;
+    padding: 0.5rem 3rem;
+    line-height: 3rem;
+  }
+
+  .country {
+    background: #009688;
+    color: white;
+    font-size: 2.2rem;
+  }
+
+  .area {
+    background: #03A9F4;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .department {
+    background: #E0F7FA;
+  }
+
+  .canton {
+    height: 50px;
+    background: red;
+  }
+  </style>
+</head>
+<body>
+
+  <rv-require
+    name="layout"
+    src="../public/layout/layout"
+
+    data-bind-onloaded="onloaded"
+    data-bind-brand="brand"
+    data-bind-apps="apps"
+    data-bind-user="user"
+    data-bind-listitems="listitems"
+  >
+    <rv-partial target="mask-title">
+      Lists <span>example</span>
+    </rv-partial>
+    <rv-partial target="message-title">
+      Lists <span>example</span>
+    </rv-partial>
+    <rv-partial target="content">
+
+      <rv-require
+        name="grouped-list"
+        src="../public/lists/grouped-list"
+
+        data-bind-items="listitems"
+      >
+        <rv-partial target="itemTemplate" src="./lists-items-partial.html"></rv-partial>
+      </rv-require>
+
+    </rv-partial>
+  </rv-require>
+
+  <div class="example-mask"></div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="http://cdn.ractivejs.org/latest/ractive.js"></script>
+  <script type="text/javascript" src="/ractive-require.js"></script>
+  <script type="text/javascript" src="/public/layout/layout-bootstrap.js"></script>
+
+  <script type="text/javascript">
+  (function() {
+    'use strict';
+
+    window.Ractive.bootstrap(function(page) {
+
+      page.set('brand', 'Plumes');
+      page.set('apps', [{
+        name: 'Layout example',
+        select: function() {
+          window.location.href = '/examples/layout.html';
+        }
+      }, {
+        name: 'Login example',
+        select: function() {
+          window.location.href = '/examples/login.html';
+        }
+      }, {
+        name: 'Lists example',
+        selected: true,
+        select: function() {
+          window.location.href = '/examples/lists.html';
+        }
+      }]);
+      page.set('user', {
+        avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
+      });
+
+      page.set('listitems', [{
+        label: 'France',
+        country: true,
+        open: true,
+        items: [{
+          label: 'Île-de-France',
+          area: true,
+          items: [{
+              label: '75 - Paris',
+              department: true,
+              items: [{
+                label: 'Paris',
+                canton: true
+              }]
+            }, {
+              label: '77 - Seine-et-Marne',
+              department: true,
+              items: [{
+                label: 'Fontainebleau',
+                canton: true
+              }, {
+                label: 'Meaux',
+                canton: true
+              }, {
+                label: 'Melun',
+                canton: true
+              }, {
+                label: 'Provins',
+                canton: true
+              }, {
+                label: 'Torcy',
+                canton: true
+              }]
+            }, {
+              label: '78 - Yvelines',
+              department: true,
+              items: [{
+                label: 'Mantes-la-Jolie',
+                canton: true
+              }, {
+                label: 'Rambouillet',
+                canton: true
+              }, {
+                label: 'Saint-Germain-en-Laye',
+                canton: true
+              }, {
+                label: 'Versailles',
+                canton: true
+              }]
+            }, {
+              label: '91 - Essonne',
+              department: true
+            }, {
+              label: '92 - Hauts-de-Seine',
+              department: true
+            }, {
+              label: '93 - Seine-Saint-Denis',
+              department: true
+            }, {
+              label: '94 - Val-de-Marne',
+              department: true
+            }, {
+              label: '95 - Val-d\'Oise',
+              department: true
+            }]
+        }, {
+          label: 'Berry',
+          area: true
+        }, {
+          label: 'Orléanais',
+          area: true
+        }, {
+          label: 'Normandie',
+          area: true
+        }, {
+          label: 'Languedoc',
+          area: true
+        }, {
+          label: 'Lyonnais',
+          area: true
+        }, {
+          label: 'Dauphiné',
+          area: true
+        }, {
+          label: 'Champagne',
+          area: true
+        }, {
+          label: 'Aunis',
+          area: true
+        }, {
+          label: 'Saintonge',
+          area: true
+        }, {
+          label: 'Poitou',
+          area: true
+        }, {
+          label: 'Guyenne et Gascogne',
+          area: true
+        }, {
+          label: 'Bourgogne',
+          area: true
+        }, {
+          label: 'Picardie',
+          area: true
+        }, {
+          label: 'Anjou',
+          area: true
+        }, {
+          label: 'Provence',
+          area: true
+        }, {
+          label: 'Angoumois',
+          area: true
+        }, {
+          label: 'Bourbonnais',
+          area: true
+        }, {
+          label: 'Marche',
+          area: true
+        }, {
+          label: 'Bretagne',
+          area: true
+        }, {
+          label: 'Maine',
+          area: true
+        }, {
+          label: 'Touraine',
+          area: true
+        }, {
+          label: 'Limousin',
+          area: true
+        }, {
+          label: 'Comté de Foix',
+          area: true
+        }, {
+          label: 'Auvergne',
+          area: true
+        }, {
+          label: 'Béarn',
+          area: true
+        }, {
+          label: 'Alsace',
+          area: true
+        }, {
+          label: 'Artois',
+          area: true
+        }, {
+          label: 'Roussillon',
+          area: true
+        }, {
+          label: 'Flandre française et Hainaut français',
+          area: true
+        }, {
+          label: 'Franche-Comté',
+          area: true
+        }, {
+          label: 'Lorraine et Trois-Évêchés',
+          area: true
+        }, {
+          label: 'Corse',
+          area: true
+        }, {
+          label: 'Nivernais',
+          area: true
+        }]
+      }, {
+        label: 'Austria',
+        country: true
+      }, {
+        label: 'Belgium',
+        country: true
+      }, {
+        label: 'Bulgaria',
+        country: true
+      }, {
+        label: 'Croatia',
+        country: true
+      }, {
+        label: 'Cyprus',
+        country: true
+      }, {
+        label: 'Czech Republic',
+        country: true
+      }, {
+        label: 'Denmark',
+        country: true
+      }, {
+        label: 'Estonia',
+        country: true
+      }, {
+        label: 'Finland',
+        country: true
+      }, {
+        label: 'France',
+        country: true
+      }, {
+        label: 'Germany',
+        country: true
+      }, {
+        label: 'Greece',
+        country: true
+      }, {
+        label: 'Hungary',
+        country: true
+      }, {
+        label: 'Ireland',
+        country: true
+      }, {
+        label: 'Italy',
+        country: true
+      }, {
+        label: 'Latvia',
+        country: true
+      }, {
+        label: 'Lithuania',
+        country: true
+      }, {
+        label: 'Luxembourg',
+        country: true
+      }, {
+        label: 'Malta',
+        country: true
+      }, {
+        label: 'Netherlands',
+        country: true
+      }, {
+        label: 'Poland',
+        country: true
+      }, {
+        label: 'Portugal',
+        country: true
+      }, {
+        label: 'Romania',
+        country: true
+      }, {
+        label: 'Slovakia',
+        country: true
+      }, {
+        label: 'Slovenia',
+        country: true
+      }, {
+        label: 'Spain',
+        country: true
+      }, {
+        label: 'Sweden',
+        country: true
+      }, {
+        label: 'United Kingdom',
+        country: true
+      }]);
+
+      page.set('onloaded', function() {
+        $('.example-mask').remove();
+      });
+
+      page.require();
+    });
+
+  })();
+</script>
+</body>
+</html>
