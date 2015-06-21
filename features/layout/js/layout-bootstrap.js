@@ -2,6 +2,29 @@
   'use strict';
 
   window.Ractive.bootstrap = function(callback) {
+    function _inScope(element, rvRequireCount) {
+      rvRequireCount = rvRequireCount || 0;
+
+      if (!element.parentNode) {
+        return true;
+      }
+
+      var tag = element.parentNode.tagName.toLowerCase();
+
+      if (tag == 'rv-require') {
+        rvRequireCount++;
+
+        if (rvRequireCount > 1) {
+          return false;
+        }
+      }
+      else if (tag == 'rv-partial') {
+        return false;
+      }
+
+      return _inScope(element.parentNode, rvRequireCount);
+    }
+
     $(function() {
       var partials = {},
           $cleaner = $('<div />').append($('body').html());
@@ -14,7 +37,7 @@
         var src = rvPartial.getAttribute('src') || false,
             target = rvPartial.getAttribute('target');
 
-        if (!src && target) {
+        if (!src && target && _inScope(rvPartial)) {
           partials[target] = $.trim(rvPartial.innerHTML);
         }
       });
