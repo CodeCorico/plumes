@@ -15,11 +15,6 @@ Include the module in your project with :
 npm install --save plumes
 ```
 
-For quality version (similar to beta):
-```
-npm install --save plumes#quality
-```
-
 ## How to use it
 
 ### Compile template files
