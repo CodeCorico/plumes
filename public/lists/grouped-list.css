@@ -1,0 +1,10 @@
+.grouped-list {
+  position: relative;
+  overflow: auto;
+}
+.grouped-list .grouped-list-content {
+  position: relative;
+}
+.grouped-list .grouped-list-item {
+  position: relative;
+}

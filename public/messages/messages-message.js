@@ -4,7 +4,9 @@
   window.Ractive.controller('messages-message', function(component, data, el, config, done) {
 
     var DISPLAY_TEXT_TIME = 3000,
-        DISPLAY_WORD_TIME = 150;
+        DISPLAY_WORD_TIME = 150,
+
+        _message = null;
 
     var Message = component({
       data: data
@@ -88,7 +90,12 @@
       });
     }
 
-    Message.observe('play', function(args) {
+    Message.on('reset', function() {
+      _message = null;
+      Message.set('words', null);
+    });
+
+    Message.on('play', function(args) {
       args = args || {};
       if (!args.message) {
         return;
@@ -110,7 +117,25 @@
         args.displayTextTime = !args.displayTextTime && args.displayTextTime !== 0 ? DISPLAY_TEXT_TIME : args.displayTextTime;
         args.displayWordTime = !args.displayWordTime && args.displayWordTime !== 0 ? DISPLAY_WORD_TIME : args.displayWordTime;
 
+        _message = args.message;
+
         _displayMessage(args.message, 0, args);
+      });
+    });
+
+    Message.on('hideMessage', function(callback) {
+      if (!_message || !_message.length) {
+        if (callback) {
+          callback();
+        }
+
+        return;
+      }
+
+      _hideMessage(_message.length - 1, function() {
+        if (callback) {
+          callback();
+        }
       });
     });
 
