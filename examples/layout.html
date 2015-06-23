@@ -91,7 +91,7 @@
 
           layout.childrenRequire.forEach(function(child) {
             if (child && child.el && $(child.el).attr('name') == 'screen-message') {
-              child.set('play', {
+              child.fire('play', {
                 message: [
                   'Hello',
                   'It\'s your firstime on the <strong>Plumes</strong> layout example.',
