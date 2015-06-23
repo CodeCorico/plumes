@@ -7,12 +7,39 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.0"></a>
+# 0.2.0 (2015-06-23)
+
+[Release 0.2.0](https://github.com/CodeCorico/plumes/releases/tag/0.2.0) - [Branch release/0.2.0](https://github.com/CodeCorico/plumes/tree/0.2.0)
+
+### Breaking changes
+
+- **Build**
+  - Copy every files in each ```/features/\*\*/resources``` folder to the ```/public/\*\*/``` folder
+  - The folder ```/public``` is cleaned each time the ```gulp``` is started
+- **Example layout**
+  - Add a cookie to prevent the Screen message display every start.
+- **Login**
+  - Create the new component
+- **Grouped-list**
+  - Create the new component
+
+### Fixes
+
+- **Buttons**
+  - Move "help/help-button" to "button/button-help".
+- **Help**
+  - Remove this unconventional feature.
+- **Conventions**
+  - Remove the legacy #quality pattern.
+  - Define the release publishing.
+
 <a name="0.1.0"></a>
 # 0.1.0 (2015-06-10)
 
-[Release 0.1.0](https://github.com/CodeCorico/plumes/releases/tag/0.1.0) - [Branch release/1.0.0](https://github.com/CodeCorico/plumes/tree/0.1.0)
+[Release 0.1.0](https://github.com/CodeCorico/plumes/releases/tag/0.1.0) - [Branch release/0.1.0](https://github.com/CodeCorico/plumes/tree/0.1.0)
 
 ### Breaking changes
 
 - **Plumes**
-  - Migration from the internal private project
+  - Migration from the internal private project.
