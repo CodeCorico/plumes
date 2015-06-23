@@ -220,6 +220,7 @@ Only the lead contribution team can publish a new version. To do that, it requir
 
 Publish the new version:
 * Pull the last version of `master` branch
+* Build the distribution files by starting ```gulp```
 * Define the new version number (format MAJOR.MINOR.REVISION)
 * Update the `package.json` version
 * Update the `CHANGELOG.md` file with the new changes
