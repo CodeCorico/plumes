@@ -7,6 +7,18 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.1"></a>
+# 0.2.1 (2015-06-25)
+
+[Release 0.2.1](https://github.com/CodeCorico/plumes/releases/tag/0.2.1) - [Branch release/0.2.1](https://github.com/CodeCorico/plumes/tree/0.2.1)
+
+### Hotfixes
+
+- **Login**
+  - Fix default avatar loads error
+- **Example login**
+  - Preload avatar
+
 <a name="0.2.0"></a>
 # 0.2.0 (2015-06-23)
 
