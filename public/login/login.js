@@ -16,7 +16,7 @@
       }
     });
 
-    data.avatar = typeof data.avatar == 'undefined' ? '/public/login/avatar.png' : data.avatar;
+    data.avatar = !data.avatar ? 'null' : data.avatar;
     data.texts.username = typeof data.texts.username == 'undefined' ? 'Name' : data.texts.username;
     data.texts.userpassword = typeof data.texts.userpassword == 'undefined' ? 'Password' : data.texts.userpassword;
 
@@ -40,6 +40,13 @@
     Login.observe('avatar', function(value, oldValue) {
       if (oldValue == value) {
         return;
+      }
+      if (!value) {
+        value = 'null';
+        Login.set('avatar', value);
+        if (oldValue == 'null') {
+          return;
+        }
       }
 
       Login.set('oldAvatar', oldValue);

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:500,300,700,400');
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url('https://fonts.googleapis.com/css?family=Roboto:500,300,700,400');
 html {
   font-family: sans-serif;
   /* 1 */

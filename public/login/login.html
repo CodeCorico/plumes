@@ -9,8 +9,14 @@
     <div class="login-content">
       <form class="login-form" on-submit="submit" action="#">
         <div class="login-form-content">
-          <img class="old-avatar {{oldAvatar ? 'show' : ''}}" src="{{oldAvatar}}" />
-          <img class="avatar {{oldAvatar ? 'show-again' : ''}}" src="{{avatar}}" />
+          <div
+            class="old-avatar {{oldAvatar ? 'show' : ''}}"
+            style="{{#if oldAvatar != 'null'}}background-image: url('{{oldAvatar}}');{{/if}}"
+          ></div>
+          <div
+            class="avatar {{oldAvatar ? 'show-again' : ''}}"
+            style="{{#if avatar != 'null'}}background-image: url('{{avatar}}');{{/if}}"
+          ></div>
 
           <input class="input name" type="text" placeholder="{{texts.username}}" value="{{username}}" />
           <input class="input password" type="password" placeholder="{{texts.userpassword}}" value="{{userpassword}}" on-focus="passwordFocus" />

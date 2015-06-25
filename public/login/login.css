@@ -158,6 +158,8 @@
   left: 0;
   width: 140px;
   height: 140px;
+  background: #ff6600 url('avatar.png') no-repeat;
+  background-size: 100%;
 }
 .login .login-content .login-form .old-avatar.show {
   display: block;
@@ -169,7 +171,8 @@
   height: 140px;
   width: 140px;
   margin: -70px 0 0 -70px;
-  background: #ff6600;
+  background: #ff6600 url('avatar.png') no-repeat;
+  background-size: 100%;
 }
 .login .login-content .login-form .avatar.show-again {
   -webkit-animation: avatar-show-again 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
