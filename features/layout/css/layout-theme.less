@@ -4,16 +4,14 @@
 @import "layout-fonts.less";
 @import "layout-icons.less";
 
+@import "../../common/css/common-theme.less";
+
 .clear {
   clear: both;
 }
 
 strong {
   font-weight: 400;
-}
-
-.success {
-  color: @successColor;
 }
 
 .container {
@@ -190,6 +188,7 @@ html is set to 62.5% so that all the REM measurements
 are based on 10px sizing. So basically 1.5rem = 15px */
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
@@ -199,6 +198,7 @@ body {
   font-weight: 300;
   font-family: "SegoeUI", "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222;
+  height: 100%;
 }
 
 h1,
