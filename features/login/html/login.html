@@ -8,13 +8,13 @@
 
     <div class="login-content">
       <form class="login-form" on-submit="submit" action="#">
-        <div class="login-form-content">
+        <div class="login-form-content theme-bg">
           <div
-            class="old-avatar {{oldAvatar ? 'show' : ''}}"
+            class="old-avatar theme-bg {{oldAvatar ? 'show' : ''}}"
             style="{{#if oldAvatar != 'null'}}background-image: url('{{oldAvatar}}');{{/if}}"
           ></div>
           <div
-            class="avatar {{oldAvatar ? 'show-again' : ''}}"
+            class="avatar theme-bg {{oldAvatar ? 'show-again' : ''}}"
             style="{{#if avatar != 'null'}}background-image: url('{{avatar}}');{{/if}}"
           ></div>
 
@@ -23,14 +23,14 @@
           <input class="submit" type="submit" value="Submit" />
         </div>
 
-        <div class="login-form-error">
+        <div class="login-form-error error-bg">
           <p>{{{error}}}</p>
         </div>
       </form>
     </div>
 
     <div class="bottom-border-container">
-      <div class="bottom-border"></div>
+      <div class="bottom-border theme-bg"></div>
     </div>
   </div>
 </div>
