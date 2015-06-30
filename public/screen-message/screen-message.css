@@ -75,9 +75,6 @@
   line-height: 3rem;
   margin: 0;
 }
-.screen-message .title h1 span {
-  color: #ff6600;
-}
 .screen-message .screen-message-message {
   position: absolute;
   left: 2rem;
@@ -93,7 +90,6 @@
   width: 700px;
   height: 1px;
   margin: 1rem auto 0;
-  background: #ff6600;
   -webkit-animation: title-border-show 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-animation: title-border-show 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
   -ms-animation: title-border-show 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);

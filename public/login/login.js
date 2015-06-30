@@ -55,9 +55,17 @@
       }, 650);
     });
 
+    Login.on('teardown', function() {
+      Login = null;
+      _$el.window.off('resize', _resize);
+    });
+
     function _close() {
       Login.fire('closed');
-      Login.teardown();
+
+      if (Login && !Login.shouldDestroy) {
+        Login.teardown();
+      }
     }
 
     Login.on('logged', function(text) {
@@ -93,10 +101,7 @@
       }, 350);
     });
 
-    Login.on('close', function() {
-      Login.fire('closed');
-      Login.teardown();
-    });
+    Login.on('close', _close);
 
     Login.on('submit', function(event) {
       Login.fire('login', {
@@ -138,7 +143,7 @@
       }, 250);
     });
 
-    _$el.window.resize(function() {
+    function _resize() {
       if (!Login) {
         return;
       }
@@ -148,7 +153,9 @@
       if (storyboard == 'sb-show-2' || storyboard == 'sb-show-3') {
         _refresh();
       }
-    });
+    }
+
+    _$el.window.resize(_resize);
 
     Login.require().then(function() {
       var ScreenMessage = Login.childrenRequire[0],

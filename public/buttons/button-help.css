@@ -60,7 +60,6 @@
   padding: 0;
   margin: 0;
   background: white;
-  color: #333333;
   font-size: 2rem;
   font-weight: 300;
   -webkit-animation: button-help-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);

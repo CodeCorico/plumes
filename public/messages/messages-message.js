@@ -41,13 +41,17 @@
           return;
         }
 
-        var words = message[index].split(' ').map(function(word) {
-          return {
-            word: word,
-            display: false,
-            out: false
-          };
-        });
+        var words = message[index].split(/ +(?=[^<]*(<[^/]|$))/g)
+          .filter(function(word) {
+            return !!word.trim();
+          })
+          .map(function(word) {
+            return {
+              word: word,
+              display: false,
+              out: false
+            };
+          });
 
         Message.set('words', words);
 

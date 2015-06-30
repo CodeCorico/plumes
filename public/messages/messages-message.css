@@ -42,6 +42,5 @@
   transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .message .word strong {
-  color: #ff6600;
   font-weight: 300;
 }
