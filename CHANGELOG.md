@@ -7,6 +7,16 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.3"></a>
+# 0.2.3 (2015-06-30)
+
+[Release 0.2.3](https://github.com/CodeCorico/plumes/releases/tag/0.2.3) - [Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.3)
+
+### Hotfixes
+
+- **Message**
+  - Fix Message split words regex
+
 <a name="0.2.2"></a>
 # 0.2.2 (2015-06-30)
 
