@@ -7,6 +7,23 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.2"></a>
+# 0.2.2 (2015-06-30)
+
+[Release 0.2.2](https://github.com/CodeCorico/plumes/releases/tag/0.2.2) - [Branch release/0.2.2](https://github.com/CodeCorico/plumes/tree/0.2.2)
+
+### Breaking changes
+
+- **Layout**
+  - Split the theme in a new layout-theme.less file. Used to overide the theme color variables.
+
+### Hotfixes
+
+- **Login**
+  - Teardown properly the login layout
+- **Message**
+  - Split sentence tags properly
+
 <a name="0.2.1"></a>
 # 0.2.1 (2015-06-25)
 
