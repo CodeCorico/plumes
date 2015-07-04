@@ -22,11 +22,12 @@
     }
 
     GroupedList.on('refresh', function() {
-      var scrollTop = _$el.list.get(0).scrollTop,
+      var realScrollTop = _$el.list.get(0).scrollTop,
           $lastItemMoved = null;
 
       _$el.content.children().each(function() {
-        var $item = $(this),
+        var scrollTop = realScrollTop,
+            $item = $(this),
             level = $item.data('level');
 
         $item
@@ -46,7 +47,7 @@
                 return $(this).data('level') <= level;
               });
           $next = $next.length ? $($next.get(0)) : null;
-          var nextTop = $next ? $next.position().top - height : _$el.list.outerHeight() - height;
+          var nextTop = $next ? $next.position().top - height : _$el.content.outerHeight() - height;
 
           $item.css({
             'z-index': 9999 - level,
