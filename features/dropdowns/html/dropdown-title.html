@@ -5,12 +5,13 @@
     {{ noAnimation ? 'no-animation' : '' }}
     {{ noCaret ? 'no-caret' : '' }}
   "
+  on-click="mainClick"
 >
   <div class="dropdown-placeholder"><span>{{placeholder}}</span></div>
 
   <h2
     class="{{ titles.length > 1 ? 'list' : '' }}"
-    on-click="toggle()"
+    on-click="toggle"
     style="
     -webkit-transform: translateY({{ opened ? (selected.index + 1) * 40 : 0 }}px);
        -moz-transform: translateY({{ opened ? (selected.index + 1) * 40 : 0 }}px);

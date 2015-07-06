@@ -3,7 +3,10 @@
 
   window.Ractive.controller('dropdown-title', function(component, data, el, config, done) {
 
-    var dropdownTitle = null;
+    var dropdownTitle = null,
+        _$el = {
+          body: $('body')
+        };
 
     data.selected = {
       name: '',
@@ -79,25 +82,38 @@
       }, 550);
     }
 
+    function _click() {
+      _close();
+    }
+
     var dropdownTitle = component({
       data: data,
-      select: _select,
+      select: _select
+    });
 
-      toggle: function() {
-        if (data.titles.length < 2) {
-          return;
-        }
-
-        if (this.get('opened')) {
-          _close();
-        }
-        else {
-          this.fire('open', {
-            height: $(el).find('.dropdown-title h2').height() * (data.titles.length + 1)
-          });
-          this.set('opened', true);
-        }
+    dropdownTitle.toggle = function() {
+      if (data.titles.length < 2) {
+        return;
       }
+
+      if (dropdownTitle.get('opened')) {
+        _close();
+      }
+      else {
+        dropdownTitle.fire('open', {
+          height: $(el).find('.dropdown-title h2').height() * (data.titles.length + 1)
+        });
+        dropdownTitle.set('opened', true);
+      }
+    };
+
+    dropdownTitle.on('mainClick', function(event) {
+      event.original.stopPropagation();
+    });
+
+    dropdownTitle.on('toggle', function(event) {
+      dropdownTitle.toggle();
+      event.original.stopPropagation();
     });
 
     dropdownTitle.selectApp = function(name, fireFunc, callback) {
@@ -136,6 +152,12 @@
 
       return dropdownTitle;
     };
+
+    dropdownTitle.on('teardown', function() {
+      _$el.body.unbind('click', _click);
+    });
+
+    _$el.body.click(_click);
 
     done();
   });
