@@ -3,6 +3,8 @@
 
   window.Ractive.controller('dropdown-title', function(component, data, el, config, done) {
 
+    var dropdownTitle = null;
+
     data.selected = {
       name: '',
       index: 0
@@ -18,7 +20,48 @@
       });
     }
 
-    function _close() {
+    function _select(indexOrName, fireFunc, callback) {
+      if (!dropdownTitle) {
+        return;
+      }
+
+      fireFunc = typeof fireFunc == 'undefined' ? true : fireFunc;
+
+      var titles = dropdownTitle.get('titles'),
+          titleToSelect = null;
+
+      $.each(titles, function(i, title) {
+        if (typeof indexOrName == 'string' && indexOrName == title.name) {
+          indexOrName = i;
+        }
+
+        title.selected = i === indexOrName;
+
+        if (i === indexOrName) {
+          titleToSelect = title;
+        }
+      });
+
+      dropdownTitle.set('titles', titles);
+
+      dropdownTitle.set('selected.index', indexOrName);
+      dropdownTitle.set('selected.name', data.titles[indexOrName].name);
+      dropdownTitle.set('noAnimation', true);
+
+      setTimeout(function() {
+        _close(function() {
+          if (fireFunc) {
+            titleToSelect.select();
+          }
+
+          if (callback) {
+            callback();
+          }
+        });
+      });
+    }
+
+    function _close(callback) {
       dropdownTitle.fire('close', {
         height: $(el).find('.dropdown-title h2').height()
       });
@@ -29,31 +72,16 @@
 
       setTimeout(function() {
         dropdownTitle.set('noCaret', false);
+
+        if (callback) {
+          callback();
+        }
       }, 550);
     }
 
     var dropdownTitle = component({
       data: data,
-      select: function(index) {
-        var titles = this.get('titles');
-        $.each(titles, function(i) {
-          this.selected = i === index;
-
-          if (i === index) {
-            titles[i].select();
-          }
-        });
-
-        this.set('titles', titles);
-
-        this.set('selected.index', index);
-        this.set('selected.name', data.titles[index].name);
-        this.set('noAnimation', true);
-
-        setTimeout(function() {
-          _close();
-        });
-      },
+      select: _select,
 
       toggle: function() {
         if (data.titles.length < 2) {
@@ -71,6 +99,10 @@
         }
       }
     });
+
+    dropdownTitle.selectApp = function(name, fireFunc, callback) {
+      _select(name, fireFunc, callback);
+    };
 
     done();
   });
