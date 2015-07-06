@@ -27,6 +27,22 @@
       Title.selectApp(name, fireFunc, callback);
     };
 
+    layout.addApp = function(app, indexOrPosition) {
+      if (!Title) {
+        return;
+      }
+
+      Title.addTitle(app, indexOrPosition);
+    };
+
+    layout.removeApp = function(name) {
+      if (!Title) {
+        return;
+      }
+
+      Title.removeTitle(name);
+    };
+
     setTimeout(function() {
       if (data.onloaded) {
         data.onloaded(layout);
