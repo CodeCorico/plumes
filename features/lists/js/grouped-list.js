@@ -57,12 +57,18 @@
           if (nextTop > scrollTop) {
             $item.addClass('grouped-list-fixed');
             $lastItemMoved = $item;
+            GroupedList.fire('fixed', {
+              item: $item
+            });
           }
         }
       });
 
       if ($lastItemMoved) {
         $lastItemMoved.addClass('grouped-list-fixed-last');
+        GroupedList.fire('lastFixed', {
+          item: $lastItemMoved
+        });
       }
     });
 
