@@ -3,6 +3,11 @@
 
   window.Ractive.controller('dropdown-title', function(component, data, el, config, done) {
 
+    var dropdownTitle = null,
+        _$el = {
+          body: $('body')
+        };
+
     data.selected = {
       name: '',
       index: 0
@@ -18,7 +23,48 @@
       });
     }
 
-    function _close() {
+    function _select(indexOrName, fireFunc, callback) {
+      if (!dropdownTitle) {
+        return;
+      }
+
+      fireFunc = typeof fireFunc == 'undefined' ? true : fireFunc;
+
+      var titles = dropdownTitle.get('titles'),
+          titleToSelect = null;
+
+      $.each(titles, function(i, title) {
+        if (typeof indexOrName == 'string' && indexOrName == title.name) {
+          indexOrName = i;
+        }
+
+        title.selected = i === indexOrName;
+
+        if (i === indexOrName) {
+          titleToSelect = title;
+        }
+      });
+
+      dropdownTitle.set('titles', titles);
+
+      dropdownTitle.set('selected.index', indexOrName);
+      dropdownTitle.set('selected.name', data.titles[indexOrName].name);
+      dropdownTitle.set('noAnimation', true);
+
+      setTimeout(function() {
+        _close(function() {
+          if (fireFunc) {
+            titleToSelect.select();
+          }
+
+          if (callback) {
+            callback();
+          }
+        });
+      });
+    }
+
+    function _close(callback) {
       dropdownTitle.fire('close', {
         height: $(el).find('.dropdown-title h2').height()
       });
@@ -29,48 +75,89 @@
 
       setTimeout(function() {
         dropdownTitle.set('noCaret', false);
+
+        if (callback) {
+          callback();
+        }
       }, 550);
+    }
+
+    function _click() {
+      _close();
     }
 
     var dropdownTitle = component({
       data: data,
-      select: function(index) {
-        var titles = this.get('titles');
-        $.each(titles, function(i) {
-          this.selected = i === index;
+      select: _select
+    });
 
-          if (i === index) {
-            titles[i].select();
-          }
+    dropdownTitle.toggle = function() {
+      if (data.titles.length < 2) {
+        return;
+      }
+
+      if (dropdownTitle.get('opened')) {
+        _close();
+      }
+      else {
+        dropdownTitle.fire('open', {
+          height: $(el).find('.dropdown-title h2').height() * (data.titles.length + 1)
         });
+        dropdownTitle.set('opened', true);
+      }
+    };
 
-        this.set('titles', titles);
+    dropdownTitle.on('mainClick', function(event) {
+      event.original.stopPropagation();
+    });
 
-        this.set('selected.index', index);
-        this.set('selected.name', data.titles[index].name);
-        this.set('noAnimation', true);
+    dropdownTitle.on('toggle', function(event) {
+      dropdownTitle.toggle();
+      event.original.stopPropagation();
+    });
 
-        setTimeout(function() {
-          _close();
-        });
-      },
+    dropdownTitle.selectApp = function(name, fireFunc, callback) {
+      _select(name, fireFunc, callback);
 
-      toggle: function() {
-        if (data.titles.length < 2) {
-          return;
-        }
+      return dropdownTitle;
+    };
 
-        if (this.get('opened')) {
-          _close();
-        }
-        else {
-          this.fire('open', {
-            height: $(el).find('.dropdown-title h2').height() * (data.titles.length + 1)
-          });
-          this.set('opened', true);
+    dropdownTitle.addTitle = function(title, indexOrPosition) {
+      var titles = dropdownTitle.get('titles');
+
+      indexOrPosition = typeof indexOrPosition == 'undefined' ? titles.length : indexOrPosition;
+
+      if (typeof indexOrPosition == 'string') {
+        indexOrPosition = indexOrPosition == 'top' ? 0 : titles.length;
+      }
+
+      titles.splice(indexOrPosition, 0, title);
+
+      dropdownTitle.set('titles', titles);
+
+      return dropdownTitle;
+    };
+
+    dropdownTitle.removeTitle = function(name) {
+      var titles = dropdownTitle.get('titles');
+
+      for (var i = 0; i < titles.length; i++) {
+        if (titles[i].name == name) {
+          titles.splice(i, 1);
+          break;
         }
       }
+
+      dropdownTitle.set('titles', titles);
+
+      return dropdownTitle;
+    };
+
+    dropdownTitle.on('teardown', function() {
+      _$el.body.unbind('click', _click);
     });
+
+    _$el.body.click(_click);
 
     done();
   });

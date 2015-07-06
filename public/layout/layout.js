@@ -2,7 +2,8 @@
   'use strict';
 
   window.Ractive.controller('layout', function(component, data, el, config, done) {
-    var uses = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'];
+    var uses = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'],
+        Title = null;
 
     data.loaded = false;
 
@@ -17,6 +18,30 @@
     var layout = component({
       data: data
     });
+
+    layout.selectApp = function(name, fireFunc, callback) {
+      if (!Title) {
+        return;
+      }
+
+      Title.selectApp(name, fireFunc, callback);
+    };
+
+    layout.addApp = function(app, indexOrPosition) {
+      if (!Title) {
+        return;
+      }
+
+      Title.addTitle(app, indexOrPosition);
+    };
+
+    layout.removeApp = function(name) {
+      if (!Title) {
+        return;
+      }
+
+      Title.removeTitle(name);
+    };
 
     setTimeout(function() {
       if (data.onloaded) {
@@ -42,20 +67,18 @@
             layout.set('start', true);
 
             layout.require().then(function() {
-              var title;
-
               for (var i = 0; i < layout.childrenRequire.length; i++) {
                 if (layout.childrenRequire[i].el.getAttribute('name') == 'dropdown-title') {
-                  title = layout.childrenRequire[i];
+                  Title = layout.childrenRequire[i];
                 }
               }
 
-              if (title) {
-                title.on('open', function(args) {
+              if (Title) {
+                Title.on('open', function(args) {
                   layout.fire('titleOpen', args);
                 });
 
-                title.on('close', function(args) {
+                Title.on('close', function(args) {
                   layout.fire('titleClose', args);
                 });
               }
