@@ -8,6 +8,25 @@ Versions details history. For each version you can find:
 * All of the modifications details
 
 <a name="0.2.3"></a>
+# 0.2.4 (2015-07-06)
+
+[Release 0.2.4](https://github.com/CodeCorico/plumes/releases/tag/0.2.4) - [Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.4)
+
+### Hotfixes
+
+- **Grouped-list**
+  - Fix last item (of each index) position that doesn't fix.
+
+### Breaking changes
+
+- **Dropdown-title**
+  - Add possibility to select, add, and remove a title from the component object.
+  - Close the opened list when the user click on the screen.
+
+- **Grouped-list**
+  - Add "fixed" and "lastFixed" events.
+
+<a name="0.2.3"></a>
 # 0.2.3 (2015-06-30)
 
 [Release 0.2.3](https://github.com/CodeCorico/plumes/releases/tag/0.2.3) - [Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.3)
