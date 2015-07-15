@@ -7,10 +7,22 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
-<a name="0.2.3"></a>
+<a name="0.2.5"></a>
+# 0.2.5 (2015-07-15)
+
+[Release 0.2.5](https://github.com/CodeCorico/plumes/releases/tag/0.2.5) -
+[Branch release/0.2.5](https://github.com/CodeCorico/plumes/tree/0.2.5)
+
+### Breaking changes
+
+- **Login**
+  - Create the "Foget password" feature
+
+<a name="0.2.4"></a>
 # 0.2.4 (2015-07-06)
 
-[Release 0.2.4](https://github.com/CodeCorico/plumes/releases/tag/0.2.4) - [Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.4)
+[Release 0.2.4](https://github.com/CodeCorico/plumes/releases/tag/0.2.4) -
+[Branch release/0.2.4](https://github.com/CodeCorico/plumes/tree/0.2.4)
 
 ### Hotfixes
 
@@ -29,7 +41,8 @@ Versions details history. For each version you can find:
 <a name="0.2.3"></a>
 # 0.2.3 (2015-06-30)
 
-[Release 0.2.3](https://github.com/CodeCorico/plumes/releases/tag/0.2.3) - [Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.3)
+[Release 0.2.3](https://github.com/CodeCorico/plumes/releases/tag/0.2.3) -
+[Branch release/0.2.3](https://github.com/CodeCorico/plumes/tree/0.2.3)
 
 ### Hotfixes
 
@@ -39,7 +52,8 @@ Versions details history. For each version you can find:
 <a name="0.2.2"></a>
 # 0.2.2 (2015-06-30)
 
-[Release 0.2.2](https://github.com/CodeCorico/plumes/releases/tag/0.2.2) - [Branch release/0.2.2](https://github.com/CodeCorico/plumes/tree/0.2.2)
+[Release 0.2.2](https://github.com/CodeCorico/plumes/releases/tag/0.2.2) -
+[Branch release/0.2.2](https://github.com/CodeCorico/plumes/tree/0.2.2)
 
 ### Breaking changes
 
@@ -56,7 +70,8 @@ Versions details history. For each version you can find:
 <a name="0.2.1"></a>
 # 0.2.1 (2015-06-25)
 
-[Release 0.2.1](https://github.com/CodeCorico/plumes/releases/tag/0.2.1) - [Branch release/0.2.1](https://github.com/CodeCorico/plumes/tree/0.2.1)
+[Release 0.2.1](https://github.com/CodeCorico/plumes/releases/tag/0.2.1) -
+[Branch release/0.2.1](https://github.com/CodeCorico/plumes/tree/0.2.1)
 
 ### Hotfixes
 
@@ -68,7 +83,8 @@ Versions details history. For each version you can find:
 <a name="0.2.0"></a>
 # 0.2.0 (2015-06-23)
 
-[Release 0.2.0](https://github.com/CodeCorico/plumes/releases/tag/0.2.0) - [Branch release/0.2.0](https://github.com/CodeCorico/plumes/tree/0.2.0)
+[Release 0.2.0](https://github.com/CodeCorico/plumes/releases/tag/0.2.0) -
+[Branch release/0.2.0](https://github.com/CodeCorico/plumes/tree/0.2.0)
 
 ### Breaking changes
 
@@ -95,7 +111,8 @@ Versions details history. For each version you can find:
 <a name="0.1.0"></a>
 # 0.1.0 (2015-06-10)
 
-[Release 0.1.0](https://github.com/CodeCorico/plumes/releases/tag/0.1.0) - [Branch release/0.1.0](https://github.com/CodeCorico/plumes/tree/0.1.0)
+[Release 0.1.0](https://github.com/CodeCorico/plumes/releases/tag/0.1.0) -
+[Branch release/0.1.0](https://github.com/CodeCorico/plumes/tree/0.1.0)
 
 ### Breaking changes
 
