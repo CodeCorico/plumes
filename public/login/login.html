@@ -1,14 +1,46 @@
-<div class="login {{storyboard}} {{storyboardError}}">
+<div class="login {{storyboard}} {{storyboardMessage}}">
   <rv-require
     name="screen-message"
     src="../screen-message/screen-message"
   ></rv-require>
 
-  <div class="login-container" style="top: {{top}}px; height: {{height}}px;">
+  <section class="login-container" style="top: {{top}}px; height: {{height}}px;">
 
     <div class="login-content">
-      <form class="login-form" on-submit="submit" action="#">
+      {{#useforgot}}
+      <div class="login-forgot-texts">
+        <p class="login-forgot-text {{inForgot && !inForgotCode && !inForgotPassword ? 'show' : ''}}">{{{texts.forgottext}}}</p>
+        <p class="login-forgot-code-text {{inForgotCode ? 'show' : ''}}">{{{texts.forgotcodetext}}}</p>
+        <p class="login-forgot-password-text {{inForgotPassword ? 'show' : ''}}">{{{texts.forgotpasswordtext}}}</p>
+      </div>
+
+      <div class="login-links">
+        <div class="login-forgot-link theme {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
+        <div class="login-login-link theme {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
+      </div>
+      {{/useforgot}}
+
+      <div class="login-form">
         <div class="login-form-content theme-bg">
+          <input
+            class="input name"
+            type="text"
+            placeholder="{{usernamePlaceholder}}"
+            value="{{username}}"
+            disabled="{{inModal}}"
+          />
+          <input
+            class="input password {{inForgot && !inForgotPassword ? 'hide' : ''}}"
+            type="password"
+            placeholder="{{userpasswordPlaceholder}}"
+            value="{{userpassword}}"
+            disabled="{{inModal || (inForgot && !inForgotPassword)}}"
+          />
+
+          {{#useforgot}}
+          <div class="mask-password {{inForgot && !inForgotPassword ? 'show' : ''}}"></div>
+          {{/useforgot}}
+
           <div
             class="old-avatar theme-bg {{oldAvatar ? 'show' : ''}}"
             style="{{#if oldAvatar != 'null'}}background-image: url('{{oldAvatar}}');{{/if}}"
@@ -17,20 +49,16 @@
             class="avatar theme-bg {{oldAvatar ? 'show-again' : ''}}"
             style="{{#if avatar != 'null'}}background-image: url('{{avatar}}');{{/if}}"
           ></div>
-
-          <input class="input name" type="text" placeholder="{{texts.username}}" value="{{username}}" />
-          <input class="input password" type="password" placeholder="{{texts.userpassword}}" value="{{userpassword}}" on-focus="passwordFocus" />
-          <input class="submit" type="submit" value="Submit" />
         </div>
 
-        <div class="login-form-error error-bg">
-          <p>{{{error}}}</p>
+        <div class="login-form-message {{messageType == 'error' ? 'error-bg' : 'success-bg'}}">
+          <p>{{{message}}}</p>
         </div>
-      </form>
+      </div>
     </div>
 
     <div class="bottom-border-container">
       <div class="bottom-border theme-bg"></div>
     </div>
-  </div>
+  </section>
 </div>
