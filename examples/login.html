@@ -86,41 +86,71 @@
         avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
       });
 
+      function _validateEmail(email) {
+        return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(email);
+      }
+
       page.set('beforerequire', function(Layout, callback) {
         Layout.require('login').then(function() {
 
-          var Login = Layout.childrenRequire[0],
-              submited = false;
+          var Login = Layout.childrenRequire[0];
 
-          Login.on('usernameChanged', function(username) {
-            if (username) {
-              var src = 'https://www.gravatar.com/avatar/' + window.md5(username) + '.png?s=140';
+          Login.on('username', function(args) {
+            if (args.username && _validateEmail(args.username)) {
+              var src = 'https://www.gravatar.com/avatar/' + window.md5(args.username) + '.png?s=140';
 
               $('<img/>')
                 .load(function() {
                   Login.set('avatar', src);
                 })
                 .attr('src', src);
-            }
-            else {
-              Login.set('avatar', '');
-            }
-          });
-
-          Login.on('login', function(args) {
-            if (!submited) {
-              submited = true;
-
-              Login.fire('error', {
-                message: 'The password entered is incorrect.'
-              });
 
               return;
             }
 
-            if (args.username && args.userpassword) {
-              Login.fire('logged', 'Welcome back <strong class="theme">' + args.username + '</strong>');
+            Login.set('avatar', '');
+          });
+
+          Login.on('login', function(args) {
+            if (!args.username || !args.password) {
+              return Login.fire('error', {
+                message: 'The password entered is incorrect.'
+              });
             }
+
+            Login.fire('logged', 'Welcome back <strong class="theme">' + args.username + '</strong>');
+          });
+
+          Login.on('forgot', function(args) {
+            if (!_validateEmail(args.username)) {
+              return Login.fire('forgotError', {
+                message: 'Please give a valid email address.'
+              });
+            }
+
+            Login.fire('forgotSuccess');
+          });
+
+          Login.on('forgotCode', function(args) {
+            if (!args.code) {
+              return Login.fire('forgotCodeError', {
+                message: 'Please give a valid code.'
+              });
+            }
+
+            Login.fire('forgotCodeSuccess');
+          });
+
+          Login.on('forgotPassword', function(args) {
+            if (!args.password || args.password != args.confirmPassword) {
+              return Login.fire('forgotPasswordError', {
+                message: 'Please give valid passwords.'
+              });
+            }
+
+            Login.fire('forgotPasswordSuccess', {
+              message: 'Your new password is registered.'
+            });
           });
 
           Login.on('closed', function() {
