@@ -1,17 +1,17 @@
 @import "../../common/less/common-mixins.less";
 @import "../../common/less/common-variables.less";
 
-@-webkit-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-moz-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-ms-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-o-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@keyframes bottom-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-webkit-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-moz-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-ms-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-o-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
 
-@-webkit-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
-@-moz-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
-@-ms-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
-@-o-keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
-@keyframes avatar-show-again { 0% { left: -140px; } 100% { left: 0; } }
+@-webkit-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-moz-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-ms-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-o-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
 
 .login {
   z-index: 1001;
@@ -33,7 +33,7 @@
 
     .bottom-border {
       display: none;
-      width: 700px;
+      width: 70rem;
       height: 1px;
       margin: 0 auto;
 
@@ -43,7 +43,7 @@
 
   .login-content {
     position: relative;
-    width: 700px;
+    width: 70rem;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
@@ -51,8 +51,8 @@
     .login-form {
       opacity: 0;
       position: absolute;
-      left: 375px;
-      right: 375px;
+      left: 37.5rem;
+      right: 37.5rem;
       top: 50%;
       height: 0;
       margin-top: 0;
@@ -64,16 +64,17 @@
         bottom: 0;
         width: 100%;
         height: 100%;
+        overflow: hidden;
       }
 
-      .login-form-error {
+      .login-form-message {
         position: absolute;
         left: 0;
-        bottom: -140px;
+        bottom: -14rem;
         width: 100%;
         height: 100%;
         color: white;
-        line-height: 140px;
+        line-height: 14rem;
 
         p {
           font-size: 2rem;
@@ -91,8 +92,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 140px;
-        height: 140px;
+        width: 14rem;
+        height: 14rem;
         background: url('avatar.png') no-repeat;
         background-size: 100%;
 
@@ -105,9 +106,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        height: 140px;
-        width: 140px;
-        margin: -70px 0 0 -70px;
+        height: 14rem;
+        width: 14rem;
+        margin: -7rem 0 0 -7rem;
         background: url('avatar.png') no-repeat;
         background-size: 100%;
 
@@ -117,14 +118,17 @@
       }
 
       .input {
+        position: relative;
+        left: 0;
         background: none;
         color: white;
-        margin: 0 0 0 150px;
+        margin: 0 0 0 15rem;
         border: none;
         font-size: 2rem;
         line-height: 4rem;
         height: 7rem;
-        width: 250px;
+        width: 25rem;
+        .transition(all 0.35s @easeOutQuart);
 
         &::-webkit-input-placeholder {
            color: white;
@@ -145,15 +149,125 @@
            color: white;
            opacity: 0.5;
         }
+
+        &.code {
+          position: absolute;
+          top: 0;
+          left: auto;
+          right: -26rem;
+          .transition(all 0.7s 0.35s @easeOutQuart);
+
+          &.show {
+            right: 0;
+          }
+        }
+
+        &.hide {
+          left: -26rem;
+        }
+      }
+
+      .mask-password {
+        position: absolute;
+        height: 7rem;
+        background: white;
+        bottom: 0;
+        width: 0;
+        right: 0;
+        .transition(all 0.35s @easeOutQuart);
+
+        &.show {
+          width: 26rem;
+        }
       }
 
       .submit {
         display: none;
       }
     }
+
+    .login-links {
+      cursor: pointer;
+      position: absolute;
+      opacity: 0;
+      right: 15rem;
+      top: 50%;
+      margin-top: 1rem;
+      font-size: 1.6rem;
+      text-align: right;
+      height: 2rem;
+      line-height: 2rem;
+      overflow: hidden;
+      width: 40rem;
+
+      .login-forgot-link {
+        top: 2rem;
+      }
+
+      .login-login-link {
+        top: -2rem;
+      }
+
+      div {
+        position: absolute;
+        right: 0;
+        .transition(all 0.35s @easeOutQuart);
+
+        &.show {
+          top: 0;
+        }
+      }
+    }
+
+    .login-forgot-texts {
+      position: absolute;
+      left: 15rem;
+      right: 15rem;
+      height: 5.6rem;
+      bottom: 50%;
+      margin-bottom: 9rem;
+      font-size: 1.8rem;
+      overflow: hidden;
+
+      .login-forgot-text {
+        top: 5.6rem;
+      }
+
+      .login-forgot-code-text, .login-forgot-password-text {
+        top: -5.6rem;
+      }
+
+      p {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 5.6rem;
+        margin: 0;
+        .transition(all 0.35s @easeOutQuart);
+
+        &.show {
+          top: 0;
+        }
+      }
+
+      .key {
+        position: relative;
+        top: -2px;
+        background: #fff;
+        font-weight: 700;
+        padding: 2px .65rem;
+        font-size: 1.2rem;
+        margin: 0 2px;
+        border-radius: .25rem;
+        color: #3d3c40;
+        border-bottom: 2px solid #9e9ea6;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        text-shadow: none;
+      }
+    }
   }
 
-  &.sb-show-1, &.sb-show-2, &.sb-show-3, &.sb-hide-1 {
+  &.sb-show-1, &.sb-show-2, &.sb-show-3, &.sb-show-4, &.sb-hide-1 {
     .bottom-border-container .bottom-border {
       display: block;
     }
@@ -166,21 +280,21 @@
 
     .login-content .login-form {
       opacity: 1;
-      left: 280px;
-      right: 280px;
-      height: 140px;
-      margin-top: -70px;
+      left: 28rem;
+      right: 28rem;
+      height: 14rem;
+      margin-top: -7rem;
       .transition(all 0.45s @easeOutQuart);
     }
   }
 
-  &.sb-show-3 {
+  &.sb-show-3, &.sb-show-4 {
     .login-content .login-form {
       opacity: 1;
-      left: 150px;
-      right: 150px;
-      height: 140px;
-      margin-top: -70px;
+      left: 15rem;
+      right: 15rem;
+      height: 14rem;
+      margin-top: -7rem;
       .transition(all 0.45s @easeOutQuart);
 
       .avatar {
@@ -191,6 +305,14 @@
     }
   }
 
+  &.sb-show-4 {
+    .login-content .login-links {
+      opacity: 1;
+      margin-top: 8rem;
+      .transition(all 0.45s @easeOutQuart);
+    }
+  }
+
   &.sb-hide-1, &.sb-hide-2 {
     .login-container {
       .transition(all 0.55s @easeOutQuart);
@@ -198,10 +320,10 @@
 
     .login-content .login-form {
       opacity: 1;
-      left: 150px;
-      right: 150px;
-      height: 140px;
-      margin-top: -70px;
+      left: 15rem;
+      right: 15rem;
+      height: 14rem;
+      margin-top: -7rem;
       .transition(all 0.55s @easeOutQuart);
 
       .avatar {
@@ -219,8 +341,8 @@
 
   &.sb-hide-2 {
     .login-content .login-form {
-      left: 280px;
-      right: 280px;
+      left: 28rem;
+      right: 28rem;
       .transition(all 0.45s @easeOutQuart);
     }
   }
@@ -228,44 +350,44 @@
   &.sb-hide-3 {
     .login-content .login-form {
       opacity: 1;
-      left: 375px;
-      right: 375px;
-      height: 0px;
+      left: 37.5rem;
+      right: 37.5rem;
+      height: 0;
       margin-top: 0;
       .transition(all 0.15s linear);
     }
   }
 
-  &.sb-error-1 {
+  &.sb-message-1 {
     .login-content .login-form .login-form-content {
-      bottom: 140px;
+      bottom: 14rem;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
-  &.sb-error-2 {
+  &.sb-message-2 {
     .login-content .login-form .login-form-content {
-      bottom: -140px;
+      bottom: -14rem;
     }
 
-    .login-content .login-form .login-form-error {
+    .login-content .login-form .login-form-message {
       bottom: 0;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
-  &.sb-error-3 {
+  &.sb-message-3 {
     .login-content .login-form .login-form-content {
-      bottom: -140px;
+      bottom: -14rem;
     }
 
-    .login-content .login-form .login-form-error {
-      bottom: 140px;
+    .login-content .login-form .login-form-message {
+      bottom: 14rem;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
-  &.sb-error-4 {
+  &.sb-message-4 {
     .login-content .login-form .login-form-content {
       bottom: 0;
       .transition(all 0.35s @easeOutQuart);
