@@ -24,7 +24,7 @@
         <div class="login-form-content theme-bg">
           <input
             class="input name"
-            type="text"
+            type="{{inForgotPassword ? 'password' : 'text'}}"
             placeholder="{{usernamePlaceholder}}"
             value="{{username}}"
             disabled="{{inModal}}"
