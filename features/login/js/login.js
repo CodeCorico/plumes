@@ -41,11 +41,21 @@
     data.texts.forgotpasswordtext = typeof data.texts.forgotpasswordtext == 'undefined' ?
       'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.' :
       data.texts.forgotpasswordtext;
+    data.texts.forgotpasswordhelp = typeof data.texts.forgotpasswordhelp == 'undefined' ?
+      'When creating your password, remember the following:' +
+      '<ol>' +
+        '<li>It must not contain your name.</li>' +
+        '<li>It must contain one or more digits.</li>' +
+        '<li>It is recommended to mix lowercase and uppercase characters.</li>' +
+        '<li>It should be long over 7 characters.</li>' +
+      '</ol>' :
+      data.texts.forgotpasswordhelp;
 
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
 
       Login.set('height', _$el.window.height() - (100 + messageHeight + 30));
+      Login.set('helpTop', _$el.forgotTexts.position().top);
     }
 
     var Login = component({
@@ -56,6 +66,7 @@
     });
 
     _$el.login = $(Login.el);
+    _$el.forgotTexts = _$el.login.find('.login-forgot-texts');
 
     function _focusName() {
       _$el.login.find('.name').focus();
@@ -238,9 +249,15 @@
     });
 
     Login.on('displayForgot', function() {
+      _refresh();
       Login.set('inForgot', true);
       Login.fire('enterForgot');
 
+      setTimeout(_focusName);
+    });
+
+    Login.on('openHelp', function() {
+      Login.set('inHelp', true);
       setTimeout(_focusName);
     });
 
@@ -254,6 +271,7 @@
         Login.set('userpassword', '');
       }
 
+      Login.set('inHelp', false);
       Login.set('inForgot', false);
       Login.set('inForgotCode', false);
       Login.set('inForgotPassword', false);
