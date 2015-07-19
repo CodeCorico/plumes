@@ -7,6 +7,25 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.6"></a>
+# 0.2.6 (2015-07-19)
+
+[Release 0.2.6](https://github.com/CodeCorico/plumes/releases/tag/0.2.6) -
+[Branch release/0.2.6](https://github.com/CodeCorico/plumes/tree/0.2.6)
+
+### Hotfixes
+
+- **Common**
+  - Use !important for theme colors
+
+- **Login**
+  - Use a "password" input for creating new password
+
+### Breaking changes
+
+- **Login**
+  - Add the support of an help description for making password
+
 <a name="0.2.5"></a>
 # 0.2.5 (2015-07-15)
 
