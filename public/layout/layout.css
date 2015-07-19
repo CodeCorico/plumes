@@ -2155,88 +2155,88 @@ th {
   content: "\f23a";
 }
 .theme {
-  color: #ff6600;
+  color: #ff6600 !important;
 }
 .theme-bg {
-  background-color: #ff6600;
+  background-color: #ff6600 !important;
 }
 .theme-borders {
-  border-color: #ff6600;
+  border-color: #ff6600 !important;
 }
 .theme-border-top {
-  border-top-color: #ff6600;
+  border-top-color: #ff6600 !important;
 }
 .theme-border-right {
-  border-right-color: #ff6600;
+  border-right-color: #ff6600 !important;
 }
 .theme-border-bottom {
-  border-bottom-color: #ff6600;
+  border-bottom-color: #ff6600 !important;
 }
 .theme-border-left {
-  border-left-color: #ff6600;
+  border-left-color: #ff6600 !important;
 }
 .success {
-  color: #4caf50;
+  color: #4caf50 !important;
 }
 .success-bg {
-  background-color: #4caf50;
+  background-color: #4caf50 !important;
 }
 .success-borders {
-  border-color: #4caf50;
+  border-color: #4caf50 !important;
 }
 .success-border-top {
-  border-top-color: #4caf50;
+  border-top-color: #4caf50 !important;
 }
 .success-border-right {
-  border-right-color: #4caf50;
+  border-right-color: #4caf50 !important;
 }
 .success-border-bottom {
-  border-bottom-color: #4caf50;
+  border-bottom-color: #4caf50 !important;
 }
 .success-border-left {
-  border-left-color: #4caf50;
+  border-left-color: #4caf50 !important;
 }
 .error {
-  color: #f44336;
+  color: #f44336 !important;
 }
 .error-bg {
-  background-color: #f44336;
+  background-color: #f44336 !important;
 }
 .error-borders {
-  border-color: #f44336;
+  border-color: #f44336 !important;
 }
 .error-border-top {
-  border-top-color: #f44336;
+  border-top-color: #f44336 !important;
 }
 .error-border-right {
-  border-right-color: #f44336;
+  border-right-color: #f44336 !important;
 }
 .error-border-bottom {
-  border-bottom-color: #f44336;
+  border-bottom-color: #f44336 !important;
 }
 .error-border-left {
-  border-left-color: #f44336;
+  border-left-color: #f44336 !important;
 }
 .dark {
-  color: #333333;
+  color: #333333 !important;
 }
 .dark-bg {
-  background-color: #333333;
+  background-color: #333333 !important;
 }
 .dark-borders {
-  border-color: #333333;
+  border-color: #333333 !important;
 }
 .dark-border-top {
-  border-top-color: #333333;
+  border-top-color: #333333 !important;
 }
 .dark-border-right {
-  border-right-color: #333333;
+  border-right-color: #333333 !important;
 }
 .dark-border-bottom {
-  border-bottom-color: #333333;
+  border-bottom-color: #333333 !important;
 }
 .dark-border-left {
-  border-left-color: #333333;
+  border-left-color: #333333 !important;
 }
 .clear {
   clear: both;

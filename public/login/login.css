@@ -249,18 +249,30 @@
   display: none;
 }
 .login .login-content .login-links {
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: pointer;
   position: absolute;
   opacity: 0;
-  right: 15rem;
   top: 50%;
+  right: 15rem;
+  left: 15rem;
   margin-top: 1rem;
   font-size: 1.6rem;
   text-align: right;
   height: 2rem;
   line-height: 2rem;
   overflow: hidden;
-  width: 40rem;
+  -webkit-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .login .login-content .login-links .login-forgot-link {
   top: 2rem;
@@ -289,6 +301,11 @@
   margin-bottom: 9rem;
   font-size: 1.8rem;
   overflow: hidden;
+  -webkit-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .login .login-content .login-forgot-texts .login-forgot-text {
   top: 5.6rem;
@@ -325,6 +342,70 @@
   border-bottom: 2px solid #9e9ea6;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   text-shadow: none;
+}
+.login .login-content .help-button {
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 50%;
+  right: 15rem;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 2.4rem;
+  font-weight: 300;
+  margin: 0 0 1.4rem;
+  line-height: 2.4rem;
+  opacity: 0;
+  -webkit-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.login .login-content .help-button.show {
+  right: 12rem;
+  opacity: 1;
+}
+.login .help-container {
+  position: absolute;
+  width: 27rem;
+  opacity: 0;
+  right: -27rem;
+  -webkit-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.login .help-container ol {
+  margin-top: 1.5rem;
+}
+.login.help .help-container {
+  opacity: 0.7;
+  right: 0;
+}
+.login.help .login-content .login-forgot-texts,
+.login.help.sb-show-4 .login-content .login-forgot-texts,
+.login.help .login-content .login-links,
+.login.help.sb-show-4 .login-content .login-links,
+.login.help .login-content .login-form,
+.login.help.sb-show-4 .login-content .login-form {
+  left: 0;
+  right: 30rem;
+}
+.login.help .login-content .help-button,
+.login.help.sb-show-4 .login-content .help-button,
+.login.help .login-content .help-button.show,
+.login.help.sb-show-4 .login-content .help-button.show {
+  right: 30rem;
+  opacity: 0;
 }
 .login.sb-show-1 .bottom-border-container .bottom-border,
 .login.sb-show-2 .bottom-border-container .bottom-border,

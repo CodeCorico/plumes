@@ -1,4 +1,4 @@
-<div class="login {{storyboard}} {{storyboardMessage}}">
+<div class="login {{inHelp ? 'help' : ''}} {{storyboard}} {{storyboardMessage}}">
   <rv-require
     name="screen-message"
     src="../screen-message/screen-message"
@@ -18,13 +18,15 @@
         <div class="login-forgot-link theme {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
         <div class="login-login-link theme {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
       </div>
+
+      <button class="help-button theme {{inForgotPassword ? 'show' : ''}}" on-click="openHelp">?</button>
       {{/useforgot}}
 
       <div class="login-form">
         <div class="login-form-content theme-bg">
           <input
             class="input name"
-            type="text"
+            type="{{inForgotPassword ? 'password' : 'text'}}"
             placeholder="{{usernamePlaceholder}}"
             value="{{username}}"
             disabled="{{inModal}}"
@@ -55,6 +57,8 @@
           <p>{{{message}}}</p>
         </div>
       </div>
+
+      <div class="help-container" style="top: {{helpTop}}px;">{{{texts.forgotpasswordhelp}}}</div>
     </div>
 
     <div class="bottom-border-container">
