@@ -1,13 +1,14 @@
 'use strict';
 
 var extend = require('extend'),
+    fs = require('fs-extra'),
     path = require('path'),
+    glob = require('glob'),
     sourcemaps = require('gulp-sourcemaps'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    del = require('del');
+    rename = require('gulp-rename');
 
 var Plumes = function(gulp, config) {
 
@@ -16,7 +17,7 @@ var Plumes = function(gulp, config) {
       less: './features/**/css/*.less',
       js: './features/**/js/*.js',
       html: './features/**/html/*.html',
-      resources: './features/**/resources/*',
+      resources: './features/**/resources',
       public: './public'
     },
     default: null,
@@ -37,7 +38,7 @@ var Plumes = function(gulp, config) {
 
   gulp.task('default', defaultTask);
 
-  del.sync([config.path.public]);
+  fs.removeSync(config.path.public);
 
   gulp.task('less', function(done) {
     gulp.src(config.path.less)
@@ -76,10 +77,15 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('resources', function(done) {
-    gulp.src(config.path.resources)
-      .pipe(rename(_publicByFeature))
-      .pipe(gulp.dest(config.path.public))
-      .on('end', done);
+
+    glob.sync(config.path.resources).forEach(function(directory) {
+      var namespace = directory.split('/'),
+          featureName = namespace[namespace.length - 2];
+
+      fs.copySync(directory, path.resolve(config.path.public, featureName));
+    });
+
+    done();
   });
 
   gulp.task('watch', function() {
