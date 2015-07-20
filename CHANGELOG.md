@@ -7,6 +7,17 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.2.7"></a>
+# 0.2.7 (2015-07-20)
+
+[Release 0.2.7](https://github.com/CodeCorico/plumes/releases/tag/0.2.7) -
+[Branch release/0.2.7](https://github.com/CodeCorico/plumes/tree/0.2.7)
+
+### Hotfixes
+
+- **Index**
+  - Copy _resources_ subfolders
+
 <a name="0.2.6"></a>
 # 0.2.6 (2015-07-19)
 
