@@ -78,9 +78,14 @@ var Plumes = function(gulp, config) {
 
   gulp.task('resources', function(done) {
 
+    if (config.path.resources.indexOf('**') < 0) {
+      return done();
+    }
+
+    var featureIndex = config.path.resources.split('**')[0].split('/').length - 1;
+
     glob.sync(config.path.resources).forEach(function(directory) {
-      var namespace = directory.split('/'),
-          featureName = namespace[namespace.length - 2];
+      var featureName = directory.split('/')[featureIndex];
 
       fs.copySync(directory, path.resolve(config.path.public, featureName));
     });
