@@ -39,7 +39,58 @@
 
 </div>
 
-{{> content}}
+{{#if leftContentUsed}}
+  <div
+    class="
+      layout-left-container
+      {{start ? 'opened' : ''}}
+      {{leftContentExpended ? 'expended' : ''}}
+      {{leftContentCollapsedAfter ? 'collapsed-after' : ''}}
+    "
+    style="width: {{leftContentWidth}}px; left: {{leftContentPos}}px;"
+  >
+    <div class="layout-left-content" style="top: {{titleAreaHeight}}px;">
+      {{> left-content}}
+    </div>
+
+    <div class="layout-left-bar-container" on-click="toggleLeftBar">
+      <div class="layout-left-bar"></div>
+      <span>{{leftContentTitle}}</span>
+    </div>
+  </div>
+{{/if}}
+
+<div
+  class="layout-content"
+  style="
+    left: {{leftContentAreaWidth}}px;
+    right: {{rightContentAreaWidth}}px;
+    top: {{leftContentExpended ? 90 : titleAreaHeight}}px;
+  "
+>
+  {{> content}}
+</div>
+
+{{#if rightContentUsed}}
+  <div
+    class="
+      layout-right-container
+      {{start ? 'opened' : ''}}
+      {{rightContentExpended ? 'expended' : ''}}
+      {{rightContentCollapsedAfter ? 'collapsed-after' : ''}}
+    "
+    style="width: {{rightContentWidth}}px; right: {{rightContentPos}}px;"
+  >
+    <div class="layout-right-content">
+      {{> right-content}}
+    </div>
+
+    <div class="layout-right-bar-container" on-click="toggleRightBar">
+      <div class="layout-right-bar"></div>
+      <span>{{rightContentTitle}}</span>
+    </div>
+  </div>
+{{/if}}
 
 {{#usemask}}
 <div class="layout-mask {{ beforeStart ? 'out' : '' }}">
