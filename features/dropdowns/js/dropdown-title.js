@@ -55,6 +55,9 @@
         _close(function() {
           if (fireFunc) {
             titleToSelect.select();
+            dropdownTitle.fire('titleSelected', {
+              title: titleToSelect
+            });
           }
 
           if (callback) {
@@ -90,6 +93,16 @@
       data: data,
       select: _select
     });
+
+    dropdownTitle.fireSelected = function() {
+      var selected = dropdownTitle.get('selected');
+
+      if (selected) {
+        dropdownTitle.fire('titleSelected', {
+          title: dropdownTitle.get('titles')[selected.index]
+        });
+      }
+    };
 
     dropdownTitle.toggle = function() {
       if (data.titles.length < 2) {
