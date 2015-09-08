@@ -1,11 +1,11 @@
-<header class="header {{ light ? 'light' : '' }}">
-  {{#usebrand}}
-  <h1 class="layout-brand {{ start ? 'opened' : '' }}">
+<header class="header {{light ? 'light' : ''}}">
+  {{#if usebrand}}
+  <h1 class="layout-brand {{start ? 'opened' : ''}}">
     <span>{{brand}}</span>
   </h1>
-  {{/usebrand}}
+  {{/if}}
 
-  {{#usetitle}}
+  {{#if usetitle}}
   <rv-require
     name="dropdown-title"
     class="layout-title"
@@ -13,29 +13,29 @@
     data-placeholder="Apps"
     data-bind-titles="apps"
   ></rv-require>
-  {{/usetitle}}
+  {{/if}}
 </header>
 
 <div class="layout-flyout">
 
   {{> flyout}}
 
-  {{#useprofile}}
+  {{#if useprofile}}
   <rv-require
     name="button-profile"
     src="../buttons/button-profile"
     data-bind-img="user.avatar"
     data-bind-toggle="user-toggle"
   ></rv-require>
-  {{/useprofile}}
+  {{/if}}
 
-  {{#usehelp}}
+  {{#if usehelp}}
   <rv-require
     name="button-help"
     src="../buttons/button-help"
     data-bind-toggle="help-toggle"
   ></rv-require>
-  {{/usehelp}}
+  {{/if}}
 
 </div>
 
@@ -92,15 +92,15 @@
   </div>
 {{/if}}
 
-{{#usemask}}
-<div class="layout-mask {{ beforeStart ? 'out' : '' }}">
+{{#if usemask}}
+<div class="layout-mask {{beforeStart ? 'out' : ''}}">
   <div class="layout-mask-title-container">
-    <div class="layout-mask-title {{ loaded ? 'opened' : '' }}">
+    <div class="layout-mask-title {{loaded ? 'opened' : ''}}">
       {{> mask-title}}
     </div>
   </div>
 </div>
-{{/usemask}}
+{{/if}}
 
 <rv-require
   name="screen-message"
