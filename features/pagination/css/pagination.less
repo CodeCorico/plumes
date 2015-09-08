@@ -1,0 +1,32 @@
+@import "../../common/less/common-variables.less";
+@import "../../common/less/common-mixins.less";
+
+.pagination {
+  display: table;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    .noselect(pointer);
+    display: table-cell;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    color: #999;
+
+    &:hover {
+      background-color: rgba(255, 102, 0, 0.1);
+    }
+
+    &.selected {
+      color: #fff;
+      background-color: @themeColor;
+    }
+
+    &.disabled, &.disabled:hover, &.disabled.selected {
+      cursor: default;
+      color: #dcdcdc;
+      background: none;
+    }
+  }
+}
