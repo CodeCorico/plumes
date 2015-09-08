@@ -89,23 +89,21 @@
 
         layout.require('screen-message').then(function() {
 
-          layout.childrenRequire.forEach(function(child) {
-            if (child && child.el && $(child.el).attr('name') == 'screen-message') {
-              child.fire('play', {
-                message: [
-                  'Hello',
-                  'It\'s your first time on the <strong class="theme">Plumes</strong> layout example.',
-                  'We thank you for using <strong class="theme">Plumes</strong>.',
-                  'Have a good day.'
-                ],
-                done: function() {
-                  $.cookie('intro', 'done');
+          var screenMessage = layout.findChild('name', 'screen-message');
 
-                  child.teardown();
+          screenMessage.fire('play', {
+            message: [
+              'Hello',
+              'It\'s your first time on the <strong class="theme">Plumes</strong> layout example.',
+              'We thank you for using <strong class="theme">Plumes</strong>.',
+              'Have a good day.'
+            ],
+            done: function() {
+              $.cookie('intro', 'done');
 
-                  callback();
-                }
-              });
+              screenMessage.teardown();
+
+              callback();
             }
           });
         });

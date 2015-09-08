@@ -93,7 +93,7 @@
       page.set('beforerequire', function(Layout, callback) {
         Layout.require('login').then(function() {
 
-          var Login = Layout.childrenRequire[0];
+          var Login = Layout.findChild('name', 'login');
 
           Login.on('username', function(args) {
             if (args.username && _validateEmail(args.username)) {
