@@ -7,6 +7,27 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.3.0"></a>
+# 0.3.0 (2015-09-08)
+
+[Release 0.3.0](https://github.com/CodeCorico/plumes/releases/tag/0.3.0) -
+[Branch release/0.3.0](https://github.com/CodeCorico/plumes/tree/0.3.0)
+
+### Breaking changes
+
+- **Layout**
+  - Support CSS classes to <body>
+  - Support left and right sidebars
+
+- **Pagination**
+  - Create the component
+
+- **CSS Mixins**
+  - Add no-tap-effect() function
+
+- **Chore**
+  - Update Ractive-Require to 0.3.0
+
 <a name="0.2.8"></a>
 # 0.2.8 (2015-07-20)
 
