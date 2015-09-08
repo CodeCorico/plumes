@@ -30,12 +30,27 @@
     data-bind-user="user"
     data-bind-user-toggle="user-toggle"
     data-bind-help-toggle="help-toggle"
+
+    data-left-content-title="Left menu"
+    data-left-content-width="300"
+    data-right-content-title="Right menu"
+    data-right-content-width="300"
+    data-right-content-expended="false"
   >
     <rv-partial target="mask-title">
       Plumes <span class="theme">example</span>
     </rv-partial>
     <rv-partial target="message-title">
       Plumes <span class="theme">example</span>
+    </rv-partial>
+    <rv-partial target="left-content">
+      My left content
+    </rv-partial>
+    <rv-partial target="right-content">
+      My Right content
+    </rv-partial>
+    <rv-partial target="content">
+      My content
     </rv-partial>
   </rv-require>
 
