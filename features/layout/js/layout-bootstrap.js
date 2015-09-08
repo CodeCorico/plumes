@@ -46,8 +46,15 @@
 
       var page = new window.Ractive({
         el: 'body',
+        data: {
+          cls: []
+        },
         template: $.trim($cleaner.html()),
         partials: partials
+      });
+
+      page.observe('cls', function(cls) {
+        $(page.el).attr('class', cls ? cls.join(' ') : '');
       });
 
       if (callback) {
