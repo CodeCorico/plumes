@@ -204,7 +204,7 @@
     }
 
     Login.on('logged', function(text) {
-      var ScreenMessage = Login.childrenRequire[0];
+      var ScreenMessage = Login.findChild('name', 'screen-message');
       ScreenMessage.fire('closeTitle');
 
       Login.set('storyboard', 'sb-hide-1');
@@ -371,7 +371,7 @@
     _$el.window.resize(_resize);
 
     Login.require().then(function() {
-      var ScreenMessage = Login.childrenRequire[0],
+      var ScreenMessage = Login.findChild('name', 'screen-message'),
           textQuestion = Login.get('texts.question');
 
       textQuestion = !textQuestion && textQuestion !== '' ? 'Who are you?' : textQuestion;
