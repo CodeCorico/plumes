@@ -67,11 +67,7 @@
             layout.set('start', true);
 
             layout.require().then(function() {
-              for (var i = 0; i < layout.childrenRequire.length; i++) {
-                if (layout.childrenRequire[i].el.getAttribute('name') == 'dropdown-title') {
-                  Title = layout.childrenRequire[i];
-                }
-              }
+              var Title = layout.findChild('name', 'dropdown-title');
 
               if (Title) {
                 Title.on('open', function(args) {
