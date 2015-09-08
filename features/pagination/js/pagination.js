@@ -58,7 +58,9 @@
     pagination.observe('pageSelected', function(newValue) {
       var value = Math.max(1, Math.min(parseInt(pagination.get('totalPages'), 10), newValue)).toString();
       if (value !== newValue) {
-        pagination.set('pageSelected', value);
+        setTimeout(function() {
+          pagination.set('pageSelected', value);
+        });
 
         return false;
       }
