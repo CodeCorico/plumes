@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/CodeCorico/plumes",
   "dependencies": {
-    "extend": "~2.0.0",
+    "extend": "^3.0.0",
     "font-awesome": "~4.3.0",
     "fs-extra": "~0.22.1",
     "glob": "~5.0.14",
