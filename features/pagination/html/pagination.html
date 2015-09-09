@@ -2,7 +2,7 @@
   {{#if displayPreviousButton}}
     <li class="{{pageSelected == '1' ?  'disabled' : ''}}" on-click="previousPage">&laquo;</li>
   {{/if}}
-  {{#if displayFirstButton}}
+  {{#if displayFirstButton && hasActionButtons}}
     <li class="{{pageSelected == '1' ?  'disabled' : ''}}" on-click="firstPage">1 ...</li>
   {{/if}}
 
@@ -10,7 +10,7 @@
     <li class="{{pageSelected == . ? 'selected' : ''}}" on-click="selectPage">{{.}}</li>
   {{/pages}}
 
-  {{#if displayLastButton}}
+  {{#if displayLastButton && hasActionButtons}}
     <li class="{{pageSelected == totalPages ? 'disabled' : ''}}" on-click="lastPage">... {{totalPages}}</li>
   {{/if}}
   {{#if displayNextButton}}

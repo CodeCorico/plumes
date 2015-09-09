@@ -77,6 +77,7 @@
 
     pagination.observe('totalPages displayPagesCount', function() {
       _updatePages();
+      pagination.set('hasActionButtons', parseInt(data.totalPages, 10) > parseInt(data.displayPagesCount, 10));
     });
 
     _updatePages();
