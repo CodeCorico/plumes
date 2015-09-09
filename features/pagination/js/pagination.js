@@ -42,7 +42,7 @@
       pagination.set('pages', pages);
     }
 
-    pagination = new component({
+    pagination = component({
       data: data
     });
 
