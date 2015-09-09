@@ -48,6 +48,8 @@
 
     $.each(refs, function(key, value) {
       pagination.observe(value, function(newValue) {
+        newValue = typeof newValue == 'undefined' ? true : newValue;
+
         pagination.set(key,
           newValue == 'false' ? false : (
           newValue == 'true' ? true : newValue
