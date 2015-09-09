@@ -7,6 +7,23 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.3.3"></a>
+# 0.3.3 (2015-09-09)
+
+[Release 0.3.3](https://github.com/CodeCorico/plumes/releases/tag/0.3.3) -
+[Branch release/0.3.3](https://github.com/CodeCorico/plumes/tree/0.3.3)
+
+### Breaking changes
+
+- **Layout**
+  - Double bind the left and right content options.
+
+### Hotfixes
+
+- **Pagination**
+  - Fix previous and next button navigation
+  - Enable buttons if no attribute specified.
+
 <a name="0.3.2"></a>
 # 0.3.2 (2015-09-08)
 
