@@ -24,7 +24,7 @@
   "dependencies": {
     "extend": "^3.0.0",
     "font-awesome": "^4.4.0",
-    "fs-extra": "~0.22.1",
+    "fs-extra": "^0.24.0",
     "glob": "~5.0.14",
     "gulp": "~3.8.11",
     "gulp-less": "~3.0.1",
