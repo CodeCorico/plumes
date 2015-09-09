@@ -7,6 +7,17 @@ Versions details history. For each version you can find:
 * Link to the release branch
 * All of the modifications details
 
+<a name="0.3.4"></a>
+# 0.3.4 (2015-09-09)
+
+[Release 0.3.4](https://github.com/CodeCorico/plumes/releases/tag/0.3.4) -
+[Branch release/0.3.4](https://github.com/CodeCorico/plumes/tree/0.3.4)
+
+### Breaking changes
+
+- **Pagination**
+  - Remove action buttons when the total pages displayes is equal or less than the max pages.
+
 <a name="0.3.3"></a>
 # 0.3.3 (2015-09-09)
 
