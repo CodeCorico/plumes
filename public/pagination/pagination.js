@@ -42,12 +42,14 @@
       pagination.set('pages', pages);
     }
 
-    pagination = new component({
+    pagination = component({
       data: data
     });
 
     $.each(refs, function(key, value) {
       pagination.observe(value, function(newValue) {
+        newValue = typeof newValue == 'undefined' ? true : newValue;
+
         pagination.set(key,
           newValue == 'false' ? false : (
           newValue == 'true' ? true : newValue
@@ -58,7 +60,9 @@
     pagination.observe('pageSelected', function(newValue) {
       var value = Math.max(1, Math.min(parseInt(pagination.get('totalPages'), 10), newValue)).toString();
       if (value !== newValue) {
-        pagination.set('pageSelected', value);
+        setTimeout(function() {
+          pagination.set('pageSelected', value);
+        });
 
         return false;
       }
@@ -77,7 +81,7 @@
 
     _updatePages();
 
-    pagination.on('selectPage', function (event) {
+    pagination.on('selectPage', function(event) {
       pagination.set('pageSelected', event.context);
     });
 
@@ -97,6 +101,6 @@
       pagination.set('pageSelected', pagination.get('totalPages'));
     });
 
-     done();
+    done();
   });
 })();

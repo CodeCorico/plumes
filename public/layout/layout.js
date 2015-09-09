@@ -2,14 +2,13 @@
   'use strict';
 
   window.Ractive.controller('layout', function(component, data, el, config, done) {
-    var uses = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'],
+    var _uses = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'],
+        _dirs = ['left', 'right'],
+        _freezeSet = false,
         Title = null;
 
-    $.each(['left', 'right'], function(i, dir) {
+    $.each(_dirs, function(i, dir) {
       data[dir + 'ContentUsed'] = config && config.partials && config.partials[dir + '-content'];
-      data[dir + 'ContentExpended'] = data[dir + '-content-expended'] && data[dir + '-content-expended'] == 'false' ? false : true;
-      data[dir + 'ContentTitle'] = data[dir + '-content-title'] || null;
-      data[dir + 'ContentWidth'] = data[dir + '-content-width'] ? parseInt(data[dir + '-content-width'], 10) : 0;
       data[dir + 'ContentPos'] = 0;
       data[dir + 'ContentCollapsedAfter'] = false;
       data[dir + 'ContentAreaWidth'] = data[dir + 'ContentUsed'] ? data[dir + 'ContentWidth'] : 30;
@@ -19,8 +18,8 @@
 
     data.loaded = false;
 
-    for (var i = 0; i < uses.length; i++) {
-      var use = uses[i];
+    for (var i = 0; i < _uses.length; i++) {
+      var use = _uses[i];
 
       data[use] = typeof data[use] == 'undefined' ? true : data[use];
       data[use] = data[use] == 'true' ? true : data[use];
@@ -33,17 +32,18 @@
         page = layout.parentRequire,
         _$el = {
           window: $(window),
+          layout: $(layout.el),
           content: $(layout.el).find('.layout-content')
         };
 
-    function _refreshDirContent($bar, dir, expended) {
-      if (!$bar || !$bar.length) {
-        return;
-      }
+    function _refreshDirContent(dir, expended) {
+      _freezeSet = true;
 
-      var $dirContent = $bar.parents('.layout-' + dir + '-container');
+      var $dirContent = _$el.layout.find('.layout-' + dir + '-container'),
+          $bar = $dirContent.find('.layout-' + dir + '-bar-container');
 
       layout.set(dir + 'ContentExpended', expended);
+      layout.set(dir + '-content-expended', expended);
       layout.set(dir + 'ContentAreaWidth', expended ? $dirContent.width() : $bar.width());
       layout.set(dir + 'ContentPos', expended ? 0 : -$dirContent.width() + $bar.width());
 
@@ -61,17 +61,49 @@
           layout.set(dir + 'ContentCollapsedAfter', true);
         }, 550);
       }
+
+      _freezeSet = false;
     }
+
+    $.each(_dirs, function(i, dir) {
+      layout.observe(dir + '-content-expended', function(newValue) {
+        if (_freezeSet) {
+          return;
+        }
+
+        var expended = newValue === false || (newValue && newValue == 'false') ? false : true;
+
+        _refreshDirContent(dir, expended);
+      });
+
+      layout.observe(dir + '-content-title', function(newValue) {
+        if (_freezeSet) {
+          return;
+        }
+
+        layout.set(dir + 'ContentTitle', newValue || null);
+      });
+
+      layout.observe(dir + '-content-width', function(newValue) {
+        if (_freezeSet) {
+          return;
+        }
+
+        layout.set(dir + 'ContentWidth', newValue ? parseInt(newValue, 10) : 0);
+
+        _refreshDirContent(dir, !!layout.get(dir + 'ContentExpended'));
+      });
+    });
 
     layout.on('toggleLeftBar toggleRightBar', function(event) {
       var dir = event.name == 'toggleLeftBar' ? 'left' : 'right',
           expended = !layout.get(dir + 'ContentExpended');
 
-      _refreshDirContent($(event.node), dir, expended);
+      _refreshDirContent(dir, expended);
     });
 
-    _refreshDirContent($(layout.el).find('.layout-left-bar-container'), 'left', data.leftContentExpended);
-    _refreshDirContent($(layout.el).find('.layout-right-bar-container'), 'right', data.rightContentExpended);
+    _refreshDirContent('left', data.leftContentExpended);
+    _refreshDirContent('right', data.rightContentExpended);
 
     layout.on('titleOpen', function(args) {
       layout.set('titleAreaHeight', args.height + 50);
