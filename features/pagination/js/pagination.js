@@ -81,7 +81,7 @@
 
     _updatePages();
 
-    pagination.on('selectPage', function (event) {
+    pagination.on('selectPage', function(event) {
       pagination.set('pageSelected', event.context);
     });
 
@@ -101,6 +101,6 @@
       pagination.set('pageSelected', pagination.get('totalPages'));
     });
 
-     done();
+    done();
   });
 })();
