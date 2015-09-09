@@ -23,7 +23,7 @@
   "homepage": "https://github.com/CodeCorico/plumes",
   "dependencies": {
     "extend": "^3.0.0",
-    "font-awesome": "~4.3.0",
+    "font-awesome": "^4.4.0",
     "fs-extra": "~0.22.1",
     "glob": "~5.0.14",
     "gulp": "~3.8.11",
