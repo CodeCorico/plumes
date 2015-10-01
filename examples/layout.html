@@ -21,8 +21,8 @@
 <body>
 
   <rv-require
-    name="layout"
-    src="../public/layout/layout"
+    name="layout-platform"
+    src="../public/layouts/layout-platform"
 
     data-bind-onloaded="onloaded"
     data-bind-beforerequire="beforerequire"
@@ -33,12 +33,6 @@
     data-bind-help-toggle="help-toggle"
 
     data-bind-onpagselected="onPageSelected"
-
-    data-left-content-title="Left menu"
-    data-left-content-width="300"
-    data-right-content-title="Right menu"
-    data-right-content-width="300"
-    data-right-content-expended="false"
   >
     <rv-partial target="mask-title">
       Plumes <span class="theme">example</span>
@@ -46,29 +40,44 @@
     <rv-partial target="message-title">
       Plumes <span class="theme">example</span>
     </rv-partial>
-    <rv-partial target="left-content">
-      My left content
-    </rv-partial>
-    <rv-partial target="right-content">
-      My Right content
-    </rv-partial>
     <rv-partial target="content">
-      My content
+
       <rv-require
-        name="pagination"
-        src="../public/pagination/pagination"
+        name="layout-sidebars"
+        src="../public/layouts/layout-sidebars"
 
-        data-bind-onpagselected="onpagselected"
-
-        data-total-pages="50"
-        data-page-selected="13"
-        data-display-pages-count="7"
-        data-display-first-button="true"
-        data-display-last-button="true"
-        data-display-previous-button="true"
-        data-display-next-button="true"
+        data-left-content-title="Left menu"
+        data-left-content-width="300"
+        data-right-content-title="Right menu"
+        data-right-content-width="300"
+        data-right-content-expended="false"
       >
+        <rv-partial target="left-content">
+          My left content
+        </rv-partial>
+        <rv-partial target="right-content">
+          My Right content
+        </rv-partial>
+        <rv-partial target="content">
+          My content
+          <rv-require
+            name="pagination"
+            src="../public/pagination/pagination"
+
+            data-bind-onpagselected="onpagselected"
+
+            data-total-pages="50"
+            data-page-selected="13"
+            data-display-pages-count="7"
+            data-display-first-button="true"
+            data-display-last-button="true"
+            data-display-previous-button="true"
+            data-display-next-button="true"
+          >
+          </rv-require>
+        </rv-partial>
       </rv-require>
+
     </rv-partial>
   </rv-require>
 

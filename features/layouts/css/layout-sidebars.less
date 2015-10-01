@@ -1,0 +1,108 @@
+@import "../../common/less/common-mixins.less";
+
+.layout-sidebars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  .layout-left-container, .layout-right-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    .transform(translateX(-10rem));
+    .transition(all 0.55s @easeOutQuart);
+
+    &.opened {
+      opacity: 1;
+      .transform(translateX(0));
+    }
+
+    .layout-left-content, .layout-right-content {
+      position: absolute;
+      top: 9rem;
+      left: 3rem;
+      right: 4rem;
+      bottom: 3rem;
+      overflow: auto;
+      .transition(all 0.55s @easeOutQuart);
+    }
+
+    .layout-right-content {
+      left: 4rem;
+      right: 3rem;
+    }
+
+    .layout-left-bar-container, .layout-right-bar-container {
+      .noselect(pointer);
+      .no-tap-effect();
+      position: absolute;
+      top: 20%;
+      bottom: 20%;
+      right: 0;
+      width: 3rem;
+      overflow: hidden;
+
+      .layout-left-bar, .layout-right-bar {
+        position: absolute;
+        top: 0;
+        left: 1.5rem;
+        bottom: 0;
+        width: 1px;
+        background: #ccc;
+      }
+
+      span {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translateX(-100%) translateY(-50%) rotate(-90deg);
+        padding: 0.3rem 1rem;
+        background: white;
+        color: #666;
+        white-space: nowrap;
+        .transition(all 0.55s @easeOutQuart);
+      }
+    }
+
+    .layout-right-bar-container {
+      left: 0;
+      right: auto;
+      .transform(translateX(10rem));
+
+      span {
+        transform: translateX(100%) translateY(-50%) rotate(-90deg);
+      }
+    }
+
+    &.opened .layout-right-bar-container {
+      opacity: 1;
+      .transform(translateX(0));
+    }
+
+    &.collapsed-after {
+      .layout-left-bar-container span, .layout-right-bar-container span {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+      }
+    }
+  }
+
+  .layout-right-container {
+    .transform(translateX(10rem));
+  }
+
+  .layout-content {
+    position: fixed;
+    top: 9rem;
+    bottom: 3rem;
+    overflow: hidden;
+    .transform(translateZ(0));
+    .transition(all 0.55s @easeOutQuart);
+  }
+}
