@@ -31,10 +31,10 @@
     data-bind-user="user"
   >
     <rv-partial target="mask-title">
-      Login <span class="theme">example</span>
+      Login <span class="accent">example</span>
     </rv-partial>
     <rv-partial target="message-title">
-      Login <span class="theme">example</span>
+      Login <span class="accent">example</span>
     </rv-partial>
     <rv-partial target="content">
 
@@ -119,7 +119,7 @@
               });
             }
 
-            Login.fire('logged', 'Welcome back <strong class="theme">' + args.username + '</strong>');
+            Login.fire('logged', 'Welcome back <strong class="accent">' + args.username + '</strong>');
           });
 
           Login.on('forgot', function(args) {

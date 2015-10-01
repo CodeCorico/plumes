@@ -1,31 +1,44 @@
 @import "../less/common-variables.less";
 
-.theme {
-  color: @themeColor !important;
+.accent {
+  color: @accentColor !important;
 }
 
-.theme-bg {
-  background-color: @themeColor !important;
+.accent-bg {
+  background-color: @accentColor !important;
 }
 
-.theme-borders {
-  border-color: @themeColor !important;
+.accent-selection-hover:hover {
+  background-color: fade(@accentColor, 10%) !important;
 }
 
-.theme-border-top {
-  border-top-color: @themeColor !important;
+.accent-selection {
+  background-color: @accentColor !important;
+  color: white !important;
+
+  &.accent-selection-hover:hover {
+    background-color: @accentColor !important;
+  }
 }
 
-.theme-border-right {
-  border-right-color: @themeColor !important;
+.accent-borders {
+  border-color: @accentColor !important;
 }
 
-.theme-border-bottom {
-  border-bottom-color: @themeColor !important;
+.accent-border-top {
+  border-top-color: @accentColor !important;
 }
 
-.theme-border-left {
-  border-left-color: @themeColor !important;
+.accent-border-right {
+  border-right-color: @accentColor !important;
+}
+
+.accent-border-bottom {
+  border-bottom-color: @accentColor !important;
+}
+
+.accent-border-left {
+  border-left-color: @accentColor !important;
 }
 
 .success {
