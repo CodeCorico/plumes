@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 
 gulp.task('fontawesome', function(done) {
   gulp.src('node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest('public/layout/fonts'))
+    .pipe(gulp.dest('public/base/fonts'))
     .on('end', done);
 });
 
