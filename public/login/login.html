@@ -15,15 +15,15 @@
       </div>
 
       <div class="login-links">
-        <div class="login-forgot-link theme {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
-        <div class="login-login-link theme {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
+        <div class="login-forgot-link accent {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
+        <div class="login-login-link accent {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
       </div>
 
-      <button class="help-button theme {{inForgotPassword ? 'show' : ''}}" on-click="openHelp">?</button>
+      <button class="help-button accent {{inForgotPassword ? 'show' : ''}}" on-click="openHelp">?</button>
       {{/useforgot}}
 
       <div class="login-form">
-        <div class="login-form-content theme-bg">
+        <div class="login-form-content accent-bg">
           <input
             class="input name"
             type="{{inForgotPassword ? 'password' : 'text'}}"
@@ -44,11 +44,11 @@
           {{/useforgot}}
 
           <div
-            class="old-avatar theme-bg {{oldAvatar ? 'show' : ''}}"
+            class="old-avatar accent-bg {{oldAvatar ? 'show' : ''}}"
             style="{{#if oldAvatar != 'null'}}background-image: url('{{oldAvatar}}');{{/if}}"
           ></div>
           <div
-            class="avatar theme-bg {{oldAvatar ? 'show-again' : ''}}"
+            class="avatar accent-bg {{oldAvatar ? 'show-again' : ''}}"
             style="{{#if avatar != 'null'}}background-image: url('{{avatar}}');{{/if}}"
           ></div>
         </div>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="bottom-border-container">
-      <div class="bottom-border theme-bg"></div>
+      <div class="bottom-border accent-bg"></div>
     </div>
   </section>
 </div>

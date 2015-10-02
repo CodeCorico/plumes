@@ -7,7 +7,7 @@
   {{/if}}
 
   {{#pages}}
-    <li class="{{pageSelected == . ? 'selected' : ''}}" on-click="selectPage">{{.}}</li>
+    <li class="accent-selection-hover {{pageSelected == this ? 'accent-selection' : ''}}" on-click="selectPage">{{this}}</li>
   {{/pages}}
 
   {{#if displayLastButton && hasActionButtons}}
