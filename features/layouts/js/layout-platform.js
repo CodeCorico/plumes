@@ -75,7 +75,7 @@
         LayoutPlateform.set('beforeStart', true);
 
         setTimeout(function() {
-          $('.layout-mask').remove();
+          $(LayoutPlateform.el).find('.layout-mask').remove();
 
           var beforeRequire = data.beforerequire || function(l, callback) {
             callback();
