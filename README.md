@@ -39,10 +39,9 @@ new Plumes({
 Plumes contains many Ractive components and CSS layouts. To use it you have to include [Ractive](http://ractivejs.org), [Ractive Require](https://github.com/XavierBoubert/ractive-require) and [jQuery](http://jquery.com):
 
 ```html
-<script src="http://cdn.ractivejs.org/latest/ractive.js"></script>
-<script src="http://cdn.ractivejs.org/latest/ractive-require.js"></script>
+<script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ractive-require/0.5.0/ractive-require.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
 ```
 
 Each component is compiled and ready to use in the ```/public``` folder.
