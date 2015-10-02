@@ -10,7 +10,9 @@
       data[dir + 'ContentUsed'] = config && config.partials && config.partials[dir + '-content'];
       data[dir + 'ContentPos'] = 0;
       data[dir + 'ContentCollapsedAfter'] = false;
+      data[dir + 'ContentWidth'] = typeof data[dir + '-content-width'] != 'undefined' ? data[dir + '-content-width'] : 300;
       data[dir + 'ContentAreaWidth'] = data[dir + 'ContentUsed'] ? data[dir + 'ContentWidth'] : 30;
+      data[dir + 'ContentExpended'] = false;
     });
 
     var LayoutSidebars = component({
@@ -42,14 +44,23 @@
       });
     }
 
-    function _refreshDirContent(dir, expended) {
+    function _refreshDirContent(dir, expended, updateContentExpended) {
+      if (freezeSet) {
+        return;
+      }
+
+      updateContentExpended = updateContentExpended === false ? false : true;
+
       freezeSet = true;
 
       var $dirContent = _$el.layout.find('.layout-' + dir + '-container'),
           $bar = $dirContent.find('.layout-' + dir + '-bar-container');
 
+      if (updateContentExpended) {
+        LayoutSidebars.set(dir + '-content-expended', expended);
+      }
+
       LayoutSidebars.set(dir + 'ContentExpended', expended);
-      LayoutSidebars.set(dir + '-content-expended', expended);
       LayoutSidebars.set(dir + 'ContentAreaWidth', expended ? $dirContent.width() : $bar.width());
       LayoutSidebars.set(dir + 'ContentPos', expended ? 0 : -$dirContent.width() + $bar.width());
 
@@ -58,7 +69,7 @@
       if (expended) {
         LayoutSidebars.set(dir + 'ContentCollapsedAfter', false);
       }
-      else {
+      else if (updateContentExpended) {
         setTimeout(function() {
           LayoutSidebars.set(dir + 'ContentCollapsedAfter', true);
         }, 550);
@@ -68,6 +79,10 @@
     }
 
     $.each(DIRECTIONS, function(i, dir) {
+      LayoutSidebars.set(dir + 'NoAnimation', true);
+      _refreshDirContent(dir, data[dir + 'ContentExpended'], false);
+      LayoutSidebars.set(dir + 'NoAnimation', false);
+
       LayoutSidebars.observe(dir + '-content-expended', function(newValue) {
         if (freezeSet) {
           return;
@@ -91,9 +106,17 @@
           return;
         }
 
+        newValue = typeof newValue == 'undefined' ? 300 : newValue;
+
+        var expended = !!LayoutSidebars.get(dir + 'ContentExpended');
+
+        LayoutSidebars.set(dir + 'NoAnimation', !expended ? true : false);
+
         LayoutSidebars.set(dir + 'ContentWidth', newValue ? parseInt(newValue, 10) : 0);
 
-        _refreshDirContent(dir, !!LayoutSidebars.get(dir + 'ContentExpended'));
+        _refreshDirContent(dir, expended);
+
+        LayoutSidebars.set(dir + 'NoAnimation', false);
       });
     });
 
@@ -103,11 +126,6 @@
 
       _refreshDirContent(dir, expended);
     });
-
-    _refreshDirContent('left', data.leftContentExpended);
-    _refreshDirContent('right', data.rightContentExpended);
-
-    LayoutSidebars.set('start', true);
 
     LayoutSidebars.require().then(done);
   });

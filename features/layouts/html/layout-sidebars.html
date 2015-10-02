@@ -4,9 +4,9 @@
     <div
       class="
         layout-left-container
-        {{start ? 'opened' : ''}}
         {{leftContentExpended ? 'expended' : ''}}
         {{leftContentCollapsedAfter ? 'collapsed-after' : ''}}
+        {{leftNoAnimation ? 'no-animation' : ''}}
       "
       style="width: {{leftContentWidth}}px; left: {{leftContentPos}}px;"
     >
@@ -36,9 +36,9 @@
     <div
       class="
         layout-right-container
-        {{start ? 'opened' : ''}}
         {{rightContentExpended ? 'expended' : ''}}
         {{rightContentCollapsedAfter ? 'collapsed-after' : ''}}
+        {{rightNoAnimation ? 'no-animation' : ''}}
       "
       style="width: {{rightContentWidth}}px; right: {{rightContentPos}}px;"
     >

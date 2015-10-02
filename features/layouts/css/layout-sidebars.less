@@ -12,13 +12,10 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    opacity: 0;
-    .transform(translateX(-10rem));
     .transition(all 0.55s @easeOutQuart);
 
-    &.opened {
-      opacity: 1;
-      .transform(translateX(0));
+    &.no-animation {
+      .transition(none);
     }
 
     .layout-left-content, .layout-right-content {
@@ -73,16 +70,10 @@
     .layout-right-bar-container {
       left: 0;
       right: auto;
-      .transform(translateX(10rem));
 
       span {
         transform: translateX(100%) translateY(-50%) rotate(-90deg);
       }
-    }
-
-    &.opened .layout-right-bar-container {
-      opacity: 1;
-      .transform(translateX(0));
     }
 
     &.collapsed-after {
@@ -91,10 +82,6 @@
         transform: translateX(-50%) translateY(-50%) rotate(-90deg);
       }
     }
-  }
-
-  .layout-right-container {
-    .transform(translateX(10rem));
   }
 
   .layout-content {
