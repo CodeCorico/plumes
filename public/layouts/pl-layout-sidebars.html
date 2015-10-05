@@ -1,0 +1,58 @@
+<div class="pl-layout-sidebars">
+
+  {{#if leftContentUsed}}
+    <div
+      class="
+        pl-layout-left-container
+        {{leftContentExpended ? 'expended' : ''}}
+        {{leftContentCollapsedAfter ? 'collapsed-after' : ''}}
+        {{leftNoAnimation ? 'no-animation' : ''}}
+      "
+      style="width: {{leftContentWidth}}px; left: {{leftContentPos}}px;"
+    >
+      <div class="pl-layout-left-content" style="top: {{titleAreaHeight}}px;">
+        {{> left-content}}
+      </div>
+
+      <div class="pl-layout-left-bar-container" on-click="toggleLeftBar">
+        <div class="pl-layout-left-bar"></div>
+        <span>{{leftContentTitle}}</span>
+      </div>
+    </div>
+  {{/if}}
+
+  <div
+    class="pl-layout-content"
+    style="
+      left: {{leftContentAreaWidth}}px;
+      right: {{rightContentAreaWidth}}px;
+      top: {{leftContentExpended ? 90 : titleAreaHeight}}px;
+    "
+  >
+    {{> content}}
+  </div>
+
+  {{#if rightContentUsed}}
+    <div
+      class="
+        pl-layout-right-container
+        {{rightContentExpended ? 'expended' : ''}}
+        {{rightContentCollapsedAfter ? 'collapsed-after' : ''}}
+        {{rightNoAnimation ? 'no-animation' : ''}}
+      "
+      style="width: {{rightContentWidth}}px; right: {{rightContentPos}}px;"
+    >
+      <div class="pl-layout-right-content">
+        {{> right-content}}
+      </div>
+
+      <div class="pl-layout-right-bar-container" on-click="toggleRightBar">
+        <div class="pl-layout-right-bar"></div>
+        <span>{{rightContentTitle}}</span>
+      </div>
+    </div>
+  {{/if}}
+
+  {{> extracontent}}
+
+</div>

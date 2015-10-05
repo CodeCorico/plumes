@@ -2263,7 +2263,7 @@ strong {
   float: left;
   box-sizing: border-box;
 }
-.header {
+.pl-header {
   z-index: 100;
   position: fixed;
   top: 10px;
@@ -2271,24 +2271,21 @@ strong {
   color: black;
   border-color: black;
 }
-.header.light {
+.pl-header.light {
   color: white;
   border-color: white;
 }
-.header h1 {
+.pl-header h1 {
   font-size: 1.6rem;
   font-weight: 300;
   line-height: 1.6rem;
   margin: 0;
 }
-.header h2 {
+.pl-header h2 {
   font-size: 2.6rem;
   font-weight: 300;
   line-height: 3rem;
   margin: 0;
-}
-.after-header {
-  margin-top: 40px;
 }
 @media (min-width: 550px) {
   .column,
@@ -2714,6 +2711,10 @@ hr {
   content: "";
   display: table;
   clear: both;
+}
+rv-require:not(.rv-require-loaded),
+rv-partial {
+  display: none;
 }
 /* Larger than mobile */
 /* Larger than phablet (also point when grid becomes active) */

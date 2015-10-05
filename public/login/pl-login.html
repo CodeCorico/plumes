@@ -1,0 +1,68 @@
+<div class="pl-login {{inHelp ? 'help' : ''}} {{storyboard}} {{storyboardMessage}}">
+  <rv-require
+    name="pl-screen-message"
+    src="../screen-message/pl-screen-message"
+  ></rv-require>
+
+  <section class="pl-login-container" style="top: {{top}}px; height: {{height}}px;">
+
+    <div class="pl-login-content">
+      {{#useforgot}}
+      <div class="pl-login-forgot-texts">
+        <p class="pl-login-forgot-text {{inForgot && !inForgotCode && !inForgotPassword ? 'show' : ''}}">{{{texts.forgottext}}}</p>
+        <p class="pl-login-forgot-code-text {{inForgotCode ? 'show' : ''}}">{{{texts.forgotcodetext}}}</p>
+        <p class="pl-login-forgot-password-text {{inForgotPassword ? 'show' : ''}}">{{{texts.forgotpasswordtext}}}</p>
+      </div>
+
+      <div class="pl-login-links">
+        <div class="pl-login-forgot-link accent {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
+        <div class="pl-login-login-link accent {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
+      </div>
+
+      <button class="help-button accent {{inForgotPassword ? 'show' : ''}}" on-click="openHelp">?</button>
+      {{/useforgot}}
+
+      <div class="pl-login-form">
+        <div class="pl-login-form-content accent-bg">
+          <input
+            class="input name"
+            type="{{inForgotPassword ? 'password' : 'text'}}"
+            placeholder="{{usernamePlaceholder}}"
+            value="{{username}}"
+            disabled="{{inModal}}"
+          />
+          <input
+            class="input password {{inForgot && !inForgotPassword ? 'hide' : ''}}"
+            type="password"
+            placeholder="{{userpasswordPlaceholder}}"
+            value="{{userpassword}}"
+            disabled="{{inModal || (inForgot && !inForgotPassword)}}"
+          />
+
+          {{#useforgot}}
+          <div class="mask-password {{inForgot && !inForgotPassword ? 'show' : ''}}"></div>
+          {{/useforgot}}
+
+          <div
+            class="old-avatar accent-bg {{oldAvatar ? 'show' : ''}}"
+            style="{{#if oldAvatar != 'null'}}background-image: url('{{oldAvatar}}');{{/if}}"
+          ></div>
+          <div
+            class="avatar accent-bg {{oldAvatar ? 'show-again' : ''}}"
+            style="{{#if avatar != 'null'}}background-image: url('{{avatar}}');{{/if}}"
+          ></div>
+        </div>
+
+        <div class="pl-login-form-message {{messageType == 'error' ? 'error-bg' : 'success-bg'}}">
+          <p>{{{message}}}</p>
+        </div>
+      </div>
+
+      <div class="help-container" style="top: {{helpTop}}px;">{{{texts.forgotpasswordhelp}}}</div>
+    </div>
+
+    <div class="bottom-border-container">
+      <div class="bottom-border accent-bg"></div>
+    </div>
+  </section>
+</div>

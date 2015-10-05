@@ -1,0 +1,13 @@
+<div class="pl-screen-message {{playing ? 'playing' : ''}} {{playingDone ? 'done' : ''}} {{storyboard}}">
+
+  <div class="title">
+    <h1>{{> message-title}}</h1>
+  </div>
+
+  <div class="pl-screen-messages-message" style="top: {{messageTop}}px">
+    <rv-require name="pl-messages-message" src="../messages/pl-messages-message"></rv-require>
+
+    <div class="title-border accent-bg"></div>
+  </div>
+
+</div>

@@ -1,0 +1,10 @@
+.pl-grouped-list {
+  position: relative;
+  overflow: auto;
+}
+.pl-grouped-list .pl-grouped-list-content {
+  position: relative;
+}
+.pl-grouped-list .pl-grouped-list-item {
+  position: relative;
+}
