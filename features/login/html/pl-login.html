@@ -1,29 +1,29 @@
-<div class="login {{inHelp ? 'help' : ''}} {{storyboard}} {{storyboardMessage}}">
+<div class="pl-login {{inHelp ? 'help' : ''}} {{storyboard}} {{storyboardMessage}}">
   <rv-require
-    name="screen-message"
-    src="../screen-message/screen-message"
+    name="pl-screen-message"
+    src="../screen-message/pl-screen-message"
   ></rv-require>
 
-  <section class="login-container" style="top: {{top}}px; height: {{height}}px;">
+  <section class="pl-login-container" style="top: {{top}}px; height: {{height}}px;">
 
-    <div class="login-content">
+    <div class="pl-login-content">
       {{#useforgot}}
-      <div class="login-forgot-texts">
-        <p class="login-forgot-text {{inForgot && !inForgotCode && !inForgotPassword ? 'show' : ''}}">{{{texts.forgottext}}}</p>
-        <p class="login-forgot-code-text {{inForgotCode ? 'show' : ''}}">{{{texts.forgotcodetext}}}</p>
-        <p class="login-forgot-password-text {{inForgotPassword ? 'show' : ''}}">{{{texts.forgotpasswordtext}}}</p>
+      <div class="pl-login-forgot-texts">
+        <p class="pl-login-forgot-text {{inForgot && !inForgotCode && !inForgotPassword ? 'show' : ''}}">{{{texts.forgottext}}}</p>
+        <p class="pl-login-forgot-code-text {{inForgotCode ? 'show' : ''}}">{{{texts.forgotcodetext}}}</p>
+        <p class="pl-login-forgot-password-text {{inForgotPassword ? 'show' : ''}}">{{{texts.forgotpasswordtext}}}</p>
       </div>
 
-      <div class="login-links">
-        <div class="login-forgot-link accent {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
-        <div class="login-login-link accent {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
+      <div class="pl-login-links">
+        <div class="pl-login-forgot-link accent {{!inForgot ? 'show' : ''}}" on-click="displayForgot">{{texts.forgotlink}}</div>
+        <div class="pl-login-login-link accent {{inForgot ? 'show' : ''}}" on-click="displayLogin">{{texts.login}}</div>
       </div>
 
       <button class="help-button accent {{inForgotPassword ? 'show' : ''}}" on-click="openHelp">?</button>
       {{/useforgot}}
 
-      <div class="login-form">
-        <div class="login-form-content accent-bg">
+      <div class="pl-login-form">
+        <div class="pl-login-form-content accent-bg">
           <input
             class="input name"
             type="{{inForgotPassword ? 'password' : 'text'}}"
@@ -53,7 +53,7 @@
           ></div>
         </div>
 
-        <div class="login-form-message {{messageType == 'error' ? 'error-bg' : 'success-bg'}}">
+        <div class="pl-login-form-message {{messageType == 'error' ? 'error-bg' : 'success-bg'}}">
           <p>{{{message}}}</p>
         </div>
       </div>

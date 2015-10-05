@@ -1,18 +1,17 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('pagination', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-pagination', function(component, data, el, config, done) {
 
-    var pagination = null,
-        refs = {
-          totalPages: 'total-pages',
-          pageSelected: 'page-selected',
-          displayPagesCount: 'display-pages-count',
-          displayFirstButton: 'display-first-button',
-          displayLastButton: 'display-last-button',
-          displayPreviousButton: 'display-previous-button',
-          displayNextButton: 'display-next-button'
-        };
+    var refs = {
+      totalPages: 'total-pages',
+      pageSelected: 'page-selected',
+      displayPagesCount: 'display-pages-count',
+      displayFirstButton: 'display-first-button',
+      displayLastButton: 'display-last-button',
+      displayPreviousButton: 'display-previous-button',
+      displayNextButton: 'display-next-button'
+    };
 
     $.each(refs, function(key, value) {
       data[key] = data[value] && data[value] == 'false' ? false : true;
@@ -21,6 +20,11 @@
     data.totalPages = data['total-pages'] ? parseInt(data['total-pages'], 10) : 20;
     data.pageSelected = data['page-selected'] ? parseInt(data['page-selected'], 10) : 1;
     data.displayPagesCount = data['display-pages-count'] ? parseInt(data['display-pages-count'], 10) : 7;
+
+    var pagination = component({
+      plName: 'pl-pagination',
+      data: data
+    });
 
     function _updatePages() {
       var pages = [],
@@ -41,11 +45,6 @@
 
       pagination.set('pages', pages);
     }
-
-    pagination = component({
-      plName: 'pl-pagination',
-      data: data
-    });
 
     $.each(refs, function(key, value) {
       pagination.observe(value, function(newValue) {

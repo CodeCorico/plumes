@@ -21,8 +21,8 @@
 <body>
 
   <rv-require
-    name="layout-platform"
-    src="../public/layouts/layout-platform"
+    name="pl-layout-platform"
+    src="../public/layouts/pl-layout-platform"
 
     data-bind-onloaded="onloaded"
     data-bind-beforerequire="beforerequire"
@@ -43,8 +43,8 @@
     <rv-partial target="content">
 
       <rv-require
-        name="layout-sidebars"
-        src="../public/layouts/layout-sidebars"
+        name="pl-layout-sidebars"
+        src="../public/layouts/pl-layout-sidebars"
 
         data-left-content-title="Left menu"
         data-left-content-width="300"
@@ -63,8 +63,8 @@
         <rv-partial target="content">
           My content
           <rv-require
-            name="pagination"
-            src="../public/pagination/pagination"
+            name="pl-pagination"
+            src="../public/pagination/pl-pagination"
 
             data-bind-onpagselected="onpagselected"
 
@@ -131,9 +131,9 @@
           return callback();
         }
 
-        layout.require('screen-message').then(function() {
+        layout.require('pl-screen-message').then(function() {
 
-          var screenMessage = layout.findChild('name', 'screen-message');
+          var screenMessage = layout.findChild('name', 'pl-screen-message');
 
           screenMessage.fire('play', {
             message: [

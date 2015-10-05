@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('button-help', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-button-help', function(component, data, el, config, done) {
 
     var buttonHelp = component({
       plName: 'pl-button-help',

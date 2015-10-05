@@ -1,13 +1,13 @@
 @import "../../common/less/common-mixins.less";
 @import "../../common/less/common-variables.less";
 
-@-webkit-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-moz-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-ms-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@-o-keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
-@keyframes title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-webkit-keyframes pl-title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-moz-keyframes pl-title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-ms-keyframes pl-title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@-o-keyframes pl-title-border-show { 0% { width: 0; } 100% { width: 700px; } }
+@keyframes pl-title-border-show { 0% { width: 0; } 100% { width: 700px; } }
 
-.screen-message {
+.pl-screen-message {
   .noselect();
   z-index: 1000;
   position: fixed;
@@ -36,13 +36,13 @@
     }
   }
 
-  .screen-message-message {
+  .pl-screen-messages-message {
     position: absolute;
     left: 2rem;
     right: 2rem;
     text-align: center;
 
-    .message .word {
+    .pl-message .word {
       font-size: 5rem;
       line-height: 6rem;
     }
@@ -54,7 +54,7 @@
     height: 1px;
     margin: 1rem auto 0;
 
-    .animation(title-border-show 0.65s @easeOutQuart);
+    .animation(pl-title-border-show 0.65s @easeOutQuart);
   }
 
   &.playing {
@@ -78,7 +78,7 @@
   }
 
   &.sb-title-2 {
-    .screen-message-message {
+    .pl-screen-messages-message {
       .transition(all 1s @easeOutQuart);
 
       .message .word {
@@ -91,7 +91,7 @@
   }
 
   &.sb-title-out-1 {
-    .screen-message-message {
+    .pl-screen-messages-message {
       opacity: 0;
       .transition(all 0.55s @easeOutQuart);
 
@@ -105,7 +105,7 @@
   }
 
   &.sb-title-out-2 {
-    .screen-message-message {
+    .pl-screen-messages-message {
       opacity: 0;
     }
   }

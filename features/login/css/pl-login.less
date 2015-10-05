@@ -1,22 +1,22 @@
 @import "../../common/less/common-mixins.less";
 @import "../../common/less/common-variables.less";
 
-@-webkit-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-moz-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-ms-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-o-keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@keyframes bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-webkit-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-moz-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-ms-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-o-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
 
-@-webkit-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
-@-moz-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
-@-ms-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
-@-o-keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
-@keyframes avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-webkit-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-moz-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-ms-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@-o-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
+@keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
 
-.login {
+.pl-login {
   z-index: 1001;
 
-  .login-container {
+  .pl-login-container {
     overflow: hidden;
     z-index: 1001;
     position: fixed;
@@ -37,18 +37,18 @@
       height: 1px;
       margin: 0 auto;
 
-      .animation(bottom-border-show 0.65s @easeOutQuart);
+      .animation(pl-bottom-border-show 0.65s @easeOutQuart);
     }
   }
 
-  .login-content {
+  .pl-login-content {
     position: relative;
     width: 70rem;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
 
-    .login-form {
+    .pl-login-form {
       opacity: 0;
       position: absolute;
       left: 37.5rem;
@@ -58,7 +58,7 @@
       margin-top: 0;
       overflow: hidden;
 
-      .login-form-content {
+      .pl-login-form-content {
         position: absolute;
         left: 0;
         bottom: 0;
@@ -67,7 +67,7 @@
         overflow: hidden;
       }
 
-      .login-form-message {
+      .pl-login-form-message {
         position: absolute;
         left: 0;
         bottom: -14rem;
@@ -113,7 +113,7 @@
         background-size: 100%;
 
         &.show-again {
-          .animation(avatar-show-again 0.65s @easeOutQuart);
+          .animation(pl-avatar-show-again 0.65s @easeOutQuart);
         }
       }
 
@@ -186,7 +186,7 @@
       }
     }
 
-    .login-links {
+    .pl-login-links {
       .noselect();
       cursor: pointer;
       position: absolute;
@@ -202,11 +202,11 @@
       overflow: hidden;
       .transition(all 0.35s @easeOutQuart);
 
-      .login-forgot-link {
+      .pl-login-forgot-link {
         top: 2rem;
       }
 
-      .login-login-link {
+      .pl-login-login-link {
         top: -2rem;
       }
 
@@ -221,7 +221,7 @@
       }
     }
 
-    .login-forgot-texts {
+    .pl-login-forgot-texts {
       position: absolute;
       left: 15rem;
       right: 15rem;
@@ -232,11 +232,11 @@
       overflow: hidden;
       .transition(all 0.35s @easeOutQuart);
 
-      .login-forgot-text {
+      .pl-login-forgot-text {
         top: 5.6rem;
       }
 
-      .login-forgot-code-text, .login-forgot-password-text {
+      .pl-login-forgot-code-text, .pl-login-forgot-password-text {
         top: -5.6rem;
       }
 
@@ -311,8 +311,8 @@
     }
   }
 
-  &.help .login-content, &.help.sb-show-4 .login-content {
-    .login-forgot-texts, .login-links, .login-form {
+  &.help .pl-login-content, &.help.sb-show-4 .pl-login-content {
+    .pl-login-forgot-texts, .pl-login-links, .pl-login-form {
       left: 0;
       right: 30rem;
     }
@@ -330,11 +330,11 @@
   }
 
   &.sb-show-2 {
-    .login-container {
+    .pl-login-container {
       .transition(all 1s @easeOutQuart);
     }
 
-    .login-content .login-form {
+    .pl-login-content .pl-login-form {
       opacity: 1;
       left: 28rem;
       right: 28rem;
@@ -345,7 +345,7 @@
   }
 
   &.sb-show-3, &.sb-show-4 {
-    .login-content .login-form {
+    .pl-login-content .pl-login-form {
       opacity: 1;
       left: 15rem;
       right: 15rem;
@@ -362,7 +362,7 @@
   }
 
   &.sb-show-4 {
-    .login-content .login-links {
+    .pl-login-content .pl-login-links {
       opacity: 1;
       margin-top: 8rem;
       .transition(all 0.45s @easeOutQuart);
@@ -370,11 +370,11 @@
   }
 
   &.sb-hide-1, &.sb-hide-2 {
-    .login-container {
+    .pl-login-container {
       .transition(all 0.55s @easeOutQuart);
     }
 
-    .login-content .login-form {
+    .pl-login-content .pl-login-form {
       opacity: 1;
       left: 15rem;
       right: 15rem;
@@ -396,7 +396,7 @@
   }
 
   &.sb-hide-2 {
-    .login-content .login-form {
+    .pl-login-content .pl-login-form {
       left: 28rem;
       right: 28rem;
       .transition(all 0.45s @easeOutQuart);
@@ -404,7 +404,7 @@
   }
 
   &.sb-hide-3 {
-    .login-content .login-form {
+    .pl-login-content .pl-login-form {
       opacity: 1;
       left: 37.5rem;
       right: 37.5rem;
@@ -415,36 +415,36 @@
   }
 
   &.sb-message-1 {
-    .login-content .login-form .login-form-content {
+    .pl-login-content .pl-login-form .pl-login-form-content {
       bottom: 14rem;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
   &.sb-message-2 {
-    .login-content .login-form .login-form-content {
+    .pl-login-content .pl-login-form .pl-login-form-content {
       bottom: -14rem;
     }
 
-    .login-content .login-form .login-form-message {
+    .pl-login-content .pl-login-form .pl-login-form-message {
       bottom: 0;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
   &.sb-message-3 {
-    .login-content .login-form .login-form-content {
+    .pl-login-content .pl-login-form .pl-login-form-content {
       bottom: -14rem;
     }
 
-    .login-content .login-form .login-form-message {
+    .pl-login-content .pl-login-form .pl-login-form-message {
       bottom: 14rem;
       .transition(all 0.35s @easeOutQuart);
     }
   }
 
   &.sb-message-4 {
-    .login-content .login-form .login-form-content {
+    .pl-login-content .pl-login-form .pl-login-form-content {
       bottom: 0;
       .transition(all 0.35s @easeOutQuart);
     }

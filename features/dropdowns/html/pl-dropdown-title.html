@@ -1,13 +1,13 @@
 <div
   class="
-    dropdown-title
+    pl-dropdown-title
     {{ opened ? 'opened' : '' }}
     {{ noAnimation ? 'no-animation' : '' }}
     {{ noCaret ? 'no-caret' : '' }}
   "
   on-click="mainClick"
 >
-  <div class="dropdown-placeholder"><span>{{placeholder}}</span></div>
+  <div class="pl-dropdown-placeholder"><span>{{placeholder}}</span></div>
 
   <h2
     class="{{ titles.length > 1 ? 'list' : '' }}"
@@ -24,7 +24,7 @@
     <i class="fa fa-caret-down"></i>
   </h2>
 
-  <ul class="dropdown-title-list">
+  <ul class="pl-dropdown-title-list">
 
     {{#titles:i}}
     <li on-click="select(i)">

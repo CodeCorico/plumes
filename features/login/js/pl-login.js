@@ -1,12 +1,7 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('login', function(component, data, el, config, done) {
-
-    var _$el = {
-          window: $(window),
-          login: null
-        };
+  window.Ractive.controller('pl-login', function(component, data, el, config, done) {
 
     data.useforgot = typeof data.useforgot == 'undefined' ? true : data.useforgot;
     data.useforgot = data.useforgot == 'true' ? true : data.useforgot;
@@ -51,23 +46,25 @@
       '</ol>' :
       data.texts.forgotpasswordhelp;
 
+    var Login = component({
+          plName: 'pl-login',
+          data: $.extend(true, {
+            show: false,
+            top: 0
+          }, data)
+        }),
+        _$el = {
+          window: $(window),
+          login: $(Login.el),
+          forgotTexts: $(Login.el).find('.pl-login-forgot-texts')
+        };
+
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
 
       Login.set('height', _$el.window.height() - (100 + messageHeight + 30));
       Login.set('helpTop', _$el.forgotTexts.position().top);
     }
-
-    var Login = component({
-      plName: 'pl-login',
-      data: $.extend(true, {
-        show: false,
-        top: 0
-      }, data)
-    });
-
-    _$el.login = $(Login.el);
-    _$el.forgotTexts = _$el.login.find('.login-forgot-texts');
 
     function _focusName() {
       _$el.login.find('.name').focus();
@@ -143,7 +140,7 @@
       }
     }
 
-    _$el.login.find('.login-form-content .input').keypress(function(event) {
+    _$el.login.find('.pl-login-form-content .input').keypress(function(event) {
       // enter
       if (event.which == 13) {
         _submit();
@@ -205,7 +202,7 @@
     }
 
     Login.on('logged', function(text) {
-      var ScreenMessage = Login.findChild('name', 'screen-message');
+      var ScreenMessage = Login.findChild('name', 'pl-screen-message');
       ScreenMessage.fire('closeTitle');
 
       Login.set('storyboard', 'sb-hide-1');
@@ -372,7 +369,7 @@
     _$el.window.resize(_resize);
 
     Login.require().then(function() {
-      var ScreenMessage = Login.findChild('name', 'screen-message'),
+      var ScreenMessage = Login.findChild('name', 'pl-screen-message'),
           textQuestion = Login.get('texts.question');
 
       textQuestion = !textQuestion && textQuestion !== '' ? 'Who are you?' : textQuestion;
@@ -382,7 +379,7 @@
         lastLineToTitle: true,
         displayTextTime: 350,
         done: function() {
-          _$el.message = $(ScreenMessage.el).find('.screen-message-message');
+          _$el.message = $(ScreenMessage.el).find('.pl-screen-messages-message');
 
           var messageHeight = _$el.message.outerHeight(true);
 

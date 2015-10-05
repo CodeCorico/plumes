@@ -1,6 +1,6 @@
 @import "../../common/less/common-mixins.less";
 
-.layout-sidebars {
+.pl-layout-sidebars {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   bottom: 0;
   overflow: hidden;
 
-  .layout-left-container, .layout-right-container {
+  .pl-layout-left-container, .pl-layout-right-container {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -18,7 +18,7 @@
       .transition(none);
     }
 
-    .layout-left-content, .layout-right-content {
+    .pl-layout-left-content, .pl-layout-right-content {
       position: absolute;
       top: 9rem;
       left: 3rem;
@@ -28,12 +28,12 @@
       .transition(all 0.55s @easeOutQuart);
     }
 
-    .layout-right-content {
+    .pl-layout-right-content {
       left: 4rem;
       right: 3rem;
     }
 
-    .layout-left-bar-container, .layout-right-bar-container {
+    .pl-layout-left-bar-container, .pl-layout-right-bar-container {
       .noselect(pointer);
       .no-tap-effect();
       position: absolute;
@@ -43,7 +43,7 @@
       width: 3rem;
       overflow: hidden;
 
-      .layout-left-bar, .layout-right-bar {
+      .pl-layout-left-bar, .pl-layout-right-bar {
         position: absolute;
         top: 0;
         left: 1.5rem;
@@ -67,7 +67,7 @@
       }
     }
 
-    .layout-right-bar-container {
+    .pl-layout-right-bar-container {
       left: 0;
       right: auto;
 
@@ -77,14 +77,14 @@
     }
 
     &.collapsed-after {
-      .layout-left-bar-container span, .layout-right-bar-container span {
+      .pl-layout-left-bar-container span, .pl-layout-right-bar-container span {
         opacity: 1;
         transform: translateX(-50%) translateY(-50%) rotate(-90deg);
       }
     }
   }
 
-  .layout-content {
+  .pl-layout-content {
     position: fixed;
     top: 9rem;
     bottom: 3rem;

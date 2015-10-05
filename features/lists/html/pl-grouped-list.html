@@ -2,7 +2,7 @@
 
   {{#items}}
     <div
-      class="grouped-list-item level-{{level(@keypath)}}"
+      class="pl-grouped-list-item level-{{level(@keypath)}}"
       data-level="{{level(@keypath)}}"
     >
       {{> itemTemplate}}
@@ -15,8 +15,8 @@
 
 {{/partial}}
 
-<div class="grouped-list">
-  <div class="grouped-list-content">
+<div class="pl-grouped-list">
+  <div class="pl-grouped-list-content">
     {{> itemsList}}
   </div>
 </div>

@@ -21,8 +21,8 @@
 <body>
 
   <rv-require
-    name="layout-platform"
-    src="../public/layouts/layout-platform"
+    name="pl-layout-platform"
+    src="../public/layouts/pl-layout-platform"
 
     data-bind-onloaded="onloaded"
     data-bind-beforerequire="beforerequire"
@@ -39,9 +39,9 @@
     <rv-partial target="content">
 
       <rv-require
-        name="login"
-        src="../public/login/login"
-        ondemand="login"
+        name="pl-login"
+        src="../public/login/pl-login"
+        ondemand="pl-login"
 
         data-text-question="Who are you?"
         data-text-username="Email"
@@ -92,9 +92,9 @@
       }
 
       page.set('beforerequire', function(Layout, callback) {
-        Layout.require('login').then(function() {
+        Layout.require('pl-login').then(function() {
 
-          var Login = Layout.findChild('name', 'login');
+          var Login = Layout.findChild('name', 'pl-login');
 
           Login.on('username', function(args) {
             if (args.username && _validateEmail(args.username)) {
@@ -113,7 +113,8 @@
           });
 
           Login.on('login', function(args) {
-            if (!args.username || !args.password) {
+            console.log(args);
+            if (!args.username || !args.userpassword) {
               return Login.fire('error', {
                 message: 'The password entered is incorrect.'
               });

@@ -1,17 +1,16 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('messages-message', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-messages-message', function(component, data, el, config, done) {
 
     var DISPLAY_TEXT_TIME = 3000,
         DISPLAY_WORD_TIME = 150,
 
+        Message = component({
+          plName: 'pl-messages-message',
+          data: data
+        }),
         _message = null;
-
-    var Message = component({
-      plName: 'pl-messages-message',
-      data: data
-    });
 
     function _hideMessage(index, callback) {
       if (index === 0) {

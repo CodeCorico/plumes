@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('layout-sidebars', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-layout-sidebars', function(component, data, el, config, done) {
     var DIRECTIONS = ['left', 'right'],
 
         freezeSet = false;
@@ -23,7 +23,7 @@
         _$el = {
           window: $(window),
           layout: $(LayoutSidebars.el),
-          content: $(LayoutSidebars.el).find('.layout-content')
+          content: $(LayoutSidebars.el).find('.pl-layout-content')
         };
 
     if (parent && parent.plName == 'pl-layout-plateform') {
@@ -53,8 +53,8 @@
 
       freezeSet = true;
 
-      var $dirContent = _$el.layout.find('.layout-' + dir + '-container'),
-          $bar = $dirContent.find('.layout-' + dir + '-bar-container');
+      var $dirContent = _$el.layout.find('.pl-layout-' + dir + '-container'),
+          $bar = $dirContent.find('.pl-layout-' + dir + '-bar-container');
 
       if (updateContentExpended) {
         LayoutSidebars.set(dir + '-content-expended', expended);

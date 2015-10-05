@@ -1,21 +1,21 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('grouped-list', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-grouped-list', function(component, data, el, config, done) {
+
     data.lvl = 0;
     data.level = function(keypath) {
       return keypath.split('items').length - 2;
     };
 
     var GroupedList = component({
-      plName: 'pl-grouped-list',
-      data: data
-    });
-
-    var _$el = {
+          plName: 'pl-grouped-list',
+          data: data
+        }),
+        _$el = {
           window: $(window),
-          list: $(GroupedList.el).find('.grouped-list'),
-          content: $(GroupedList.el).find('.grouped-list-content')
+          list: $(GroupedList.el).find('.pl-grouped-list'),
+          content: $(GroupedList.el).find('.pl-grouped-list-content')
         };
 
     function _refresh() {

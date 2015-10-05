@@ -1,12 +1,7 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('dropdown-title', function(component, data, el, config, done) {
-
-    var dropdownTitle = null,
-        _$el = {
-          body: $('body')
-        };
+  window.Ractive.controller('pl-dropdown-title', function(component, data, el, config, done) {
 
     data.selected = {
       name: '',
@@ -22,6 +17,16 @@
         }
       });
     }
+
+    var dropdownTitle = component({
+          plName: 'pl-dropdown-title',
+          data: data,
+          select: _select
+        }),
+        _$el = {
+          body: $('body'),
+          dropdownTitle: $(dropdownTitle.el)
+        };
 
     function _select(indexOrName, fireFunc, callback) {
       if (!dropdownTitle) {
@@ -69,7 +74,7 @@
 
     function _close(callback) {
       dropdownTitle.fire('close', {
-        height: $(el).find('.dropdown-title h2').height()
+        height: _$el.dropdownTitle.find('.pl-dropdown-title h2').height()
       });
 
       dropdownTitle.set('noAnimation', false);
@@ -88,12 +93,6 @@
     function _click() {
       _close();
     }
-
-    var dropdownTitle = component({
-      plName: 'pl-dropdown-title',
-      data: data,
-      select: _select
-    });
 
     dropdownTitle.fireSelected = function() {
       var selected = dropdownTitle.get('selected');
@@ -115,7 +114,7 @@
       }
       else {
         dropdownTitle.fire('open', {
-          height: $(el).find('.dropdown-title h2').height() * (data.titles.length + 1)
+          height: _$el.dropdownTitle.find('.pl-dropdown-title h2').height() * (data.titles.length + 1)
         });
         dropdownTitle.set('opened', true);
       }

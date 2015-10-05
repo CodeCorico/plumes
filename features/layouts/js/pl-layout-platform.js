@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  window.Ractive.controller('layout-platform', function(component, data, el, config, done) {
+  window.Ractive.controller('pl-layout-platform', function(component, data, el, config, done) {
     var sectionsUsed = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'],
         Title = null;
 
@@ -75,7 +75,7 @@
         LayoutPlateform.set('beforeStart', true);
 
         setTimeout(function() {
-          $(LayoutPlateform.el).find('.layout-mask').remove();
+          $(LayoutPlateform.el).find('.pl-layout-mask').remove();
 
           var beforeRequire = data.beforerequire || function(l, callback) {
             callback();
@@ -88,7 +88,7 @@
             LayoutPlateform.set('start', true);
 
             LayoutPlateform.require().then(function() {
-              var Title = LayoutPlateform.findChild('name', 'dropdown-title');
+              var Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
 
               if (Title) {
                 Title.on('open', function(args) {
