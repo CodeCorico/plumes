@@ -45,6 +45,7 @@
       $rvPartials.remove();
 
       var page = new window.Ractive({
+        plName: 'pl-page',
         el: 'body',
         data: {
           cls: []

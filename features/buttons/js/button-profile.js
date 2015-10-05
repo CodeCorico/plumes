@@ -4,6 +4,7 @@
   window.Ractive.controller('button-profile', function(component, data, el, config, done) {
 
     var buttonProfile = component({
+      plName: 'pl-button-profile',
       data: data
     });
 

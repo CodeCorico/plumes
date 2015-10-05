@@ -8,6 +8,7 @@
     };
 
     var GroupedList = component({
+      plName: 'pl-grouped-list',
       data: data
     });
 

@@ -9,6 +9,7 @@
         _playArgs = null;
 
     var ScreenMessage = component({
+      plName: 'pl-screen-message',
       data: data
     });
 

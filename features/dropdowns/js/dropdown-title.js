@@ -90,6 +90,7 @@
     }
 
     var dropdownTitle = component({
+      plName: 'pl-dropdown-title',
       data: data,
       select: _select
     });

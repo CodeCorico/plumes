@@ -43,6 +43,7 @@
     }
 
     pagination = component({
+      plName: 'pl-pagination',
       data: data
     });
 

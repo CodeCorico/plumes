@@ -9,6 +9,7 @@
         _message = null;
 
     var Message = component({
+      plName: 'pl-messages-message',
       data: data
     });
 

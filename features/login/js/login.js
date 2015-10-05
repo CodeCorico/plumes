@@ -59,6 +59,7 @@
     }
 
     var Login = component({
+      plName: 'pl-login',
       data: $.extend(true, {
         show: false,
         top: 0

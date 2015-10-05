@@ -4,6 +4,7 @@
   window.Ractive.controller('button-help', function(component, data, el, config, done) {
 
     var buttonHelp = component({
+      plName: 'pl-button-help',
       data: data
     });
 
