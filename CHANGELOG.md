@@ -1,5 +1,18 @@
 # Plumes - Changelog
 
+<a name="0.5.0"></a>
+# 0.5.0 (2015-10-05)
+
+[Release 0.5.0](https://github.com/CodeCorico/plumes/releases/tag/0.5.0)
+
+### Breaking changes
+
+- **Base**
+  - Hide rv-require and rv-partial not loaded
+
+- **Components**
+  - Use "pl-" prefix for all components
+
 <a name="0.4.0"></a>
 # 0.4.0 (2015-10-02)
 
