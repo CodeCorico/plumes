@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="0.5.1"></a>
+# 0.5.1 (2015-10-20)
+
+[Release 0.5.1](https://github.com/CodeCorico/plumes/releases/tag/0.5.1)
+
+### Hotfixes
+
+- **Layout Platfom**
+  - Display the missing apps dropdown
+
 <a name="0.5.0"></a>
 # 0.5.0 (2015-10-05)
 
