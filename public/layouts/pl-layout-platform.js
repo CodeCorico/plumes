@@ -88,7 +88,7 @@
             LayoutPlateform.set('start', true);
 
             LayoutPlateform.require().then(function() {
-              var Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
+              Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
 
               if (Title) {
                 Title.on('open', function(args) {
