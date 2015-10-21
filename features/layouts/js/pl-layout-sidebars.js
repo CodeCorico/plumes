@@ -19,21 +19,21 @@
           plName: 'pl-layout-sidebars',
           data: data
         }),
-        parent = LayoutSidebars.parentRequire,
+        parentPlatform = LayoutSidebars.findParent('name', 'pl-layout-platform'),
         _$el = {
           window: $(window),
           layout: $(LayoutSidebars.el),
           content: $(LayoutSidebars.el).find('.pl-layout-content')
         };
 
-    if (parent && parent.plName == 'pl-layout-plateform') {
-      parent.on('titleAreaHeightChanged', function(args) {
+    if (parentPlatform) {
+      parentPlatform.on('titleAreaHeightChanged', function(args) {
         LayoutSidebars.set('titleAreaHeight', args.height);
 
         _fireContentResize(args.waiting);
       });
 
-      LayoutSidebars.set('titleAreaHeight', parent.get('titleAreaHeight'));
+      LayoutSidebars.set('titleAreaHeight', parentPlatform.get('titleAreaHeight'));
     }
 
     function _fireContentResize(waiting) {
