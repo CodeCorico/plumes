@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="0.5.2"></a>
+# 0.5.2 (2015-10-21)
+
+[Release 0.5.2](https://github.com/CodeCorico/plumes/releases/tag/0.5.2)
+
+### Hotfixes
+
+- **Layout Sidebars**
+  - Search Layout Platform in all of its parents to detect the opened menu.
+
 <a name="0.5.1"></a>
 # 0.5.1 (2015-10-20)
 
