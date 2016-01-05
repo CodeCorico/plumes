@@ -50,7 +50,7 @@
             buttonProfile.set('showMessage', false);
             setTimeout(function() {
               buttonProfile.set('notificationPicture', null);
-            }, 350);
+            }, 700);
           },
           clearNotificationsCount: function() {
             buttonProfile.set('notificationsCount', 0);
