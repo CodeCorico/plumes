@@ -1,0 +1,61 @@
+.pl-button-onoff {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  border: none;
+  background: none;
+  text-transform: lowercase;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.pl-button-onoff label {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+.pl-button-onoff div {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 4rem;
+  height: 2rem;
+  background: #ddd;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+.pl-button-onoff div span {
+  position: absolute;
+  height: 1.4rem;
+  width: 1.5rem;
+  left: 2rem;
+  top: 0.25rem;
+  border-radius: 50%;
+  background: #bbb;
+  -webkit-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.pl-button-onoff.on div span {
+  left: 0.5rem;
+  background: #4CAF50;
+}

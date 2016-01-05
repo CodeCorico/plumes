@@ -2,7 +2,7 @@
   'use strict';
 
   window.Ractive.controller('pl-layout-platform', function(component, data, el, config, done) {
-    var sectionsUsed = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask'],
+    var sectionsUsed = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask', 'usenotifications'],
         Title = null;
 
     data.titleAreaHeight = 90;

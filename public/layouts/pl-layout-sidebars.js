@@ -54,15 +54,17 @@
       freezeSet = true;
 
       var $dirContent = _$el.layout.find('.pl-layout-' + dir + '-container'),
-          $bar = $dirContent.find('.pl-layout-' + dir + '-bar-container');
+          $bar = $dirContent.find('.pl-layout-' + dir + '-bar-container'),
+          dirContentWidth = $dirContent.width() || 0,
+          barWidth = $bar.width() || 0;
 
       if (updateContentExpended) {
         LayoutSidebars.set(dir + '-content-expended', expended);
       }
 
       LayoutSidebars.set(dir + 'ContentExpended', expended);
-      LayoutSidebars.set(dir + 'ContentAreaWidth', expended ? $dirContent.width() : $bar.width());
-      LayoutSidebars.set(dir + 'ContentPos', expended ? 0 : -$dirContent.width() + $bar.width());
+      LayoutSidebars.set(dir + 'ContentAreaWidth', expended ? dirContentWidth : barWidth);
+      LayoutSidebars.set(dir + 'ContentPos', expended ? 0 : -dirContentWidth + barWidth);
 
       _fireContentResize();
 
