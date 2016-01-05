@@ -1,0 +1,55 @@
+@import "../../common/less/common-variables.less";
+@import "../../common/less/common-mixins.less";
+
+.pl-button-onoff {
+  .noselect(pointer);
+  display: inline-block;
+  border: none;
+  background: none;
+  text-transform: lowercase;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  height: auto;
+  padding: 0;
+  margin: 0;
+
+  label {
+    .noselect(pointer);
+    display: inline-block;
+    vertical-align: top;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+
+  div {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 4rem;
+    height: 2rem;
+    background: #ddd;
+    border-radius: 1rem;
+    margin-left: 0.5rem;
+
+    span {
+      position: absolute;
+      height: 1.4rem;
+      width: 1.5rem;
+      left: 2rem;
+      top: 0.25rem;
+      border-radius: 50%;
+      background: #bbb;
+
+      .transition(all 0.25s @easeOutQuart);
+    }
+  }
+
+  &.on {
+    div span {
+      left: 0.5rem;
+      background: #4CAF50;
+    }
+  }
+}

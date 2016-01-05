@@ -31,6 +31,11 @@
     data-bind-user="user"
     data-bind-user-toggle="user-toggle"
     data-bind-help-toggle="help-toggle"
+    data-bind-notifications-toggle="notifications-toggle"
+    data-bind-notifications-openitem="notifications-openitem"
+    data-bind-notifications-signout="notifications-signout"
+    data-bind-notifications-emails-on="notifications-emails-on"
+    data-bind-notifications-emails-toggle="notifications-emails-toggle"
 
     data-bind-onpagselected="onPageSelected"
   >
@@ -61,7 +66,10 @@
           My Right content
         </rv-partial>
         <rv-partial target="content">
-          My content
+          <p>My content</p>
+
+          <button onclick="pushNotif()">Push a notification</button>
+
           <rv-require
             name="pl-pagination"
             src="../public/pagination/pl-pagination"
@@ -97,7 +105,35 @@
 
     window.Ractive.bootstrap(function(page) {
 
+      window.pushNotif = function() {
+        page
+          .findChild('name', 'pl-layout-platform')
+          .require('pl-layout-notifications')
+          .then(function() {
+            var layoutNotifications = page.findChild('name', 'pl-layout-notifications');
+
+            layoutNotifications.pushNotification(
+              'The user already connected and <strong>13 other bugs</strong> are now fixed on <strong>Plumes</strong>!',
+              '13 hours ago',
+              '/examples/plumes-logo.png',
+              {
+                id: 10
+              }
+            );
+
+            page.findChild('name', 'pl-button-profile').pushNotification(
+              'We have released a new <strong>Plumes</strong> version!',
+              '/examples/plumes-logo.png',
+              {
+                id: 10
+              },
+              layoutNotifications.isToggled()
+            );
+          });
+      };
+
       page.set('brand', 'Plumes');
+
       page.set('apps', [{
         name: 'Layout',
         selected: true,
@@ -115,18 +151,58 @@
           window.location.href = 'lists.html';
         }
       }]);
+
       page.set('user', {
         avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
       });
-      page.set('user-toggle', function(event) {
-        console.log('user toggle!', event);
+
+      page.set('user-toggle', function(event, notification) {
+        if (notification) {
+          var buttonProfile = page.findChild('name', 'pl-button-profile');
+
+          buttonProfile.set(
+            'notificationsCount',
+            Math.max(0, buttonProfile.get('notificationsCount') - 1)
+          );
+
+          buttonProfile.close();
+
+          return console.log('click on notification:', notification.args.id);
+        }
+
+        page
+          .findChild('name', 'pl-layout-platform')
+          .require('pl-layout-notifications')
+          .then(function() {
+            page.findChild('name', 'pl-layout-notifications').toggle();
+          });
       });
+
+      page.set('notifications-toggle', function(event, toggled) {
+        if (toggled) {
+          page.findChild('name', 'pl-button-profile').clearNotificationsCount();
+        }
+      });
+
+      page.set('notifications-openitem', function(event) {
+        console.log('notifications open item!', event.context.args.id);
+      });
+
+      page.set('notifications-signout', function(event) {
+        console.log('notifications signout!', event);
+      });
+
+      page.set('notifications-emails-on', true);
+
+      page.set('notifications-emails-toggle', function(event, isOn) {
+        console.log('emails toggle!', isOn);
+      });
+
       page.set('help-toggle', function(event) {
         console.log('help toggle!', event);
       });
 
       page.set('beforerequire', function(layout, callback) {
-
         if ($.cookie('intro') == 'done') {
           return callback();
         }

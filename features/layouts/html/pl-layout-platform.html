@@ -53,6 +53,23 @@
   </div>
   {{/if}}
 
+  {{#if usenotifications}}
+  <rv-require
+    name="pl-layout-notifications"
+    src="../layouts/pl-layout-notifications"
+    ondemand="pl-layout-notifications"
+    data-bind-text-title="notifications-title"
+    data-bind-text-signoutlabel="notifications-signoutlabel"
+    data-bind-text-nonotification="notifications-nonotification"
+    data-bind-text-emailslabel="notifications-emailslabel"
+    data-bind-toggle="notifications-toggle"
+    data-bind-openitem="notifications-openitem"
+    data-bind-signout="notifications-signout"
+    data-bind-emails-on="notifications-emails-on"
+    data-bind-emails-toggle="notifications-emails-toggle"
+  ></rv-require>
+  {{/if}}
+
   <rv-require
     name="pl-screen-message"
     src="../screen-message/pl-screen-message"
