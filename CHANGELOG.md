@@ -1,5 +1,26 @@
 # Plumes - Changelog
 
+<a name="0.6.0"></a>
+# 0.6.0 (2015-01-05)
+
+[Release 0.6.0](https://github.com/CodeCorico/plumes/releases/tag/0.6.0)
+
+### Breaking changes
+
+- **Button Profile**
+  - Create a subfeature that displays a notification message.
+- **Layout Notifications**
+  - Create a new component that displays a notifications list.
+- **Layout Platfom**
+  - Inject the Notifications layout.
+- **Example Layout**
+  - Add a button to display notifications.
+
+### Hotfixes
+
+- **Layout Sidebars**
+  - Left align on the content area when no left-content.
+
 <a name="0.5.2"></a>
 # 0.5.2 (2015-10-21)
 
