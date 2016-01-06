@@ -1,14 +1,5 @@
 <section class="pl-layout-notifications {{opened ? 'opened' : ''}}">
-  <h1>{{title}}</h1>
-  <div class="pl-layout-notifications-emails">
-    <rv-require
-      name="pl-button-onoff"
-      src="../buttons/pl-button-onoff"
-      data-bind-text-label="emailslabel"
-      data-bind-on="emails-on"
-      data-bind-toggle="emailstoggle"
-    ></rv-require>
-  </div>
+  <h1>- {{title}} -</h1>
   <ul>
     {{#if notifications}}
       {{#notifications}}
@@ -26,6 +17,15 @@
       </li>
     {{/if}}
   </ul>
+  <div class="pl-layout-notifications-emails">
+    <rv-require
+      name="pl-button-onoff"
+      src="../buttons/pl-button-onoff"
+      data-bind-text-label="emailslabel"
+      data-bind-on="emails-on"
+      data-bind-toggle="emailstoggle"
+    ></rv-require>
+  </div>
 
   <button class="pl-layout-notifications-signout" on-click="signout">{{signoutlabel}}</button>
 </section>
