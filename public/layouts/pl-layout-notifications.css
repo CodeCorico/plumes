@@ -49,7 +49,8 @@
   }
 }
 .pl-layout-notifications {
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   top: 6rem;
   right: -31rem;
   width: 30rem;
@@ -71,21 +72,31 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: 3rem;
+  height: 3.8rem;
   font-size: 2rem;
   background: white;
-  text-transform: lowercase;
   margin: 0;
   padding: 0;
+  padding-top: 1.2rem;
+  padding-left: 0.5rem;
+  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #222;
 }
 .pl-layout-notifications .pl-layout-notifications-emails {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 7.8rem;
+  left: 0;
 }
 .pl-layout-notifications ul {
   position: absolute;
-  top: 3rem;
+  top: 5rem;
   left: 0;
   right: 0;
   bottom: 12rem;
@@ -93,6 +104,12 @@
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  background: white;
+  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .pl-layout-notifications .pl-layout-notifications-item {
   cursor: pointer;
@@ -102,7 +119,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background: #f6f6f6;
+  background: white;
   list-style: none;
   padding: 0.5rem 0;
   margin: 0;
@@ -117,7 +134,7 @@
   animation: pl-layout-notifications-item-show 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-layout-notifications .pl-layout-notifications-item:hover {
-  background: #e9e9e9;
+  background: #f6f6f6;
 }
 .pl-layout-notifications .pl-layout-notifications-item.pl-layout-notifications-noitem {
   cursor: default;
@@ -126,7 +143,7 @@
   min-height: auto;
 }
 .pl-layout-notifications .pl-layout-notifications-item.pl-layout-notifications-noitem:hover {
-  background: #f3f3f3;
+  background: white;
 }
 .pl-layout-notifications .pl-layout-notifications-item.pl-layout-notifications-noitem p {
   margin: 0;
@@ -167,4 +184,9 @@
   text-transform: lowercase;
   font-weight: 400;
   font-size: 1.2rem;
+  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }

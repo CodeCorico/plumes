@@ -85,8 +85,6 @@
 
     _$el.body.click(_close);
 
-    window.A1 = layoutNotifications;
-
     layoutNotifications.require().then(done);
   });
 
