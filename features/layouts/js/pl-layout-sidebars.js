@@ -90,7 +90,7 @@
           return;
         }
 
-        var expended = newValue === false || (newValue && newValue == 'false') ? false : true;
+        var expended = !LayoutSidebars.get(dir + 'ContentUsed') || newValue === false || (newValue && newValue == 'false') ? false : true;
 
         _refreshDirContent(dir, expended);
       });
