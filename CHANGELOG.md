@@ -1,5 +1,17 @@
 # Plumes - Changelog
 
+<a name="0.6.1"></a>
+# 0.6.1 (2015-01-06>)
+
+[Release 0.6.1](https://github.com/CodeCorico/plumes/releases/tag/0.6.1)
+
+### Hotfixes
+
+- **Layout Notifications**
+  - Restyle the component.
+- **Layout Sidebars**
+  - Don't expend sidebars when they are disabled.
+
 <a name="0.6.0"></a>
 # 0.6.0 (2015-01-05)
 
