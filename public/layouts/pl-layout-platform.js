@@ -71,57 +71,52 @@
 
       LayoutPlateform.set('loaded', true);
 
-      setTimeout(function() {
-        LayoutPlateform.set('beforeStart', true);
+      var beforeRequire = data.beforerequire || function(l, callback) {
+        callback();
+      };
 
-        setTimeout(function() {
-          $(LayoutPlateform.el).find('.pl-layout-mask').remove();
+      beforeRequire(LayoutPlateform, function() {
+        LayoutPlateform.set('beforerequire', null);
+        data.beforerequire = null;
 
-          var beforeRequire = data.beforerequire || function(l, callback) {
-            callback();
-          };
+        LayoutPlateform.set('start', true);
 
-          beforeRequire(LayoutPlateform, function() {
-            LayoutPlateform.set('beforerequire', null);
-            data.beforerequire = null;
+        LayoutPlateform.require().then(function() {
+          Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
 
-            LayoutPlateform.set('start', true);
-
-            LayoutPlateform.require().then(function() {
-              Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
-
-              if (Title) {
-                Title.on('open', function(args) {
-                  LayoutPlateform.fire('titleOpen', args);
-                });
-
-                Title.on('close', function(args) {
-                  LayoutPlateform.fire('titleClose', args);
-                });
-
-                Title.on('titleSelected', function(args) {
-                  var cls = Page.get('cls') || [];
-                  cls = cls.filter(function(value) {
-                    return value.indexOf('app-') !== 0;
-                  });
-
-                  cls.push('app-' + args.title.name
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]/gi, '')
-                  );
-
-                  Page.set('cls', cls);
-                });
-
-                Title.fireSelected();
-              }
-
-              done();
+          if (Title) {
+            Title.on('open', function(args) {
+              LayoutPlateform.fire('titleOpen', args);
             });
-          });
-        }, 550);
 
-      }, 1500);
+            Title.on('close', function(args) {
+              LayoutPlateform.fire('titleClose', args);
+            });
+
+            Title.on('titleSelected', function(args) {
+              var cls = Page.get('cls') || [];
+              cls = cls.filter(function(value) {
+                return value.indexOf('app-') !== 0;
+              });
+
+              cls.push('app-' + args.title.name
+                .toLowerCase()
+                .replace(/[^a-z0-9]/gi, '')
+              );
+
+              Page.set('cls', cls);
+            });
+
+            Title.fireSelected();
+          }
+
+          done();
+
+          setTimeout(function() {
+            $(LayoutPlateform.el).find('.pl-layout-mask').remove();
+          });
+        });
+      });
     });
   });
 

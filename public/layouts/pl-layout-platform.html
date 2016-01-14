@@ -44,13 +44,7 @@
   {{> content}}
 
   {{#if usemask}}
-  <div class="pl-layout-mask {{beforeStart ? 'out' : ''}}">
-    <div class="pl-layout-mask-title-container">
-      <div class="pl-layout-mask-title {{loaded ? 'opened' : ''}}">
-        {{> mask-title}}
-      </div>
-    </div>
-  </div>
+  <div class="pl-layout-mask"></div>
   {{/if}}
 
   {{#if usenotifications}}
