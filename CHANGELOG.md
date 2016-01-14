@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="0.6.2"></a>
+# 0.6.2 (2015-01-14>)
+
+[Release 0.6.2](https://github.com/CodeCorico/plumes/releases/tag/0.6.2)
+
+### Hotfixes
+
+- **Layout Platform**
+  - Remove too long loading page
+
 <a name="0.6.1"></a>
 # 0.6.1 (2015-01-06>)
 
