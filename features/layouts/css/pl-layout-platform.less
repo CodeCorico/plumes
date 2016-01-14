@@ -56,35 +56,5 @@
     right: 0;
     bottom: 0;
     background: #fff;
-
-    .pl-layout-mask-title-container {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      margin-top: -3rem;
-      overflow: hidden;
-
-      .pl-layout-mask-title {
-        position: relative;
-        top: 6rem;
-        font-size: 5rem;
-        text-align: center;
-        line-height: 6rem;
-        .transition(all 0.55s @easeOutQuart);
-
-        &.opened {
-          top: 0;
-        }
-      }
-    }
-
-    &.out {
-      background: none;
-
-      .pl-layout-mask-title.opened {
-        top: -6rem;
-      }
-    }
   }
 }
