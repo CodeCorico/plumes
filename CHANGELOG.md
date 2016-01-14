@@ -1,7 +1,17 @@
 # Plumes - Changelog
 
+<a name="0.6.3"></a>
+# 0.6.3 (2016-01-14)
+
+[Release 0.6.3](https://github.com/CodeCorico/plumes/releases/tag/0.6.3)
+
+### Hotfixes
+
+- **Plumes**
+  - Build distribution files. My bad.
+
 <a name="0.6.2"></a>
-# 0.6.2 (2015-01-14>)
+# 0.6.2 (2016-01-14>)
 
 [Release 0.6.2](https://github.com/CodeCorico/plumes/releases/tag/0.6.2)
 
@@ -11,7 +21,7 @@
   - Remove too long loading page
 
 <a name="0.6.1"></a>
-# 0.6.1 (2015-01-06>)
+# 0.6.1 (2016-01-06>)
 
 [Release 0.6.1](https://github.com/CodeCorico/plumes/releases/tag/0.6.1)
 
@@ -23,7 +33,7 @@
   - Don't expend sidebars when they are disabled.
 
 <a name="0.6.0"></a>
-# 0.6.0 (2015-01-05)
+# 0.6.0 (2016-01-05)
 
 [Release 0.6.0](https://github.com/CodeCorico/plumes/releases/tag/0.6.0)
 
