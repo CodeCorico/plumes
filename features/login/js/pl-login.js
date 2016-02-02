@@ -62,7 +62,7 @@
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
 
-      Login.set('height', _$el.window.height() - (100 + messageHeight + 30));
+      Login.set('height', _$el.window.height() - (40 + messageHeight + 30));
       Login.set('helpTop', _$el.forgotTexts.position().top);
     }
 
@@ -389,7 +389,7 @@
 
           setTimeout(function() {
             Login.set('storyboard', 'sb-show-2');
-            Login.set('top', 100 + messageHeight);
+            Login.set('top', 40 + messageHeight);
             _refresh();
 
             setTimeout(function() {

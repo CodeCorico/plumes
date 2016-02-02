@@ -62,7 +62,7 @@
 
         setTimeout(function() {
           screenMessage.set('storyboard', 'sb-title-2');
-          screenMessage.set('messageTop', 100);
+          screenMessage.set('messageTop', 40);
         }, 650);
 
         return;

@@ -1,11 +1,11 @@
 @import "../../common/less/common-mixins.less";
 @import "../../common/less/common-variables.less";
 
-@-webkit-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-moz-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-ms-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@-o-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
-@keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 70rem; } }
+@-webkit-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 100%; } }
+@-moz-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 100%; } }
+@-ms-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 100%; } }
+@-o-keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 100%; } }
+@keyframes pl-bottom-border-show { 0% { width: 0; } 100% { width: 100%; } }
 
 @-webkit-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
 @-moz-keyframes pl-avatar-show-again { 0% { left: -14rem; } 100% { left: 0; } }
@@ -33,7 +33,8 @@
 
     .bottom-border {
       display: none;
-      width: 70rem;
+      max-width: 70rem;
+      width: 100%;
       height: 1px;
       margin: 0 auto;
 
@@ -43,7 +44,6 @@
 
   .pl-login-content {
     position: relative;
-    width: 70rem;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
@@ -51,8 +51,9 @@
     .pl-login-form {
       opacity: 0;
       position: absolute;
-      left: 37.5rem;
-      right: 37.5rem;
+      left: 50%;
+      width: 0;
+      margin-left: 0;
       top: 50%;
       height: 0;
       margin-top: 0;
@@ -130,6 +131,11 @@
         width: 25rem;
         .transition(all 0.35s @easeOutQuart);
 
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px @accentColor inset;
+          -webkit-text-fill-color: white !important;
+        }
+
         &::-webkit-input-placeholder {
            color: white;
            opacity: 0.5;
@@ -171,7 +177,7 @@
         position: absolute;
         height: 7rem;
         background: white;
-        bottom: 0;
+        bottom: -1px;
         width: 0;
         right: 0;
         .transition(all 0.35s @easeOutQuart);
@@ -191,9 +197,10 @@
       cursor: pointer;
       position: absolute;
       opacity: 0;
+      right: 50%;
       top: 50%;
-      right: 15rem;
-      left: 15rem;
+      width: 20rem;
+      margin-right: -20rem;
       margin-top: 1rem;
       font-size: 1.6rem;
       text-align: right;
@@ -223,10 +230,11 @@
 
     .pl-login-forgot-texts {
       position: absolute;
-      left: 15rem;
-      right: 15rem;
-      height: 5.6rem;
+      left: 50%;
       bottom: 50%;
+      width: 40rem;
+      height: 5.6rem;
+      margin-left: -20rem;
       margin-bottom: 9rem;
       font-size: 1.8rem;
       overflow: hidden;
@@ -274,19 +282,19 @@
       cursor: pointer;
       position: absolute;
       bottom: 50%;
-      right: 15rem;
+      left: 50%;
       border: none;
       background: none;
       padding: 0;
       font-size: 2.4rem;
       font-weight: 300;
-      margin: 0 0 1.4rem;
+      margin: 0 0 1.4rem 0;
       line-height: 2.4rem;
       opacity: 0;
       .transition(all 0.35s @easeOutQuart);
 
       &.show {
-        right: 12rem;
+        margin-left: 22rem;
         opacity: 1;
       }
     }
@@ -313,12 +321,11 @@
 
   &.help .pl-login-content, &.help.sb-show-4 .pl-login-content {
     .pl-login-forgot-texts, .pl-login-links, .pl-login-form {
-      left: 0;
-      right: 30rem;
+      margin-left: -40rem;
     }
 
     .help-button, .help-button.show {
-      right: 30rem;
+      margin-left: 0;
       opacity: 0;
     }
   }
@@ -336,9 +343,9 @@
 
     .pl-login-content .pl-login-form {
       opacity: 1;
-      left: 28rem;
-      right: 28rem;
+      width: 14rem;
       height: 14rem;
+      margin-left: -7rem;
       margin-top: -7rem;
       .transition(all 0.45s @easeOutQuart);
     }
@@ -347,9 +354,9 @@
   &.sb-show-3, &.sb-show-4 {
     .pl-login-content .pl-login-form {
       opacity: 1;
-      left: 15rem;
-      right: 15rem;
+      width: 40rem;
       height: 14rem;
+      margin-left: -20rem;
       margin-top: -7rem;
       .transition(all 0.45s @easeOutQuart);
 
@@ -376,9 +383,9 @@
 
     .pl-login-content .pl-login-form {
       opacity: 1;
-      left: 15rem;
-      right: 15rem;
+      width: 40rem;
       height: 14rem;
+      margin-left: -20rem;
       margin-top: -7rem;
       .transition(all 0.55s @easeOutQuart);
 
@@ -397,8 +404,10 @@
 
   &.sb-hide-2 {
     .pl-login-content .pl-login-form {
-      left: 28rem;
-      right: 28rem;
+      width: 14rem;
+      height: 14rem;
+      margin-left: -7rem;
+      margin-top: -7rem;
       .transition(all 0.45s @easeOutQuart);
     }
   }
@@ -406,9 +415,9 @@
   &.sb-hide-3 {
     .pl-login-content .pl-login-form {
       opacity: 1;
-      left: 37.5rem;
-      right: 37.5rem;
+      width: 0;
       height: 0;
+      margin-left: 0;
       margin-top: 0;
       .transition(all 0.15s linear);
     }
