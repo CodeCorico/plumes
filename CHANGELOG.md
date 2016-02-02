@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="0.6.4"></a>
+# 0.6.4 (2016-02-02)
+
+[Release 0.6.4](https://github.com/CodeCorico/plumes/releases/tag/0.6.4)
+
+### Breaking changes
+
+- **Login**
+  - Make the login responsive
+
 <a name="0.6.3"></a>
 # 0.6.3 (2016-01-14)
 
