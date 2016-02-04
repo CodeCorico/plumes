@@ -207,9 +207,6 @@
 
       Login.set('storyboard', 'sb-hide-1');
 
-      Login.set('top', 0);
-      Login.set('height', _$el.window.height());
-
       setTimeout(function() {
         Login.set('storyboard', 'sb-hide-2');
 
