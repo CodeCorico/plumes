@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="0.6.5"></a>
+# 0.6.5 (2016-02-04)
+
+[Release 0.6.5](https://github.com/CodeCorico/plumes/releases/tag/0.6.5)
+
+### Hotfixes
+
+- **Login**
+  - Remove useless animation on hide
+
 <a name="0.6.4"></a>
 # 0.6.4 (2016-02-02)
 
