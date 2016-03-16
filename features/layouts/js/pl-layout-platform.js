@@ -5,7 +5,6 @@
     var sectionsUsed = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask', 'usenotifications'],
         Title = null;
 
-    data.titleAreaHeight = 90;
     data.loaded = false;
 
     for (var i = 0; i < sectionsUsed.length; i++) {
@@ -18,26 +17,45 @@
 
     var LayoutPlateform = component({
           plName: 'pl-layout-plateform',
-          data: data
+          data: $.extend(true, {
+            titleLeftOffset: 0,
+            titleBgLeftOffset: 0,
+            titleBgWidth: 0,
+            titleBgHeight: 0
+          }, data)
         }),
-        Page = LayoutPlateform.parentRequire;
+        Page = LayoutPlateform.parentRequire,
+        _$el = {
+          plateform: $(LayoutPlateform.el)
+        };
 
-    function _updateTitleAreaHeight(height) {
-      height += 50;
+    function _update() {
+      LayoutPlateform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
+    }
 
-      LayoutPlateform.set('titleAreaHeight', height);
-      LayoutPlateform.fire('titleAreaHeightChanged', {
-        height: height,
-        waiting: 550
-      });
+    function _updateTitleArea(height, open) {
+      LayoutPlateform.set('titleOpened', open);
+
+      if (open) {
+        var titleWidth = _$el.title.outerWidth() + 40;
+        LayoutPlateform.set('titleBgLeftOffset', titleWidth / 2);
+        LayoutPlateform.set('titleBgWidth', titleWidth);
+        LayoutPlateform.set('titleBgHeight', height + 30);
+      }
+      else {
+        LayoutPlateform.set('titleBgLeftOffset', 0);
+        LayoutPlateform.set('titleBgWidth', 0);
+      }
     }
 
     LayoutPlateform.on('titleOpen', function(args) {
-      _updateTitleAreaHeight(args.height);
+      _updateTitleArea(args.height, true);
     });
 
     LayoutPlateform.on('titleClose', function(args) {
-      _updateTitleAreaHeight(args.height);
+      _updateTitleArea(args.height, false);
+
+      _update();
     });
 
     LayoutPlateform.selectApp = function(name, fireFunc, callback) {
@@ -84,6 +102,11 @@
         LayoutPlateform.require().then(function() {
           Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
 
+          _$el.title = _$el.plateform.find('.pl-layout-title');
+          _$el.titleText = _$el.plateform.find('.pl-layout-title h2 span');
+
+          _update();
+
           if (Title) {
             Title.on('open', function(args) {
               LayoutPlateform.fire('titleOpen', args);
@@ -113,7 +136,7 @@
           done();
 
           setTimeout(function() {
-            $(LayoutPlateform.el).find('.pl-layout-mask').remove();
+            _$el.plateform.find('.pl-layout-mask').remove();
           });
         });
       });

@@ -8,24 +8,45 @@
   bottom: 0;
   overflow: hidden;
 
-  .pl-layout-brand {
-    .noselect();
-    overflow: hidden;
+  .pl-layout-platform-header {
+    z-index: 100;
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    color: #333;
+    .transition(all 0.1s @easeOutQuart);
 
-    span {
-      position: relative;
-      top: 1.6rem;
-      .transition(all 0.55s @easeOutQuart);
+    .pl-layout-plateform-title-bg {
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: #333;
+
+      .transition(width 0.15s @easeOutQuart, margin-left 0.25s @easeOutQuart);
+
+      &.opened {
+        .transition(width 0.25s @easeOutQuart, margin-left 0.25s @easeOutQuart);
+      }
     }
 
-    &.opened span {
-      top: 0;
-    }
-  }
+    .pl-layout-title {
+      cursor: default;
+      display: block;
 
-  .pl-layout-title {
-    cursor: default;
-    display: block;
+      &.opened {
+        color: white;
+
+        h2 {
+          text-shadow: none;
+        }
+      }
+
+      h2 {
+        text-shadow: 1px 1px 1px white;
+      }
+    }
   }
 
   .pl-layout-flyout {

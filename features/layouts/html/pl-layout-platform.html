@@ -1,21 +1,21 @@
 <div class="pl-layout-platform">
 
-  <header class="pl-header {{light ? 'light' : ''}}">
-    {{#if usebrand}}
-    <h1 class="pl-layout-brand {{start ? 'opened' : ''}}">
-      <span>{{brand}}</span>
-    </h1>
-    {{/if}}
+  <header class="pl-layout-platform-header" style="margin-left: -{{titleLeftOffset}}px">
+    <div
+      class="pl-layout-plateform-title-bg {{titleOpened ? 'opened' : ''}}"
+      style="
+        margin-left: -{{titleBgLeftOffset}}px;
+        width: {{titleBgWidth}}px;
+        height: {{titleBgHeight}}px;"
+    ></div>
 
-    {{#if usetitle}}
     <rv-require
       name="pl-dropdown-title"
-      class="pl-layout-title"
+      class="pl-layout-title {{titleOpened ? 'opened' : ''}}"
       src="../dropdowns/pl-dropdown-title"
       data-placeholder="Apps"
       data-bind-titles="apps"
     ></rv-require>
-    {{/if}}
   </header>
 
   <div class="pl-layout-flyout">
@@ -37,23 +37,6 @@
 
   {{#if usemask}}
   <div class="pl-layout-mask"></div>
-  {{/if}}
-
-  {{#if usenotifications}}
-  <rv-require
-    name="pl-layout-notifications"
-    src="../layouts/pl-layout-notifications"
-    ondemand="pl-layout-notifications"
-    data-bind-text-title="notifications-title"
-    data-bind-text-signoutlabel="notifications-signoutlabel"
-    data-bind-text-nonotification="notifications-nonotification"
-    data-bind-text-emailslabel="notifications-emailslabel"
-    data-bind-toggle="notifications-toggle"
-    data-bind-openitem="notifications-openitem"
-    data-bind-signout="notifications-signout"
-    data-bind-emails-on="notifications-emails-on"
-    data-bind-emails-toggle="notifications-emails-toggle"
-  ></rv-require>
   {{/if}}
 
   <rv-require
