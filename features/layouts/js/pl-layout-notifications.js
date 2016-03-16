@@ -12,7 +12,7 @@
           body: $('body')
         },
         layoutNotifications = component({
-          plName: 'pl-button-profile',
+          plName: 'pl-layout-notifications',
           data: $.extend(true, {
             opened: false,
             notifications: [],
