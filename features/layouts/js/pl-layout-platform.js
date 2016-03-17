@@ -57,7 +57,7 @@
     LayoutPlatform.on('titleClose', function(args) {
       _updateTitleArea(args.height, false);
 
-      _update();
+      setTimeout(_updatePosition, 550);
     });
 
     LayoutPlatform.selectApp = function(name, fireFunc, callback) {
@@ -107,7 +107,7 @@
           _$el.title = _$el.platform.find('.pl-layout-title');
           _$el.titleText = _$el.platform.find('.pl-layout-title h2 span');
 
-          _update();
+          _updatePosition();
 
           if (Title) {
             Title.on('open', function(args) {
