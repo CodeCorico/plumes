@@ -2,7 +2,7 @@
   'use strict';
 
   window.Ractive.controller('pl-layout-platform', function(component, data, el, config, done) {
-    var sectionsUsed = ['usebrand', 'usetitle', 'useprofile', 'usehelp', 'usemask', 'usenotifications'],
+    var sectionsUsed = ['usemask'],
         Title = null;
 
     data.loaded = false;
@@ -15,50 +15,52 @@
       data[use] = data[use] == 'false' ? false : data[use];
     }
 
-    var LayoutPlateform = component({
-          plName: 'pl-layout-plateform',
+    var LayoutPlatform = component({
+          plName: 'pl-layout-platform',
           data: $.extend(true, {
-            titleLeftOffset: 0,
+            titleLeftOffset: -80,
             titleBgLeftOffset: 0,
             titleBgWidth: 0,
-            titleBgHeight: 0
+            titleBgHeight: 0,
+            buttonsleft: [],
+            buttonsright: []
           }, data)
         }),
-        Page = LayoutPlateform.parentRequire,
+        Page = LayoutPlatform.parentRequire,
         _$el = {
-          plateform: $(LayoutPlateform.el)
+          platform: $(LayoutPlatform.el)
         };
 
-    function _update() {
-      LayoutPlateform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
+    function _updatePosition() {
+      LayoutPlatform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
     }
 
     function _updateTitleArea(height, open) {
-      LayoutPlateform.set('titleOpened', open);
+      LayoutPlatform.set('titleOpened', open);
 
       if (open) {
         var titleWidth = _$el.title.outerWidth() + 40;
-        LayoutPlateform.set('titleBgLeftOffset', titleWidth / 2);
-        LayoutPlateform.set('titleBgWidth', titleWidth);
-        LayoutPlateform.set('titleBgHeight', height + 30);
+        LayoutPlatform.set('titleBgLeftOffset', titleWidth / 2);
+        LayoutPlatform.set('titleBgWidth', titleWidth);
+        LayoutPlatform.set('titleBgHeight', height + 30);
       }
       else {
-        LayoutPlateform.set('titleBgLeftOffset', 0);
-        LayoutPlateform.set('titleBgWidth', 0);
+        LayoutPlatform.set('titleBgLeftOffset', 0);
+        LayoutPlatform.set('titleBgWidth', 0);
       }
     }
 
-    LayoutPlateform.on('titleOpen', function(args) {
+    LayoutPlatform.on('titleOpen', function(args) {
       _updateTitleArea(args.height, true);
     });
 
-    LayoutPlateform.on('titleClose', function(args) {
+    LayoutPlatform.on('titleClose', function(args) {
       _updateTitleArea(args.height, false);
 
       _update();
     });
 
-    LayoutPlateform.selectApp = function(name, fireFunc, callback) {
+    LayoutPlatform.selectApp = function(name, fireFunc, callback) {
       if (!Title) {
         return;
       }
@@ -66,7 +68,7 @@
       Title.selectApp(name, fireFunc, callback);
     };
 
-    LayoutPlateform.addApp = function(app, indexOrPosition) {
+    LayoutPlatform.addApp = function(app, indexOrPosition) {
       if (!Title) {
         return;
       }
@@ -74,7 +76,7 @@
       Title.addTitle(app, indexOrPosition);
     };
 
-    LayoutPlateform.removeApp = function(name) {
+    LayoutPlatform.removeApp = function(name) {
       if (!Title) {
         return;
       }
@@ -84,36 +86,36 @@
 
     setTimeout(function() {
       if (data.onloaded) {
-        data.onloaded(LayoutPlateform);
+        data.onloaded(LayoutPlatform);
       }
 
-      LayoutPlateform.set('loaded', true);
+      LayoutPlatform.set('loaded', true);
 
       var beforeRequire = data.beforerequire || function(l, callback) {
         callback();
       };
 
-      beforeRequire(LayoutPlateform, function() {
-        LayoutPlateform.set('beforerequire', null);
+      beforeRequire(LayoutPlatform, function() {
+        LayoutPlatform.set('beforerequire', null);
         data.beforerequire = null;
 
-        LayoutPlateform.set('start', true);
+        LayoutPlatform.set('start', true);
 
-        LayoutPlateform.require().then(function() {
-          Title = LayoutPlateform.findChild('name', 'pl-dropdown-title');
+        LayoutPlatform.require().then(function() {
+          Title = LayoutPlatform.findChild('name', 'pl-dropdown-title');
 
-          _$el.title = _$el.plateform.find('.pl-layout-title');
-          _$el.titleText = _$el.plateform.find('.pl-layout-title h2 span');
+          _$el.title = _$el.platform.find('.pl-layout-title');
+          _$el.titleText = _$el.platform.find('.pl-layout-title h2 span');
 
           _update();
 
           if (Title) {
             Title.on('open', function(args) {
-              LayoutPlateform.fire('titleOpen', args);
+              LayoutPlatform.fire('titleOpen', args);
             });
 
             Title.on('close', function(args) {
-              LayoutPlateform.fire('titleClose', args);
+              LayoutPlatform.fire('titleClose', args);
             });
 
             Title.on('titleSelected', function(args) {
@@ -136,7 +138,7 @@
           done();
 
           setTimeout(function() {
-            _$el.plateform.find('.pl-layout-mask').remove();
+            _$el.platform.find('.pl-layout-mask').remove();
           });
         });
       });
