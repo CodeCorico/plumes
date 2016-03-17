@@ -27,14 +27,8 @@
     data-bind-onloaded="onloaded"
     data-bind-beforerequire="beforerequire"
     data-bind-apps="apps"
-    data-bind-user="user"
-    data-bind-notifications-toggle="notifications-toggle"
-    data-bind-notifications-openitem="notifications-openitem"
-    data-bind-notifications-signout="notifications-signout"
-    data-bind-notifications-emails-on="notifications-emails-on"
-    data-bind-notifications-emails-toggle="notifications-emails-toggle"
-
-    data-bind-onpagselected="onPageSelected"
+    data-bind-buttonsleft="buttonsleft"
+    data-bind-buttonsright="buttonsright"
   >
     <rv-partial target="mask-title">
       Plumes <span class="theme">example</span>
@@ -44,7 +38,7 @@
     </rv-partial>
     <rv-partial target="content">
 
-      My content
+
 
     </rv-partial>
   </rv-require>
@@ -81,42 +75,64 @@
         }
       }]);
 
-      // page.set('apps', [{
-      //   name: 'Wiki',
-      //   selected: true,
-      //   select: function() {
-      //     window.page('/wiki');
-      //   }
-      // }, {
-      //   name: 'Talent Search',
-      //   select: function() {
-      //     window.page('/talent-search');
-      //   }
-      // }, {
-      //   name: 'Planning',
-      //   select: function() {
-      //     window.location.href = alpha.url + '/plannings_management';
-      //   }
-      // }, {
-      //   name: 'Analytics',
-      //   select: function() {
-      //     window.location.href = alpha.url + '/headcounts';
-      //   }
-      // }, {
-      //   name: 'Logs',
-      //   select: function() {
-      //     window.page('/logs');
-      //   }
-      // }, {
-      //   name: 'NotiFire',
-      //   select: function() {
-      //     window.page('/notifire');
-      //   }
-      // }]);
+      page.set('buttonsleft', [{
+        image: '/examples/plumes-logo.png',
+        action: function() {
+          console.log('plumes action');
+        }
+      }, {
+        image: 'https://beta.talentforcepedia.eu/public/wiki/wiki-home.jpg',
+        action: function() {
+          console.log('plumes action');
+        }
+      }]);
 
-      page.set('user', {
-        avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
-      });
+      page.set('buttonsright', [{
+        image: '/examples/plumes-logo.png',
+        action: function() {
+          console.log('plumes action');
+        }
+      }, {
+        type: 'indicator',
+        image: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png',
+        action: function(event, button) {
+          if (button.get('notificationsCount')) {
+            button.clearNotificationsCount();
+          }
+          else {
+            button.pushNotification(
+              'We have released a new <strong>Plumes</strong> version!',
+              '/examples/plumes-logo.png',
+              {
+                id: 10
+              }
+            );
+          }
+        }
+      }, {
+        image: '/examples/plumes-logo.png',
+        action: function() {
+          console.log('plumes action');
+        }
+      }, {
+        image: '/examples/plumes-logo.png',
+        action: function() {
+          console.log('plumes action');
+        }
+      }]);
+
+      setTimeout(function() {
+        var br = page.get('buttonsright');
+
+        br.push({
+          image: '/examples/plumes-logo.png',
+          action: function() {
+            console.log('plumes action');
+          }
+        });
+
+        page.set('buttonsright', br);
+      }, 2000);
 
       page.set('beforerequire', function(layout, callback) {
         if ($.cookie('intro') == 'done') {
