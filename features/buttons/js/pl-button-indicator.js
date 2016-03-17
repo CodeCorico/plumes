@@ -36,6 +36,11 @@
             setTimeout(function() {
               buttonIndicator.set('showMessage', true);
 
+              buttonIndicator.fire('showNotification', {
+                duration: 1000,
+                width: 250
+              });
+
               setTimeout(function() {
                 buttonIndicator.close();
               }, buttonIndicator.get('notificationDisplayTime'));
@@ -48,6 +53,12 @@
 
             activeNotification = null;
             buttonIndicator.set('showMessage', false);
+
+            buttonIndicator.fire('hideNotification', {
+              duration: 1000,
+              width: 50
+            });
+
             setTimeout(function() {
               buttonIndicator.set('notificationPicture', null);
             }, 700);
