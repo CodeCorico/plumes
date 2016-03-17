@@ -14,7 +14,8 @@
     top: 1rem;
     left: 50%;
     color: #333;
-    .transition(all 0.1s @easeOutQuart);
+    margin-left: -8rem;
+    .transition(all 0.35s @easeOutQuart);
 
     .pl-layout-platform-title-bg {
       position: absolute;
@@ -49,23 +50,24 @@
     }
   }
 
-  .pl-layout-flyout {
+  .pl-layout-flyout-left, .pl-layout-flyout-right {
     cursor: default;
     z-index: 100;
     position: fixed;
     top: 1rem;
-    right: 3rem;
     height: 4rem;
 
     rv-require {
-      float: left;
       height: 100%;
-      margin-left: 1rem;
-
-      &:first-child {
-        margin-left: 0;
-      }
     }
+  }
+
+  .pl-layout-flyout-left {
+    left: 2.5rem;
+  }
+
+  .pl-layout-flyout-right {
+    right: 3rem;
   }
 
   .pl-layout-mask {

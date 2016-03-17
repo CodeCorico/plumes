@@ -18,19 +18,22 @@
     ></rv-require>
   </header>
 
-  <div class="pl-layout-flyout">
-
-    {{> flyout}}
-
-    {{#if useprofile}}
+  <div class="pl-layout-flyout-left">
     <rv-require
-      name="pl-button-indicator"
-      src="../buttons/pl-button-indicator"
-      data-bind-img="user.avatar"
-      data-bind-toggle="user-toggle"
+      name="pl-grouped-buttons"
+      src="../grouped-buttons/pl-grouped-buttons"
+      data-bind-buttons="buttonsleft"
+      data-orientaton="left"
     ></rv-require>
-    {{/if}}
+  </div>
 
+  <div class="pl-layout-flyout-right">
+    <rv-require
+      name="pl-grouped-buttons"
+      src="../grouped-buttons/pl-grouped-buttons"
+      data-bind-buttons="buttonsright"
+      data-orientaton="right"
+    ></rv-require>
   </div>
 
   {{> content}}
