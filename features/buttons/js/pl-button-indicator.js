@@ -57,9 +57,9 @@
           }
         });
 
-    if (data.toggle) {
-      buttonIndicator.on('toggle', function(event) {
-        data.toggle(event, activeNotification);
+    if (data.action) {
+      buttonIndicator.on('action', function(event) {
+        data.action(event, activeNotification);
         event.original.stopPropagation();
       });
     }
