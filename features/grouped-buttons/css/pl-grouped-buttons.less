@@ -1,0 +1,16 @@
+@import "../../common/less/common-variables.less";
+@import "../../common/less/common-mixins.less";
+
+.pl-grouped-buttons {
+
+  .pl-grouped-buttons-button {
+    position: absolute;
+    top: 0;
+    .transform(translateZ(0));
+    .transition(all 0.6s @easeOutQuart);
+
+    .pl-button-rounded {
+      margin-left: 0.5rem;
+    }
+  }
+}
