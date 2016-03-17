@@ -3,15 +3,17 @@
 
   window.Ractive.controller('pl-button-rounded', function(component, data, el, config, done) {
 
-    component({
+    var buttonRounded = component({
       plName: 'pl-button-rounded',
-      data: data,
-      action: function() {
-        if (data.action) {
-          data.action(event);
-        }
-      }
+      data: data
     });
+
+    if (data.action) {
+      buttonRounded.on('action', function(event) {
+        data.action(event);
+        event.original.stopPropagation();
+      });
+    }
 
     done();
   });
