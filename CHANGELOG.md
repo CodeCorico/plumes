@@ -118,7 +118,7 @@
   - Rename "theme" CSS keyword by "accent".
 
 - **Layouts**
-  - Split main layout to "layout-plateform" and "layout-sidebars".
+  - Split main layout to "layout-platform" and "layout-sidebars".
 
 ### Hotfixes
 
