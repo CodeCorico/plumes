@@ -66,8 +66,6 @@
           totalWidth += button.width || 0;
         }
 
-        console.log(positions);
-
         groupedButtons.set('positions', positions);
       });
     });
