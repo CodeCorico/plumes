@@ -1,1 +1,5 @@
-<button class="pl-button-rounded" on-click="action" style="background-image: url('{{image}}');"></button>
+<button
+  class="pl-button-rounded {{cls}}"
+  style="{{image ? 'background-image: url(\'' + image + '\');' : ''}}"
+  on-click="action"
+>{{#if icon}}<i class="{{icon}}"></i>{{/if}}</button>
