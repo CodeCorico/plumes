@@ -3,10 +3,6 @@
 
   window.Ractive.controller('pl-login', function(component, data, el, config, done) {
 
-    data.useforgot = typeof data.useforgot == 'undefined' ? true : data.useforgot;
-    data.useforgot = data.useforgot == 'true' ? true : data.useforgot;
-    data.useforgot = data.useforgot == 'false' ? false : data.useforgot;
-
     data.texts = {};
 
     $.each(data, function(name, value) {
@@ -58,6 +54,8 @@
           login: $(Login.el),
           forgotTexts: $(Login.el).find('.pl-login-forgot-texts')
         };
+
+    window.Ractive.useBinds(Login, ['forgot']);
 
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
