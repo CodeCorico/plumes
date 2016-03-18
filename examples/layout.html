@@ -29,6 +29,9 @@
     data-bind-apps="apps"
     data-bind-buttonsleft="buttonsleft"
     data-bind-buttonsright="buttonsright"
+
+    data-bind-contextlefttitle="lefttitle"
+    data-contextrightusetitle="false"
   >
     <rv-partial target="mask-title">
       Plumes <span class="theme">example</span>
@@ -36,8 +39,38 @@
     <rv-partial target="message-title">
       Plumes <span class="theme">example</span>
     </rv-partial>
-    <rv-partial target="content">
+    <rv-partial target="context-left-panels">
 
+      <div class="context-1" style="display: none;">
+        <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
+
+          <ul>
+            <li>Article 1</li>
+            <li>Article 2</li>
+            <li>Article 3</li>
+            <li>Article 4</li>
+            <li>Article 5</li>
+            <li>Article 6</li>
+            <li>Article 7</li>
+            <li>Article 8</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="context-2" style="display: none;">
+        <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
+
+          <p>My big content</p>
+
+        </div>
+      </div>
+
+    </rv-partial>
+    <rv-partial target="context-right-panels">
+
+    </rv-partial>
+    <rv-partial target="content">
 
 
     </rv-partial>
@@ -75,22 +108,75 @@
         }
       }]);
 
+      var t = false;
+
       page.set('buttonsleft', [{
-        image: '/examples/plumes-logo.png',
-        action: function() {
-          console.log('plumes action');
-        }
-      }, {
-        image: 'https://beta.talentforcepedia.eu/public/wiki/wiki-home.jpg',
-        action: function() {
-          console.log('plumes action');
+        icon: 'fa fa-list-ul',
+        cls: 'dark light-bg',
+        context: 'left',
+        beforeContext: function(panel, callback) {
+          if ($('.context-1').css('display') == 'block') {
+            return callback();
+          }
+
+          if (panel.isOpened()) {
+            panel.closeContent(function() {
+              $('.context-2').css('display', 'none');
+              $('.context-1').css('display', 'block');
+              page.set('lefttitle', 'articles');
+
+              callback();
+            });
+          }
+          else {
+            $('.context-2').css('display', 'none');
+            $('.context-1').css('display', 'block');
+            page.set('lefttitle', 'articles');
+
+            callback();
+          }
         }
       }]);
 
+      setTimeout(function() {
+        var buttonsleft = page.get('buttonsleft');
+
+        buttonsleft.unshift({
+          icon: 'fa fa-file-text',
+          cls: 'dark light-bg',
+          context: 'left',
+          beforeContext: function(panel, callback) {
+            if ($('.context-2').css('display') == 'block') {
+              return callback();
+            }
+
+            if (panel.isOpened()) {
+              panel.closeContent(function() {
+                $('.context-1').css('display', 'none');
+                $('.context-2').css('display', 'block');
+                page.set('lefttitle', 'content');
+
+                callback();
+              });
+            }
+            else {
+              $('.context-1').css('display', 'none');
+              $('.context-2').css('display', 'block');
+              page.set('lefttitle', 'content');
+
+              callback();
+            }
+          }
+        });
+
+        page.set('buttonsleft', buttonsleft);
+      }, 2000);
+
       page.set('buttonsright', [{
-        image: '/examples/plumes-logo.png',
-        action: function() {
-          console.log('plumes action');
+        icon: 'fa fa-bell',
+        cls: 'dark light-bg',
+        action: function(event, button) {
+          button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
         }
       }, {
         type: 'indicator',
@@ -109,31 +195,7 @@
             );
           }
         }
-      }, {
-        image: '/examples/plumes-logo.png',
-        action: function() {
-          console.log('plumes action');
-        }
-      }, {
-        icon: 'fa fa-bell',
-        cls: 'light error-bg',
-        action: function(event, button) {
-          button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
-        }
       }]);
-
-      setTimeout(function() {
-        var br = page.get('buttonsright');
-
-        br.push({
-          image: '/examples/plumes-logo.png',
-          action: function() {
-            console.log('plumes action');
-          }
-        });
-
-        page.set('buttonsright', br);
-      }, 2000);
 
       page.set('beforerequire', function(layout, callback) {
         if ($.cookie('intro') == 'done') {
