@@ -115,9 +115,10 @@
           console.log('plumes action');
         }
       }, {
-        image: '/examples/plumes-logo.png',
-        action: function() {
-          console.log('plumes action');
+        icon: 'fa fa-bell',
+        cls: 'light error-bg',
+        action: function(event, button) {
+          button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
         }
       }]);
 
