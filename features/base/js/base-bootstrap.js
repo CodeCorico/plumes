@@ -64,4 +64,20 @@
     });
   };
 
+  window.Ractive.useBinds = function(component, binds, defaultsToFalse) {
+    defaultsToFalse = defaultsToFalse || [];
+
+    binds.forEach(function(bind) {
+      component.observe('use-' + bind, function(value) {
+        var defaultValue = defaultsToFalse.indexOf(bind) > -1 ? false : true;
+
+        value = typeof value == 'undefined' ? defaultValue : value;
+        value = value == 'true' ? true : value;
+        value = value == 'false' ? false : value;
+
+        component.set('use' + bind, value);
+      });
+    });
+  };
+
 })();
