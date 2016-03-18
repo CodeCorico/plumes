@@ -113,7 +113,6 @@
           });
 
           Login.on('login', function(args) {
-            console.log(args);
             if (!args.username || !args.userpassword) {
               return Login.fire('error', {
                 message: 'The password entered is incorrect.'
