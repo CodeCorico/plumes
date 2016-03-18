@@ -1,18 +1,24 @@
-<section class="pl-context-panel {{panelOpened ? 'pl-opened' : ''}}">
-  <div class="pl-context-panel-container">
-    <div class="pl-context-panel-modal"></div>
-  </div>
-  <div class="pl-context-panel-container">
-    <div class="pl-context-panel-content">
+<section
+  class="
+    pl-context-panel
+    {{usetitle ? 'use-title' : ''}}
+    {{usable ? 'usable' : ''}}
+    {{opened ? 'opened' : ''}}
+    {{usescrollbar ? 'scrollbar' : ''}}
+    {{useleftcross ? 'left-cross' : ''}}
+    {{userightcross ? 'right-cross' : ''}}
+  "
+>
+  <div class="pl-context-panel-bg"></div>
 
-      {{#if usetitle}}
-      <h1>-{{title}}-</h1>
-      {{/if}}
+  {{#if usetitle}}
+  <h1 class="pl-section pl-context-panel-title">
+    <div class="pl-context-panel-title-cross" on-click="cross"></div>
+    {{title}}
+  </h1>
+  {{/if}}
 
-      <div class="pl-context-panel-inner">
-        {{> panels}}
-      </div>
-
-    </div>
+  <div class="pl-context-panel-content">
+    {{> panels}}
   </div>
 </section>

@@ -3,32 +3,105 @@
 
   window.Ractive.controller('pl-context-panel', function(component, data, el, config, done) {
 
-    var _$el = {},
-        contextPanel = component({
+    var _inOpen = false,
+        ContextPanel = component({
           plName: 'pl-context-panel',
-          data: data,
-          open: function() {
-            contextPanel.set('panelOpened', true);
+          data: $.extend(true, {
+            opened: false,
+            usable: false
+          }, data),
+          open: function(callback) {
+            _inOpen = true;
+            ContextPanel.set('opened', true);
 
-            _$el.plPanelSections.each(function(i) {
-              var section = $(this);
+            setTimeout(function() {
+              if (!_inOpen) {
+                return;
+              }
+
+              _$el.sections.each(function(i) {
+                var $section = $(this);
+
+                setTimeout(function() {
+                  if (!_inOpen) {
+                    return;
+                  }
+
+                  $section.addClass('opened');
+                }, i * 80);
+              });
 
               setTimeout(function() {
-                section.addClass('pl-opened');
-              }, i * 150);
+                if (!_inOpen) {
+                  return;
+                }
+
+                ContextPanel.set('usable', true);
+
+                if (callback) {
+                  callback();
+                }
+              }, ((_$el.sections.length - 1) * 80) + 450);
+            }, 250);
+          },
+          closeContent: function(callback) {
+            _inOpen = false;
+            ContextPanel.set('usable', false);
+
+            _$el.sections.each(function(i) {
+              var $section = $(this);
+
+              setTimeout(function() {
+                if (_inOpen) {
+                  return;
+                }
+
+                $section.removeClass('opened');
+              }, (_$el.sections.length - 1 - i) * 80);
+            });
+
+            if (callback) {
+              setTimeout(function() {
+                if (_inOpen) {
+                  return;
+                }
+
+                callback();
+              }, ((_$el.sections.length - 1) * 80) + 450);
+            }
+          },
+          close: function(callback) {
+            this.closeContent(function() {
+              ContextPanel.set('opened', false);
+
+              setTimeout(callback, 250);
             });
           },
-          close: function() {
-            contextPanel.set('panelOpened', false);
-
-            _$el.plPanelSections.each(function() {
-              $(this).removeClass('pl-opened');
-            });
+          isOpened: function() {
+            return ContextPanel.get('opened');
           }
-        });
+        }),
+        _$el = {
+          panel: $(ContextPanel.el)
+        };
 
-    contextPanel.require().then(function() {
-      _$el.plPanelSections = $($(contextPanel.el).find('.pl-section'));
+    window.Ractive.useBinds(
+      ContextPanel,
+      ['title', 'scrollbar', 'leftcross', 'rightcross'],
+      ['leftcross', 'rightcross']
+    );
+
+    ContextPanel.on('cross', function(event) {
+      var oncross = ContextPanel.get('on-cross');
+
+      if (oncross) {
+        oncross(event);
+      }
+    });
+
+    ContextPanel.require().then(function() {
+      _$el.sections = _$el.panel.find('.pl-section');
+
       done();
     });
 

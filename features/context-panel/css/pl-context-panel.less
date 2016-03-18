@@ -2,98 +2,152 @@
 @import "../../common/less/common-mixins.less";
 
 .pl-context-panel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-  .pl-context-panel-container {
+  .pl-context-panel-bg {
+    position: absolute;
+    left: 50%;
+    width: 0;
+    top: 0;
+    bottom: 0;
+    background: @darkColor;
+
+    .transition(all 0.25s @easeOutQuart);
+  }
+
+  .pl-context-panel-title {
+    background: black;
+    color: white;
+    text-align: center;
+    height: 6rem;
+    line-height: 6rem;
+    font-size: 3rem;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &::before, &::after {
+      content: ' ';
+      position: absolute;
+      top: 3rem;
+      background: white;
+      width: 4rem;
+      height: 1px;
+      opacity: 0.6;
+    }
+
+    &::before {
+      left: 2rem;
+    }
+
+    &::after {
+      right: 2rem;
+    }
+  }
+
+  .pl-context-panel-content {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-  }
-
-  .pl-context-panel-modal, .pl-context-panel-content {
-    position: relative;
-    margin: 0 auto;
-    height: 100%;
-  }
-
-  .pl-context-panel-modal {
-    width: 100%;
-    opacity: 0;
-    .transition(all 0.25s @easeOutQuart);
-  }
-
-  .pl-context-panel-content {
-    width: 0;
-    background: @darkColor;
     overflow: hidden;
-    .transition(all 0.55s @easeOutQuart);
+  }
 
-    > h1 {
-      opacity: 0;
+  .pl-context-panel-title-cross {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    width: 4rem;
+    height: 4rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 0;
       background: white;
-      text-align: center;
-      height: 8rem;
-      line-height: 8rem;
-      font-style: italic;
-      margin: 0;
-      padding: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      .transition(all 0.55s @easeOutQuart);
+      width: 4rem;
+      height: 1px;
+      opacity: 0.6;
+      .transition(all 0.35s @easeOutQuart);
+    }
+  }
+
+  &.use-title {
+    .pl-context-panel-content {
+      top: 6rem;
+    }
+  }
+
+  &.scrollbar.usable {
+    .pl-context-panel-content {
+      overflow: auto;
+    }
+  }
+
+  &.opened {
+    .pl-context-panel-bg {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  &.left-cross {
+    .pl-context-panel-title-cross {
+      display: block;
+      left: 2rem;
     }
 
-    .pl-context-panel-inner {
-      height: 100%;
-      overflow: auto;
+    &.usable {
+      .pl-context-panel-title {
+        &::before {
+          .transform(rotate(-45deg));
+          .transition(all 0.35s @easeOutQuart);
+        }
+      }
+
+      .pl-context-panel-title-cross::before {
+        .transform(rotate(45deg));
+      }
+    }
+  }
+
+  &.right-cross {
+    .pl-context-panel-title-cross {
+      display: block;
+      right: 2rem;
+    }
+
+    &.usable {
+      .pl-context-panel-title {
+        &::after {
+          .transform(rotate(-45deg));
+          .transition(all 0.35s @easeOutQuart);
+        }
+      }
+
+      .pl-context-panel-title-cross::before {
+        .transform(rotate(45deg));
+      }
     }
   }
 
   .pl-section {
     position: relative;
     opacity: 0;
-    .transform(translateY(20rem));
-    background-color: #769b89;
-    color: white;
-    padding: 2rem;
-    .transition(all 0.25s @easeOutQuart);
+    .transform(translateY(200rem));
+    .transition(all 0.45s @easeInExpo);
 
-    header {
-      margin: -2rem -2rem 2rem;
-
-      h1 {
-        text-align: center;
-        color: white;
-        font-size: 3rem;
-        line-height: 8rem;
-        margin: 0;
-        padding: 0;
-        text-transform: uppercase;
-      }
-    }
-
-    &.pl-opened {
+    &.opened {
       opacity: 1;
       .transform(translateY(0));
-      .transition(all 0.55s @easeOutQuart);
-    }
-  }
-
-
-  &.pl-opened .pl-context-panel-modal {
-    opacity: 1;
-  }
-
-  &.pl-opened .pl-context-panel-content {
-    width: 100%;
-
-    > h1 {
-      opacity: 1;
+      .transition(all 0.45s @easeOutCirc);
     }
   }
 }
