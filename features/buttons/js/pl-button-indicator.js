@@ -7,7 +7,7 @@
 
         activeNotification = null,
         closeTimeout = null,
-        buttonIndicator = component({
+        ButtonIndicator = component({
           plName: 'pl-button-indicator',
           data: $.extend(true, {
             notificationDisplayTime: NOTIFICATION_DISPLAY_TIME,
@@ -25,51 +25,51 @@
             }
 
             if (!forceUncount) {
-              buttonIndicator.set('notificationsCount', buttonIndicator.get('notificationsCount') + 1);
+              ButtonIndicator.set('notificationsCount', ButtonIndicator.get('notificationsCount') + 1);
             }
 
-            buttonIndicator.set('notificationMessage', message);
+            ButtonIndicator.set('notificationMessage', message);
             if (picture) {
-              buttonIndicator.set('notificationPicture', picture);
+              ButtonIndicator.set('notificationPicture', picture);
             }
 
             setTimeout(function() {
-              buttonIndicator.set('showMessage', true);
+              ButtonIndicator.set('showMessage', true);
 
-              buttonIndicator.fire('showNotification', {
+              ButtonIndicator.fire('showNotification', {
                 duration: 1000,
                 width: 250
               });
 
               setTimeout(function() {
-                buttonIndicator.close();
-              }, buttonIndicator.get('notificationDisplayTime'));
+                ButtonIndicator.close();
+              }, ButtonIndicator.get('notificationDisplayTime'));
             });
           },
           close: function() {
-            if (!buttonIndicator.get('showMessage')) {
+            if (!ButtonIndicator.get('showMessage')) {
               return;
             }
 
             activeNotification = null;
-            buttonIndicator.set('showMessage', false);
+            ButtonIndicator.set('showMessage', false);
 
-            buttonIndicator.fire('hideNotification', {
+            ButtonIndicator.fire('hideNotification', {
               duration: 1000,
               width: 50
             });
 
             setTimeout(function() {
-              buttonIndicator.set('notificationPicture', null);
+              ButtonIndicator.set('notificationPicture', null);
             }, 700);
           },
           clearNotificationsCount: function() {
-            buttonIndicator.set('notificationsCount', 0);
+            ButtonIndicator.set('notificationsCount', 0);
           }
         });
 
     if (data.action) {
-      buttonIndicator.on('action', function(event) {
+      ButtonIndicator.on('action', function(event) {
         data.action(event, activeNotification);
         event.original.stopPropagation();
       });
