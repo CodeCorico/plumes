@@ -12,35 +12,32 @@
       }
     });
 
+    data.texts = $.extend(true, {
+      username: 'Name',
+      code: 'Code',
+      userpassword: 'Password',
+      userpasswordconfirm: 'Confirm password',
+      forgotlink: 'I forgot my password',
+      login: 'Back to login',
+      forgottext: 'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.',
+      forgotcodetext: 'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.',
+      forgotpasswordtext: 'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.',
+      forgotpasswordhelp: [
+        'When creating your password, remember the following:',
+        '<ol>',
+          '<li>It must not contain your name.</li>',
+          '<li>It must contain one or more digits.</li>',
+          '<li>It is recommended to mix lowercase and uppercase characters.</li>',
+          '<li>It should be long over 7 characters.</li>',
+        '</ol>'
+      ].join('')
+    }, data.texts);
+
+    data.texts.usernamePlaceholder = data.texts.username;
+    data.texts.userpasswordPlaceholder = data.texts.userpassword;
+
     data.avatar = !data.avatar ? 'null' : data.avatar;
     data.inForgot = false;
-
-    data.texts.username = typeof data.texts.username == 'undefined' ? 'Name' : data.texts.username;
-    data.usernamePlaceholder = data.texts.username;
-    data.texts.code = typeof data.texts.code == 'undefined' ? 'Code' : data.texts.code;
-    data.texts.userpassword = typeof data.texts.userpassword == 'undefined' ? 'Password' : data.texts.userpassword;
-    data.userpasswordPlaceholder = data.texts.userpassword;
-    data.texts.userpasswordconfirm = typeof data.texts.userpasswordconfirm == 'undefined' ? 'Confirm password' : data.texts.userpasswordconfirm;
-    data.texts.forgotlink = typeof data.texts.forgotlink == 'undefined' ? 'I forgot my password' : data.texts.forgotlink;
-    data.texts.login = typeof data.texts.login == 'undefined' ? 'Back to login' : data.texts.login;
-    data.texts.forgottext = typeof data.texts.forgottext == 'undefined' ?
-      'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.' :
-      data.texts.forgottext;
-    data.texts.forgotcodetext = typeof data.texts.forgotcodetext == 'undefined' ?
-      'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.' :
-      data.texts.forgotcodetext;
-    data.texts.forgotpasswordtext = typeof data.texts.forgotpasswordtext == 'undefined' ?
-      'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.' :
-      data.texts.forgotpasswordtext;
-    data.texts.forgotpasswordhelp = typeof data.texts.forgotpasswordhelp == 'undefined' ?
-      'When creating your password, remember the following:' +
-      '<ol>' +
-        '<li>It must not contain your name.</li>' +
-        '<li>It must contain one or more digits.</li>' +
-        '<li>It is recommended to mix lowercase and uppercase characters.</li>' +
-        '<li>It should be long over 7 characters.</li>' +
-      '</ol>' :
-      data.texts.forgotpasswordhelp;
 
     var Login = component({
           plName: 'pl-login',
