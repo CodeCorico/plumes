@@ -1,0 +1,18 @@
+<section class="pl-context-panel {{panelOpened ? 'pl-opened' : ''}}">
+  <div class="pl-context-panel-container">
+    <div class="pl-context-panel-modal"></div>
+  </div>
+  <div class="pl-context-panel-container">
+    <div class="pl-context-panel-content">
+
+      {{#if usetitle}}
+      <h1>-{{title}}-</h1>
+      {{/if}}
+
+      <div class="pl-context-panel-inner">
+        {{> panels}}
+      </div>
+
+    </div>
+  </div>
+</section>
