@@ -11,7 +11,7 @@
     var _$el = {
           body: $('body')
         },
-        layoutNotifications = component({
+        LayoutNotifications = component({
           plName: 'pl-layout-notifications',
           data: $.extend(true, {
             opened: false,
@@ -19,7 +19,7 @@
             emailstoggle: function(event, isOn) {
               event.original.stopPropagation();
 
-              var emailsToggleFunc = layoutNotifications.get('emails-toggle');
+              var emailsToggleFunc = LayoutNotifications.get('emails-toggle');
               if (emailsToggleFunc) {
                 emailsToggleFunc(event, isOn);
               }
@@ -56,36 +56,36 @@
         });
 
     if (data.toggle) {
-      layoutNotifications.on('toggle', function(event) {
-        data.toggle(event, layoutNotifications.get('opened'));
+      LayoutNotifications.on('toggle', function(event) {
+        data.toggle(event, LayoutNotifications.get('opened'));
       });
     }
 
     if (data.signout) {
-      layoutNotifications.on('signout', function(event) {
+      LayoutNotifications.on('signout', function(event) {
         data.signout(event);
         event.original.stopPropagation();
       });
     }
 
     if (data.openitem) {
-      layoutNotifications.on('openitem', function(event) {
+      LayoutNotifications.on('openitem', function(event) {
         data.openitem(event);
         event.original.stopPropagation();
       });
     }
 
     function _close() {
-      layoutNotifications.close();
+      LayoutNotifications.close();
     }
 
-    layoutNotifications.on('teardown', function() {
+    LayoutNotifications.on('teardown', function() {
       _$el.body.unbind('click', _close);
     });
 
     _$el.body.click(_close);
 
-    layoutNotifications.require().then(done);
+    LayoutNotifications.require().then(done);
   });
 
 })();
