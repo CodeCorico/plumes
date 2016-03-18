@@ -50,7 +50,51 @@
     }
   }
 
+  .pl-layout-context-left, .pl-layout-context-right {
+    position: fixed;
+    top: 0;
+    width: 25%;
+    bottom: 0;
+
+    .pl-context-panel-require {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      .pl-context-panel {
+        &.use-title {
+          .pl-context-panel-content {
+            top: 11rem;
+          }
+        }
+      }
+
+      .pl-context-panel-title {
+        padding-top: 5rem;
+
+        &::before, &::after {
+          top: 8rem;
+        }
+      }
+
+      .pl-context-panel-title-cross {
+        top: 6rem;
+      }
+    }
+  }
+
+  .pl-layout-context-left {
+    left: 0;
+  }
+
+  .pl-layout-context-right {
+    right: 0;
+  }
+
   .pl-layout-flyout-left, .pl-layout-flyout-right {
+    z-index: 1000;
     cursor: default;
     z-index: 100;
     position: fixed;
@@ -63,11 +107,11 @@
   }
 
   .pl-layout-flyout-left {
-    left: 2.5rem;
+    left: 1.5rem;
   }
 
   .pl-layout-flyout-right {
-    right: 3rem;
+    right: 2rem;
   }
 
   .pl-layout-mask {

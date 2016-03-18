@@ -18,8 +18,45 @@
     ></rv-require>
   </header>
 
+  <div class="pl-layout-context-left">
+    <rv-require
+      data-pl-name="context-left"
+      name="pl-context-panel"
+      src="../context-panel/pl-context-panel"
+      class="pl-context-panel-require"
+      data-use-leftcross="true"
+      data-bind-on-cross="crossleftcontext"
+      data-bind-title="contextlefttitle"
+      data-bind-use-title="contextleftusetitle"
+      data-bind-use-scrollbar="contextleftscrollbar"
+    >
+      <rv-partial target="panels">
+        {{> context-left-panels}}
+      </rv-partial>
+    </rv-require>
+  </div>
+
+  <div class="pl-layout-context-right">
+    <rv-require
+      data-pl-name="context-right"
+      name="pl-context-panel"
+      src="../context-panel/pl-context-panel"
+      class="pl-context-panel-require"
+      data-use-rightcross="true"
+      data-bind-on-cross="crossrightcontext"
+      data-bind-title="contextrighttitle"
+      data-bind-use-title="contextrightusetitle"
+      data-bind-use-scrollbar="contextrightscrollbar"
+    >
+      <rv-partial target="panels">
+        {{> context-right-panels}}
+      </rv-partial>
+    </rv-require>
+  </div>
+
   <div class="pl-layout-flyout-left">
     <rv-require
+      data-pl-name="buttons-left"
       name="pl-grouped-buttons"
       src="../grouped-buttons/pl-grouped-buttons"
       data-bind-buttons="buttonsleft"
@@ -29,6 +66,7 @@
 
   <div class="pl-layout-flyout-right">
     <rv-require
+      data-pl-name="buttons-right"
       name="pl-grouped-buttons"
       src="../grouped-buttons/pl-grouped-buttons"
       data-bind-buttons="buttonsright"

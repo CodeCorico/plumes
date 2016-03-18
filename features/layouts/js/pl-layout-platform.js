@@ -2,34 +2,64 @@
   'use strict';
 
   window.Ractive.controller('pl-layout-platform', function(component, data, el, config, done) {
-    var sectionsUsed = ['usemask'],
-        Title = null;
+    var Title = null;
 
-    data.loaded = false;
+    function _closeContext(orientation) {
+      var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + orientation);
 
-    for (var i = 0; i < sectionsUsed.length; i++) {
-      var use = sectionsUsed[i];
+      panel.close();
+    }
 
-      data[use] = typeof data[use] == 'undefined' ? true : data[use];
-      data[use] = data[use] == 'true' ? true : data[use];
-      data[use] = data[use] == 'false' ? false : data[use];
+    function _beforeButtonsAction(args) {
+      if (!args || !args.button || !args.button.context) {
+        return;
+      }
+
+      var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + args.button.context);
+      if (!panel) {
+        return;
+      }
+
+      if (args.button.beforeContext) {
+        args.button.beforeContext(panel, function callback() {
+          panel.open();
+        });
+      }
+      else {
+        panel.open();
+      }
     }
 
     var LayoutPlatform = component({
           plName: 'pl-layout-platform',
           data: $.extend(true, {
+            loaded: false,
             titleLeftOffset: -80,
             titleBgLeftOffset: 0,
             titleBgWidth: 0,
             titleBgHeight: 0,
             buttonsleft: [],
-            buttonsright: []
+            buttonsright: [],
+            contextlefttitle: '',
+            contextrighttitle: '',
+            contextleftusetitle: true,
+            contextrightusetitle: true,
+            contextleftscrollbar: true,
+            contextrightscrollbar: true,
+            crossleftcontext: function() {
+              _closeContext('left');
+            },
+            crossrightcontext: function() {
+              _closeContext('right');
+            }
           }, data)
         }),
         Page = LayoutPlatform.parentRequire,
         _$el = {
           platform: $(LayoutPlatform.el)
         };
+
+    window.Ractive.useBinds(LayoutPlatform, ['mask']);
 
     function _updatePosition() {
       LayoutPlatform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
@@ -102,7 +132,12 @@
         LayoutPlatform.set('start', true);
 
         LayoutPlatform.require().then(function() {
+          LayoutPlatform.findChild('data-pl-name', 'buttons-left').on('beforeAction', _beforeButtonsAction);
+          LayoutPlatform.findChild('data-pl-name', 'buttons-right').on('beforeAction', _beforeButtonsAction);
+
           Title = LayoutPlatform.findChild('name', 'pl-dropdown-title');
+
+          window.A1 = LayoutPlatform;
 
           _$el.title = _$el.platform.find('.pl-layout-title');
           _$el.titleText = _$el.platform.find('.pl-layout-title h2 span');
