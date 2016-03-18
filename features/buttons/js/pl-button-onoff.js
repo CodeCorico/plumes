@@ -5,7 +5,7 @@
 
     data.label = typeof data['text-label'] == 'undefined' ? 'on/off' : data['text-label'];
 
-    var buttonOnoff = component({
+    var ButtonOnoff = component({
       plName: 'pl-button-onoff',
       data: $.extend(true, {
         on: false
@@ -25,13 +25,13 @@
       }
     });
 
-    buttonOnoff.on('toggle', function() {
-      buttonOnoff.toggle();
+    ButtonOnoff.on('toggle', function() {
+      ButtonOnoff.toggle();
     });
 
     if (data.toggle) {
-      buttonOnoff.on('toggle', function(event) {
-        data.toggle(event, buttonOnoff.isOn());
+      ButtonOnoff.on('toggle', function(event) {
+        data.toggle(event, ButtonOnoff.isOn());
       });
     }
 
