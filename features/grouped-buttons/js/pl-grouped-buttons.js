@@ -3,7 +3,7 @@
 
   window.Ractive.controller('pl-grouped-buttons', function(component, data, el, config, done) {
 
-    var groupedButtons = component({
+    var GroupedButtons = component({
       plName: 'pl-grouped-buttons',
       data: $.extend(true, {
         orientaton: 'left',
@@ -14,35 +14,48 @@
             return;
           }
 
-          var index = $(event.node).parent().data('index'),
-              button = groupedButtons.get('buttons[' + index + ']');
+          var index = parseInt($(event.node).parent().attr('data-index'), 10),
+              button = GroupedButtons.get('buttons[' + index + ']'),
+              component = GroupedButtons.findChild('data-index', index);
+
+          GroupedButtons.fire('beforeAction', {
+            event: event,
+            button: button,
+            component: component
+          });
 
           if (button && button.action) {
-            button.action(event, groupedButtons.findChild('data-index', index));
+            button.action(event, component);
           }
+
+          GroupedButtons.fire('action', {
+            event: event,
+            button: button,
+            component: component
+          });
         }
       }, data)
     });
 
     function _registerIndicatorEvents(buttonEl, button, i) {
       buttonEl.on('showNotification', function(args) {
-        groupedButtons.set('buttons[' + i + '].width', args.width + 10);
+        GroupedButtons.set('buttons[' + i + '].width', args.width + 10);
       });
 
       buttonEl.on('hideNotification', function() {
-        groupedButtons.set('buttons[' + i + '].width', 55);
+        GroupedButtons.set('buttons[' + i + '].width', 55);
       });
     }
 
-    groupedButtons.observe('buttons', function() {
-      groupedButtons.require().then(function() {
-        var buttons = groupedButtons.get('buttons'),
-            positions = groupedButtons.get('positions'),
+    GroupedButtons.observe('buttons', function() {
+      GroupedButtons.require().then(function() {
+        var buttons = GroupedButtons.get('buttons'),
+            positions = GroupedButtons.get('positions'),
             totalWidth = 0;
 
         for (var i = buttons.length - 1; i >= 0; i--) {
           var button = buttons[i],
-              buttonEl = groupedButtons.findChild('data-index', i);
+              buttonEl = GroupedButtons.findChild('data-index', i);
 
           positions[i] = totalWidth;
 
@@ -66,7 +79,7 @@
           totalWidth += button.width || 0;
         }
 
-        groupedButtons.set('positions', positions);
+        GroupedButtons.set('positions', positions);
       });
     });
 
