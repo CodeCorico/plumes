@@ -3,6 +3,12 @@
 
   window.Ractive.controller('pl-context-panel', function(component, data, el, config, done) {
 
+    function _sections() {
+      var $selector = _$el.panel.find('.pl-group');
+
+      return $selector.length ? _$el.panel.find('.pl-context-panel-title, .pl-group.opened .pl-section') : _$el.panel.find('.pl-section');
+    }
+
     var _inOpen = false,
         ContextPanel = component({
           plName: 'pl-context-panel',
@@ -22,7 +28,9 @@
                 return;
               }
 
-              _$el.sections.each(function(i) {
+              var $sections = _sections();
+
+              $sections.each(function(i) {
                 var $section = $(this);
 
                 setTimeout(function() {
@@ -46,7 +54,7 @@
                 if (callback) {
                   callback();
                 }
-              }, ((_$el.sections.length - 1) * 80) + 450);
+              }, (($sections.length - 1) * 80) + 450);
             }, 250);
           },
           closeContent: function(callback) {
@@ -56,7 +64,9 @@
 
             ContextPanel.set('usable', false);
 
-            _$el.sections.each(function(i) {
+            var $sections = _sections();
+
+            $sections.each(function(i) {
               var $section = $(this);
 
               setTimeout(function() {
@@ -65,7 +75,7 @@
                 }
 
                 $section.removeClass('opened');
-              }, (_$el.sections.length - 1 - i) * 80);
+              }, ($sections.length - 1 - i) * 80);
             });
 
             setTimeout(function() {
@@ -78,7 +88,7 @@
               if (callback) {
                 callback();
               }
-            }, ((_$el.sections.length - 1) * 80) + 450);
+            }, (($sections.length - 1) * 80) + 450);
           },
           close: function(callback) {
             ContextPanel.fire('beforeClose');
@@ -117,11 +127,7 @@
       }
     });
 
-    ContextPanel.require().then(function() {
-      _$el.sections = _$el.panel.find('.pl-section');
-
-      done();
-    });
+    ContextPanel.require().then(done);
 
   });
 })();
