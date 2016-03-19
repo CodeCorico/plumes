@@ -12,6 +12,9 @@
           }, data),
           open: function(callback) {
             _inOpen = true;
+
+            ContextPanel.fire('beforeOpen');
+
             ContextPanel.set('opened', true);
 
             setTimeout(function() {
@@ -38,6 +41,8 @@
 
                 ContextPanel.set('usable', true);
 
+                ContextPanel.fire('open');
+
                 if (callback) {
                   callback();
                 }
@@ -46,6 +51,9 @@
           },
           closeContent: function(callback) {
             _inOpen = false;
+
+            ContextPanel.fire('beforeCloseContent');
+
             ContextPanel.set('usable', false);
 
             _$el.sections.each(function(i) {
@@ -60,21 +68,31 @@
               }, (_$el.sections.length - 1 - i) * 80);
             });
 
-            if (callback) {
-              setTimeout(function() {
-                if (_inOpen) {
-                  return;
-                }
+            setTimeout(function() {
+              if (_inOpen) {
+                return;
+              }
 
+              ContextPanel.fire('closeContent');
+
+              if (callback) {
                 callback();
-              }, ((_$el.sections.length - 1) * 80) + 450);
-            }
+              }
+            }, ((_$el.sections.length - 1) * 80) + 450);
           },
           close: function(callback) {
+            ContextPanel.fire('beforeClose');
+
             this.closeContent(function() {
               ContextPanel.set('opened', false);
 
-              setTimeout(callback, 250);
+              setTimeout(function() {
+                ContextPanel.fire('close');
+
+                if (callback) {
+                  callback();
+                }
+              }, 250);
             });
           },
           isOpened: function() {
