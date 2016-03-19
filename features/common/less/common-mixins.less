@@ -104,6 +104,14 @@
   transform: @arguments;
 }
 
+.transform-origin(...) {
+  -webkit-transform-origin: @arguments;
+  -moz-transform-origin: @arguments;
+  -ms-transform-origin: @arguments;
+  -o-transform-origin: @arguments;
+  transform-origin: @arguments;
+}
+
 .rotation(@deg:5deg){
   .transform(rotate(@deg));
 }
@@ -120,6 +128,14 @@
   -ms-animation: @value;
   -o-animation: @value;
   animation: @value;
+}
+
+.no-animation() {
+  -webkit-animation: none;
+  -moz-animation: none;
+  -ms-animation: none;
+  -o-animation: none;
+  animation: none;
 }
 
 .transition(@value1, @value2:X, ...) {
