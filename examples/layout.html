@@ -41,7 +41,7 @@
     </rv-partial>
     <rv-partial target="context-left-panels">
 
-      <div class="context-1" style="display: none;">
+      <div class="pl-group" data-group="group-1" data-title="articles">
         <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
 
           <ul>
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="context-2" style="display: none;">
+      <div class="pl-group" data-group="group-2" data-title="content">
         <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
 
           <p>My big content</p>
@@ -131,29 +131,7 @@
       page.set('buttonsleft', [{
         icon: 'fa fa-list-ul',
         cls: 'dark light-bg',
-        context: 'left',
-        beforeContext: function(panel, callback) {
-          if ($('.context-1').css('display') == 'block') {
-            return callback();
-          }
-
-          if (panel.isOpened()) {
-            panel.closeContent(function() {
-              $('.context-2').css('display', 'none');
-              $('.context-1').css('display', 'block');
-              page.set('lefttitle', 'articles');
-
-              callback();
-            });
-          }
-          else {
-            $('.context-2').css('display', 'none');
-            $('.context-1').css('display', 'block');
-            page.set('lefttitle', 'articles');
-
-            callback();
-          }
-        }
+        group: 'group-1'
       }]);
 
       setTimeout(function() {
@@ -162,29 +140,7 @@
         buttonsleft.unshift({
           icon: 'fa fa-file-text',
           cls: 'dark light-bg',
-          context: 'left',
-          beforeContext: function(panel, callback) {
-            if ($('.context-2').css('display') == 'block') {
-              return callback();
-            }
-
-            if (panel.isOpened()) {
-              panel.closeContent(function() {
-                $('.context-1').css('display', 'none');
-                $('.context-2').css('display', 'block');
-                page.set('lefttitle', 'content');
-
-                callback();
-              });
-            }
-            else {
-              $('.context-1').css('display', 'none');
-              $('.context-2').css('display', 'block');
-              page.set('lefttitle', 'content');
-
-              callback();
-            }
-          }
+          group: 'group-2'
         });
 
         page.set('buttonsleft', buttonsleft);
