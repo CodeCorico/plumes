@@ -111,23 +111,67 @@
       });
     }
 
+    function _displayContextGroup(orientation, context, $context, $group) {
+      $context.find('.pl-group').removeClass('opened');
+
+      $group.addClass('opened');
+
+      var title = $group.attr('data-title');
+      if (typeof title != 'undefined') {
+        LayoutPlatform.set('context' + orientation + 'title', title);
+      }
+
+      context.open();
+    }
+
     function _beforeButtonsAction(args) {
-      if (!args || !args.button || !args.button.context) {
+      if (!args || !args.button || (!args.button.context && !args.button.group)) {
         return;
       }
 
-      var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + args.button.context);
-      if (!panel) {
-        return;
-      }
+      if (args.button.group) {
+        var beforeGroup = args.button.beforeGroup || function(context, $group, callback) {
+          callback();
+        };
 
-      if (args.button.beforeContext) {
-        args.button.beforeContext(panel, function callback() {
-          panel.open();
+        ['left', 'right'].forEach(function(orientation) {
+          var context = _contexts[orientation],
+              $context = $(context.el),
+              $group = $context.find('[data-group="' + args.button.group + '"]');
+
+          if (!$group.length) {
+            return;
+          }
+
+          if ($group.hasClass('opened')) {
+            return;
+          }
+
+          beforeGroup(context, $group, function() {
+            if (context.isOpened()) {
+              context.closeContent(function() {
+                _displayContextGroup(orientation, context, $context, $group);
+              });
+            }
+            else {
+              _displayContextGroup(orientation, context, $context, $group);
+            }
+          });
         });
       }
-      else {
-        panel.open();
+      else if (args.button.context) {
+        var context = _contexts[args.button.context];
+        if (!context) {
+          return;
+        }
+
+        var beforeContext = args.button.beforeContext || function(callback) {
+          callback();
+        };
+
+        beforeContext(context, function callback() {
+          context.open();
+        });
       }
     }
 
