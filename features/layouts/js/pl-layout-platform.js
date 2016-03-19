@@ -2,12 +2,113 @@
   'use strict';
 
   window.Ractive.controller('pl-layout-platform', function(component, data, el, config, done) {
-    var Title = null;
+    var VIEWS = {
+          DESKTOP: 1000,
+          TABLET: 450,
+          MOBILE: 0
+        },
+
+        Title = null,
+        _contexts = {
+          left: null,
+          right: null
+        };
+
+    function _resize(openOrientation) {
+      var screenWidth = _$el.window.width();
+
+      if (screenWidth >= VIEWS.DESKTOP) {
+        LayoutPlatform.set('leftContextWidth', LayoutPlatform.get('leftContextOpened') ? '25%' : 0);
+        LayoutPlatform.set('rightContextWidth', LayoutPlatform.get('rightContextOpened') ? '25%' : 0);
+
+        LayoutPlatform.set('contentLeft', LayoutPlatform.get('leftContextOpened') ? '25%' : 0);
+        LayoutPlatform.set('contentRight', LayoutPlatform.get('rightContextOpened') ? '25%' : 0);
+
+        LayoutPlatform.set('screen', 'screen-desktop');
+      }
+      else {
+        if (openOrientation == 'left' && LayoutPlatform.get('rightContextOpened')) {
+          _contexts.right.close();
+          LayoutPlatform.set('rightContextOpened', false);
+        }
+        else if (openOrientation == 'right' && LayoutPlatform.get('leftContextOpened')) {
+          _contexts.left.close();
+          LayoutPlatform.set('leftContextOpened', false);
+        }
+        else if (LayoutPlatform.get('leftContextOpened') && LayoutPlatform.get('rightContextOpened')) {
+          _contexts.right.close();
+          LayoutPlatform.set('rightContextOpened', false);
+        }
+
+        if (screenWidth >= VIEWS.TABLET) {
+          LayoutPlatform.set('leftContextWidth', LayoutPlatform.get('leftContextOpened') ? '75%' : 0);
+          LayoutPlatform.set('rightContextWidth', LayoutPlatform.get('rightContextOpened') ? '75%' : 0);
+
+          LayoutPlatform.set('contentLeft',
+            LayoutPlatform.get('leftContextOpened') ? '75%' : (
+            LayoutPlatform.get('rightContextOpened') ? '-75%' : 0)
+          );
+          LayoutPlatform.set('contentRight',
+            LayoutPlatform.get('rightContextOpened') ? '75%' : (
+            LayoutPlatform.get('leftContextOpened') ? '-75%' : 0)
+          );
+
+          LayoutPlatform.set('screen', 'screen-tablet');
+        }
+        else if (screenWidth >= VIEWS.MOBILE) {
+          LayoutPlatform.set('leftContextWidth', LayoutPlatform.get('leftContextOpened') ? '100%' : 0);
+          LayoutPlatform.set('rightContextWidth', LayoutPlatform.get('rightContextOpened') ? '100%' : 0);
+
+          LayoutPlatform.set('contentLeft', 0);
+          LayoutPlatform.set('contentRight', 0);
+
+          LayoutPlatform.set('screen', 'screen-mobile');
+        }
+      }
+
+      var templateWidth = _$el.contentTemplate.outerWidth();
+
+      if (templateWidth >= VIEWS.DESKTOP) {
+        LayoutPlatform.set('contentMedia', 'media-desktop');
+
+        LayoutPlatform.fire('view', 'DESKTOP');
+      }
+      else if (templateWidth >= VIEWS.TABLET) {
+        LayoutPlatform.set('contentMedia', 'media-tablet');
+
+        LayoutPlatform.fire('view', 'TABLET');
+      }
+      else if (templateWidth >= VIEWS.MOBILE) {
+        LayoutPlatform.set('contentMedia', 'media-mobile');
+
+        LayoutPlatform.fire('view', 'MOBILE');
+      }
+    }
 
     function _closeContext(orientation) {
       var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + orientation);
 
       panel.close();
+    }
+
+    function _registerGroupedButtonsEvents(orientation, component) {
+      component.on('beforeAction', _beforeButtonsAction);
+    }
+
+    function _registerContextEvents(orientation, component) {
+      _contexts[orientation] = component;
+
+      component.on('beforeOpen', function() {
+        LayoutPlatform.set(orientation + 'ContextOpened', true);
+
+        _resize(orientation);
+      });
+
+      component.on('close', function() {
+        LayoutPlatform.set(orientation + 'ContextOpened', false);
+
+        _resize();
+      });
     }
 
     function _beforeButtonsAction(args) {
@@ -46,6 +147,14 @@
             contextrightusetitle: true,
             contextleftscrollbar: true,
             contextrightscrollbar: true,
+            leftContextWidth: 0,
+            rightContextWidth: 0,
+            leftContextOpened: false,
+            rightContextOpened: false,
+            contentLeft: 0,
+            contentRight: 0,
+            contentMedia: '',
+
             crossleftcontext: function() {
               _closeContext('left');
             },
@@ -56,10 +165,21 @@
         }),
         Page = LayoutPlatform.parentRequire,
         _$el = {
-          platform: $(LayoutPlatform.el)
+          window: $(window),
+          platform: $(LayoutPlatform.el),
+          content: $(LayoutPlatform.el).find('.pl-layout-platform-content'),
+          contentTemplate: $(LayoutPlatform.el).find('.pl-layout-platform-content-template')
         };
 
     window.Ractive.useBinds(LayoutPlatform, ['mask']);
+
+    _$el.window.resize(_resize);
+
+    LayoutPlatform.on('teardown', function() {
+      _$el.window.off('resize', _resize);
+    });
+
+    _resize();
 
     function _updatePosition() {
       LayoutPlatform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
@@ -132,8 +252,11 @@
         LayoutPlatform.set('start', true);
 
         LayoutPlatform.require().then(function() {
-          LayoutPlatform.findChild('data-pl-name', 'buttons-left').on('beforeAction', _beforeButtonsAction);
-          LayoutPlatform.findChild('data-pl-name', 'buttons-right').on('beforeAction', _beforeButtonsAction);
+          _registerGroupedButtonsEvents('left', LayoutPlatform.findChild('data-pl-name', 'buttons-left'));
+          _registerGroupedButtonsEvents('right', LayoutPlatform.findChild('data-pl-name', 'buttons-right'));
+
+          _registerContextEvents('left', LayoutPlatform.findChild('data-pl-name', 'context-left'));
+          _registerContextEvents('right', LayoutPlatform.findChild('data-pl-name', 'context-right'));
 
           Title = LayoutPlatform.findChild('name', 'pl-dropdown-title');
 

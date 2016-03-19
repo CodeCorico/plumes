@@ -1,4 +1,4 @@
-<div class="pl-layout-platform">
+<div class="pl-layout-platform {{screen}}">
 
   <header class="pl-layout-platform-header" style="margin-left: -{{titleLeftOffset}}px">
     <div
@@ -18,7 +18,7 @@
     ></rv-require>
   </header>
 
-  <div class="pl-layout-context-left">
+  <div class="pl-layout-platform-context-left" style="width: {{leftContextWidth}};">
     <rv-require
       data-pl-name="context-left"
       name="pl-context-panel"
@@ -36,7 +36,7 @@
     </rv-require>
   </div>
 
-  <div class="pl-layout-context-right">
+  <div class="pl-layout-platform-context-right" style="width: {{rightContextWidth}};">
     <rv-require
       data-pl-name="context-right"
       name="pl-context-panel"
@@ -54,7 +54,7 @@
     </rv-require>
   </div>
 
-  <div class="pl-layout-flyout-left">
+  <div class="pl-layout-platform-flyout-left">
     <rv-require
       data-pl-name="buttons-left"
       name="pl-grouped-buttons"
@@ -64,7 +64,7 @@
     ></rv-require>
   </div>
 
-  <div class="pl-layout-flyout-right">
+  <div class="pl-layout-platform-flyout-right">
     <rv-require
       data-pl-name="buttons-right"
       name="pl-grouped-buttons"
@@ -74,7 +74,11 @@
     ></rv-require>
   </div>
 
-  {{> content}}
+  <div class="pl-layout-platform-content-template" style="left: {{contentLeft}}; right: {{contentRight}};"></div>
+
+  <div class="pl-layout-platform-content {{contentMedia}}" style="left: {{contentLeft}}; right: {{contentRight}};">
+    {{> content}}
+  </div>
 
   {{#if usemask}}
   <div class="pl-layout-mask"></div>
