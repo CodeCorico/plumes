@@ -69,9 +69,29 @@
     </rv-partial>
     <rv-partial target="context-right-panels">
 
+      <div class="pl-section" style="background: url('https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png') no-repeat 50%; background-size: cover; height: 20rem;"></div>
+
     </rv-partial>
     <rv-partial target="content">
 
+      <div style="position: absolute; top: 0rem; left: 0; right: 0; bottom: 0; overflow: auto; padding-top: 6rem;">
+
+        <img src="/examples/image.jpg" style="width: 100%;" />
+
+        <p style="padding: 3rem;">
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
+        </p>
+      </div>
 
     </rv-partial>
   </rv-require>
@@ -107,8 +127,6 @@
           window.location.href = 'lists.html';
         }
       }]);
-
-      var t = false;
 
       page.set('buttonsleft', [{
         icon: 'fa fa-list-ul',
@@ -177,6 +195,19 @@
         cls: 'dark light-bg',
         action: function(event, button) {
           button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
+        }
+      }, {
+        icon: 'fa fa-list-ul',
+        cls: 'dark light-bg',
+        context: 'right',
+        beforeContext: function(panel, callback) {
+          if (panel.isOpened()) {
+            callback();
+            panel.close();
+          }
+          else {
+            callback();
+          }
         }
       }, {
         type: 'indicator',
