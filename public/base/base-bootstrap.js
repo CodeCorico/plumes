@@ -64,4 +64,30 @@
     });
   };
 
+  window.Ractive.bindUses = function(component, binds, defaultsToFalse) {
+    defaultsToFalse = defaultsToFalse || [];
+
+    binds.forEach(function(bind) {
+      component.observe('use-' + bind, function(value) {
+        var defaultValue = defaultsToFalse.indexOf(bind) > -1 ? false : true;
+
+        value = typeof value == 'undefined' ? defaultValue : value;
+        value = value == 'true' ? true : value;
+        value = value == 'false' ? false : value;
+
+        component.set('use' + bind, value);
+      });
+    });
+  };
+
+  window.Ractive.bindTexts = function(component) {
+    Object.keys(component.get('texts') || {}).forEach(function(key) {
+      component.observe('text-' + key, function(value) {
+        if (typeof value != 'undefined') {
+          component.set('texts.' + key, value);
+        }
+      });
+    });
+  };
+
 })();

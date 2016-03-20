@@ -21,16 +21,16 @@
     data.pageSelected = data['page-selected'] ? parseInt(data['page-selected'], 10) : 1;
     data.displayPagesCount = data['display-pages-count'] ? parseInt(data['display-pages-count'], 10) : 7;
 
-    var pagination = component({
+    var Pagination = component({
       plName: 'pl-pagination',
       data: data
     });
 
     function _updatePages() {
       var pages = [],
-          totalPages = parseInt(pagination.get('totalPages'), 10),
-          pageSelected = parseInt(pagination.get('pageSelected'), 10),
-          displayPagesCount = parseInt(pagination.get('displayPagesCount'), 10),
+          totalPages = parseInt(Pagination.get('totalPages'), 10),
+          pageSelected = parseInt(Pagination.get('pageSelected'), 10),
+          displayPagesCount = parseInt(Pagination.get('displayPagesCount'), 10),
           selectIndex = Math.round(displayPagesCount / 2) - 1,
           start = Math.max(1, pageSelected - selectIndex),
           stop = Math.min(totalPages + 1, start + displayPagesCount);
@@ -43,31 +43,31 @@
         pages.push(i.toString());
       }
 
-      pagination.set('pages', pages);
+      Pagination.set('pages', pages);
     }
 
     $.each(refs, function(key, value) {
-      pagination.observe(value, function(newValue) {
+      Pagination.observe(value, function(newValue) {
         newValue = typeof newValue == 'undefined' ? true : newValue;
 
-        pagination.set(key,
+        Pagination.set(key,
           newValue == 'false' ? false : (
           newValue == 'true' ? true : newValue
         ));
       });
     });
 
-    pagination.observe('pageSelected', function(newValue) {
-      var value = Math.max(1, Math.min(parseInt(pagination.get('totalPages'), 10), newValue)).toString();
+    Pagination.observe('pageSelected', function(newValue) {
+      var value = Math.max(1, Math.min(parseInt(Pagination.get('totalPages'), 10), newValue)).toString();
       if (value !== newValue) {
         setTimeout(function() {
-          pagination.set('pageSelected', value);
+          Pagination.set('pageSelected', value);
         });
 
         return false;
       }
 
-      var onpagselected = pagination.get('onpagselected');
+      var onpagselected = Pagination.get('onpagselected');
       if (onpagselected) {
         onpagselected(parseInt(value, 10));
       }
@@ -75,31 +75,31 @@
       _updatePages();
     });
 
-    pagination.observe('totalPages displayPagesCount', function() {
+    Pagination.observe('totalPages displayPagesCount', function() {
       _updatePages();
-      pagination.set('hasActionButtons', parseInt(data.totalPages, 10) > parseInt(data.displayPagesCount, 10));
+      Pagination.set('hasActionButtons', parseInt(data.totalPages, 10) > parseInt(data.displayPagesCount, 10));
     });
 
     _updatePages();
 
-    pagination.on('selectPage', function(event) {
-      pagination.set('pageSelected', event.context);
+    Pagination.on('selectPage', function(event) {
+      Pagination.set('pageSelected', event.context);
     });
 
-    pagination.on('previousPage', function() {
-      pagination.set('pageSelected', parseInt(pagination.get('pageSelected'), 10) - 1);
+    Pagination.on('previousPage', function() {
+      Pagination.set('pageSelected', parseInt(Pagination.get('pageSelected'), 10) - 1);
     });
 
-    pagination.on('nextPage', function() {
-      pagination.set('pageSelected', parseInt(pagination.get('pageSelected'), 10) + 1);
+    Pagination.on('nextPage', function() {
+      Pagination.set('pageSelected', parseInt(Pagination.get('pageSelected'), 10) + 1);
     });
 
-    pagination.on('firstPage', function() {
-      pagination.set('pageSelected', '1');
+    Pagination.on('firstPage', function() {
+      Pagination.set('pageSelected', '1');
     });
 
-    pagination.on('lastPage', function() {
-      pagination.set('pageSelected', pagination.get('totalPages'));
+    Pagination.on('lastPage', function() {
+      Pagination.set('pageSelected', Pagination.get('totalPages'));
     });
 
     done();

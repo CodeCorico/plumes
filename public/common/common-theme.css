@@ -92,3 +92,24 @@
 .dark-border-left {
   border-left-color: #333333 !important;
 }
+.light {
+  color: #ffffff !important;
+}
+.light-bg {
+  background-color: #ffffff !important;
+}
+.light-borders {
+  border-color: #ffffff !important;
+}
+.light-border-top {
+  border-top-color: #ffffff !important;
+}
+.light-border-right {
+  border-right-color: #ffffff !important;
+}
+.light-border-bottom {
+  border-bottom-color: #ffffff !important;
+}
+.light-border-left {
+  border-left-color: #ffffff !important;
+}

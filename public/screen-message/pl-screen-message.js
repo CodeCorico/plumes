@@ -3,7 +3,7 @@
 
   window.Ractive.controller('pl-screen-message', function(component, data, el, config, done) {
 
-    var screenMessage = component({
+    var ScreenMessage = component({
           plName: 'pl-screen-message',
           data: data
         }),
@@ -14,21 +14,21 @@
 
     function _play(playArgs) {
       if (playArgs && playArgs != _playArgs) {
-        var Message = screenMessage.childrenRequire[0];
+        var Message = ScreenMessage.childrenRequire[0];
 
         Message.fire('reset');
 
         _playArgs = playArgs;
-        screenMessage.set('playing', true);
-        screenMessage.set('playingDone', false);
-        screenMessage.set('storyboard', false);
+        ScreenMessage.set('playing', true);
+        ScreenMessage.set('playingDone', false);
+        ScreenMessage.set('storyboard', false);
 
         setTimeout(function() {
           Message.fire('play', {
             message: playArgs.message,
             callback: _done,
             lineCallback: function() {
-              screenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
+              ScreenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
 
               if (_playArgs.lineCallback) {
                 _playArgs.lineCallback(Message);
@@ -53,7 +53,7 @@
         return;
       }
       else if (_playArgs.lastLineToTitle) {
-        screenMessage.set('storyboard', 'sb-title-1');
+        ScreenMessage.set('storyboard', 'sb-title-1');
 
         if (_playArgs.done) {
           _playArgs.done();
@@ -61,18 +61,18 @@
         _playArgs = null;
 
         setTimeout(function() {
-          screenMessage.set('storyboard', 'sb-title-2');
-          screenMessage.set('messageTop', 40);
+          ScreenMessage.set('storyboard', 'sb-title-2');
+          ScreenMessage.set('messageTop', 40);
         }, 650);
 
         return;
       }
 
-      screenMessage.set('playingDone', true);
+      ScreenMessage.set('playingDone', true);
 
       setTimeout(function() {
-        screenMessage.set('playing', false);
-        screenMessage.set('playingDone', false);
+        ScreenMessage.set('playing', false);
+        ScreenMessage.set('playingDone', false);
 
         if (_playArgs.done) {
           _playArgs.done();
@@ -82,24 +82,24 @@
       }, 350);
     }
 
-    screenMessage.on('closeTitle', function(callback) {
-      screenMessage.set('storyboard', 'sb-title-out-1');
-      screenMessage.set('messageTop', 70);
+    ScreenMessage.on('closeTitle', function(callback) {
+      ScreenMessage.set('storyboard', 'sb-title-out-1');
+      ScreenMessage.set('messageTop', 70);
 
       if (callback) {
         setTimeout(function() {
-          screenMessage.set('storyboard', '');
+          ScreenMessage.set('storyboard', '');
 
           callback();
         }, 550);
       }
     });
 
-    screenMessage.on('play', function(playArgs) {
+    ScreenMessage.on('play', function(playArgs) {
       _play(playArgs);
     });
 
-    screenMessage.require().then(done);
+    ScreenMessage.require().then(done);
   });
 
 })();

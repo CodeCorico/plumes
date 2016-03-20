@@ -2473,12 +2473,41 @@ th {
 .dark-border-left {
   border-left-color: #333333 !important;
 }
+.light {
+  color: #ffffff !important;
+}
+.light-bg {
+  background-color: #ffffff !important;
+}
+.light-borders {
+  border-color: #ffffff !important;
+}
+.light-border-top {
+  border-top-color: #ffffff !important;
+}
+.light-border-right {
+  border-right-color: #ffffff !important;
+}
+.light-border-bottom {
+  border-bottom-color: #ffffff !important;
+}
+.light-border-left {
+  border-left-color: #ffffff !important;
+}
 .clear {
   clear: both;
 }
 strong {
   font-weight: 400;
 }
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
 .container {
   padding: 3rem;
 }
@@ -2487,30 +2516,6 @@ strong {
   width: 100%;
   float: left;
   box-sizing: border-box;
-}
-.pl-header {
-  z-index: 100;
-  position: fixed;
-  top: 10px;
-  left: 3rem;
-  color: black;
-  border-color: black;
-}
-.pl-header.light {
-  color: white;
-  border-color: white;
-}
-.pl-header h1 {
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 1.6rem;
-  margin: 0;
-}
-.pl-header h2 {
-  font-size: 2.6rem;
-  font-weight: 300;
-  line-height: 3rem;
-  margin: 0;
 }
 @media (min-width: 550px) {
   .column,

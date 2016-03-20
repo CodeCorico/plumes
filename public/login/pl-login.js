@@ -3,54 +3,34 @@
 
   window.Ractive.controller('pl-login', function(component, data, el, config, done) {
 
-    data.useforgot = typeof data.useforgot == 'undefined' ? true : data.useforgot;
-    data.useforgot = data.useforgot == 'true' ? true : data.useforgot;
-    data.useforgot = data.useforgot == 'false' ? false : data.useforgot;
-
-    data.texts = {};
-
-    $.each(data, function(name, value) {
-      if (name.substr(0, 5) == 'text-') {
-        name = name.substr(5, name.length - 5);
-        data.texts[name] = value;
-      }
-    });
-
     data.avatar = !data.avatar ? 'null' : data.avatar;
-    data.inForgot = false;
-
-    data.texts.username = typeof data.texts.username == 'undefined' ? 'Name' : data.texts.username;
-    data.usernamePlaceholder = data.texts.username;
-    data.texts.code = typeof data.texts.code == 'undefined' ? 'Code' : data.texts.code;
-    data.texts.userpassword = typeof data.texts.userpassword == 'undefined' ? 'Password' : data.texts.userpassword;
-    data.userpasswordPlaceholder = data.texts.userpassword;
-    data.texts.userpasswordconfirm = typeof data.texts.userpasswordconfirm == 'undefined' ? 'Confirm password' : data.texts.userpasswordconfirm;
-    data.texts.forgotlink = typeof data.texts.forgotlink == 'undefined' ? 'I forgot my password' : data.texts.forgotlink;
-    data.texts.login = typeof data.texts.login == 'undefined' ? 'Back to login' : data.texts.login;
-    data.texts.forgottext = typeof data.texts.forgottext == 'undefined' ?
-      'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.' :
-      data.texts.forgottext;
-    data.texts.forgotcodetext = typeof data.texts.forgotcodetext == 'undefined' ?
-      'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.' :
-      data.texts.forgotcodetext;
-    data.texts.forgotpasswordtext = typeof data.texts.forgotpasswordtext == 'undefined' ?
-      'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.' :
-      data.texts.forgotpasswordtext;
-    data.texts.forgotpasswordhelp = typeof data.texts.forgotpasswordhelp == 'undefined' ?
-      'When creating your password, remember the following:' +
-      '<ol>' +
-        '<li>It must not contain your name.</li>' +
-        '<li>It must contain one or more digits.</li>' +
-        '<li>It is recommended to mix lowercase and uppercase characters.</li>' +
-        '<li>It should be long over 7 characters.</li>' +
-      '</ol>' :
-      data.texts.forgotpasswordhelp;
 
     var Login = component({
           plName: 'pl-login',
           data: $.extend(true, {
             show: false,
-            top: 0
+            top: 0,
+            inForgot: false,
+            texts: {
+              username: 'Name',
+              code: 'Code',
+              userpassword: 'Password',
+              userpasswordconfirm: 'Confirm password',
+              forgotlink: 'I forgot my password',
+              login: 'Back to login',
+              forgottext: 'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.',
+              forgotcodetext: 'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.',
+              forgotpasswordtext: 'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.',
+              forgotpasswordhelp: [
+                'When creating your password, remember the following:',
+                '<ol>',
+                  '<li>It must not contain your name.</li>',
+                  '<li>It must contain one or more digits.</li>',
+                  '<li>It is recommended to mix lowercase and uppercase characters.</li>',
+                  '<li>It should be long over 7 characters.</li>',
+                '</ol>'
+              ].join('')
+            }
           }, data)
         }),
         _$el = {
@@ -59,11 +39,26 @@
           forgotTexts: $(Login.el).find('.pl-login-forgot-texts')
         };
 
+    window.Ractive.bindUses(Login, ['forgot']);
+
+    window.Ractive.bindTexts(Login);
+
+    Login.observe('texts.username', function(value) {
+      Login.set('texts.usernamePlaceholder', value);
+    });
+
+    Login.observe('texts.userpassword', function(value) {
+      Login.set('texts.userpasswordPlaceholder', value);
+    });
+
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
 
       Login.set('height', _$el.window.height() - (40 + messageHeight + 30));
-      Login.set('helpTop', _$el.forgotTexts.position().top);
+
+      if (_$el.forgotTexts.length) {
+        Login.set('helpTop', _$el.forgototTexts.position().top);
+      }
     }
 
     function _focusName() {
@@ -85,8 +80,8 @@
         }
 
         if (type == 'success') {
-          Login.set('usernamePlaceholder', data.texts.username);
-          Login.set('userpasswordPlaceholder', data.texts.userpassword);
+          Login.set('texts.usernamePlaceholder', Login.get('texts.username'));
+          Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpassword'));
         }
 
         Login.set('storyboardMessage', 'sb-message-2');
@@ -270,8 +265,8 @@
       Login.set('inForgot', false);
       Login.set('inForgotCode', false);
       Login.set('inForgotPassword', false);
-      Login.set('usernamePlaceholder', data.texts.username);
-      Login.set('userpasswordPlaceholder', data.texts.userpassword);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.username'));
+      Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpassword'));
 
       if (inForgotCode) {
         Login.fire('exitForgotCode');
@@ -291,7 +286,7 @@
     Login.on('forgotSuccess', function() {
       Login.set('inForgotCode', true);
       Login.set('username', '');
-      Login.set('usernamePlaceholder', data.texts.code);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.code'));
 
       Login.fire('enterForgotCode');
 
@@ -312,9 +307,9 @@
       Login.set('inForgotCode', false);
       Login.set('inForgotPassword', true);
       Login.set('username', '');
-      Login.set('usernamePlaceholder', data.texts.userpassword);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.userpassword'));
       Login.set('userpassword', '');
-      Login.set('userpasswordPlaceholder', data.texts.userpasswordconfirm);
+      Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpasswordconfirm'));
 
       Login.fire('enterForgotPassword');
 

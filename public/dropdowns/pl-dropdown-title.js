@@ -18,24 +18,24 @@
       });
     }
 
-    var dropdownTitle = component({
+    var DropdownTitle = component({
           plName: 'pl-dropdown-title',
           data: data,
           select: _select
         }),
         _$el = {
           body: $('body'),
-          dropdownTitle: $(dropdownTitle.el)
+          dropdownTitle: $(DropdownTitle.el)
         };
 
     function _select(indexOrName, fireFunc, callback) {
-      if (!dropdownTitle) {
+      if (!DropdownTitle) {
         return;
       }
 
       fireFunc = typeof fireFunc == 'undefined' ? true : fireFunc;
 
-      var titles = dropdownTitle.get('titles'),
+      var titles = DropdownTitle.get('titles'),
           titleToSelect = null;
 
       $.each(titles, function(i, title) {
@@ -50,17 +50,17 @@
         }
       });
 
-      dropdownTitle.set('titles', titles);
+      DropdownTitle.set('titles', titles);
 
-      dropdownTitle.set('selected.index', indexOrName);
-      dropdownTitle.set('selected.name', data.titles[indexOrName].name);
-      dropdownTitle.set('noAnimation', true);
+      DropdownTitle.set('selected.index', indexOrName);
+      DropdownTitle.set('selected.name', data.titles[indexOrName].name);
+      DropdownTitle.set('noAnimation', true);
 
       setTimeout(function() {
         _close(function() {
           if (fireFunc) {
             titleToSelect.select();
-            dropdownTitle.fire('titleSelected', {
+            DropdownTitle.fire('titleSelected', {
               title: titleToSelect
             });
           }
@@ -73,16 +73,16 @@
     }
 
     function _close(callback) {
-      dropdownTitle.fire('close', {
+      DropdownTitle.fire('close', {
         height: _$el.dropdownTitle.find('.pl-dropdown-title h2').height()
       });
 
-      dropdownTitle.set('noAnimation', false);
-      dropdownTitle.set('noCaret', true);
-      dropdownTitle.set('opened', false);
+      DropdownTitle.set('noAnimation', false);
+      DropdownTitle.set('noCaret', true);
+      DropdownTitle.set('opened', false);
 
       setTimeout(function() {
-        dropdownTitle.set('noCaret', false);
+        DropdownTitle.set('noCaret', false);
 
         if (callback) {
           callback();
@@ -94,49 +94,49 @@
       _close();
     }
 
-    dropdownTitle.fireSelected = function() {
-      var selected = dropdownTitle.get('selected');
+    DropdownTitle.fireSelected = function() {
+      var selected = DropdownTitle.get('selected');
 
       if (selected) {
-        dropdownTitle.fire('titleSelected', {
-          title: dropdownTitle.get('titles')[selected.index]
+        DropdownTitle.fire('titleSelected', {
+          title: DropdownTitle.get('titles')[selected.index]
         });
       }
     };
 
-    dropdownTitle.toggle = function() {
+    DropdownTitle.toggle = function() {
       if (data.titles.length < 2) {
         return;
       }
 
-      if (dropdownTitle.get('opened')) {
+      if (DropdownTitle.get('opened')) {
         _close();
       }
       else {
-        dropdownTitle.fire('open', {
+        DropdownTitle.fire('open', {
           height: _$el.dropdownTitle.find('.pl-dropdown-title h2').height() * (data.titles.length + 1)
         });
-        dropdownTitle.set('opened', true);
+        DropdownTitle.set('opened', true);
       }
     };
 
-    dropdownTitle.on('mainClick', function(event) {
+    DropdownTitle.on('mainClick', function(event) {
       event.original.stopPropagation();
     });
 
-    dropdownTitle.on('toggle', function(event) {
-      dropdownTitle.toggle();
+    DropdownTitle.on('toggle', function(event) {
+      DropdownTitle.toggle();
       event.original.stopPropagation();
     });
 
-    dropdownTitle.selectApp = function(name, fireFunc, callback) {
+    DropdownTitle.selectApp = function(name, fireFunc, callback) {
       _select(name, fireFunc, callback);
 
-      return dropdownTitle;
+      return DropdownTitle;
     };
 
-    dropdownTitle.addTitle = function(title, indexOrPosition) {
-      var titles = dropdownTitle.get('titles');
+    DropdownTitle.addTitle = function(title, indexOrPosition) {
+      var titles = DropdownTitle.get('titles');
 
       indexOrPosition = typeof indexOrPosition == 'undefined' ? titles.length : indexOrPosition;
 
@@ -146,13 +146,13 @@
 
       titles.splice(indexOrPosition, 0, title);
 
-      dropdownTitle.set('titles', titles);
+      DropdownTitle.set('titles', titles);
 
-      return dropdownTitle;
+      return DropdownTitle;
     };
 
-    dropdownTitle.removeTitle = function(name) {
-      var titles = dropdownTitle.get('titles');
+    DropdownTitle.removeTitle = function(name) {
+      var titles = DropdownTitle.get('titles');
 
       for (var i = 0; i < titles.length; i++) {
         if (titles[i].name == name) {
@@ -161,12 +161,12 @@
         }
       }
 
-      dropdownTitle.set('titles', titles);
+      DropdownTitle.set('titles', titles);
 
-      return dropdownTitle;
+      return DropdownTitle;
     };
 
-    dropdownTitle.on('teardown', function() {
+    DropdownTitle.on('teardown', function() {
       _$el.body.unbind('click', _click);
     });
 

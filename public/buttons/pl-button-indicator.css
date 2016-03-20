@@ -1,4 +1,4 @@
-@-webkit-keyframes pl-button-profile-show {
+@-webkit-keyframes pl-button-indicator-show {
   0% {
     -webkit-transform: scale(0);
   }
@@ -6,7 +6,7 @@
     -webkit-transform: scale(1);
   }
 }
-@-moz-keyframes pl-button-profile-show {
+@-moz-keyframes pl-button-indicator-show {
   0% {
     -moz-transform: scale(0);
   }
@@ -14,7 +14,7 @@
     -moz-transform: scale(1);
   }
 }
-@-ms-keyframes pl-button-profile-show {
+@-ms-keyframes pl-button-indicator-show {
   0% {
     -ms-transform: scale(0);
   }
@@ -22,7 +22,7 @@
     -ms-transform: scale(1);
   }
 }
-@-o-keyframes pl-button-profile-show {
+@-o-keyframes pl-button-indicator-show {
   0% {
     -o-transform: scale(0);
   }
@@ -30,7 +30,7 @@
     -o-transform: scale(1);
   }
 }
-@keyframes pl-button-profile-show {
+@keyframes pl-button-indicator-show {
   0% {
     transform: scale(0);
   }
@@ -38,15 +38,14 @@
     transform: scale(1);
   }
 }
-.pl-button-profile {
-  cursor: default;
+.pl-button-indicator {
+  cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
   position: relative;
   top: -0.5em;
   width: 5rem;
@@ -61,18 +60,18 @@
   border-radius: 0;
   padding: 0;
   margin: 0;
-  -webkit-animation: pl-button-profile-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-animation: pl-button-profile-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -ms-animation: pl-button-profile-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -o-animation: pl-button-profile-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-  animation: pl-button-profile-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-animation: pl-button-indicator-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-animation: pl-button-indicator-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-animation: pl-button-indicator-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-animation: pl-button-indicator-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: pl-button-indicator-show 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   -ms-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   -o-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile .pl-button-profile-bg {
+.pl-button-indicator .pl-button-indicator-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,8 +84,8 @@
   -o-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile img,
-.pl-button-profile img:hover {
+.pl-button-indicator img,
+.pl-button-indicator img:hover {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
@@ -100,11 +99,11 @@
   -o-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile img.hide,
-.pl-button-profile img:hover.hide {
+.pl-button-indicator img.hide,
+.pl-button-indicator img:hover.hide {
   opacity: 0;
 }
-.pl-button-profile .notification-picture {
+.pl-button-indicator .notification-picture {
   opacity: 0;
   -webkit-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -112,7 +111,7 @@
   -o-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile .pl-button-profile-notification-message {
+.pl-button-indicator .pl-button-indicator-notification-message {
   opacity: 0;
   position: absolute;
   top: 0.9rem;
@@ -131,10 +130,10 @@
   -o-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile .pl-button-profile-notification-message strong {
+.pl-button-indicator .pl-button-indicator-notification-message strong {
   font-weight: 600;
 }
-.pl-button-profile .pl-button-profile-number {
+.pl-button-indicator .pl-button-indicator-number {
   opacity: 0;
   position: absolute;
   right: 0;
@@ -152,24 +151,24 @@
   -o-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.pl-button-profile .pl-button-profile-number.showed {
+.pl-button-indicator .pl-button-indicator-number.showed {
   opacity: 1;
 }
-.pl-button-profile.opened {
+.pl-button-indicator.opened {
   width: 25rem;
 }
-.pl-button-profile.opened img,
-.pl-button-profile.opened img:hover {
+.pl-button-indicator.opened img,
+.pl-button-indicator.opened img:hover {
   -webkit-transform: rotate(-360deg);
   -moz-transform: rotate(-360deg);
   -ms-transform: rotate(-360deg);
   -o-transform: rotate(-360deg);
   transform: rotate(-360deg);
 }
-.pl-button-profile.opened .pl-button-profile-notification-message {
+.pl-button-indicator.opened .pl-button-indicator-notification-message {
   opacity: 1;
   left: 5.5rem;
 }
-.pl-button-profile.opened .notification-picture {
+.pl-button-indicator.opened .notification-picture {
   opacity: 1;
 }

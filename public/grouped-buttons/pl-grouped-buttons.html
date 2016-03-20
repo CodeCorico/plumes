@@ -1,0 +1,29 @@
+<section class="pl-grouped-buttons">
+  {{#buttons:i}}
+    {{#if type == 'indicator'}}
+      <rv-require
+        data-index="{{i}}"
+        name="pl-button-indicator"
+        src="../buttons/pl-button-indicator"
+        class="pl-grouped-buttons-button"
+        data-image="{{image}}"
+        data-bind-action="action"
+
+        style="{{orientaton}}: {{positions[i]}}px;"
+       ></rv-require>
+    {{else}}
+      <rv-require
+        data-index="{{i}}"
+        name="pl-button-rounded"
+        src="../buttons/pl-button-rounded"
+        class="pl-grouped-buttons-button"
+        data-image="{{image}}"
+        data-icon="{{icon}}"
+        data-cls="{{cls}}"
+        data-bind-action="action"
+
+        style="{{orientaton}}: {{positions[i]}}px;"
+       ></rv-require>
+    {{/if}}
+  {{/buttons}}
+</section>

@@ -1,67 +1,87 @@
-<div class="pl-layout-platform">
+<div class="pl-layout-platform {{screen}}">
 
-  <header class="pl-header {{light ? 'light' : ''}}">
-    {{#if usebrand}}
-    <h1 class="pl-layout-brand {{start ? 'opened' : ''}}">
-      <span>{{brand}}</span>
-    </h1>
-    {{/if}}
+  <header class="pl-layout-platform-header" style="margin-left: -{{titleLeftOffset}}px">
+    <div
+      class="pl-layout-platform-title-bg {{titleOpened ? 'opened' : ''}}"
+      style="
+        margin-left: -{{titleBgLeftOffset}}px;
+        width: {{titleBgWidth}}px;
+        height: {{titleBgHeight}}px;"
+    ></div>
 
-    {{#if usetitle}}
     <rv-require
       name="pl-dropdown-title"
-      class="pl-layout-title"
+      class="pl-layout-title {{titleOpened ? 'opened' : ''}}"
       src="../dropdowns/pl-dropdown-title"
       data-placeholder="Apps"
       data-bind-titles="apps"
     ></rv-require>
-    {{/if}}
   </header>
 
-  <div class="pl-layout-flyout">
-
-    {{> flyout}}
-
-    {{#if useprofile}}
+  <div class="pl-layout-platform-context-left" style="width: {{leftContextWidth}};">
     <rv-require
-      name="pl-button-profile"
-      src="../buttons/pl-button-profile"
-      data-bind-img="user.avatar"
-      data-bind-toggle="user-toggle"
-    ></rv-require>
-    {{/if}}
-
-    {{#if usehelp}}
-    <rv-require
-      name="pl-button-help"
-      src="../buttons/pl-button-help"
-      data-bind-toggle="help-toggle"
-    ></rv-require>
-    {{/if}}
-
+      data-pl-name="context-left"
+      name="pl-context-panel"
+      src="../context-panel/pl-context-panel"
+      class="pl-context-panel-require"
+      data-use-leftcross="true"
+      data-bind-on-cross="crossleftcontext"
+      data-bind-title="contextlefttitle"
+      data-bind-use-title="contextleftusetitle"
+      data-bind-use-scrollbar="contextleftscrollbar"
+    >
+      <rv-partial target="panels">
+        {{> context-left-panels}}
+      </rv-partial>
+    </rv-require>
   </div>
 
-  {{> content}}
+  <div class="pl-layout-platform-context-right" style="width: {{rightContextWidth}};">
+    <rv-require
+      data-pl-name="context-right"
+      name="pl-context-panel"
+      src="../context-panel/pl-context-panel"
+      class="pl-context-panel-require"
+      data-use-rightcross="true"
+      data-bind-on-cross="crossrightcontext"
+      data-bind-title="contextrighttitle"
+      data-bind-use-title="contextrightusetitle"
+      data-bind-use-scrollbar="contextrightscrollbar"
+    >
+      <rv-partial target="panels">
+        {{> context-right-panels}}
+      </rv-partial>
+    </rv-require>
+  </div>
+
+  <div class="pl-layout-platform-flyout-left">
+    <rv-require
+      data-pl-name="buttons-left"
+      name="pl-grouped-buttons"
+      src="../grouped-buttons/pl-grouped-buttons"
+      data-bind-buttons="buttonsleft"
+      data-orientaton="left"
+    ></rv-require>
+  </div>
+
+  <div class="pl-layout-platform-flyout-right">
+    <rv-require
+      data-pl-name="buttons-right"
+      name="pl-grouped-buttons"
+      src="../grouped-buttons/pl-grouped-buttons"
+      data-bind-buttons="buttonsright"
+      data-orientaton="right"
+    ></rv-require>
+  </div>
+
+  <div class="pl-layout-platform-content-template" style="left: {{contentLeft}}; right: {{contentRight}};"></div>
+
+  <div class="pl-layout-platform-content {{contentMedia}}" style="left: {{contentLeft}}; right: {{contentRight}};">
+    {{> content}}
+  </div>
 
   {{#if usemask}}
   <div class="pl-layout-mask"></div>
-  {{/if}}
-
-  {{#if usenotifications}}
-  <rv-require
-    name="pl-layout-notifications"
-    src="../layouts/pl-layout-notifications"
-    ondemand="pl-layout-notifications"
-    data-bind-text-title="notifications-title"
-    data-bind-text-signoutlabel="notifications-signoutlabel"
-    data-bind-text-nonotification="notifications-nonotification"
-    data-bind-text-emailslabel="notifications-emailslabel"
-    data-bind-toggle="notifications-toggle"
-    data-bind-openitem="notifications-openitem"
-    data-bind-signout="notifications-signout"
-    data-bind-emails-on="notifications-emails-on"
-    data-bind-emails-toggle="notifications-emails-toggle"
-  ></rv-require>
   {{/if}}
 
   <rv-require
