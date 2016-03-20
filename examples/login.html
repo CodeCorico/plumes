@@ -26,9 +26,7 @@
 
     data-bind-onloaded="onloaded"
     data-bind-beforerequire="beforerequire"
-    data-bind-brand="brand"
     data-bind-apps="apps"
-    data-bind-user="user"
   >
     <rv-partial target="mask-title">
       Login <span class="accent">example</span>
@@ -65,27 +63,23 @@
 
     window.Ractive.bootstrap(function(page) {
 
-      page.set('brand', 'Plumes');
       page.set('apps', [{
-        name: 'Layout',
+        name: 'Plumes',
         select: function() {
-          window.location.href = '/layout.html';
+          window.location.href = 'index.html';
         }
       }, {
-        name: 'Login',
+        name: 'Example Login',
         selected: true,
         select: function() {
           window.location.href = 'login.html';
         }
       }, {
-        name: 'Lists',
+        name: 'Example Lists',
         select: function() {
           window.location.href = 'lists.html';
         }
       }]);
-      page.set('user', {
-        avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
-      });
 
       function _validateEmail(email) {
         return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(email);
@@ -93,6 +87,7 @@
 
       page.set('beforerequire', function(Layout, callback) {
         Layout.require('pl-login').then(function() {
+          $('.pl-layout-mask').remove();
 
           var Login = Layout.findChild('name', 'pl-login');
 
@@ -154,9 +149,7 @@
             });
           });
 
-          Login.on('closed', function() {
-            callback();
-          });
+          Login.on('closed', callback);
         });
       });
 
