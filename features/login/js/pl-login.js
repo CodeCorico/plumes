@@ -3,39 +3,6 @@
 
   window.Ractive.controller('pl-login', function(component, data, el, config, done) {
 
-    data.texts = {};
-
-    $.each(data, function(name, value) {
-      if (name.substr(0, 5) == 'text-') {
-        name = name.substr(5, name.length - 5);
-        data.texts[name] = value;
-      }
-    });
-
-    data.texts = $.extend(true, {
-      username: 'Name',
-      code: 'Code',
-      userpassword: 'Password',
-      userpasswordconfirm: 'Confirm password',
-      forgotlink: 'I forgot my password',
-      login: 'Back to login',
-      forgottext: 'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.',
-      forgotcodetext: 'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.',
-      forgotpasswordtext: 'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.',
-      forgotpasswordhelp: [
-        'When creating your password, remember the following:',
-        '<ol>',
-          '<li>It must not contain your name.</li>',
-          '<li>It must contain one or more digits.</li>',
-          '<li>It is recommended to mix lowercase and uppercase characters.</li>',
-          '<li>It should be long over 7 characters.</li>',
-        '</ol>'
-      ].join('')
-    }, data.texts);
-
-    data.texts.usernamePlaceholder = data.texts.username;
-    data.texts.userpasswordPlaceholder = data.texts.userpassword;
-
     data.avatar = !data.avatar ? 'null' : data.avatar;
     data.inForgot = false;
 
@@ -43,7 +10,27 @@
           plName: 'pl-login',
           data: $.extend(true, {
             show: false,
-            top: 0
+            top: 0,
+            texts: {
+              username: 'Name',
+              code: 'Code',
+              userpassword: 'Password',
+              userpasswordconfirm: 'Confirm password',
+              forgotlink: 'I forgot my password',
+              login: 'Back to login',
+              forgottext: 'Submit your email and press <span class="key">ENTER</span> to receive a validation code in your mailbox.',
+              forgotcodetext: 'Use your <strong>validation code</strong> and press <span class="key">ENTER</span> to get the possibility to change your password.',
+              forgotpasswordtext: 'Enter your new password twice (to confirm) and press <span class="key">ENTER</span> to change your password.',
+              forgotpasswordhelp: [
+                'When creating your password, remember the following:',
+                '<ol>',
+                  '<li>It must not contain your name.</li>',
+                  '<li>It must contain one or more digits.</li>',
+                  '<li>It is recommended to mix lowercase and uppercase characters.</li>',
+                  '<li>It should be long over 7 characters.</li>',
+                '</ol>'
+              ].join('')
+            }
           }, data)
         }),
         _$el = {
@@ -52,7 +39,17 @@
           forgotTexts: $(Login.el).find('.pl-login-forgot-texts')
         };
 
-    window.Ractive.useBinds(Login, ['forgot']);
+    window.Ractive.bindUses(Login, ['forgot']);
+
+    window.Ractive.bindTexts(Login);
+
+    Login.observe('texts.username', function(value) {
+      Login.set('texts.usernamePlaceholder', value);
+    });
+
+    Login.observe('texts.userpassword', function(value) {
+      Login.set('texts.userpasswordPlaceholder', value);
+    });
 
     function _refresh() {
       var messageHeight = _$el.message.outerHeight(true);
