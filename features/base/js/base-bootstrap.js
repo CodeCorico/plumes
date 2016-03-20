@@ -80,4 +80,14 @@
     });
   };
 
+  window.Ractive.bindTexts = function(component) {
+    Object.keys(component.get('texts') || {}).forEach(function(key) {
+      component.observe('text-' + key, function(value) {
+        if (typeof value != 'undefined') {
+          component.set('texts.' + key, value);
+        }
+      });
+    });
+  };
+
 })();
