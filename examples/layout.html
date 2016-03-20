@@ -29,9 +29,6 @@
     data-bind-apps="apps"
     data-bind-buttonsleft="buttonsleft"
     data-bind-buttonsright="buttonsright"
-
-    data-bind-contextlefttitle="lefttitle"
-    data-contextrightusetitle="false"
   >
     <rv-partial target="mask-title">
       Plumes <span class="theme">example</span>
@@ -42,7 +39,7 @@
     <rv-partial target="context-left-panels">
 
       <div class="pl-group" data-group="group-1" data-title="articles">
-        <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
+        <div class="pl-section" style="color: white; padding: 3rem;">
 
           <ul>
             <li>Article 1</li>
@@ -59,7 +56,7 @@
       </div>
 
       <div class="pl-group" data-group="group-2" data-title="content">
-        <div class="pl-section" style="background: #333; color: white; padding: 3rem;">
+        <div class="pl-section" style="color: white; padding: 3rem;">
 
           <p>My big content</p>
 
@@ -69,7 +66,17 @@
     </rv-partial>
     <rv-partial target="context-right-panels">
 
-      <div class="pl-section" style="background: url('https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png') no-repeat 50%; background-size: cover; height: 20rem;"></div>
+      <div class="pl-group" data-group="group-3" data-title="notifications">
+
+        <rv-require
+          data-name="notifications"
+          name="pl-notifications-panel"
+          src="../public/notifications-panel/pl-notifications-panel"
+
+          data-dark="true"
+        ></rv-require>
+
+      </div>
 
     </rv-partial>
     <rv-partial target="content">
@@ -79,10 +86,6 @@
         <img src="/examples/image.jpg" style="width: 100%;" />
 
         <p style="padding: 3rem;">
-          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
-          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
-          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
-          Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
           Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
           Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
           Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />Hello<br />
@@ -111,10 +114,10 @@
     window.Ractive.bootstrap(function(page) {
 
       page.set('apps', [{
-        name: 'Layout',
+        name: 'Plumes',
         selected: true,
         select: function() {
-          window.location.href = 'layout.html';
+          window.location.href = 'index.html';
         }
       }, {
         name: 'Login',
@@ -146,6 +149,8 @@
         page.set('buttonsleft', buttonsleft);
       }, 2000);
 
+      var profileButton = null;
+
       page.set('buttonsright', [{
         icon: 'fa fa-bell',
         cls: 'dark light-bg',
@@ -153,34 +158,37 @@
           button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
         }
       }, {
-        icon: 'fa fa-list-ul',
+        icon: 'fa fa-play',
         cls: 'dark light-bg',
-        context: 'right',
-        beforeContext: function(panel, callback) {
-          if (panel.isOpened()) {
-            callback();
-            panel.close();
-          }
-          else {
-            callback();
-          }
+        action: function(event, button) {
+          profileButton.pushNotification(
+            'We have released a new <strong>Plumes</strong> version!',
+            '/examples/plumes-logo.png',
+            {
+              id: 10
+            }
+          );
+
+          var notificationsPanel = page.findChild('data-name', 'notifications');
+
+          notificationsPanel.pushNotification(
+            'The user already connected and <strong>13 other bugs</strong> are now fixed on <strong>Plumes</strong>!',
+            '13 hours ago',
+            '/examples/plumes-logo.png',
+            {
+              id: 10
+            }
+          );
         }
       }, {
         type: 'indicator',
         image: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png',
+        group: 'group-3',
         action: function(event, button) {
-          if (button.get('notificationsCount')) {
-            button.clearNotificationsCount();
-          }
-          else {
-            button.pushNotification(
-              'We have released a new <strong>Plumes</strong> version!',
-              '/examples/plumes-logo.png',
-              {
-                id: 10
-              }
-            );
-          }
+          button.clearNotificationsCount();
+        },
+        ready: function(button) {
+          profileButton = button;
         }
       }]);
 
