@@ -1,5 +1,25 @@
 # Plumes - Changelog
 
+<a name="1.0.0"></a>
+# 1.0.0 (2016-03-20)
+
+[Release 1.0.0](https://github.com/CodeCorico/plumes/releases/tag/1.0.0)
+
+### Breaking changes
+
+- **Layout Platform**
+  - This layout was redrawn with a new idea: the context panels. Its view manages 1, 2 or 3 independent columns that can be opened/closed easily from header buttons. It manages responsiveness, without media queries.
+- **Context Panel**
+  - This new feature can display blocks of content with a title. You can place it everywhere, its container is adaptive.
+- **Button Rounded**
+  - New feature to display a picture or an icon.
+- **Grouped buttons**
+  - This new feature arrange and displays Buttons Rounded and Buttons Indicator in an horizontal view.
+- **Notifications panel**
+  - The previous Layout Notifications gave way to the new Notifications panel. It can be placed in any other component instead of beeing independent. It contains two theme, light and dark.
+- **Layout Sidebars**
+  - This layout is removed. The Layout Platform is a better way to split a view in 2/3 columns.
+
 <a name="0.6.5"></a>
 # 0.6.5 (2016-02-04)
 
