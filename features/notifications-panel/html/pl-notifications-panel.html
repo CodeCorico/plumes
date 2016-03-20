@@ -1,31 +1,39 @@
-<section class="pl-layout-notifications {{opened ? 'opened' : ''}}">
-  <h1>- {{title}} -</h1>
-  <ul>
+<section
+  class="
+    pl-notifications-panel
+    {{dark ? 'theme-dark' : ''}}
+    {{usesection ? 'pl-section' : ''}}
+    {{useemails ? 'use-emails' : ''}}
+    {{opened ? 'opened' : ''}}
+  "
+>
+  <ul class="pl-notifications-panel-list">
     {{#if notifications}}
       {{#notifications}}
-      <li class="pl-layout-notifications-item" on-click="openitem">
+      <li class="pl-notifications-panel-item" on-click="openitem">
         {{#if picture}}
         <img src="{{picture}}" />
         {{/if}}
         <p>{{{content}}}</p>
-        <p class="pl-layout-notifications-item-time">{{time}}</p>
+        <p class="pl-notifications-panel-item-time">{{time}}</p>
       </li>
       {{/notifications}}
     {{else}}
-      <li class="pl-layout-notifications-item pl-layout-notifications-noitem">
-        <p>{{nonotification}}</p>
+      <li class="pl-notifications-panel-item pl-notifications-panel-noitem">
+        <p>{{texts.empty}}</p>
       </li>
     {{/if}}
   </ul>
-  <div class="pl-layout-notifications-emails">
+
+  {{#if useemails}}
+  <div class="pl-notifications-panel-emails">
     <rv-require
       name="pl-button-onoff"
       src="../buttons/pl-button-onoff"
-      data-bind-text-label="emailslabel"
+      data-bind-text-label="texts.emails"
       data-bind-on="emails-on"
       data-bind-toggle="emailstoggle"
     ></rv-require>
   </div>
-
-  <button class="pl-layout-notifications-signout" on-click="signout">{{signoutlabel}}</button>
+  {{/if}}
 </section>
