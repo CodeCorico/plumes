@@ -62,9 +62,7 @@
     src="../public/layouts/pl-layout-platform"
 
     data-bind-onloaded="onloaded"
-    data-bind-brand="brand"
     data-bind-apps="apps"
-    data-bind-user="user"
     data-bind-listitems="listitems"
   >
     <rv-partial target="mask-title">
@@ -100,27 +98,23 @@
 
     window.Ractive.bootstrap(function(page) {
 
-      page.set('brand', 'Plumes');
       page.set('apps', [{
-        name: 'Layout',
+        name: 'Plumes',
         select: function() {
-          window.location.href = 'layout.html';
+          window.location.href = 'index.html';
         }
       }, {
-        name: 'Login',
+        name: 'Example Login',
         select: function() {
           window.location.href = 'login.html';
         }
       }, {
-        name: 'Lists',
+        name: 'Example Lists',
         selected: true,
         select: function() {
           window.location.href = 'lists.html';
         }
       }]);
-      page.set('user', {
-        avatar: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png'
-      });
 
       page.set('listitems', [{
         label: 'France',
