@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Plumes - Example Layout</title>
+  <title>Plumes - Examples</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/public/base/base-plumes.css" type="text/css" />
@@ -120,12 +120,12 @@
           window.location.href = 'index.html';
         }
       }, {
-        name: 'Login',
+        name: 'Example Login',
         select: function() {
           window.location.href = 'login.html';
         }
       }, {
-        name: 'Lists',
+        name: 'Example Lists',
         select: function() {
           window.location.href = 'lists.html';
         }
@@ -222,10 +222,6 @@
 
       page.set('onloaded', function() {
         $('.example-mask').remove();
-      });
-
-      page.set('onPageSelected', function(page) {
-        console.log('Page selected', page);
       });
 
       page.require();
