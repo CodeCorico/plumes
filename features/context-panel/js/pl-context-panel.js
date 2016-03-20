@@ -113,7 +113,7 @@
           panel: $(ContextPanel.el)
         };
 
-    window.Ractive.useBinds(
+    window.Ractive.bindUses(
       ContextPanel,
       ['title', 'scrollbar', 'leftcross', 'rightcross'],
       ['leftcross', 'rightcross']
@@ -128,6 +128,5 @@
     });
 
     ContextPanel.require().then(done);
-
   });
 })();

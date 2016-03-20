@@ -215,7 +215,7 @@
           contentTemplate: $(LayoutPlatform.el).find('.pl-layout-platform-content-template')
         };
 
-    window.Ractive.useBinds(LayoutPlatform, ['mask']);
+    window.Ractive.bindUses(LayoutPlatform, ['mask']);
 
     _$el.window.resize(_resize);
 

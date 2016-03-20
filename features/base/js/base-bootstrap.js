@@ -64,7 +64,7 @@
     });
   };
 
-  window.Ractive.useBinds = function(component, binds, defaultsToFalse) {
+  window.Ractive.bindUses = function(component, binds, defaultsToFalse) {
     defaultsToFalse = defaultsToFalse || [];
 
     binds.forEach(function(bind) {
