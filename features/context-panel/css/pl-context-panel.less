@@ -59,6 +59,12 @@
 
     .pl-group {
       display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
 
       &.opened {
         display: block;
@@ -94,7 +100,7 @@
   }
 
   &.scrollbar.usable {
-    .pl-context-panel-content {
+    .pl-context-panel-content, .pl-context-panel-content .pl-group {
       overflow: auto;
     }
   }
