@@ -144,7 +144,7 @@
           }
 
           if ($group.hasClass('opened')) {
-            return;
+            return context.open();
           }
 
           beforeGroup(context, $group, function() {
