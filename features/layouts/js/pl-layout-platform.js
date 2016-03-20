@@ -304,8 +304,6 @@
 
           Title = LayoutPlatform.findChild('name', 'pl-dropdown-title');
 
-          window.A1 = LayoutPlatform;
-
           _$el.title = _$el.platform.find('.pl-layout-title');
           _$el.titleText = _$el.platform.find('.pl-layout-title h2 span');
 
