@@ -27,14 +27,14 @@
           <input
             class="input name"
             type="{{inForgotPassword ? 'password' : 'text'}}"
-            placeholder="{{usernamePlaceholder}}"
+            placeholder="{{texts.usernamePlaceholder}}"
             value="{{username}}"
             disabled="{{inModal}}"
           />
           <input
             class="input password {{inForgot && !inForgotPassword ? 'hide' : ''}}"
             type="password"
-            placeholder="{{userpasswordPlaceholder}}"
+            placeholder="{{texts.userpasswordPlaceholder}}"
             value="{{userpassword}}"
             disabled="{{inModal || (inForgot && !inForgotPassword)}}"
           />

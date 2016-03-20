@@ -4,13 +4,13 @@
   window.Ractive.controller('pl-login', function(component, data, el, config, done) {
 
     data.avatar = !data.avatar ? 'null' : data.avatar;
-    data.inForgot = false;
 
     var Login = component({
           plName: 'pl-login',
           data: $.extend(true, {
             show: false,
             top: 0,
+            inForgot: false,
             texts: {
               username: 'Name',
               code: 'Code',
@@ -55,7 +55,10 @@
       var messageHeight = _$el.message.outerHeight(true);
 
       Login.set('height', _$el.window.height() - (40 + messageHeight + 30));
-      Login.set('helpTop', _$el.forgotTexts.position().top);
+
+      if (_$el.forgotTexts.length) {
+        Login.set('helpTop', _$el.forgototTexts.position().top);
+      }
     }
 
     function _focusName() {
@@ -77,8 +80,8 @@
         }
 
         if (type == 'success') {
-          Login.set('usernamePlaceholder', data.texts.username);
-          Login.set('userpasswordPlaceholder', data.texts.userpassword);
+          Login.set('texts.usernamePlaceholder', Login.get('texts.username'));
+          Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpassword'));
         }
 
         Login.set('storyboardMessage', 'sb-message-2');
@@ -262,8 +265,8 @@
       Login.set('inForgot', false);
       Login.set('inForgotCode', false);
       Login.set('inForgotPassword', false);
-      Login.set('usernamePlaceholder', data.texts.username);
-      Login.set('userpasswordPlaceholder', data.texts.userpassword);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.username'));
+      Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpassword'));
 
       if (inForgotCode) {
         Login.fire('exitForgotCode');
@@ -283,7 +286,7 @@
     Login.on('forgotSuccess', function() {
       Login.set('inForgotCode', true);
       Login.set('username', '');
-      Login.set('usernamePlaceholder', data.texts.code);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.code'));
 
       Login.fire('enterForgotCode');
 
@@ -304,9 +307,9 @@
       Login.set('inForgotCode', false);
       Login.set('inForgotPassword', true);
       Login.set('username', '');
-      Login.set('usernamePlaceholder', data.texts.userpassword);
+      Login.set('texts.usernamePlaceholder', Login.get('texts.userpassword'));
       Login.set('userpassword', '');
-      Login.set('userpasswordPlaceholder', data.texts.userpasswordconfirm);
+      Login.set('texts.userpasswordPlaceholder', Login.get('texts.userpasswordconfirm'));
 
       Login.fire('enterForgotPassword');
 
