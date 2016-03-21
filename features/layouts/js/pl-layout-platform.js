@@ -232,7 +232,10 @@
     _resize();
 
     function _updatePosition() {
-      LayoutPlatform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
+      var width = _$el.titleText.outerWidth();
+
+      LayoutPlatform.set('titleEmpty', !width);
+      LayoutPlatform.set('titleLeftOffset', !width ? -8 : width / 2);
     }
 
     function _updateTitleArea(height, open) {

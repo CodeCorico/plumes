@@ -35,6 +35,10 @@
     margin-left: -8rem;
     .transition(all 0.35s @easeOutQuart);
 
+    &.empty {
+      opacity: 0;
+    }
+
     .pl-layout-platform-title-bg {
       position: absolute;
       top: -1rem;
@@ -43,10 +47,10 @@
       height: 0;
       background: #333;
 
-      .transition(width 0.15s @easeOutQuart, margin-left 0.25s @easeOutQuart);
+      .transition(width 0.15s @easeOutQuart, margin-left 0.35s @easeOutQuart, opacity 0.35s @easeOutQuart);
 
       &.opened {
-        .transition(width 0.25s @easeOutQuart, margin-left 0.25s @easeOutQuart);
+        .transition(width 0.25s @easeOutQuart, margin-left 0.35s @easeOutQuart, opacity 0.35s @easeOutQuart);
       }
     }
 
