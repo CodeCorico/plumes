@@ -117,7 +117,13 @@
       $group.addClass('opened');
 
       var title = $group.attr('data-title');
-      if (typeof title != 'undefined') {
+
+      if ($group.attr('data-no-title') == 'true') {
+        LayoutPlatform.set('context' + orientation + 'usetitle', false);
+        LayoutPlatform.set('context' + orientation + 'title', null);
+      }
+      else if (typeof title != 'undefined') {
+        LayoutPlatform.set('context' + orientation + 'usetitle', true);
         LayoutPlatform.set('context' + orientation + 'title', title);
       }
 
