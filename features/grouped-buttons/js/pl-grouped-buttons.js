@@ -9,12 +9,13 @@
         orientaton: 'left',
         buttons: [],
         positions: [],
-        action: function(event) {
-          if (!event || !event.node) {
+
+        action: function(event, component) {
+          if (!component) {
             return;
           }
 
-          var index = parseInt($(event.node).parent().attr('data-index'), 10),
+          var index = parseInt($(component.el).attr('data-index'), 10),
               button = GroupedButtons.get('buttons[' + index + ']'),
               component = GroupedButtons.findChild('data-index', index);
 

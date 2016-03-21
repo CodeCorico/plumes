@@ -16,6 +16,7 @@
             opened: false,
             usable: false
           }, data),
+
           open: function(callback) {
             _inOpen = true;
 
