@@ -5,12 +5,19 @@
 
     var ButtonRounded = component({
       plName: 'pl-button-rounded',
-      data: data
+      data: data,
+      action: function() {
+        var action = ButtonRounded.get('action');
+
+        if (action) {
+          action(null, ButtonRounded);
+        }
+      }
     });
 
     if (data.action) {
       ButtonRounded.on('action', function(event) {
-        data.action(event);
+        data.action(event, ButtonRounded);
         event.original.stopPropagation();
       });
     }
