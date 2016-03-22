@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.0.2"></a>
+# 1.0.2 (2016-03-22)
+
+[Release 1.0.2](https://github.com/CodeCorico/plumes/releases/tag/1.0.2)
+
+### Hotfixes
+
+- **Context Panel**
+  - Fix closeIfGroupOpened() method
+
 <a name="1.0.1"></a>
 # 1.0.1 (2016-03-22)
 
