@@ -16,6 +16,7 @@
             opened: false,
             usable: false
           }, data),
+
           open: function(callback) {
             _inOpen = true;
 
@@ -57,6 +58,7 @@
               }, (($sections.length - 1) * 80) + 450);
             }, 250);
           },
+
           closeContent: function(callback) {
             _inOpen = false;
 
@@ -90,6 +92,7 @@
               }
             }, (($sections.length - 1) * 80) + 450);
           },
+
           close: function(callback) {
             ContextPanel.fire('beforeClose');
 
@@ -105,6 +108,23 @@
               }, 250);
             });
           },
+
+          closeIfGroupOpened: function(groupName) {
+            var close = false;
+
+            _$el.panel.find('.pl-context-panel-title, .pl-group.opened').each(function() {
+              if ($(this).attr('data-group') == groupName) {
+                close = true;
+
+                return false;
+              }
+            });
+
+            if (close) {
+              ContextPanel.close();
+            }
+          },
+
           isOpened: function() {
             return ContextPanel.get('opened');
           }

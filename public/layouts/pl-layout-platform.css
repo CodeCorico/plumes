@@ -6,18 +6,6 @@
   bottom: 0;
   overflow: hidden;
 }
-.pl-layout-platform.screen-mobile .pl-layout-platform-flyout-left .pl-grouped-buttons > * {
-  visibility: hidden;
-}
-.pl-layout-platform.screen-mobile .pl-layout-platform-flyout-left .pl-grouped-buttons > *:nth-child(-n+2) {
-  visibility: visible;
-}
-.pl-layout-platform.screen-mobile .pl-layout-platform-flyout-right .pl-grouped-buttons > * {
-  visibility: hidden;
-}
-.pl-layout-platform.screen-mobile .pl-layout-platform-flyout-right .pl-grouped-buttons > *:nth-last-child(-n+2) {
-  visibility: visible;
-}
 .pl-layout-platform .pl-layout-platform-header {
   z-index: 1000;
   position: fixed;
@@ -31,6 +19,9 @@
   -o-transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+.pl-layout-platform .pl-layout-platform-header.empty {
+  opacity: 0;
+}
 .pl-layout-platform .pl-layout-platform-header .pl-layout-platform-title-bg {
   position: absolute;
   top: -1rem;
@@ -38,18 +29,18 @@
   width: 0;
   height: 0;
   background: #333;
-  -webkit-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -ms-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -o-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: width 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-layout-platform .pl-layout-platform-header .pl-layout-platform-title-bg.opened {
-  -webkit-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -ms-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -o-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: width 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), margin-left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-layout-platform .pl-layout-platform-header .pl-layout-title {
   cursor: default;

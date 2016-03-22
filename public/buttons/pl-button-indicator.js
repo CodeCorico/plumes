@@ -13,6 +13,14 @@
             notificationDisplayTime: NOTIFICATION_DISPLAY_TIME,
             notificationsCount: 0
           }, data),
+
+          action: function() {
+            var action = ButtonIndicator.get('action');
+
+            if (action) {
+              action(null, ButtonIndicator, activeNotification);
+            }
+          },
           pushNotification: function(message, picture, args, forceUncount) {
             activeNotification = {
               message: message,
@@ -70,7 +78,7 @@
 
     if (data.action) {
       ButtonIndicator.on('action', function(event) {
-        data.action(event, activeNotification);
+        data.action(event, ButtonIndicator, activeNotification);
         event.original.stopPropagation();
       });
     }

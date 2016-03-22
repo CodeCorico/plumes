@@ -3,6 +3,10 @@
   width: 100%;
   height: 100%;
 }
+.pl-context-panel::-webkit-scrollbar-thumb,
+.pl-context-panel *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
 .pl-context-panel .pl-context-panel-bg {
   position: absolute;
   left: 50%;
@@ -158,6 +162,7 @@
   -ms-transition: all 0.45s cubic-bezier(0.95, 0.05, 0.795, 0.035);
   -o-transition: all 0.45s cubic-bezier(0.95, 0.05, 0.795, 0.035);
   transition: all 0.45s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  color: white;
 }
 .pl-context-panel .pl-section.opened {
   opacity: 1;

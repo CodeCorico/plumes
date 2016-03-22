@@ -1,6 +1,6 @@
 <div class="pl-layout-platform {{screen}}">
 
-  <header class="pl-layout-platform-header" style="margin-left: -{{titleLeftOffset}}px">
+  <header class="pl-layout-platform-header {{titleEmpty ? 'empty' : ''}}" style="margin-left: -{{titleLeftOffset}}px">
     <div
       class="pl-layout-platform-title-bg {{titleOpened ? 'opened' : ''}}"
       style="
@@ -60,7 +60,7 @@
       name="pl-grouped-buttons"
       src="../grouped-buttons/pl-grouped-buttons"
       data-bind-buttons="buttonsleft"
-      data-orientaton="left"
+      data-orientation="left"
     ></rv-require>
   </div>
 
@@ -70,7 +70,7 @@
       name="pl-grouped-buttons"
       src="../grouped-buttons/pl-grouped-buttons"
       data-bind-buttons="buttonsright"
-      data-orientaton="right"
+      data-orientation="right"
     ></rv-require>
   </div>
 

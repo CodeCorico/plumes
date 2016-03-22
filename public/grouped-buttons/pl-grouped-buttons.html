@@ -1,4 +1,4 @@
-<section class="pl-grouped-buttons">
+<section class="pl-grouped-buttons {{compactOpened ? 'compact-opened' : ''}} {{hidden ? 'hidden' : ''}}">
   {{#buttons:i}}
     {{#if type == 'indicator'}}
       <rv-require
@@ -7,9 +7,13 @@
         src="../buttons/pl-button-indicator"
         class="pl-grouped-buttons-button"
         data-image="{{image}}"
+        data-cls="{{cls}}"
         data-bind-action="action"
 
-        style="{{orientaton}}: {{positions[i]}}px;"
+        style="
+          {{orientation}}: {{mode == 'compact' ? compactPositions[i] : positions[i]}}px;
+          {{mode == 'compact' ? 'top: ' + compactPositionsTop[i] + 'px;' : ''}}
+        "
        ></rv-require>
     {{else}}
       <rv-require
@@ -22,8 +26,20 @@
         data-cls="{{cls}}"
         data-bind-action="action"
 
-        style="{{orientaton}}: {{positions[i]}}px;"
+        style="
+          {{orientation}}: {{mode == 'compact' ? compactPositions[i] : positions[i]}}px;
+          {{mode == 'compact' ? 'top: ' + compactPositionsTop[i] + 'px;' : ''}}
+        "
        ></rv-require>
     {{/if}}
   {{/buttons}}
+
+  <div
+    class="pl-grouped-button-compact-panel"
+    style="height: {{compactHeight}}px; {{orientation}}: 0;"
+  ></div>
+
+  <button class="pl-grouped-button-compact-button" style="{{orientation}}: {{compactButtonPosition}}px" on-click="compactAction">
+    <i class="fa fa-ellipsis-v"></i>
+  </button>
 </section>

@@ -9,6 +9,10 @@
         },
 
         Title = null,
+        _groupedButtons = {
+          left: null,
+          right: null
+        },
         _contexts = {
           left: null,
           right: null
@@ -24,6 +28,12 @@
         LayoutPlatform.set('contentLeft', LayoutPlatform.get('leftContextOpened') ? '25%' : 0);
         LayoutPlatform.set('contentRight', LayoutPlatform.get('rightContextOpened') ? '25%' : 0);
 
+        if (_groupedButtons.left) {
+          _groupedButtons.left.defaultMode();
+        }
+        if (_groupedButtons.right) {
+          _groupedButtons.right.defaultMode();
+        }
         LayoutPlatform.set('screen', 'screen-desktop');
       }
       else {
@@ -53,6 +63,12 @@
             LayoutPlatform.get('leftContextOpened') ? '-75%' : 0)
           );
 
+          if (_groupedButtons.left) {
+            _groupedButtons.left.defaultMode();
+          }
+          if (_groupedButtons.right) {
+            _groupedButtons.right.defaultMode();
+          }
           LayoutPlatform.set('screen', 'screen-tablet');
         }
         else if (screenWidth >= VIEWS.MOBILE) {
@@ -62,6 +78,12 @@
           LayoutPlatform.set('contentLeft', 0);
           LayoutPlatform.set('contentRight', 0);
 
+          if (_groupedButtons.left) {
+            _groupedButtons.left.compactMode();
+          }
+          if (_groupedButtons.right) {
+            _groupedButtons.right.compactMode();
+          }
           LayoutPlatform.set('screen', 'screen-mobile');
         }
       }
@@ -92,7 +114,14 @@
     }
 
     function _registerGroupedButtonsEvents(orientation, component) {
+      _groupedButtons[orientation] = component;
+
       component.on('beforeAction', _beforeButtonsAction);
+      component.on('beforeCompact', _beforeButtonsCompact);
+
+      _resize();
+
+      _groupedButtons[orientation].show();
     }
 
     function _registerContextEvents(orientation, component) {
@@ -117,7 +146,13 @@
       $group.addClass('opened');
 
       var title = $group.attr('data-title');
-      if (typeof title != 'undefined') {
+
+      if ($group.attr('data-no-title') == 'true') {
+        LayoutPlatform.set('context' + orientation + 'usetitle', false);
+        LayoutPlatform.set('context' + orientation + 'title', null);
+      }
+      else if (typeof title != 'undefined') {
+        LayoutPlatform.set('context' + orientation + 'usetitle', true);
         LayoutPlatform.set('context' + orientation + 'title', title);
       }
 
@@ -175,6 +210,19 @@
       }
     }
 
+    function _beforeButtonsCompact(args) {
+      if (!args || !args.button) {
+        return;
+      }
+
+      if (args.button == _groupedButtons.left) {
+        _groupedButtons.right[args.opened ? 'hide' : 'show']();
+      }
+      else if (args.button == _groupedButtons.right) {
+        _groupedButtons.left[args.opened ? 'hide' : 'show']();
+      }
+    }
+
     var LayoutPlatform = component({
           plName: 'pl-layout-platform',
           data: $.extend(true, {
@@ -205,7 +253,21 @@
             crossrightcontext: function() {
               _closeContext('right');
             }
-          }, data)
+          }, data),
+
+          leftGroupedButtons: function() {
+            return _groupedButtons.left;
+          },
+          rightGroupedButtons: function() {
+            return _groupedButtons.right;
+          },
+
+          leftContext: function() {
+            return _contexts.left;
+          },
+          rightContext: function() {
+            return _contexts.right;
+          }
         }),
         Page = LayoutPlatform.parentRequire,
         _$el = {
@@ -226,7 +288,10 @@
     _resize();
 
     function _updatePosition() {
-      LayoutPlatform.set('titleLeftOffset', _$el.titleText.outerWidth() / 2);
+      var width = _$el.titleText.outerWidth();
+
+      LayoutPlatform.set('titleEmpty', !width);
+      LayoutPlatform.set('titleLeftOffset', !width ? -8 : width / 2);
     }
 
     function _updateTitleArea(height, open) {
