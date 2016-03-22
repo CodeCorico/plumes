@@ -133,7 +133,6 @@
 
       page.set('buttonsleft', [{
         icon: 'fa fa-list-ul',
-        cls: 'dark light-bg',
         group: 'group-1'
       }]);
 
@@ -142,7 +141,6 @@
 
         buttonsleft.unshift({
           icon: 'fa fa-file-text',
-          cls: 'dark light-bg',
           group: 'group-2'
         });
 
@@ -153,13 +151,11 @@
 
       page.set('buttonsright', [{
         icon: 'fa fa-bell',
-        cls: 'dark light-bg',
         action: function(event, button) {
           button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
         }
       }, {
         icon: 'fa fa-play',
-        cls: 'dark light-bg',
         action: function(event, button) {
           profileButton.pushNotification(
             'We have released a new <strong>Plumes</strong> version!',
