@@ -138,6 +138,14 @@
 
         _resize();
       });
+
+      component.on('closeIfGroupOpened', function(args) {
+        if (!args || !args.$group) {
+          return;
+        }
+
+        args.$group.removeClass('opened');
+      });
     }
 
     function _displayContextGroup(orientation, context, $context, $group) {

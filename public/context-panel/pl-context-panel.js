@@ -110,18 +110,22 @@
           },
 
           closeIfGroupOpened: function(groupName) {
-            var close = false;
+            var $group = null;
 
-            _$el.panel.find('.pl-context-panel-title, .pl-group.opened').each(function() {
+            _$el.panel.find('.pl-group.opened').each(function() {
               if ($(this).attr('data-group') == groupName) {
-                close = true;
+                $group = $(this);
 
                 return false;
               }
             });
 
-            if (close) {
-              ContextPanel.close();
+            if ($group) {
+              ContextPanel.close(function() {
+                ContextPanel.fire('closeIfGroupOpened', {
+                  $group: $group
+                });
+              });
             }
           },
 
