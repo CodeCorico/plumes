@@ -8,24 +8,6 @@
   bottom: 0;
   overflow: hidden;
 
-  &.screen-mobile {
-    .pl-layout-platform-flyout-left .pl-grouped-buttons > * {
-      visibility: hidden;
-
-      &:nth-child(-n+2) {
-        visibility: visible;
-      }
-    }
-
-    .pl-layout-platform-flyout-right .pl-grouped-buttons > * {
-      visibility: hidden;
-
-      &:nth-last-child(-n+2) {
-        visibility: visible;
-      }
-    }
-  }
-
   .pl-layout-platform-header {
     z-index: 1000;
     position: fixed;

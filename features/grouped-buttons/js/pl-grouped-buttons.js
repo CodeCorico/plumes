@@ -3,12 +3,24 @@
 
   window.Ractive.controller('pl-grouped-buttons', function(component, data, el, config, done) {
 
+    var MODES = {
+      DEFAULT: 'default',
+      COMPACT: 'compact'
+    };
+
     var GroupedButtons = component({
       plName: 'pl-grouped-buttons',
       data: $.extend(true, {
-        orientaton: 'left',
+        mode: MODES.DEFAULT,
+        hidden: true,
+        orientation: 'left',
         buttons: [],
         positions: [],
+        compactPositionsTop: [],
+        compactPositions: [],
+        compactButtonPosition: -100,
+        compactOpened: false,
+        compactHeight: 0,
 
         action: function(event, component) {
           if (!component) {
@@ -25,6 +37,10 @@
             component: component
           });
 
+          if (GroupedButtons.get('mode') == MODES.COMPACT && GroupedButtons.get('compactOpened')) {
+            GroupedButtons.fire('compactAction');
+          }
+
           if (button && button.action) {
             button.action(event, component);
           }
@@ -35,30 +51,139 @@
             component: component
           });
         }
-      }, data)
+      }, data),
+
+      hide: function() {
+        if (GroupedButtons.get('hidden')) {
+          return;
+        }
+
+        GroupedButtons.set('hidden', true);
+
+        GroupedButtons.set('compactButtonPosition', -100);
+
+        _updatePositions();
+      },
+
+      show: function() {
+        if (!GroupedButtons.get('hidden')) {
+          return;
+        }
+
+        GroupedButtons.set('hidden', false);
+
+        if (GroupedButtons.get('mode') == MODES.COMPACT) {
+          GroupedButtons.set('compactButtonPosition', -15);
+        }
+
+        _updatePositions();
+      },
+
+      compactMode: function() {
+        if (GroupedButtons.get('mode') == MODES.COMPACT) {
+          return;
+        }
+
+        GroupedButtons.set('mode', MODES.COMPACT);
+
+        GroupedButtons.set('compactButtonPosition', -15);
+      },
+
+      defaultMode: function() {
+        if (GroupedButtons.get('mode') == MODES.DEFAULT) {
+          return;
+        }
+
+        if (GroupedButtons.get('compactOpened')) {
+          GroupedButtons.fire('compactAction');
+        }
+
+        GroupedButtons.set('mode', MODES.DEFAULT);
+
+        GroupedButtons.set('compactButtonPosition', -100);
+      }
+    });
+
+    GroupedButtons.on('compactAction', function() {
+      var compactOpened = !GroupedButtons.get('compactOpened');
+
+      GroupedButtons.fire('beforeCompact', {
+        button: GroupedButtons,
+        opened: compactOpened
+      });
+
+      GroupedButtons.set('compactOpened', compactOpened);
+
+      _updatePositions(function(args) {
+        if (compactOpened) {
+          GroupedButtons.set('compactHeight', args.compactHeight);
+        }
+
+        GroupedButtons.fire('compact', {
+          button: GroupedButtons,
+          opened: compactOpened
+        });
+      });
     });
 
     function _registerIndicatorEvents(buttonEl, button, i) {
       buttonEl.on('showNotification', function(args) {
+
+        GroupedButtons.once('positionsChanged', function() {
+          GroupedButtons.set('compactPositionsTop[' + i + ']', 0);
+          GroupedButtons.set('compactPositions[' + i + ']', 0);
+
+          if (GroupedButtons.get('mode') == MODES.COMPACT) {
+            GroupedButtons.set('compactButtonPosition', -100);
+          }
+        });
+
         GroupedButtons.set('buttons[' + i + '].width', args.width + 10);
       });
 
       buttonEl.on('hideNotification', function() {
         GroupedButtons.set('buttons[' + i + '].width', 55);
+
+        if (GroupedButtons.get('mode') == MODES.COMPACT) {
+          GroupedButtons.set('compactButtonPosition', -15);
+        }
       });
     }
 
-    GroupedButtons.observe('buttons', function() {
+    function _updatePositions(callback) {
       GroupedButtons.require().then(function() {
         var buttons = GroupedButtons.get('buttons'),
             positions = GroupedButtons.get('positions'),
-            totalWidth = 0;
+            compactPositionsTop = GroupedButtons.get('compactPositionsTop'),
+            compactPositions = GroupedButtons.get('compactPositions'),
+            compactOpened = GroupedButtons.get('compactOpened'),
+            hidden = GroupedButtons.get('hidden'),
+            windowWidth = $(window).width(),
+            totalWidth = 0,
+            compactTotalWidth = 20,
+            compactTop = 0,
+            compactHeight = 60;
 
         for (var i = buttons.length - 1; i >= 0; i--) {
           var button = buttons[i],
               buttonEl = GroupedButtons.findChild('data-index', i);
 
-          positions[i] = totalWidth;
+          if (hidden) {
+            positions[i] = -100;
+            compactPositions[i] = -100;
+          }
+          else {
+            positions[i] = totalWidth;
+
+            if (compactOpened) {
+              compactPositions[i] = compactTotalWidth;
+            }
+            else {
+              compactPositions[i] = -100;
+            }
+          }
+
+          compactPositionsTop[i] = compactTop;
 
           if (!buttonEl) {
             return;
@@ -78,11 +203,41 @@
           }
 
           totalWidth += button.width || 0;
+          compactTotalWidth += button.width || 0;
+
+          if (!hidden && compactTotalWidth > windowWidth) {
+            compactHeight += 50;
+            compactTop += 50;
+            compactTotalWidth = 20;
+            compactPositionsTop[i] = compactTop;
+
+            if (compactOpened) {
+              compactPositions[i] = compactTotalWidth;
+            }
+          }
         }
 
         GroupedButtons.set('positions', positions);
+        GroupedButtons.set('compactPositionsTop', compactPositionsTop);
+        GroupedButtons.set('compactPositions', compactPositions);
+
+        setTimeout(function() {
+          GroupedButtons.fire('positionsChanged');
+        });
+
+        if (callback) {
+          callback({
+            compactHeight: compactHeight
+          });
+        }
       });
+    }
+
+    GroupedButtons.observe('buttons', function() {
+      _updatePositions();
     });
+
+    _updatePositions();
 
     done();
   });
