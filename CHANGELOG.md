@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.0.1"></a>
+# 1.0.1 (2016-03-22)
+
+[Release 1.0.1](https://github.com/CodeCorico/plumes/releases/tag/1.0.1)
+
+### Breaking changes
+
+- **Grouped buttons**
+  - Create the "compact" mode to give the user access to many buttons in mobile view
+
+### Hotfixes
+
+- **Plumes**
+  - Fix some tiny bugs of the release 1.0
+
 <a name="1.0.0"></a>
 # 1.0.0 (2016-03-20)
 
