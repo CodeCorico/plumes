@@ -126,23 +126,26 @@
       });
     });
 
-    function _registerIndicatorEvents(buttonEl, button, i) {
-      buttonEl.on('showNotification', function(args) {
+    function _registerIndicatorEvents(component) {
+      component.on('showNotification', function(args) {
+        var index = parseInt($(component.el).attr('data-index'), 10);
 
         GroupedButtons.once('positionsChanged', function() {
-          GroupedButtons.set('compactPositionsTop[' + i + ']', 0);
-          GroupedButtons.set('compactPositions[' + i + ']', 0);
+          GroupedButtons.set('compactPositionsTop[' + index + ']', 0);
+          GroupedButtons.set('compactPositions[' + index + ']', 0);
 
           if (GroupedButtons.get('mode') == MODES.COMPACT) {
             GroupedButtons.set('compactButtonPosition', -100);
           }
         });
 
-        GroupedButtons.set('buttons[' + i + '].width', args.width + 10);
+        GroupedButtons.set('buttons[' + index + '].width', args.width + 10);
       });
 
-      buttonEl.on('hideNotification', function() {
-        GroupedButtons.set('buttons[' + i + '].width', 55);
+      component.on('hideNotification', function() {
+        var index = parseInt($(component.el).attr('data-index'), 10);
+
+        GroupedButtons.set('buttons[' + index + '].width', 55);
 
         if (GroupedButtons.get('mode') == MODES.COMPACT) {
           GroupedButtons.set('compactButtonPosition', -15);
@@ -166,7 +169,7 @@
 
         for (var i = buttons.length - 1; i >= 0; i--) {
           var button = buttons[i],
-              buttonEl = GroupedButtons.findChild('data-index', i);
+              component = GroupedButtons.findChild('data-index', i);
 
           if (hidden) {
             positions[i] = -100;
@@ -185,7 +188,7 @@
 
           compactPositionsTop[i] = compactTop;
 
-          if (!buttonEl) {
+          if (!component) {
             return;
           }
 
@@ -194,11 +197,11 @@
             button.width = button.type == 'indicator' ? 55 : 50;
 
             if (button.type == 'indicator') {
-              _registerIndicatorEvents(buttonEl, button, i);
+              _registerIndicatorEvents(component, button, i);
             }
 
             if (button.ready) {
-              button.ready(buttonEl);
+              button.ready(component);
             }
           }
 
