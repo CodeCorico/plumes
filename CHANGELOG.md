@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.0.3"></a>
+# 1.0.3 (2016-03-23)
+
+[Release 1.0.3](https://github.com/CodeCorico/plumes/releases/tag/1.0.3)
+
+### Hotfixes
+
+- **Grouped button**
+  - Some buttons don't move when an indicator button notification is displayed
+
 <a name="1.0.2"></a>
 # 1.0.2 (2016-03-22)
 
