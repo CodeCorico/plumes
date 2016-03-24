@@ -33,7 +33,7 @@
     .transition(all 0.55s @easeOutQuart);
   }
 
-  img, img:hover {
+  .pl-button-indicator-image, .pl-button-indicator-image:hover {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
@@ -41,6 +41,9 @@
     width: 4rem;
     border: none;
     border-radius: 50%;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
 
     .transition(all 0.7s @easeOutQuart);
 
@@ -99,7 +102,7 @@
   &.opened {
     width: 25rem;
 
-    img, img:hover {
+    .pl-button-indicator-image, .pl-button-indicator-image:hover {
       .transform(rotate(-360deg));
     }
 
