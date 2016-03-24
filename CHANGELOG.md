@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.0.5"></a>
+# 1.0.5 (2016-03-24)
+
+[Release 1.0.5](https://github.com/CodeCorico/plumes/releases/tag/1.0.5)
+
+### Hotfixes
+
+- **Button Indicator**
+  - Cover image instead of resize it
+
 <a name="1.0.4"></a>
 # 1.0.4 (2016-03-24)
 
