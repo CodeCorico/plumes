@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.0.4"></a>
+# 1.0.4 (2016-03-24)
+
+[Release 1.0.4](https://github.com/CodeCorico/plumes/releases/tag/1.0.4)
+
+### Hotfixes
+
+- **Grouped button**
+  - Indicator buttons have better margins in the right orientation
+
 <a name="1.0.3"></a>
 # 1.0.3 (2016-03-23)
 
