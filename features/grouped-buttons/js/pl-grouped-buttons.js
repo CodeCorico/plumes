@@ -139,13 +139,13 @@
           }
         });
 
-        GroupedButtons.set('buttons[' + index + '].width', args.width + 10);
+        GroupedButtons.set('buttons[' + index + '].width', args.width + 5);
       });
 
       component.on('hideNotification', function() {
         var index = parseInt($(component.el).attr('data-index'), 10);
 
-        GroupedButtons.set('buttons[' + index + '].width', 55);
+        GroupedButtons.set('buttons[' + index + '].width', 50);
 
         if (GroupedButtons.get('mode') == MODES.COMPACT) {
           GroupedButtons.set('compactButtonPosition', -15);
@@ -155,7 +155,8 @@
 
     function _updatePositions(callback) {
       GroupedButtons.require().then(function() {
-        var buttons = GroupedButtons.get('buttons'),
+        var orientation = GroupedButtons.get('orientation'),
+            buttons = GroupedButtons.get('buttons'),
             positions = GroupedButtons.get('positions'),
             compactPositionsTop = GroupedButtons.get('compactPositionsTop'),
             compactPositions = GroupedButtons.get('compactPositions'),
@@ -176,7 +177,7 @@
             compactPositions[i] = -100;
           }
           else {
-            positions[i] = totalWidth;
+            positions[i] = totalWidth - (orientation == 'right' && button.type == 'indicator' ? 5 : 0);
 
             if (compactOpened) {
               compactPositions[i] = compactTotalWidth;
@@ -194,7 +195,7 @@
 
           if (!button.isReady) {
             button.isReady = true;
-            button.width = button.type == 'indicator' ? 55 : 50;
+            button.width = 50;
 
             if (button.type == 'indicator') {
               _registerIndicatorEvents(component, button, i);
