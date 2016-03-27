@@ -1,5 +1,19 @@
 # Plumes - Changelog
 
+<a name="1.0.7"></a>
+# 1.0.7 (2016-03-27)
+
+[Release 1.0.7](https://github.com/CodeCorico/plumes/releases/tag/1.0.7)
+
+### Hotfixes
+
+- **Context panel**
+  - Remove default scrollbar
+- **Notifications panel**
+  - Use pl-scrolls as scrollbar
+- **Layout Platform**
+  - Add more screen resize events
+
 <a name="1.0.6"></a>
 # 1.0.6 (2016-03-27)
 
