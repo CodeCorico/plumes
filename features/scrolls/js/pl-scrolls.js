@@ -91,6 +91,7 @@
     }
 
     function _mouseenter() {
+      _update();
       Scrolls.set('enter', true);
     }
 
