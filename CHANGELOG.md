@@ -1,5 +1,16 @@
 # Plumes - Changelog
 
+<a name="1.0.8"></a>
+# 1.0.8 (2016-03-27)
+
+[Release 1.0.8](https://github.com/CodeCorico/plumes/releases/tag/1.0.8)
+
+### Hotfixes
+
+- **Scrolls**
+  - Disable scroll when don't needed
+  - Update scroll size on mouse enter
+
 <a name="1.0.7"></a>
 # 1.0.7 (2016-03-27)
 
