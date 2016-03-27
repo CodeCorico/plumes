@@ -7,11 +7,15 @@
   -ms-user-select: none;
   user-select: none;
   z-index: 1;
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
   width: 6px;
   bottom: 0;
+}
+.pl-scrolls-vertical.active {
+  display: block;
 }
 .pl-scrolls-vertical.hover {
   width: 10px;
