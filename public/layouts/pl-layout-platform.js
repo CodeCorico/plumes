@@ -19,7 +19,9 @@
         };
 
     function _resize(openOrientation) {
-      var screenWidth = _$el.window.width();
+      var screenWidth = _$el.window.width(),
+          screen = LayoutPlatform.get('screen'),
+          contentMedia = LayoutPlatform.get('contentMedia');
 
       if (screenWidth >= VIEWS.DESKTOP) {
         LayoutPlatform.set('leftContextWidth', LayoutPlatform.get('leftContextOpened') ? '25%' : 0);
@@ -92,18 +94,36 @@
 
       if (templateWidth >= VIEWS.DESKTOP) {
         LayoutPlatform.set('contentMedia', 'media-desktop');
-
-        LayoutPlatform.fire('view', 'DESKTOP');
       }
       else if (templateWidth >= VIEWS.TABLET) {
         LayoutPlatform.set('contentMedia', 'media-tablet');
-
-        LayoutPlatform.fire('view', 'TABLET');
       }
       else if (templateWidth >= VIEWS.MOBILE) {
         LayoutPlatform.set('contentMedia', 'media-mobile');
+      }
 
-        LayoutPlatform.fire('view', 'MOBILE');
+      if (screen != LayoutPlatform.get('screen')) {
+        LayoutPlatform.fire('screen', {
+          screen: LayoutPlatform.get('screen')
+        });
+
+        setTimeout(function() {
+          LayoutPlatform.fire('afterScreen', {
+            screen: LayoutPlatform.get('screen')
+          });
+        }, 250);
+      }
+
+      if (contentMedia != LayoutPlatform.get('contentMedia')) {
+        LayoutPlatform.fire('contentMedia', {
+          contentMedia: LayoutPlatform.get('contentMedia')
+        });
+
+        setTimeout(function() {
+          LayoutPlatform.fire('afterContentMedia', {
+            contentMedia: LayoutPlatform.get('contentMedia')
+          });
+        }, 250);
       }
     }
 
@@ -245,8 +265,6 @@
             contextrighttitle: '',
             contextleftusetitle: true,
             contextrightusetitle: true,
-            contextleftscrollbar: true,
-            contextrightscrollbar: true,
             leftContextWidth: 0,
             rightContextWidth: 0,
             leftContextOpened: false,

@@ -139,7 +139,7 @@
 
     window.Ractive.bindUses(
       ContextPanel,
-      ['title', 'scrollbar', 'leftcross', 'rightcross'],
+      ['title', 'leftcross', 'rightcross'],
       ['leftcross', 'rightcross']
     );
 
