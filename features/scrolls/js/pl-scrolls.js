@@ -41,6 +41,7 @@
           max = _$el.vertical.outerHeight(),
           height = max * 100 / area;
 
+      Scrolls.set('active', area > max);
       Scrolls.set('height', height);
       _scroll();
     }
@@ -102,6 +103,7 @@
           data: $.extend(true, {
             top: 0,
             height: 0,
+            active: false,
             hover: false,
             inDrag: false,
             enter: false

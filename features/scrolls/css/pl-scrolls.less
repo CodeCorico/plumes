@@ -4,11 +4,16 @@
 .pl-scrolls-vertical {
   .noselect();
   z-index: 1;
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
   width: 6px;
   bottom: 0;
+
+  &.active {
+    display: block;
+  }
 
   &.hover {
     width: 10px;
