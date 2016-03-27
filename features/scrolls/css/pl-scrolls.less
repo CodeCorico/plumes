@@ -1,0 +1,38 @@
+@import "../../common/less/common-variables.less";
+@import "../../common/less/common-mixins.less";
+
+.pl-scrolls-vertical {
+  .noselect();
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  bottom: 0;
+
+  &.hover {
+    width: 10px;
+    background: rgba(0, 0, 0, 0.5);
+
+    .pl-scrolls-vertical-ticker {
+      opacity: 1;
+    }
+  }
+
+  .pl-scrolls-vertical-ticker {
+    .noselect();
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.pl-scrolls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+}
