@@ -245,8 +245,6 @@
             contextrighttitle: '',
             contextleftusetitle: true,
             contextrightusetitle: true,
-            contextleftscrollbar: true,
-            contextrightscrollbar: true,
             leftContextWidth: 0,
             rightContextWidth: 0,
             leftContextOpened: false,
