@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.0.6"></a>
+# 1.0.6 (2016-03-27)
+
+[Release 1.0.6](https://github.com/CodeCorico/plumes/releases/tag/1.0.6)
+
+### Breaking changes
+
+- **Scrolls**
+  - New custom scrolls for all browsers
+
+### Hotfixes
+
+- **Base**
+  - The Segoe UI wasn't displayed correctly
+
 <a name="1.0.5"></a>
 # 1.0.5 (2016-03-24)
 
