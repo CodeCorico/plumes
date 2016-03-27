@@ -7,23 +7,29 @@
     {{opened ? 'opened' : ''}}
   "
 >
-  <ul class="pl-notifications-panel-list">
-    {{#if notifications}}
-      {{#notifications}}
-      <li class="pl-notifications-panel-item" on-click="openitem">
-        {{#if picture}}
-        <img src="{{picture}}" />
+  <div class="pl-notifications-panel-list">
+    <rv-require name="pl-scrolls" src="/public/vendor/plumes/scrolls/pl-scrolls"></rv-require>
+
+    <div class="pl-scrolls">
+      <ul>
+        {{#if notifications}}
+          {{#notifications}}
+          <li class="pl-notifications-panel-item" on-click="openitem">
+            {{#if picture}}
+            <img src="{{picture}}" />
+            {{/if}}
+            <p>{{{content}}}</p>
+            <p class="pl-notifications-panel-item-time">{{time}}</p>
+          </li>
+          {{/notifications}}
+        {{else}}
+          <li class="pl-notifications-panel-item pl-notifications-panel-noitem">
+            <p>{{texts.empty}}</p>
+          </li>
         {{/if}}
-        <p>{{{content}}}</p>
-        <p class="pl-notifications-panel-item-time">{{time}}</p>
-      </li>
-      {{/notifications}}
-    {{else}}
-      <li class="pl-notifications-panel-item pl-notifications-panel-noitem">
-        <p>{{texts.empty}}</p>
-      </li>
-    {{/if}}
-  </ul>
+      </ul>
+    </div>
+  </div>
 
   {{#if useemails}}
   <div class="pl-notifications-panel-emails">

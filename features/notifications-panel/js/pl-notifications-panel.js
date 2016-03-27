@@ -3,6 +3,8 @@
 
   window.Ractive.controller('pl-notifications-panel', function(component, data, el, config, done) {
 
+    var _scrolls = null;
+
     var NotificationsPanel = component({
       plName: 'pl-notifications-panel',
       data: $.extend(true, {
@@ -20,20 +22,20 @@
           if (emailsToggleFunc) {
             emailsToggleFunc(event, isOn);
           }
+
+          if (_scrolls) {
+            _scrolls.update();
+          }
         }
       }, data),
 
       pushNotification: function(content, time, picture, args) {
-        var notifications = this.get('notifications');
-        notifications = notifications || [];
-
-        notifications.unshift({
+        this.unshift('notifications', {
           picture: picture,
           time: time,
           content: content,
           args: args || null
         });
-        this.set('notifications', notifications);
       }
     });
 
@@ -48,7 +50,17 @@
       });
     }
 
-    NotificationsPanel.require().then(done);
+    NotificationsPanel.observe('notifications', function() {
+      if (_scrolls) {
+        _scrolls.update();
+      }
+    });
+
+    NotificationsPanel.require().then(function() {
+      _scrolls = NotificationsPanel.findChild('name', 'pl-scrolls');
+
+      done();
+    });
   });
 
 })();
