@@ -54,7 +54,7 @@ strong {
   box-sizing: border-box;
 }
 
-@media (min-width: 550px) {
+.media-tablet, .media-desktop {
   .column,
   .columns {
     margin-left: 4%;
@@ -168,6 +168,25 @@ strong {
   }
 }
 
+.media-tablet {
+  .columns.media-break {
+    margin-left: 0;
+  }
+
+  .one.columns, .two.columns {
+    width: 22%;
+  }
+
+  .three.columns, .four.columns, .five.columns {
+    width: 48%;
+  }
+
+  .seven.columns, .eight.columns, .nine.columns, .ten.columns, .eleven.columns {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 /* NOTE
 html is set to 62.5% so that all the REM measurements
 are based on 10px sizing. So basically 1.5rem = 15px */
@@ -230,9 +249,7 @@ h6 {
   line-height: 1.6;
 }
 
-/* Larger than phablet */
-@media (min-width: 550px) {
-
+.media-tablet, .media-desktop {
   h1 {
     font-size: 5.0rem;
   }
@@ -526,18 +543,3 @@ hr {
 rv-require:not(.rv-require-loaded), rv-partial {
   display: none;
 }
-
-/* Larger than mobile */
-@media (min-width: 400px) {}
-
-/* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
-
-/* Larger than tablet */
-@media (min-width: 750px) {}
-
-/* Larger than desktop */
-@media (min-width: 1000px) {}
-
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {}
