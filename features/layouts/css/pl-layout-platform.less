@@ -11,7 +11,7 @@
   .pl-layout-platform-header {
     z-index: 1000;
     position: fixed;
-    top: 1rem;
+    top: -5rem;
     left: 50%;
     color: #333;
     margin-left: -8rem;
@@ -19,6 +19,10 @@
 
     &.empty {
       opacity: 0;
+    }
+
+    &.show {
+      top: 1rem;
     }
 
     .pl-layout-platform-title-bg {

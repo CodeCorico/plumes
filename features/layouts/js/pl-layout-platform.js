@@ -255,6 +255,7 @@
           plName: 'pl-layout-platform',
           data: $.extend(true, {
             loaded: false,
+            titleShowed: true,
             titleLeftOffset: -80,
             titleBgLeftOffset: 0,
             titleBgWidth: 0,
@@ -304,6 +305,12 @@
         };
 
     window.Ractive.bindUses(LayoutPlatform, ['mask']);
+
+    LayoutPlatform.observe('title-showed', function(value) {
+      value = value === false || value == 'false' ? false : true;
+
+      LayoutPlatform.set('titleShowed', value);
+    });
 
     _$el.window.resize(_resize);
 
