@@ -1,3 +1,6 @@
+[name="pl-scroll"] {
+  z-index: 100;
+}
 .pl-scrolls-vertical {
   cursor: default;
   -webkit-touch-callout: none;

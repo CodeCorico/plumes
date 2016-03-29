@@ -36,6 +36,7 @@
         if (_groupedButtons.right) {
           _groupedButtons.right.defaultMode();
         }
+
         LayoutPlatform.set('screen', 'screen-desktop');
       }
       else {
@@ -71,6 +72,7 @@
           if (_groupedButtons.right) {
             _groupedButtons.right.defaultMode();
           }
+
           LayoutPlatform.set('screen', 'screen-tablet');
         }
         else if (screenWidth >= VIEWS.MOBILE) {
@@ -86,6 +88,7 @@
           if (_groupedButtons.right) {
             _groupedButtons.right.compactMode();
           }
+
           LayoutPlatform.set('screen', 'screen-mobile');
         }
       }
@@ -101,6 +104,8 @@
       else if (templateWidth >= VIEWS.MOBILE) {
         LayoutPlatform.set('contentMedia', 'media-mobile');
       }
+
+      _updateTitlePosition();
 
       if (screen != LayoutPlatform.get('screen')) {
         LayoutPlatform.fire('screen', {
@@ -256,6 +261,7 @@
           data: $.extend(true, {
             loaded: false,
             titleShowed: true,
+            titleLeft: 50,
             titleLeftOffset: -80,
             titleBgLeftOffset: 0,
             titleBgWidth: 0,
@@ -320,11 +326,24 @@
 
     _resize();
 
-    function _updatePosition() {
-      var width = _$el.titleText.outerWidth();
+    function _updateTitlePosition() {
+      if (!_$el.titleText) {
+        return;
+      }
+
+      var width = _$el.titleText.outerWidth(),
+          screen = LayoutPlatform.get('screen');
 
       LayoutPlatform.set('titleEmpty', !width);
-      LayoutPlatform.set('titleLeftOffset', !width ? -8 : width / 2);
+      LayoutPlatform.set('titleLeft',
+        screen == 'screen-desktop' ? (
+          50 +
+          (LayoutPlatform.get('leftContextOpened') ? 12.5 : 0) -
+          (LayoutPlatform.get('rightContextOpened') ? 12.5 : 0)
+        ) : 50
+      );
+
+      LayoutPlatform.set('titleLeftOffset', !width ? -8 : -(width / 2));
     }
 
     function _updateTitleArea(height, open) {
@@ -349,7 +368,7 @@
     LayoutPlatform.on('titleClose', function(args) {
       _updateTitleArea(args.height, false);
 
-      setTimeout(_updatePosition, 550);
+      setTimeout(_updateTitlePosition, 550);
     });
 
     LayoutPlatform.selectApp = function(name, fireFunc, callback) {
@@ -405,7 +424,7 @@
           _$el.title = _$el.platform.find('.pl-layout-title');
           _$el.titleText = _$el.platform.find('.pl-layout-title h2 span');
 
-          _updatePosition();
+          _updateTitlePosition();
 
           if (Title) {
             Title.on('open', function(args) {
