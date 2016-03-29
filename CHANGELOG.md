@@ -1,5 +1,17 @@
 # Plumes - Changelog
 
+<a name="1.0.10"></a>
+# 1.0.10 (2016-03-29)
+
+[Release 1.0.10](https://github.com/CodeCorico/plumes/releases/tag/1.0.10)
+
+### Hotfixes
+
+- **Base Plumes**
+  - Use .media-* instead of @media and create tablet styles
+- **Layout Platform**
+  - Apply "media-mobile" class to the context panels
+
 <a name="1.0.9"></a>
 # 1.0.9 (2016-03-29)
 
