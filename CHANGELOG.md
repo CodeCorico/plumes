@@ -1,11 +1,28 @@
 # Plumes - Changelog
 
+<a name="1.0.11"></a>
+# 1.0.11 (2016-03-29)
+
+[Release 1.0.11](https://github.com/CodeCorico/plumes/releases/tag/1.0.11)
+
+### Breaking changes
+
+- **Base Plumes**
+  - Add .pl-title CSS class
+
+### Hotfixes
+
+- **Layout Platform**
+  - Center the title to the content view
+- **Scrolls**
+  - Add bigger z-index to the require tag
+
 <a name="1.0.10"></a>
 # 1.0.10 (2016-03-29)
 
 [Release 1.0.10](https://github.com/CodeCorico/plumes/releases/tag/1.0.10)
 
-### Hotfixes
+### Breaking changes
 
 - **Base Plumes**
   - Use .media-* instead of @media and create tablet styles
@@ -17,7 +34,7 @@
 
 [Release 1.0.9](https://github.com/CodeCorico/plumes/releases/tag/1.0.9)
 
-### Hotfixes
+### Breaking changes
 
 - **Layout Platform**
   - Add possibility to hide the title
