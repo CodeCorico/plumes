@@ -149,7 +149,11 @@
       var top = _topPX(),
           scrollTop = _$el.container.scrollTop();
 
-      _$el.container.scrollTop(scrollTop + (top > event.offsetY ? -PAGE_SIZE : PAGE_SIZE));
+      _$el.container
+        .stop()
+        .animate({
+          scrollTop: scrollTop + (top > event.offsetY ? -PAGE_SIZE : PAGE_SIZE)
+        }, 150, data.easing || 'swing');
     });
 
     $.each(_mousewheelBinds, function(i, bind) {
