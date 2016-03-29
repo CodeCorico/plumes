@@ -1,5 +1,25 @@
 # Plumes - Changelog
 
+<a name="1.0.9"></a>
+# 1.0.9 (2016-03-29)
+
+[Release 1.0.9](https://github.com/CodeCorico/plumes/releases/tag/1.0.9)
+
+### Hotfixes
+
+- **Layout Platform**
+  - Add possibility to hide the title
+
+- **Scrolls**
+  - Bigger width
+  - Animate scroll on click on the vertical bar
+
+### Hotfixes
+
+- **Scrolls**
+  - Disable scroll when don't needed
+  - Update scroll size on mouse enter
+
 <a name="1.0.8"></a>
 # 1.0.8 (2016-03-27)
 
