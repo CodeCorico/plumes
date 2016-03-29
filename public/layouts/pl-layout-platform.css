@@ -9,7 +9,7 @@
 .pl-layout-platform .pl-layout-platform-header {
   z-index: 1000;
   position: fixed;
-  top: 1rem;
+  top: -5rem;
   left: 50%;
   color: #333;
   margin-left: -8rem;
@@ -21,6 +21,9 @@
 }
 .pl-layout-platform .pl-layout-platform-header.empty {
   opacity: 0;
+}
+.pl-layout-platform .pl-layout-platform-header.show {
+  top: 1rem;
 }
 .pl-layout-platform .pl-layout-platform-header .pl-layout-platform-title-bg {
   position: absolute;

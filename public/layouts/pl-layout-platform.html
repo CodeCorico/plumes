@@ -1,6 +1,9 @@
 <div class="pl-layout-platform {{screen}}">
 
-  <header class="pl-layout-platform-header {{titleEmpty ? 'empty' : ''}}" style="margin-left: -{{titleLeftOffset}}px">
+  <header
+    class="pl-layout-platform-header {{titleEmpty ? 'empty' : ''}} {{titleShowed ? 'show' : ''}}"
+    style="margin-left: -{{titleLeftOffset}}px"
+  >
     <div
       class="pl-layout-platform-title-bg {{titleOpened ? 'opened' : ''}}"
       style="

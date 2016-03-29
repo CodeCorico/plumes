@@ -11,14 +11,14 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 6px;
+  width: 9px;
   bottom: 0;
 }
 .pl-scrolls-vertical.active {
   display: block;
 }
 .pl-scrolls-vertical.hover {
-  width: 10px;
+  width: 16px;
   background: rgba(0, 0, 0, 0.5);
 }
 .pl-scrolls-vertical.hover .pl-scrolls-vertical-ticker {
