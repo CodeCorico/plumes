@@ -2,7 +2,10 @@
 
   <header
     class="pl-layout-platform-header {{titleEmpty ? 'empty' : ''}} {{titleShowed ? 'show' : ''}}"
-    style="margin-left: -{{titleLeftOffset}}px"
+    style="
+      left: {{titleLeft}}%;
+      margin-left: {{titleLeftOffset}}px
+    "
   >
     <div
       class="pl-layout-platform-title-bg {{titleOpened ? 'opened' : ''}}"
