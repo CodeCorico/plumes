@@ -1,5 +1,22 @@
 # Plumes - Changelog
 
+<a name="1.0.12"></a>
+# 1.0.12 (2016-04-05)
+
+[Release 1.0.12](https://github.com/CodeCorico/plumes/releases/tag/1.0.12)
+
+### Breaking changes
+
+- **Scrolls**
+  - Add transitions for cursor behaviors
+- **Layout Platform**
+  - Add new events
+
+### Hotfixes
+
+- **Base Plumes**
+  - Min .pl-title font-size
+
 <a name="1.0.11"></a>
 # 1.0.11 (2016-03-29)
 
