@@ -130,6 +130,12 @@
           });
         }, 250);
       }
+
+      LayoutPlatform.fire('resize');
+
+      setTimeout(function() {
+        LayoutPlatform.fire('afterResize');
+      }, 250);
     }
 
     function _closeContext(orientation) {
@@ -155,11 +161,19 @@
       component.on('beforeOpen', function() {
         LayoutPlatform.set(orientation + 'ContextOpened', true);
 
+        LayoutPlatform.fire(orientation + 'ContextOpened', {
+          opened: true
+        });
+
         _resize(orientation);
       });
 
       component.on('close', function() {
         LayoutPlatform.set(orientation + 'ContextOpened', false);
+
+        LayoutPlatform.fire(orientation + 'ContextOpened', {
+          opened: false
+        });
 
         _resize();
       });

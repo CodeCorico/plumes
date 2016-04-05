@@ -9,13 +9,18 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  z-index: 1;
+  z-index: 100;
   display: none;
   position: absolute;
   right: 0;
   top: 0;
   width: 9px;
   bottom: 0;
+  -webkit-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-scrolls-vertical.active {
   display: block;
@@ -38,6 +43,11 @@
   position: absolute;
   left: 0;
   width: 100%;
+  -webkit-transition: background 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: background 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: background 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: background 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-scrolls {
   position: absolute;

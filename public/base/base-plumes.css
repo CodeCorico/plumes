@@ -3019,7 +3019,8 @@ hr {
   display: table;
   clear: both;
 }
-.pl-title {
+.pl-title,
+.pl-section.pl-title {
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -3033,13 +3034,15 @@ hr {
   color: #333;
   text-align: center;
   font-weight: 300;
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-style: italic;
   margin: 0;
   text-transform: uppercase;
 }
 .pl-title::before,
-.pl-title::after {
+.pl-section.pl-title::before,
+.pl-title::after,
+.pl-section.pl-title::after {
   content: ' ';
   position: absolute;
   top: 2.8rem;
@@ -3048,18 +3051,23 @@ hr {
   height: 1px;
   opacity: 0.6;
 }
-.pl-title::before {
+.pl-title::before,
+.pl-section.pl-title::before {
   left: 2rem;
 }
-.pl-title::after {
+.pl-title::after,
+.pl-section.pl-title::after {
   right: 2rem;
 }
-.pl-title.dark {
+.pl-title.dark,
+.pl-section.pl-title.dark {
   background: #333;
   color: white;
 }
 .pl-title.dark::before,
-.pl-title.dark::after {
+.pl-section.pl-title.dark::before,
+.pl-title.dark::after,
+.pl-section.pl-title.dark::after {
   background: white;
 }
 rv-require:not(.rv-require-loaded),
