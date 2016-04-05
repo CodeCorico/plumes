@@ -7,13 +7,14 @@
 
 .pl-scrolls-vertical {
   .noselect();
-  z-index: 1;
+  z-index: 100;
   display: none;
   position: absolute;
   right: 0;
   top: 0;
   width: 9px;
   bottom: 0;
+  .transition(all 0.55s @easeOutQuart);
 
   &.active {
     display: block;
@@ -33,6 +34,7 @@
     position: absolute;
     left: 0;
     width: 100%;
+    .transition(background 0.55s @easeOutQuart);
   }
 }
 
