@@ -39,7 +39,11 @@
     style="height: {{compactHeight}}px; {{orientation}}: 0;"
   ></div>
 
-  <button class="pl-grouped-button-compact-button" style="{{orientation}}: {{compactButtonPosition}}px" on-click="compactAction">
+  <button
+    class="pl-grouped-button-compact-button {{!buttons.length ? 'no-buttons' : ''}}"
+    style="{{orientation}}: {{compactButtonPosition}}px"
+    on-click="compactAction"
+  >
     <i class="fa fa-ellipsis-v"></i>
   </button>
 </section>
