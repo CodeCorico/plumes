@@ -162,7 +162,8 @@
         LayoutPlatform.set(orientation + 'ContextOpened', true);
 
         LayoutPlatform.fire(orientation + 'ContextOpened', {
-          opened: true
+          opened: true,
+          component: component
         });
 
         _resize(orientation);
@@ -172,7 +173,8 @@
         LayoutPlatform.set(orientation + 'ContextOpened', false);
 
         LayoutPlatform.fire(orientation + 'ContextOpened', {
-          opened: false
+          opened: false,
+          component: component
         });
 
         _resize();
@@ -202,6 +204,12 @@
         LayoutPlatform.set('context' + orientation + 'usetitle', true);
         LayoutPlatform.set('context' + orientation + 'title', title);
       }
+
+      LayoutPlatform.fire('groupOpened', {
+        orientation: orientation,
+        context: context,
+        $group: $group
+      });
 
       context.open();
     }
