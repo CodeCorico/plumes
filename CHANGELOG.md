@@ -1,5 +1,26 @@
 # Plumes - Changelog
 
+<a name="1.0.13"></a>
+# 1.0.13 (2016-04-11)
+
+[Release 1.0.13](https://github.com/CodeCorico/plumes/releases/tag/1.0.13)
+
+### Breaking changes
+
+- **Grouped buttons**
+  - Better styles
+- **Layout Platform**
+  - Hide compact button when no button
+  - Better styles
+  - Send more objects in events
+
+### Hotfixes
+
+- **Screen-Message**
+  - Layout fixed on the top of others
+- **Scrolls**
+  - Support Firefox
+
 <a name="1.0.12"></a>
 # 1.0.12 (2016-04-05)
 
