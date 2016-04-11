@@ -14,32 +14,35 @@
 
     function _play(playArgs) {
       if (playArgs && playArgs != _playArgs) {
-        var Message = ScreenMessage.childrenRequire[0];
+        var Message = ScreenMessage.findChild('name', 'pl-messages-message');
 
         Message.fire('reset');
 
         _playArgs = playArgs;
-        ScreenMessage.set('playing', true);
-        ScreenMessage.set('playingDone', false);
-        ScreenMessage.set('storyboard', false);
 
         setTimeout(function() {
-          Message.fire('play', {
-            message: playArgs.message,
-            callback: _done,
-            lineCallback: function() {
-              ScreenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
+          ScreenMessage.set('playing', true);
+          ScreenMessage.set('playingDone', false);
+          ScreenMessage.set('storyboard', '');
 
-              if (_playArgs.lineCallback) {
-                _playArgs.lineCallback(Message);
-              }
-            },
-            displayedLineCallback: _playArgs.displayedLineCallback || null,
-            displayTextTime: _playArgs.displayTextTime ||  null,
-            displayWordTime: _playArgs.displayWordTime || null,
-            freezeLastLine: _playArgs.freezeLastLine || _playArgs.lastLineToTitle || null
-          });
-        }, 550);
+          setTimeout(function() {
+            Message.fire('play', {
+              message: playArgs.message,
+              callback: _done,
+              lineCallback: function() {
+                ScreenMessage.set('messageTop', (_$el.window.height() - $(Message.el).outerHeight()) / 2);
+
+                if (_playArgs.lineCallback) {
+                  _playArgs.lineCallback(Message);
+                }
+              },
+              displayedLineCallback: _playArgs.displayedLineCallback || null,
+              displayTextTime: _playArgs.displayTextTime ||  null,
+              displayWordTime: _playArgs.displayWordTime || null,
+              freezeLastLine: _playArgs.freezeLastLine || _playArgs.lastLineToTitle || null
+            });
+          }, 550);
+        });
       }
     }
 

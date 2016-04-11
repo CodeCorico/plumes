@@ -28,7 +28,6 @@
   position: fixed;
   top: 0;
   width: 0;
-  background: rgba(255, 255, 255, 0.9);
   -webkit-transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   -ms-transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -53,9 +52,13 @@
   width: 4rem;
   padding: 0;
 }
+.pl-grouped-buttons .pl-grouped-button-compact-button.no-buttons {
+  left: -100px !important;
+}
 .pl-grouped-buttons .pl-grouped-button-compact-button i {
   font-size: 2rem;
   line-height: 4rem;
   vertical-align: middle;
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 0 0 0 white;
+  color: rgba(0, 0, 0, 0.75);
 }

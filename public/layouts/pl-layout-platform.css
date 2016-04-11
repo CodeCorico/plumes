@@ -54,9 +54,11 @@
 }
 .pl-layout-platform .pl-layout-platform-header .pl-layout-title.opened h2 {
   text-shadow: none;
+  color: white;
 }
 .pl-layout-platform .pl-layout-platform-header .pl-layout-title h2 {
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 0 0 0 white;
+  color: rgba(0, 0, 0, 0.75);
 }
 .pl-layout-platform .pl-layout-platform-context-left,
 .pl-layout-platform .pl-layout-platform-context-right {
