@@ -13,12 +13,13 @@
     if (typeof window.Ractive.plScrollsWidth == 'undefined') {
       var $tester = $('<div/>')
         .css({
-          overflow: 'auto',
+          'overflow-y': 'auto',
+          'overflow-x': 'hidden',
           visibility: 'hidden',
-          height: 10,
+          height: 50,
           width: 100
         })
-        .html('<div style="height: 20px; width: 100%"></div>');
+        .html('<div style="height: 200px; width: 100%"></div>');
 
       $('body').append($tester);
       var width = Math.ceil(100 - $tester.find('div').width());
