@@ -85,7 +85,8 @@
   transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-button-indicator .pl-button-indicator-image,
-.pl-button-indicator .pl-button-indicator-image:hover {
+.pl-button-indicator .pl-button-indicator-image:hover,
+.pl-button-indicator .pl-button-indicator-notification-picture {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
@@ -103,16 +104,12 @@
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-button-indicator .pl-button-indicator-image.hide,
-.pl-button-indicator .pl-button-indicator-image:hover.hide {
+.pl-button-indicator .pl-button-indicator-image:hover.hide,
+.pl-button-indicator .pl-button-indicator-notification-picture.hide {
   opacity: 0;
 }
-.pl-button-indicator .notification-picture {
+.pl-button-indicator .pl-button-indicator-notification-picture {
   opacity: 0;
-  -webkit-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -ms-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -o-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-button-indicator .pl-button-indicator-notification-message {
   opacity: 0;
@@ -161,7 +158,8 @@
   width: 25rem;
 }
 .pl-button-indicator.opened .pl-button-indicator-image,
-.pl-button-indicator.opened .pl-button-indicator-image:hover {
+.pl-button-indicator.opened .pl-button-indicator-image:hover,
+.pl-button-indicator.opened .pl-button-indicator-notification-picture {
   -webkit-transform: rotate(-360deg);
   -moz-transform: rotate(-360deg);
   -ms-transform: rotate(-360deg);

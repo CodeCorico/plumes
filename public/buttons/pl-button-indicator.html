@@ -2,7 +2,7 @@
   <div class="pl-button-indicator-bg {{showMessage ? 'accent-bg' : ''}}"></div>
   <div class="pl-button-indicator-image {{opened ? 'hide' : ''}}" style="background-image: url('{{image}}');" />
   {{#notificationPicture}}
-    <img class="notification-picture" src="{{notificationPicture}}" />
+    <img class="pl-button-indicator-notification-picture" src="{{notificationPicture}}" />
   {{/notificationPicture}}
   <p class="pl-button-indicator-notification-message">{{{notificationMessage}}}</p>
   <div class="pl-button-indicator-number accent-bg {{notificationsCount ? 'showed' : ''}}">
