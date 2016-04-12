@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.0.16"></a>
+# 1.0.15 (2016-04-12)
+
+[Release 1.0.16](https://github.com/CodeCorico/plumes/releases/tag/1.0.16)
+
+### Hotfixes
+
+- **Button Indicator**
+  - Update missing cls
+
 <a name="1.0.15"></a>
 # 1.0.15 (2016-04-12)
 
