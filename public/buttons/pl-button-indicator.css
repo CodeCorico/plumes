@@ -170,6 +170,6 @@
   opacity: 1;
   left: 5.5rem;
 }
-.pl-button-indicator.opened .notification-picture {
+.pl-button-indicator.opened .pl-button-indicator-notification-picture {
   opacity: 1;
 }
