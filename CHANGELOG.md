@@ -1,5 +1,17 @@
 # Plumes - Changelog
 
+<a name="1.0.14"></a>
+# 1.0.14 (2016-04-12)
+
+[Release 1.0.14](https://github.com/CodeCorico/plumes/releases/tag/1.0.14)
+
+### Hotfixes
+
+- **Layout Platform**
+  - Better text-shadow
+- **Grouped Buttons**
+  - Better text-shadow
+
 <a name="1.0.13"></a>
 # 1.0.13 (2016-04-11)
 
