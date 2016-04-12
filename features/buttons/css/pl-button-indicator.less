@@ -33,7 +33,7 @@
     .transition(all 0.55s @easeOutQuart);
   }
 
-  .pl-button-indicator-image, .pl-button-indicator-image:hover {
+  .pl-button-indicator-image, .pl-button-indicator-image:hover, .pl-button-indicator-notification-picture {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
@@ -52,10 +52,8 @@
     }
   }
 
-  .notification-picture {
+  .pl-button-indicator-notification-picture {
     opacity: 0;
-
-    .transition(all 0.7s @easeOutQuart);
   }
 
   .pl-button-indicator-notification-message {
@@ -102,7 +100,7 @@
   &.opened {
     width: 25rem;
 
-    .pl-button-indicator-image, .pl-button-indicator-image:hover {
+    .pl-button-indicator-image, .pl-button-indicator-image:hover, .pl-button-indicator-notification-picture {
       .transform(rotate(-360deg));
     }
 
