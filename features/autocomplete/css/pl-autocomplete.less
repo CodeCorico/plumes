@@ -1,0 +1,77 @@
+@import "../../common/less/common-variables.less";
+@import "../../common/less/common-mixins.less";
+
+.pl-autocomplete {
+  z-index: 1;
+  position: relative;
+
+  .pl-autocomplete-selection {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #C0C0C0;
+    height: 38px;
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    box-shadow: none;
+    box-sizing: border-box;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  .pl-autocomplete-input {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
+
+  .pl-autocomplete-list {
+    z-index: 10;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background: white;
+
+    &.open {
+      border: 1px solid #D1D1D1;
+      border-top: none;
+      .transition(height 0.35s @easeOutQuart);
+    }
+
+    &.from-bottom {
+
+      &.open {
+        border: 1px solid #D1D1D1;
+        border-bottom: none;
+        .transition(height 0.35s @easeOutQuart, top 0.35s @easeOutQuart);
+      }
+    }
+
+    .pl-autocomplete-list-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .pl-autocomplete-list-item {
+      cursor: pointer;
+      padding: 0 1rem;
+
+      &:hover, &.focused {
+        background: #eee;
+      }
+
+      strong {
+        font-weight: 500;
+      }
+    }
+  }
+}

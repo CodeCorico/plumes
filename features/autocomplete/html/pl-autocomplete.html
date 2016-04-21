@@ -1,0 +1,29 @@
+<div class="pl-autocomplete">
+  <div
+    class="pl-autocomplete-selection {{selectioncls}} {{inEdition ? 'show' : ''}}"
+    style="width: {{selectionWidth}}px;"
+  >{{{selection}}}</div>
+
+  <input
+    type="text"
+    class="pl-autocomplete-input {{inputcls}}"
+    placeholder="{{placeholder}}"
+    autocomplete="off"
+    spellcheck="false"
+    on-focus="inputFocus"
+    on-blur="inputBlur"
+    on-keyup="inputKeyup"
+    on-change="inputChange"
+  />
+
+  <div
+    class="pl-autocomplete-list {{inEdition ? 'open' : ''}} {{listFromBottom ? 'from-bottom' : ''}} {{listcls}}"
+    style="top: {{listTop}}px; width: {{listWidth}}px; height: {{listHeight}}px;"
+  >
+    <div class="pl-autocomplete-list-content">
+      {{#list}}
+        {{> template}}
+      {{/list}}
+    </div>
+  </div>
+</div>
