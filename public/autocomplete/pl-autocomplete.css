@@ -2,6 +2,12 @@
   z-index: 1;
   position: relative;
 }
+.pl-autocomplete.in-edition {
+  z-index: 2;
+}
+.pl-autocomplete.in-edition .pl-autocomplete-list {
+  z-index: 11;
+}
 .pl-autocomplete .pl-autocomplete-selection {
   display: none;
   position: absolute;

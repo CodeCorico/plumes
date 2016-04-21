@@ -1,4 +1,4 @@
-<div class="pl-autocomplete">
+<div class="pl-autocomplete {{cls}} {{inEdition ? 'in-edition' : ''}}">
   <div
     class="pl-autocomplete-selection {{selectioncls}} {{inEdition ? 'show' : ''}}"
     style="width: {{selectionWidth}}px;"
@@ -12,6 +12,7 @@
     spellcheck="false"
     on-focus="inputFocus"
     on-blur="inputBlur"
+    on-keydown="inputKeydown"
     on-keyup="inputKeyup"
     on-change="inputChange"
   />
