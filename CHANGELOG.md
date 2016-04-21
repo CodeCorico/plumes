@@ -1,7 +1,22 @@
 # Plumes - Changelog
 
+<a name="1.1.0"></a>
+# 1.1.0 (2016-04-21)
+
+[Release 1.1.0](https://github.com/CodeCorico/plumes/releases/tag/1.1.0)
+
+### Breaking changes
+
+- **Autocomplete**
+  - New component!
+
+### Hotfixes
+
+- **Notifications panel**
+  - Bad scrolls require path
+
 <a name="1.0.16"></a>
-# 1.0.15 (2016-04-12)
+# 1.0.16 (2016-04-12)
 
 [Release 1.0.16](https://github.com/CodeCorico/plumes/releases/tag/1.0.16)
 
