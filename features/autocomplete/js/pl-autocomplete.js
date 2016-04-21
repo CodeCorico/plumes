@@ -27,6 +27,16 @@
 
           refresh: function() {
             _refresh();
+          },
+
+          clear: function() {
+            _$el.input.val('');
+
+            _change(event);
+          },
+
+          focus: function() {
+            _$el.input.focus();
           }
         }),
         _$el = {
@@ -59,19 +69,19 @@
       Autocomplete.set('selectionWidth', width);
     }
 
-    function _select() {
+    function _select(event) {
       var select = Autocomplete.get('select');
       if (select) {
-        select(event, _$el.input.val());
+        select(event, _$el.input.val(), Autocomplete);
       }
 
       _$el.input.blur();
     }
 
-    function _change() {
+    function _change(event) {
       var change = Autocomplete.get('change');
       if (change) {
-        change(event, _$el.input.val());
+        change(event, _$el.input.val(), Autocomplete);
       }
     }
 
@@ -83,7 +93,7 @@
 
       _$el.input.val(event.context.value);
 
-      _change();
+      _change(event);
     });
 
     Autocomplete.on('inputFocus', function(event) {
@@ -93,7 +103,7 @@
 
       var focus = Autocomplete.get('focus');
       if (focus) {
-        focus(event, _$el.input.val());
+        focus(event, _$el.input.val(), Autocomplete);
       }
     });
 
@@ -104,11 +114,25 @@
 
       var blur = Autocomplete.get('blur');
       if (blur) {
-        blur(event, _$el.input.val());
+        blur(event, _$el.input.val(), Autocomplete);
+      }
+    });
+
+    Autocomplete.on('inputKeydown', function(event) {
+      var keydown = Autocomplete.get('keydown');
+      if (keydown) {
+        keydown(event, Autocomplete);
       }
     });
 
     Autocomplete.on('inputKeyup', function(event) {
+      var keyup = Autocomplete.get('keyup');
+      if (keyup) {
+        if (keyup(event, Autocomplete) === false) {
+          return;
+        }
+      }
+
       var charCode = event.original.charCode ? event.original.charCode : event.original.keyCode,
           selection = Autocomplete.get('selection'),
           list = Autocomplete.get('list'),
@@ -118,7 +142,7 @@
       if (charCode == 39 && selection) {
         _$el.input.val(selection);
 
-        _change();
+        _change(event);
 
         return;
       }
@@ -137,20 +161,20 @@
       // Enter
       if (charCode == 13) {
         if (!list || !list.length || listfocused === -1) {
-          _select();
+          _select(event);
         }
         else if (list && list.length && list[listfocused]) {
           _$el.input.val(list[listfocused].value);
 
           Autocomplete.set('listfocused', -1);
 
-          _change();
+          _change(event);
         }
 
         return;
       }
 
-      _change();
+      _change(event);
     });
 
     Autocomplete.observe('list', function(list) {
