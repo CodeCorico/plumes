@@ -39,9 +39,9 @@
           forgotTexts: $(Login.el).find('.pl-login-forgot-texts')
         };
 
-    window.Ractive.bindUses(Login, ['forgot']);
+    window.Ractive.Plumes.bindUses(Login, ['forgot']);
 
-    window.Ractive.bindTexts(Login);
+    window.Ractive.Plumes.bindTexts(Login);
 
     Login.observe('texts.username', function(value) {
       Login.set('texts.usernamePlaceholder', value);

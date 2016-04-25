@@ -67,7 +67,6 @@
   cursor: pointer;
   padding: 0 1rem;
 }
-.pl-autocomplete .pl-autocomplete-list .pl-autocomplete-list-item:hover,
 .pl-autocomplete .pl-autocomplete-list .pl-autocomplete-list-item.focused {
   background: #eee;
 }

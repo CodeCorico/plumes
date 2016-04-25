@@ -1,7 +1,9 @@
 (function() {
   'use strict';
 
-  window.Ractive.bootstrap = function(callback) {
+  window.Ractive.Plumes = window.Ractive.Plumes || {};
+
+  window.Ractive.Plumes.bootstrap = function(callback) {
     function _inScope(element, rvRequireCount) {
       rvRequireCount = rvRequireCount || 0;
 
@@ -64,7 +66,7 @@
     });
   };
 
-  window.Ractive.bindUses = function(component, binds, defaultsToFalse) {
+  window.Ractive.Plumes.bindUses = function(component, binds, defaultsToFalse) {
     defaultsToFalse = defaultsToFalse || [];
 
     binds.forEach(function(bind) {
@@ -80,7 +82,7 @@
     });
   };
 
-  window.Ractive.bindTexts = function(component) {
+  window.Ractive.Plumes.bindTexts = function(component) {
     Object.keys(component.get('texts') || {}).forEach(function(key) {
       component.observe('text-' + key, function(value) {
         if (typeof value != 'undefined') {

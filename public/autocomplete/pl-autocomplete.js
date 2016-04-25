@@ -16,9 +16,10 @@
           }, data),
           partials: $.extend(true, {
             templateDefault: [
-            '<div ',
-              'class="pl-autocomplete-list-item {{listfocused == @index ? \'focused\' : \'\'}}" ',
-              'on-mousedown="selectListItem"',
+            '<div',
+              ' class="pl-autocomplete-list-item {{listfocused == @index ? \'focused\' : \'\'}}"',
+              ' on-mousedown="selectListItem"',
+              ' on-mouseenter="enterListItem"',
             '>',
               '{{{display}}}',
             '</div>'
@@ -86,6 +87,10 @@
     }
 
     Autocomplete.partials.template = Autocomplete.partials.template || Autocomplete.partials.templateDefault;
+
+    Autocomplete.on('enterListItem', function(event) {
+      Autocomplete.set('listfocused', parseInt(event.keypath.substring(event.keypath.lastIndexOf('.') + 1), 10));
+    });
 
     Autocomplete.on('selectListItem', function(event) {
       event.original.stopPropagation();

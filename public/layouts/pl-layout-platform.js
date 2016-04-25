@@ -332,7 +332,7 @@
           contentTemplate: $(LayoutPlatform.el).find('.pl-layout-platform-content-template')
         };
 
-    window.Ractive.bindUses(LayoutPlatform, ['mask']);
+    window.Ractive.Plumes.bindUses(LayoutPlatform, ['mask']);
 
     LayoutPlatform.observe('title-showed', function(value) {
       value = value === false || value == 'false' ? false : true;

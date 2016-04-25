@@ -39,9 +39,9 @@
       }
     });
 
-    window.Ractive.bindUses(NotificationsPanel, ['section', 'emails']);
+    window.Ractive.Plumes.bindUses(NotificationsPanel, ['section', 'emails']);
 
-    window.Ractive.bindTexts(NotificationsPanel);
+    window.Ractive.Plumes.bindTexts(NotificationsPanel);
 
     if (data.openitem) {
       NotificationsPanel.on('openitem', function(event) {
