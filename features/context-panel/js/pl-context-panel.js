@@ -137,7 +137,7 @@
           panel: $(ContextPanel.el)
         };
 
-    window.Ractive.bindUses(
+    window.Ractive.Plumes.bindUses(
       ContextPanel,
       ['title', 'leftcross', 'rightcross'],
       ['leftcross', 'rightcross']
