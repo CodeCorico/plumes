@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.1.2"></a>
+# 1.1.2 (2016-04-25)
+
+[Release 1.1.2](https://github.com/CodeCorico/plumes/releases/tag/1.1.2)
+
+### Breaking changes
+
+- **Plumes**
+  - Rename "base" feature to Plumes feature to scope Plumes inside Ractive
+
+### Hotfixes
+
+- **Autocomplete**
+  - The mouse hover the list doesn't create a second focus
+
 <a name="1.1.1"></a>
 # 1.1.1 (2016-04-21)
 
