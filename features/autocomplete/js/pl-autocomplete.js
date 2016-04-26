@@ -84,6 +84,10 @@
       }
     }
 
+    function _charCode(event) {
+      return event.original.charCode ? event.original.charCode : event.original.keyCode;
+    }
+
     Autocomplete.partials.template = Autocomplete.partials.template || Autocomplete.partials.templateDefault;
 
     Autocomplete.on('enterListItem', function(event) {
@@ -122,6 +126,23 @@
     });
 
     Autocomplete.on('inputKeydown', function(event) {
+      var charCode = _charCode(event);
+
+      if (charCode == 9) {
+        var selection = Autocomplete.get('selection');
+
+        if (selection) {
+          event.original.stopPropagation();
+          event.original.preventDefault();
+
+          _$el.input.val(selection);
+
+          _change(event);
+
+          return;
+        }
+      }
+
       var keydown = Autocomplete.get('keydown');
       if (keydown) {
         keydown(event, Autocomplete);
@@ -136,7 +157,7 @@
         }
       }
 
-      var charCode = event.original.charCode ? event.original.charCode : event.original.keyCode,
+      var charCode = _charCode(event),
           selection = Autocomplete.get('selection'),
           list = Autocomplete.get('list'),
           listfocused = Autocomplete.get('listfocused');
