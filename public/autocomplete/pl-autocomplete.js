@@ -75,8 +75,6 @@
       if (select) {
         select(event, _$el.input.val(), Autocomplete);
       }
-
-      _$el.input.blur();
     }
 
     function _change(event) {
@@ -86,10 +84,18 @@
       }
     }
 
+    function _charCode(event) {
+      return event.original.charCode ? event.original.charCode : event.original.keyCode;
+    }
+
     Autocomplete.partials.template = Autocomplete.partials.template || Autocomplete.partials.templateDefault;
 
     Autocomplete.on('enterListItem', function(event) {
-      Autocomplete.set('listfocused', parseInt(event.keypath.substring(event.keypath.lastIndexOf('.') + 1), 10));
+      var list = Autocomplete.get('list'),
+          listfocused = parseInt(event.keypath.substring(event.keypath.lastIndexOf('.') + 1), 10);
+
+      Autocomplete.set('listfocused', listfocused);
+      Autocomplete.set('selection', list && list.length && list[listfocused].value || '');
     });
 
     Autocomplete.on('selectListItem', function(event) {
@@ -99,6 +105,7 @@
       _$el.input.val(event.context.value);
 
       _change(event);
+      _select(event);
     });
 
     Autocomplete.on('inputFocus', function(event) {
@@ -124,6 +131,23 @@
     });
 
     Autocomplete.on('inputKeydown', function(event) {
+      var charCode = _charCode(event);
+
+      if (charCode == 9) {
+        var selection = Autocomplete.get('selection');
+
+        if (selection) {
+          event.original.stopPropagation();
+          event.original.preventDefault();
+
+          _$el.input.val(selection);
+
+          _change(event);
+
+          return;
+        }
+      }
+
       var keydown = Autocomplete.get('keydown');
       if (keydown) {
         keydown(event, Autocomplete);
@@ -138,7 +162,7 @@
         }
       }
 
-      var charCode = event.original.charCode ? event.original.charCode : event.original.keyCode,
+      var charCode = _charCode(event),
           selection = Autocomplete.get('selection'),
           list = Autocomplete.get('list'),
           listfocused = Autocomplete.get('listfocused');
@@ -159,6 +183,7 @@
         listfocused = listfocused == list.length ? -1 : listfocused;
 
         Autocomplete.set('listfocused', listfocused);
+        Autocomplete.set('selection', list && list.length && list[listfocused].value || '');
 
         return;
       }
@@ -174,6 +199,7 @@
           Autocomplete.set('listfocused', -1);
 
           _change(event);
+          _select(event);
         }
 
         return;
