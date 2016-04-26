@@ -105,6 +105,7 @@
       _$el.input.val(event.context.value);
 
       _change(event);
+      _select(event);
     });
 
     Autocomplete.on('inputFocus', function(event) {
@@ -198,6 +199,7 @@
           Autocomplete.set('listfocused', -1);
 
           _change(event);
+          _select(event);
         }
 
         return;
