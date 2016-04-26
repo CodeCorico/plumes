@@ -75,8 +75,6 @@
       if (select) {
         select(event, _$el.input.val(), Autocomplete);
       }
-
-      _$el.input.blur();
     }
 
     function _change(event) {
