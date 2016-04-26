@@ -91,7 +91,11 @@
     Autocomplete.partials.template = Autocomplete.partials.template || Autocomplete.partials.templateDefault;
 
     Autocomplete.on('enterListItem', function(event) {
-      Autocomplete.set('listfocused', parseInt(event.keypath.substring(event.keypath.lastIndexOf('.') + 1), 10));
+      var list = Autocomplete.get('list'),
+          listfocused = parseInt(event.keypath.substring(event.keypath.lastIndexOf('.') + 1), 10);
+
+      Autocomplete.set('listfocused', listfocused);
+      Autocomplete.set('selection', list && list.length && list[listfocused].value || '');
     });
 
     Autocomplete.on('selectListItem', function(event) {
@@ -178,6 +182,7 @@
         listfocused = listfocused == list.length ? -1 : listfocused;
 
         Autocomplete.set('listfocused', listfocused);
+        Autocomplete.set('selection', list && list.length && list[listfocused].value || '');
 
         return;
       }
