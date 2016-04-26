@@ -31,9 +31,22 @@
           },
 
           clear: function() {
-            _$el.input.val('');
+            if (_$el.input.val()) {
+              _$el.input.val('');
+              _change(event);
+            }
 
-            _change(event);
+            if (Autocomplete.get('list')) {
+              Autocomplete.set('list', null);
+            }
+
+            if (Autocomplete.get('listfocused') !== -1) {
+              Autocomplete.set('listfocused', -1);
+            }
+
+            if (Autocomplete.get('selection')) {
+              Autocomplete.set('selection', null);
+            }
           },
 
           focus: function() {
@@ -136,7 +149,7 @@
       if (charCode == 9) {
         var selection = Autocomplete.get('selection');
 
-        if (selection) {
+        if (selection && _$el.input.val() != selection) {
           event.original.stopPropagation();
           event.original.preventDefault();
 
