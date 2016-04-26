@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.1.4"></a>
+# 1.1.4 (2016-04-26)
+
+[Release 1.1.4](https://github.com/CodeCorico/plumes/releases/tag/1.1.4)
+
+### Hotfixes
+
+- **Autocomplete**
+  - Refine and fix behaviors
+
 <a name="1.1.3"></a>
 # 1.1.3 (2016-04-26)
 
