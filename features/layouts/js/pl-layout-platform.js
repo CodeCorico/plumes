@@ -34,6 +34,9 @@
           _groupedButtons.left.defaultMode();
         }
         if (_groupedButtons.right) {
+          if (_useFullscreen() == 'mobile') {
+            _removeFullscreenButton();
+          }
           _groupedButtons.right.defaultMode();
         }
 
@@ -70,6 +73,9 @@
             _groupedButtons.left.defaultMode();
           }
           if (_groupedButtons.right) {
+            if (_useFullscreen() == 'mobile') {
+              _removeFullscreenButton();
+            }
             _groupedButtons.right.defaultMode();
           }
 
@@ -86,6 +92,10 @@
             _groupedButtons.left.compactMode();
           }
           if (_groupedButtons.right) {
+            if (_useFullscreen() == 'mobile') {
+              _addFullscreenButton();
+            }
+
             _groupedButtons.right.compactMode();
           }
 
@@ -138,10 +148,113 @@
       }, 250);
     }
 
+    function _useFullscreen() {
+      var usefullscreen = LayoutPlatform.get('usefullscreen');
+      usefullscreen = typeof usefullscreen == 'undefined' || usefullscreen == 'true' || usefullscreen === true || false;
+
+      var usefullscreendesktop = LayoutPlatform.get('usefullscreendesktop');
+      usefullscreendesktop = usefullscreendesktop == 'true' || usefullscreendesktop === true || false;
+
+      return usefullscreen && usefullscreendesktop ? 'desktop' : (usefullscreen && !usefullscreendesktop ? 'mobile' : false);
+    }
+
     function _closeContext(orientation) {
       var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + orientation);
 
       panel.close();
+    }
+
+    function _hasFullscreenButton() {
+      var buttonsRight = LayoutPlatform.get('buttonsright') || [],
+          index = -1;
+
+      for (var i = 0; i < buttonsRight.length; i++) {
+        if (buttonsRight[i]['pl-layout-name'] && buttonsRight[i]['pl-layout-name'] == 'fullscreen') {
+          index = i;
+
+          break;
+        }
+      }
+
+      return index;
+    }
+
+    function _addFullscreenButton() {
+      var index = _hasFullscreenButton();
+
+      if (index > -1) {
+        return;
+      }
+
+      var buttonsRight = LayoutPlatform.get('buttonsright') || [];
+
+      buttonsRight.push({
+        'pl-layout-name': 'fullscreen',
+        icon:
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.msFullscreenElement ?
+          'fa fa-compress' :
+          'fa fa-expand',
+        action: function(button) {
+          var $i = $(button.node).find('i');
+
+          if (
+            document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement
+          ) {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+            else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            }
+            else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+            }
+            else if (document.msExitFullscreen) {
+              document.msExitFullscreen();
+            }
+
+            $i[0].className = 'fa fa-expand';
+          }
+          else {
+            if (document.body.requestFullscreen) {
+              document.body.requestFullscreen();
+            }
+            else if (document.body.webkitRequestFullscreen) {
+              document.body.webkitRequestFullscreen();
+            }
+            else if (document.body.mozRequestFullScreen) {
+              document.body.mozRequestFullScreen();
+            }
+            else if (document.body.msRequestFullscreen) {
+              document.body.msRequestFullscreen();
+            }
+
+            $i[0].className = 'fa fa-compress';
+          }
+        }
+      });
+
+      LayoutPlatform.update('buttonsright');
+    }
+
+    function _removeFullscreenButton() {
+      var index = _hasFullscreenButton();
+
+      if (index < 0) {
+        return;
+      }
+
+      var buttonsRight = LayoutPlatform.get('buttonsright') || [];
+
+      buttonsRight.splice(index, 1);
+
+      LayoutPlatform.update('buttonsright');
     }
 
     function _registerGroupedButtonsEvents(orientation, component) {
@@ -153,6 +266,10 @@
       _resize();
 
       _groupedButtons[orientation].show();
+
+      if (orientation == 'right' && _useFullscreen() == 'desktop') {
+        _addFullscreenButton();
+      }
     }
 
     function _registerContextEvents(orientation, component) {
