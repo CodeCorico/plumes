@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.2.1"></a>
+# 1.2.1 (2016-04-27)
+
+[Release 1.2.1](https://github.com/CodeCorico/plumes/releases/tag/1.2.1)
+
+### Hotfixes
+
+- **Layout Platform**
+  - Refine and fix behaviors
+
 <a name="1.2.0"></a>
 # 1.2.0 (2016-04-27)
 
