@@ -118,10 +118,14 @@
         }
       }]);
 
-      page.set('buttonsleft', [{
+      var buttonsleft = page.get('buttonsleft') || [];
+
+      buttonsleft.push({
         icon: 'fa fa-list-ul',
         group: 'group-1'
-      }]);
+      })
+
+      page.set('buttonsleft', buttonsleft);
 
       setTimeout(function() {
         var buttonsleft = page.get('buttonsleft');
@@ -136,12 +140,16 @@
 
       var profileButton = null;
 
-      page.set('buttonsright', [{
+      var buttonsright = page.get('buttonsright') || [];
+
+      buttonsright.push({
         icon: 'fa fa-bell',
         action: function(event, button) {
           button.set('icon', button.get('icon') == 'fa fa-bell' ? 'fa fa-bell-slash' : 'fa fa-bell');
         }
-      }, {
+      });
+
+      buttonsright.push({
         icon: 'fa fa-play',
         action: function(event, button) {
           profileButton.pushNotification(
@@ -163,7 +171,9 @@
             }
           );
         }
-      }, {
+      });
+
+      buttonsright.push({
         type: 'indicator',
         image: 'https://www.gravatar.com/avatar/9e38451efa23937301594f273033c5f1.png',
         group: 'group-3',
@@ -173,7 +183,9 @@
         ready: function(button) {
           profileButton = button;
         }
-      }]);
+      });
+
+      page.set('buttonsright', buttonsright);
 
       page.set('beforerequire', function(layout, callback) {
         if (Cookies.get('intro') == 'done') {
