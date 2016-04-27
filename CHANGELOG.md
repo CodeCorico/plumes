@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.2.0"></a>
+# 1.2.0 (2016-04-27)
+
+[Release 1.2.0](https://github.com/CodeCorico/plumes/releases/tag/1.2.0)
+
+### Breaking changes
+
+- **Layout Platform**
+  - Add a "fullscreen" button on mobile view!
+
 <a name="1.1.4"></a>
 # 1.1.4 (2016-04-26)
 
