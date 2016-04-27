@@ -133,6 +133,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  background: white;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);

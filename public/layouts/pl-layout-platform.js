@@ -188,7 +188,7 @@
 
       var buttonsRight = LayoutPlatform.get('buttonsright') || [];
 
-      buttonsRight.push({
+      buttonsRight.unshift({
         'pl-layout-name': 'fullscreen',
         icon:
           document.fullscreenElement ||
