@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.3.0"></a>
+# 1.3.0 (2016-05-03)
+
+[Release 1.3.0](https://github.com/CodeCorico/plumes/releases/tag/1.3.0)
+
+### Breaking changes
+
+- **Layout Platform**
+  - Add a userBehavior status when the user perform the action.
+
 <a name="1.2.1"></a>
 # 1.2.1 (2016-04-27)
 
