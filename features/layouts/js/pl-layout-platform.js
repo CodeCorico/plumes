@@ -44,15 +44,15 @@
       }
       else {
         if (openOrientation == 'left' && LayoutPlatform.get('rightContextOpened')) {
-          _contexts.right.close();
+          _contexts.right.close(null, false);
           LayoutPlatform.set('rightContextOpened', false);
         }
         else if (openOrientation == 'right' && LayoutPlatform.get('leftContextOpened')) {
-          _contexts.left.close();
+          _contexts.left.close(null, false);
           LayoutPlatform.set('leftContextOpened', false);
         }
         else if (LayoutPlatform.get('leftContextOpened') && LayoutPlatform.get('rightContextOpened')) {
-          _contexts.right.close();
+          _contexts.right.close(null, false);
           LayoutPlatform.set('rightContextOpened', false);
         }
 
@@ -158,10 +158,10 @@
       return usefullscreen && usefullscreendesktop ? 'desktop' : (usefullscreen && !usefullscreendesktop ? 'mobile' : false);
     }
 
-    function _closeContext(orientation) {
+    function _closeContext(orientation, userBehavior) {
       var panel = LayoutPlatform.findChild('data-pl-name', 'context-' + orientation);
 
-      panel.close();
+      panel.close(null, userBehavior);
     }
 
     function _hasFullscreenButton() {
@@ -220,6 +220,10 @@
             }
 
             $i[0].className = 'fa fa-expand';
+
+            LayoutPlatform.fire('fullscreen', {
+              fullscreen: false
+            });
           }
           else {
             if (document.body.requestFullscreen) {
@@ -236,6 +240,10 @@
             }
 
             $i[0].className = 'fa fa-compress';
+
+            LayoutPlatform.fire('fullscreen', {
+              fullscreen: true
+            });
           }
         }
       });
@@ -275,23 +283,25 @@
     function _registerContextEvents(orientation, component) {
       _contexts[orientation] = component;
 
-      component.on('beforeOpen', function() {
+      component.on('beforeOpen', function(event) {
         LayoutPlatform.set(orientation + 'ContextOpened', true);
 
         LayoutPlatform.fire(orientation + 'ContextOpened', {
           opened: true,
-          component: component
+          component: component,
+          userBehavior: event.userBehavior
         });
 
         _resize(orientation);
       });
 
-      component.on('close', function() {
+      component.on('close', function(event) {
         LayoutPlatform.set(orientation + 'ContextOpened', false);
 
         LayoutPlatform.fire(orientation + 'ContextOpened', {
           opened: false,
-          component: component
+          component: component,
+          userBehavior: event.userBehavior
         });
 
         _resize();
@@ -306,7 +316,7 @@
       });
     }
 
-    function _displayContextGroup(orientation, context, $context, $group) {
+    function _displayContextGroup(orientation, context, $context, $group, userBehavior) {
       $context.find('.pl-group').removeClass('opened');
 
       $group.addClass('opened');
@@ -325,10 +335,11 @@
       LayoutPlatform.fire('groupOpened', {
         orientation: orientation,
         context: context,
-        $group: $group
+        $group: $group,
+        userBehavior: userBehavior
       });
 
-      context.open();
+      context.open(null, userBehavior);
     }
 
     function _beforeButtonsAction(args) {
@@ -351,17 +362,17 @@
           }
 
           if ($group.hasClass('opened')) {
-            return context.open();
+            return context.open(null, args.userBehavior);
           }
 
-          beforeGroup(context, $group, function() {
+          beforeGroup(context, $group, args.userBehavior, function callback() {
             if (context.isOpened()) {
-              context.closeContent(function() {
-                _displayContextGroup(orientation, context, $context, $group);
-              });
+              context.closeContent(function callback() {
+                _displayContextGroup(orientation, context, $context, $group, args.userBehavior);
+              }, args.userBehavior);
             }
             else {
-              _displayContextGroup(orientation, context, $context, $group);
+              _displayContextGroup(orientation, context, $context, $group, args.userBehavior);
             }
           });
         });
@@ -377,7 +388,7 @@
         };
 
         beforeContext(context, function callback() {
-          context.open();
+          context.open(null, args.userBehavior);
         });
       }
     }
@@ -420,10 +431,10 @@
             contentMedia: '',
 
             crossleftcontext: function() {
-              _closeContext('left');
+              _closeContext('left', true);
             },
             crossrightcontext: function() {
-              _closeContext('right');
+              _closeContext('right', true);
             }
           }, data),
 

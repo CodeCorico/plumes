@@ -6,18 +6,20 @@
     var ButtonRounded = component({
       plName: 'pl-button-rounded',
       data: data,
-      action: function() {
+      action: function(userBehavior) {
+        userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+
         var action = ButtonRounded.get('action');
 
         if (action) {
-          action(null, ButtonRounded);
+          action(null, ButtonRounded, userBehavior);
         }
       }
     });
 
     if (data.action) {
       ButtonRounded.on('action', function(event) {
-        data.action(event, ButtonRounded);
+        data.action(event, ButtonRounded, true);
         event.original.stopPropagation();
       });
     }

@@ -14,11 +14,13 @@
             notificationsCount: 0
           }, data),
 
-          action: function() {
+          action: function(userBehavior) {
+            userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+
             var action = ButtonIndicator.get('action');
 
             if (action) {
-              action(null, ButtonIndicator, activeNotification);
+              action(null, ButtonIndicator, userBehavior, activeNotification);
             }
           },
           pushNotification: function(message, picture, args, forceUncount) {
@@ -78,7 +80,7 @@
 
     if (data.action) {
       ButtonIndicator.on('action', function(event) {
-        data.action(event, ButtonIndicator, activeNotification);
+        data.action(event, ButtonIndicator, true, activeNotification);
         event.original.stopPropagation();
       });
     }
