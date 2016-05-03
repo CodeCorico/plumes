@@ -17,10 +17,14 @@
             usable: false
           }, data),
 
-          open: function(callback) {
+          open: function(callback, userBehavior) {
+            userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+
             _inOpen = true;
 
-            ContextPanel.fire('beforeOpen');
+            ContextPanel.fire('beforeOpen', {
+              userBehavior: userBehavior
+            });
 
             ContextPanel.set('opened', true);
 
@@ -50,7 +54,9 @@
 
                 ContextPanel.set('usable', true);
 
-                ContextPanel.fire('open');
+                ContextPanel.fire('open', {
+                  userBehavior: userBehavior
+                });
 
                 if (callback) {
                   callback();
@@ -59,10 +65,14 @@
             }, 250);
           },
 
-          closeContent: function(callback) {
+          closeContent: function(callback, userBehavior) {
+            userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+
             _inOpen = false;
 
-            ContextPanel.fire('beforeCloseContent');
+            ContextPanel.fire('beforeCloseContent', {
+              userBehavior: userBehavior
+            });
 
             ContextPanel.set('usable', false);
 
@@ -85,7 +95,9 @@
                 return;
               }
 
-              ContextPanel.fire('closeContent');
+              ContextPanel.fire('closeContent', {
+                userBehavior: userBehavior
+              });
 
               if (callback) {
                 callback();
@@ -93,20 +105,26 @@
             }, (($sections.length - 1) * 80) + 450);
           },
 
-          close: function(callback) {
-            ContextPanel.fire('beforeClose');
+          close: function(callback, userBehavior) {
+            userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+
+            ContextPanel.fire('beforeClose', {
+              userBehavior: userBehavior
+            });
 
             this.closeContent(function() {
               ContextPanel.set('opened', false);
 
               setTimeout(function() {
-                ContextPanel.fire('close');
+                ContextPanel.fire('close', {
+                  userBehavior: userBehavior
+                });
 
                 if (callback) {
                   callback();
                 }
               }, 250);
-            });
+            }, userBehavior);
           },
 
           closeIfGroupOpened: function(groupName) {
@@ -123,9 +141,10 @@
             if ($group) {
               ContextPanel.close(function() {
                 ContextPanel.fire('closeIfGroupOpened', {
-                  $group: $group
+                  $group: $group,
+                  userBehavior: false
                 });
-              });
+              }, false);
             }
           },
 

@@ -22,7 +22,7 @@
         compactOpened: false,
         compactHeight: 0,
 
-        action: function(event, component) {
+        action: function(event, component, userBehavior) {
           if (!component) {
             return;
           }
@@ -34,7 +34,8 @@
           GroupedButtons.fire('beforeAction', {
             event: event,
             button: button,
-            component: component
+            component: component,
+            userBehavior: userBehavior
           });
 
           if (GroupedButtons.get('mode') == MODES.COMPACT && GroupedButtons.get('compactOpened')) {
@@ -42,13 +43,14 @@
           }
 
           if (button && button.action) {
-            button.action(event, component);
+            button.action(event, component, userBehavior);
           }
 
           GroupedButtons.fire('action', {
             event: event,
             button: button,
-            component: component
+            component: component,
+            userBehavior: userBehavior
           });
         }
       }, data),
