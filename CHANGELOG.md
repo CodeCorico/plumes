@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.3.1"></a>
+# 1.3.1 (2016-05-09)
+
+[Release 1.3.1](https://github.com/CodeCorico/plumes/releases/tag/1.3.1)
+
+### Hotfixes
+
+- **Layout Platform**
+  - Missing arguments for direct callbacks
+
 <a name="1.3.0"></a>
 # 1.3.0 (2016-05-03)
 
