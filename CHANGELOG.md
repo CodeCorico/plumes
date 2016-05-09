@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.3.2"></a>
+# 1.3.2 (2016-05-09)
+
+[Release 1.3.2](https://github.com/CodeCorico/plumes/releases/tag/1.3.2)
+
+### Hotfixes
+
+- **Scrolls**
+  - Don't use custom scrolls in mobile views
+
 <a name="1.3.1"></a>
 # 1.3.1 (2016-05-09)
 
