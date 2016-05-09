@@ -348,7 +348,7 @@
       }
 
       if (args.button.group) {
-        var beforeGroup = args.button.beforeGroup || function(context, $group, callback) {
+        var beforeGroup = args.button.beforeGroup || function(context, $group, userBehavior, callback) {
           callback();
         };
 
@@ -383,7 +383,7 @@
           return;
         }
 
-        var beforeContext = args.button.beforeContext || function(callback) {
+        var beforeContext = args.button.beforeContext || function(context, callback) {
           callback();
         };
 
@@ -552,7 +552,7 @@
 
       LayoutPlatform.set('loaded', true);
 
-      var beforeRequire = data.beforerequire || function(l, callback) {
+      var beforeRequire = data.beforerequire || function(layout, callback) {
         callback();
       };
 
