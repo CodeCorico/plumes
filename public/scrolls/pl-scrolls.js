@@ -27,11 +27,23 @@
 
       var sheet = window.document.styleSheets[0];
 
-      if (sheet.insertRule) {
-        sheet.insertRule('.pl-scrolls { margin-right: -' + width + 'px; }', sheet.cssRules.length);
+      if (width === 0) {
+        if (sheet.insertRule) {
+          sheet.insertRule('.pl-scrolls-vertical { display: none !important; }', sheet.cssRules.length);
+          sheet.insertRule('.pl-scrolls { overflow: scroll !important; -webkit-overflow-scrolling: touch; }', sheet.cssRules.length);
+        }
+        else {
+          sheet.addRule('.pl-scrolls-vertical', 'display: none !important;', -1);
+          sheet.addRule('.pl-scrolls', 'overflow: scroll !important;', -1);
+        }
       }
       else {
-        sheet.addRule('.pl-scrolls', 'margin-right: -' + width + 'px;', -1);
+        if (sheet.insertRule) {
+          sheet.insertRule('.pl-scrolls { margin-right: -' + width + 'px; }', sheet.cssRules.length);
+        }
+        else {
+          sheet.addRule('.pl-scrolls', 'margin-right: -' + width + 'px;', -1);
+        }
       }
 
       window.Ractive.plScrollsWidth = width;
