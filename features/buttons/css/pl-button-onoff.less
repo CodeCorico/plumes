@@ -19,6 +19,7 @@
     display: inline-block;
     vertical-align: top;
     font-weight: 300;
+    line-height: 1.3;
     margin: 0;
     padding: 0;
   }
@@ -33,11 +34,13 @@
     border-radius: 1rem;
     margin-left: 0.5rem;
 
+    .transition(background 0.25s @easeOutQuart);
+
     span {
       position: absolute;
       height: 1.4rem;
       width: 1.5rem;
-      left: 2rem;
+      left: 0.5rem;
       top: 0.25rem;
       border-radius: 50%;
       background: #bbb;
@@ -47,9 +50,13 @@
   }
 
   &.on {
-    div span {
-      left: 0.5rem;
-      background: #4CAF50;
+    div {
+      background: #7BDE7F;
+
+      span {
+        left: 2rem;
+        background: #4CAF50;
+      }
     }
   }
 }
