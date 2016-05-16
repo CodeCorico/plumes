@@ -28,6 +28,7 @@
   display: inline-block;
   vertical-align: top;
   font-weight: 300;
+  line-height: 1.3;
   margin: 0;
   padding: 0;
 }
@@ -40,12 +41,17 @@
   background: #ddd;
   border-radius: 1rem;
   margin-left: 0.5rem;
+  -webkit-transition: background 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: background 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: background 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: background 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-button-onoff div span {
   position: absolute;
   height: 1.4rem;
   width: 1.5rem;
-  left: 2rem;
+  left: 0.5rem;
   top: 0.25rem;
   border-radius: 50%;
   background: #bbb;
@@ -55,7 +61,10 @@
   -o-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+.pl-button-onoff.on div {
+  background: #7BDE7F;
+}
 .pl-button-onoff.on div span {
-  left: 0.5rem;
+  left: 2rem;
   background: #4CAF50;
 }
