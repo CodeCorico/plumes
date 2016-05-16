@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.3.3"></a>
+# 1.3.3 (2016-05-16)
+
+[Release 1.3.3](https://github.com/CodeCorico/plumes/releases/tag/1.3.3)
+
+### Hotfixes
+
+- **Button onoff**
+  - Refine the styles.
+
 <a name="1.3.2"></a>
 # 1.3.2 (2016-05-09)
 
