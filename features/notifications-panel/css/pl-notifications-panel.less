@@ -42,6 +42,14 @@
       background: #f6f6f6;
     }
 
+    &.highlight {
+      background: @accentColor;
+
+      &:hover {
+        background: @accentColor !important;
+      }
+    }
+
     .animation(pl-notifications-panel-item-show 0.35s @easeOutQuart);
 
     &.pl-notifications-panel-noitem {
