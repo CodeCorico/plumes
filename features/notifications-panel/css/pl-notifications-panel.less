@@ -43,10 +43,10 @@
     }
 
     &.highlight {
-      background: @accentColor;
+      background: fade(@accentColor, 20%);
 
       &:hover {
-        background: @accentColor !important;
+        background: fade(@accentColor, 30%);
       }
     }
 
@@ -106,6 +106,14 @@
 
       &:hover {
         background: #3c3c3c;
+      }
+
+      &.highlight {
+        background: fade(@accentColor, 20%);
+
+        &:hover {
+          background: fade(@accentColor, 30%);
+        }
       }
 
       &.pl-notifications-panel-noitem {
