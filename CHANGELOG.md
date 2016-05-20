@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.4.0"></a>
+# 1.4.0 (2016-05-20)
+
+[Release 1.4.0](https://github.com/CodeCorico/plumes/releases/tag/1.4.0)
+
+### Breaking changes
+
+- **Notifications panel**
+  - Add highlight state on notifications.
+
 <a name="1.3.3"></a>
 # 1.3.3 (2016-05-16)
 
