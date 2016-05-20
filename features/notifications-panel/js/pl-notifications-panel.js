@@ -29,12 +29,13 @@
         }
       }, data),
 
-      pushNotification: function(content, time, picture, args) {
+      pushNotification: function(content, time, picture, args, viewed) {
         this.unshift('notifications', {
           picture: picture,
           time: time,
           content: content,
-          args: args || null
+          args: args || null,
+          viewed: viewed || false
         });
       }
     });
