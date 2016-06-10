@@ -1,8 +1,10 @@
 <div class="pl-autocomplete {{cls}} {{inEdition ? 'in-edition' : ''}}">
+  {{#if !autoselection || autoselection != 'false'}}
   <div
     class="pl-autocomplete-selection {{selectioncls}} {{inEdition ? 'show' : ''}}"
     style="width: {{selectionWidth}}px;"
   >{{{selection}}}</div>
+  {{/if}}
 
   <input
     type="text"

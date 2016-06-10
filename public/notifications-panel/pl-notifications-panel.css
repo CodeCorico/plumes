@@ -133,6 +133,20 @@
   font-size: 1.2rem;
   margin-top: 0.2rem;
 }
+.pl-notifications-panel .pl-notifications-panel-item .pl-notifications-panel-buttons {
+  text-align: center;
+  margin: 2rem 0 0;
+}
+.pl-notifications-panel .pl-notifications-panel-item .pl-notifications-panel-buttons button {
+  margin: 0.5rem 0.5rem 0;
+  padding: 0 1rem;
+  height: 2rem;
+  border-radius: 1rem;
+  border: none;
+  line-height: 2rem;
+  background: #2196F3;
+  color: white;
+}
 .pl-notifications-panel .pl-notifications-panel-emails {
   position: absolute;
   bottom: 1rem;

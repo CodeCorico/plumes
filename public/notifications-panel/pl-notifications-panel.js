@@ -29,11 +29,12 @@
         }
       }, data),
 
-      pushNotification: function(content, time, picture, args, viewed) {
+      pushNotification: function(content, time, picture, buttons, args, viewed) {
         this.unshift('notifications', {
           picture: picture,
           time: time,
           content: content,
+          buttons: buttons || null,
           args: args || null,
           viewed: viewed || false
         });
@@ -43,6 +44,15 @@
     window.Ractive.Plumes.bindUses(NotificationsPanel, ['section', 'emails']);
 
     window.Ractive.Plumes.bindTexts(NotificationsPanel);
+
+    NotificationsPanel.on('clickButtonAction', function(event) {
+      event.original.stopPropagation();
+
+      var buttonAction = NotificationsPanel.get('buttonaction');
+      if (buttonAction) {
+        buttonAction(event.context.action, event);
+      }
+    });
 
     if (data.openitem) {
       NotificationsPanel.on('openitem', function(event) {

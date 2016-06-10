@@ -71,7 +71,12 @@
       Autocomplete.set('listWidth', width);
       Autocomplete.set('listHeight', Autocomplete.get('focused') ? _$el.listContent.outerHeight() : 0);
 
-      if (top + (height - 2) + Autocomplete.get('listHeight') > _$el.window.height()) {
+      var listPosition = Autocomplete.get('listposition') || 'auto';
+
+      if (
+        listPosition == 'top' ||
+        (listPosition == 'auto' && top + (height - 2) + Autocomplete.get('listHeight') > _$el.window.height())
+      ) {
         Autocomplete.set('listFromBottom', true);
         Autocomplete.set('listTop', -Autocomplete.get('listHeight') + 2);
       }
@@ -176,12 +181,13 @@
       }
 
       var charCode = _charCode(event),
+          autoSelection = (Autocomplete.get('autoselection') || 'true') == 'true',
           selection = Autocomplete.get('selection'),
           list = Autocomplete.get('list'),
           listfocused = Autocomplete.get('listfocused');
 
       // Right
-      if (charCode == 39 && selection) {
+      if (autoSelection && charCode == 39 && selection) {
         _$el.input.val(selection);
 
         _change(event);

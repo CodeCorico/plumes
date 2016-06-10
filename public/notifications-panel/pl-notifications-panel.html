@@ -20,6 +20,13 @@
             {{/if}}
             <p>{{{content}}}</p>
             <p class="pl-notifications-panel-item-time">{{time}}</p>
+            {{#if buttons && buttons.length}}
+              <p class="pl-notifications-panel-buttons">
+                {{#buttons}}
+                  <button on-click="clickButtonAction" class="{{cls}}">{{title}}</button>
+                {{/buttons}}
+              </p>
+            {{/if}}
           </li>
           {{/notifications}}
         {{else}}
