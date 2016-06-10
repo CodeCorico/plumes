@@ -1,5 +1,18 @@
 # Plumes - Changelog
 
+<a name="1.5.0"></a>
+# 1.5.0 (2016-06-10)
+
+[Release 1.5.0](https://github.com/CodeCorico/plumes/releases/tag/1.5.0)
+
+### Breaking changes
+
+- **Autocomplete**
+  - Add options to disable the auto selection and to fix the list position.
+
+- **Notifications panel**
+  - Add possibility to add buttons in a notification.
+
 <a name="1.4.0"></a>
 # 1.4.0 (2016-05-20)
 
