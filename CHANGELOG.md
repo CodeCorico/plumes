@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.4.1"></a>
+# 1.4.1 (2016-06-14)
+
+[Release 1.4.1](https://github.com/CodeCorico/plumes/releases/tag/1.4.1)
+
+### Hotfixes
+
+- **Plumes**
+  - Don't process less imports
+
 <a name="1.4.0"></a>
 # 1.4.0 (2016-05-20)
 
