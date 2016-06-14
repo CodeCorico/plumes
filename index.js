@@ -46,7 +46,8 @@ var Plumes = function(gulp, config) {
       .pipe(rename(_publicByFeature))
       .pipe(gulp.dest(config.path.public))
       .pipe(minifyCSS({
-        keepSpecialComments: 0
+        keepSpecialComments: 0,
+        processImport: false
       }))
       .pipe(rename({
         extname: '.min.css'
