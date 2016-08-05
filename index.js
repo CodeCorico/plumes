@@ -91,7 +91,7 @@ var Plumes = function(gulp, config) {
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
         contents = contents.replace(/({{#import (.*?)}})/i, function(match, p1, p2) {
-          return imports[p2].join('\n') || '';
+          return imports[p2] ? imports[p2].join('\n') : '';
         });
 
         return contents;
