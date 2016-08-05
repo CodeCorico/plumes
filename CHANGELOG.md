@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.5.2"></a>
+# 1.5.2 (2016-08-05)
+
+[Release 1.5.2](https://github.com/CodeCorico/plumes/releases/tag/1.5.2)
+
+### Breaking changes
+
+- **Plumes**
+  - Inject code of "import-*.html" files inside {{#import *}} tags insides HTML files.
+
 <a name="1.5.1"></a>
 # 1.5.1 (2016-06-14)
 
