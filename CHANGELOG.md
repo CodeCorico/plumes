@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.5.4"></a>
+# 1.5.4 (2016-08-05)
+
+[Release 1.5.4](https://github.com/CodeCorico/plumes/releases/tag/1.5.4)
+
+### Hotfixes
+
+- **Plumes**
+  - Fix multiple imports injection in the same page.
+
 <a name="1.5.3"></a>
 # 1.5.3 (2016-08-05)
 
@@ -8,7 +18,7 @@
 ### Hotfixes
 
 - **Plumes**
-  - Fix imports injection
+  - Fix imports injection.
 
 <a name="1.5.2"></a>
 # 1.5.2 (2016-08-05)
