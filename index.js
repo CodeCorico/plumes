@@ -8,7 +8,8 @@ var extend = require('extend'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    insert = require('gulp-insert');
 
 var Plumes = function(gulp, config) {
 
@@ -71,14 +72,35 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('html', function(done) {
+    var importPath = config.path.html.replace('*.html', 'import-*.html'),
+        importFiles = glob.sync(importPath),
+        imports = {};
+
+    importFiles.forEach(function(importFile) {
+      var importName = importFile.match(/import-(?=[^import-])(.*?)\.html$/);
+
+      if (importName && importName.length > 1) {
+        importName = importName[1];
+
+        imports[importName] = imports[importName] || [];
+        imports[importName].push(fs.readFileSync(importFile, 'utf-8'));
+      }
+    });
+
     gulp.src(config.path.html)
       .pipe(rename(_publicByFeature))
+      .pipe(insert.transform(function(contents) {
+        contents = contents.replace(/({{#import (.*?)}})/i, function(match, p1, p2) {
+          return imports[p2].join('\n') || '';
+        });
+
+        return contents;
+      }))
       .pipe(gulp.dest(config.path.public))
       .on('end', done);
   });
 
   gulp.task('resources', function(done) {
-
     if (config.path.resources.indexOf('**') < 0) {
       return done();
     }
