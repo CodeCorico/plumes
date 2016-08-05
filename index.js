@@ -90,7 +90,7 @@ var Plumes = function(gulp, config) {
     gulp.src(config.path.html)
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
-        contents = contents.replace(/({{#import (.*?)}})/i, function(match, p1, p2) {
+        contents = contents.replace(/({{#import (.*?)}})/ig, function(match, p1, p2) {
           return imports[p2] ? imports[p2].join('\n') : '';
         });
 
