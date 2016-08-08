@@ -43,7 +43,9 @@ var Plumes = function(gulp, config) {
 
   gulp.task('less', function(done) {
     gulp.src(config.path.less)
-      .pipe(less())
+      .pipe(less({
+        plugins: [require('less-plugin-glob')]
+      }))
       .pipe(rename(_publicByFeature))
       .pipe(gulp.dest(config.path.public))
       .pipe(minifyCSS({
