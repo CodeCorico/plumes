@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.5.5"></a>
+# 1.5.5 (2016-08-08)
+
+[Release 1.5.5](https://github.com/CodeCorico/plumes/releases/tag/1.5.5)
+
+### Breaking changes
+
+- **Plumes**
+  - Add possibility to use glob format in less @import
+
 <a name="1.5.4"></a>
 # 1.5.4 (2016-08-05)
 

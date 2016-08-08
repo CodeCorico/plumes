@@ -40,7 +40,7 @@ Plumes contains many Ractive components and CSS layouts. To use it you have to i
 
 ```html
 <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ractive-require/0.6.7/ractive-require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ractive-require/0.6.8/ractive-require.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 ```
 
