@@ -1,5 +1,23 @@
 # Plumes - Changelog
 
+<a name="1.5.6"></a>
+# 1.5.6 (2016-08-09)
+
+[Release 1.5.6](https://github.com/CodeCorico/plumes/releases/tag/1.5.6)
+
+### Breaking changes
+
+- **Common**
+  - Set the new Plumes main color to #00BCD4.
+- **Plumes**
+  - Add the possibility to inject resources from a feature to an other one with "inject-*" at the beginning of the file's name.
+
+### Hotfixes
+
+- **Plumes**
+  - Rename "import-*" to "inject-*" files.
+  - Watch for resources files instead of HTML files to fire "resources" task.
+
 <a name="1.5.5"></a>
 # 1.5.5 (2016-08-08)
 
@@ -8,7 +26,7 @@
 ### Breaking changes
 
 - **Plumes**
-  - Add possibility to use glob format in less @import
+  - Add the possibility to use glob format in less @import
 
 <a name="1.5.4"></a>
 # 1.5.4 (2016-08-05)
