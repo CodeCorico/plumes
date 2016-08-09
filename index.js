@@ -122,7 +122,7 @@ var Plumes = function(gulp, config) {
     gulp.watch(config.path.less, ['less']);
     gulp.watch(config.path.js, ['minify']);
     gulp.watch(config.path.html, ['html']);
-    gulp.watch(config.path.html, ['resources']);
+    gulp.watch(config.path.resources, ['resources']);
 
     if (config.watchs && config.watchs.length) {
       config.watchs.forEach(function(watchFunc) {
