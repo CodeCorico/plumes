@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.5.7"></a>
+# 1.5.7 (2016-08-09)
+
+[Release 1.5.7](https://github.com/CodeCorico/plumes/releases/tag/1.5.7)
+
+### Breaking changes
+
+- **Common**
+  - Add the "warning" color.
+
+### Hotfixes
+
+- **Notifications Panel**
+  - Use the common accent-highlight color instead of internal highlight color.
+
 <a name="1.5.6"></a>
 # 1.5.6 (2016-08-09)
 
