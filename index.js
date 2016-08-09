@@ -115,6 +115,24 @@ var Plumes = function(gulp, config) {
       fs.copySync(directory, path.resolve(config.path.public, featureName));
     });
 
+    var injectResoucesPath = config.path.resources + '/inject-*';
+
+    glob.sync(injectResoucesPath).forEach(function(file) {
+      var injectPath = file.match(/inject-(?=[^inject-])(.*?\..*?)$/);
+
+      if (!injectPath || injectPath.length < 2) {
+        return;
+      }
+
+      injectPath = injectPath[1].split('_');
+
+      if (injectPath.length < 2) {
+        return;
+      }
+
+      fs.copySync(path.resolve(file), path.resolve(config.path.public, injectPath[0], injectPath[1]));
+    });
+
     done();
   });
 
