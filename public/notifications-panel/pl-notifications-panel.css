@@ -94,12 +94,6 @@
 .pl-notifications-panel .pl-notifications-panel-item:hover {
   background: #f6f6f6;
 }
-.pl-notifications-panel .pl-notifications-panel-item.highlight {
-  background: rgba(0, 188, 212, 0.2);
-}
-.pl-notifications-panel .pl-notifications-panel-item.highlight:hover {
-  background: rgba(0, 188, 212, 0.3);
-}
 .pl-notifications-panel .pl-notifications-panel-item.pl-notifications-panel-noitem {
   cursor: default;
   border: none;

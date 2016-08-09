@@ -2395,6 +2395,12 @@ th {
 .accent-selection.accent-selection-hover:hover {
   background-color: #00bcd4 !important;
 }
+.accent-highlight {
+  background: rgba(0, 188, 212, 0.2) !important;
+}
+.accent-highlight:hover {
+  background: rgba(0, 188, 212, 0.3) !important;
+}
 .accent-borders {
   border-color: #00bcd4 !important;
 }
@@ -2430,6 +2436,27 @@ th {
 }
 .success-border-left {
   border-left-color: #4caf50 !important;
+}
+.warning {
+  color: #ff6600 !important;
+}
+.warning-bg {
+  background-color: #ff6600 !important;
+}
+.warning-borders {
+  border-color: #ff6600 !important;
+}
+.warning-border-top {
+  border-top-color: #ff6600 !important;
+}
+.warning-border-right {
+  border-right-color: #ff6600 !important;
+}
+.warning-border-bottom {
+  border-bottom-color: #ff6600 !important;
+}
+.warning-border-left {
+  border-left-color: #ff6600 !important;
 }
 .error {
   color: #f44336 !important;
