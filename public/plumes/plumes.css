@@ -2380,35 +2380,35 @@ th {
   content: "\f280";
 }
 .accent {
-  color: #ff6600 !important;
+  color: #00bcd4 !important;
 }
 .accent-bg {
-  background-color: #ff6600 !important;
+  background-color: #00bcd4 !important;
 }
 .accent-selection-hover:hover {
-  background-color: rgba(255, 102, 0, 0.1) !important;
+  background-color: rgba(0, 188, 212, 0.1) !important;
 }
 .accent-selection {
-  background-color: #ff6600 !important;
+  background-color: #00bcd4 !important;
   color: white !important;
 }
 .accent-selection.accent-selection-hover:hover {
-  background-color: #ff6600 !important;
+  background-color: #00bcd4 !important;
 }
 .accent-borders {
-  border-color: #ff6600 !important;
+  border-color: #00bcd4 !important;
 }
 .accent-border-top {
-  border-top-color: #ff6600 !important;
+  border-top-color: #00bcd4 !important;
 }
 .accent-border-right {
-  border-right-color: #ff6600 !important;
+  border-right-color: #00bcd4 !important;
 }
 .accent-border-bottom {
-  border-bottom-color: #ff6600 !important;
+  border-bottom-color: #00bcd4 !important;
 }
 .accent-border-left {
-  border-left-color: #ff6600 !important;
+  border-left-color: #00bcd4 !important;
 }
 .success {
   color: #4caf50 !important;

@@ -95,10 +95,10 @@
   background: #f6f6f6;
 }
 .pl-notifications-panel .pl-notifications-panel-item.highlight {
-  background: rgba(255, 102, 0, 0.2);
+  background: rgba(0, 188, 212, 0.2);
 }
 .pl-notifications-panel .pl-notifications-panel-item.highlight:hover {
-  background: rgba(255, 102, 0, 0.3);
+  background: rgba(0, 188, 212, 0.3);
 }
 .pl-notifications-panel .pl-notifications-panel-item.pl-notifications-panel-noitem {
   cursor: default;
@@ -160,10 +160,10 @@
   background: #3c3c3c;
 }
 .pl-notifications-panel.theme-dark .pl-notifications-panel-item.highlight {
-  background: rgba(255, 102, 0, 0.2);
+  background: rgba(0, 188, 212, 0.2);
 }
 .pl-notifications-panel.theme-dark .pl-notifications-panel-item.highlight:hover {
-  background: rgba(255, 102, 0, 0.3);
+  background: rgba(0, 188, 212, 0.3);
 }
 .pl-notifications-panel.theme-dark .pl-notifications-panel-item.pl-notifications-panel-noitem {
   color: white;
