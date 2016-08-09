@@ -74,26 +74,26 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('html', function(done) {
-    var importPath = config.path.html.replace('*.html', 'import-*.html'),
-        importFiles = glob.sync(importPath),
-        imports = {};
+    var injectPath = config.path.html.replace('*.html', 'inject-*.html'),
+        injectFiles = glob.sync(injectPath),
+        injects = {};
 
-    importFiles.forEach(function(importFile) {
-      var importName = importFile.match(/import-(?=[^import-])(.*?)\.html$/);
+    injectFiles.forEach(function(injectFile) {
+      var injectName = injectFile.match(/inject-(?=[^inject-])(.*?)\.html$/);
 
-      if (importName && importName.length > 1) {
-        importName = importName[1];
+      if (injectName && injectName.length > 1) {
+        injectName = injectName[1];
 
-        imports[importName] = imports[importName] || [];
-        imports[importName].push(fs.readFileSync(importFile, 'utf-8'));
+        injects[injectName] = injects[injectName] || [];
+        injects[injectName].push(fs.readFileSync(injectFile, 'utf-8'));
       }
     });
 
     gulp.src(config.path.html)
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
-        contents = contents.replace(/({{#import (.*?)}})/ig, function(match, p1, p2) {
-          return imports[p2] ? imports[p2].join('\n') : '';
+        contents = contents.replace(/({{#inject (.*?)}})/ig, function(match, p1, p2) {
+          return injects[p2] ? injects[p2].join('\n') : '';
         });
 
         return contents;
