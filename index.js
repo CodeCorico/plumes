@@ -79,7 +79,7 @@ var Plumes = function(gulp, config) {
         injects = {};
 
     injectFiles.forEach(function(injectFile) {
-      var injectName = injectFile.match(/inject-(?=[^inject-])(.*?)\.html$/);
+      var injectName = injectFile.match(/inject-(.*?)\.html$/);
 
       if (injectName && injectName.length > 1) {
         injectName = injectName[1];
