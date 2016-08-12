@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.5.8"></a>
+# 1.5.8 (2016-08-12)
+
+[Release 1.5.8](https://github.com/CodeCorico/plumes/releases/tag/1.5.8)
+
+### Breaking changes
+
+- **Plumes**
+  - Add "else" logic in inject tag.
+
+### Hotfixes
+
+- **Plumes**
+  - remove check last "inject-" from "inject-*.html" regexp.
+
 <a name="1.5.7"></a>
 # 1.5.7 (2016-08-09)
 
