@@ -92,8 +92,16 @@ var Plumes = function(gulp, config) {
     gulp.src(config.path.html)
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
-        contents = contents.replace(/({{#inject (.*?)}})/ig, function(match, p1, p2) {
-          return injects[p2] ? injects[p2].join('\n') : '';
+        contents = contents.replace(/({{#inject (.*?[^\/])}}([\S\s]*?){{\/inject}})/ig, function(match, full, name, content) {
+          name = (name || '').trim();
+
+          return injects[name] ? injects[name].join('\n') : content;
+        });
+
+        contents = contents.replace(/({{#inject (.*?)\/}})/ig, function(match, full, name) {
+          name = (name || '').trim();
+
+          return injects[name] ? injects[name].join('\n') : '';
         });
 
         return contents;
