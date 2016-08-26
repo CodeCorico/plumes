@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.5.9"></a>
+# 1.5.9 (2016-08-26)
+
+[Release 1.5.9](https://github.com/CodeCorico/plumes/releases/tag/1.5.9)
+
+### Breaking changes
+
+- **Plumes**
+  - Add "lessPlugins" config attribute to support less plugins.
+
 <a name="1.5.8"></a>
 # 1.5.8 (2016-08-12)
 
