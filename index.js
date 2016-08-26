@@ -23,7 +23,8 @@ var Plumes = function(gulp, config) {
     },
     default: null,
     watchs: [],
-    watcher: true
+    watcher: true,
+    lessPlugins: null
   }, config);
 
   function _publicByFeature(filePath) {
@@ -44,7 +45,7 @@ var Plumes = function(gulp, config) {
   gulp.task('less', function(done) {
     gulp.src(config.path.less)
       .pipe(less({
-        plugins: [require('less-plugin-glob')]
+        plugins: (config.lessPlugins || []).concat([require('less-plugin-glob')])
       }))
       .pipe(rename(_publicByFeature))
       .pipe(gulp.dest(config.path.public))
