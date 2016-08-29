@@ -1,5 +1,18 @@
 # Plumes - Changelog
 
+<a name="1.5.11"></a>
+# 1.5.11 (2016-08-29)
+
+[Release 1.5.11](https://github.com/CodeCorico/plumes/releases/tag/1.5.11)
+
+### Breaking changes
+
+- **Plumes**
+  - Add the possibility to set array paths in config.
+
+- **Common**
+  - Add grayscale function.
+
 <a name="1.5.10"></a>
 # 1.5.10 (2016-08-26)
 
