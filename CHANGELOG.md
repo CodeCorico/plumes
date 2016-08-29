@@ -1,5 +1,15 @@
 # Plumes - Changelog
 
+<a name="1.6.0"></a>
+# 1.6.0 (2016-08-29)
+
+[Release 1.6.0](https://github.com/CodeCorico/plumes/releases/tag/1.6.0)
+
+### Breaking changes
+
+- **Plumes**
+  - Update the node modules
+
 <a name="1.5.11"></a>
 # 1.5.11 (2016-08-29)
 
