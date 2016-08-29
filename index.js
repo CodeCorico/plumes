@@ -28,8 +28,24 @@ var Plumes = function(gulp, config) {
     lessPlugins: null
   }, config);
 
+  config.path.less = typeof config.path.less == 'string' ? [config.path.less] : config.path.less;
+  config.path.js = typeof config.path.js == 'string' ? [config.path.js] : config.path.js;
+  config.path.html = typeof config.path.html == 'string' ? [config.path.html] : config.path.html;
+  config.path.resources = typeof config.path.resources == 'string' ? [config.path.resources] : config.path.resources;
+
   function _publicByFeature(filePath) {
-    filePath.dirname = filePath.dirname.split(path.sep)[0];
+    var featuresDir = 'features' + path.sep,
+        featuresPosition = filePath.dirname.indexOf(featuresDir);
+    if (featuresPosition < 0) {
+      filePath.dirname = filePath.dirname.split(path.sep)[0];
+
+      return;
+    }
+
+    featuresPosition += featuresDir.length;
+
+    featuresPosition = filePath.dirname.substr(featuresPosition, filePath.dirname.length - featuresPosition);
+    filePath.dirname = featuresPosition.split(path.sep)[0];
   }
 
   config.default = config.default || [];
@@ -44,6 +60,10 @@ var Plumes = function(gulp, config) {
   fs.removeSync(config.path.public);
 
   gulp.task('less', function(done) {
+    if (!config.path.less || !config.path.less.length) {
+      return done();
+    }
+
     gulp.src(config.path.less)
       .pipe(less({
         paths: config.lessPaths,
@@ -63,6 +83,10 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('minify', function(done) {
+    if (!config.path.js || !config.path.js.length) {
+      return done();
+    }
+
     gulp.src(config.path.js)
       .pipe(sourcemaps.init())
       .pipe(rename(_publicByFeature))
@@ -77,9 +101,16 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('html', function(done) {
-    var injectPath = config.path.html.replace('*.html', 'inject-*.html'),
-        injectFiles = glob.sync(injectPath),
+    if (!config.path.html || !config.path.html.length) {
+      return done();
+    }
+
+    var injectFiles = [],
         injects = {};
+
+    config.path.html.forEach(function(htmlPattern) {
+      injectFiles = injectFiles.concat(glob.sync(htmlPattern.replace('*.html', 'inject-*.html')));
+    });
 
     injectFiles.forEach(function(injectFile) {
       var injectName = injectFile.match(/inject-(.*?)\.html$/);
@@ -114,34 +145,49 @@ var Plumes = function(gulp, config) {
   });
 
   gulp.task('resources', function(done) {
-    if (config.path.resources.indexOf('**') < 0) {
+    if (!config.path.resources || !config.path.resources.length) {
       return done();
     }
 
-    var featureIndex = config.path.resources.split('**')[0].split('/').length - 1;
+    var resourcesPatterns = [];
 
-    glob.sync(config.path.resources).forEach(function(directory) {
-      var featureName = directory.split('/')[featureIndex];
+    config.path.resources.forEach(function(resourcesPattern) {
+      if (resourcesPattern.indexOf('**') < 0) {
+        return;
+      }
 
-      fs.copySync(directory, path.resolve(config.path.public, featureName));
+      var featureIndex = resourcesPattern.split('**')[0].split('/').length - 1;
+
+      glob.sync(resourcesPattern).forEach(function(directory) {
+        var featureName = directory.split('/')[featureIndex];
+
+        fs.copySync(directory, path.resolve(config.path.public, featureName));
+      });
+
+      resourcesPatterns.push(resourcesPattern + path.sep + 'inject-*');
     });
 
-    var injectResoucesPath = config.path.resources + '/inject-*';
+    if (!resourcesPatterns.length) {
+      return done();
+    }
 
-    glob.sync(injectResoucesPath).forEach(function(file) {
-      var injectPath = file.match(/inject-(?=[^inject-])(.*?\..*?)$/);
+    resourcesPatterns.forEach(function(resourcesPattern) {
 
-      if (!injectPath || injectPath.length < 2) {
-        return;
-      }
+      glob.sync(resourcesPattern).forEach(function(file) {
+        var injectPath = file.match(/inject-(?=[^inject-])(.*?\..*?)$/);
 
-      injectPath = injectPath[1].split('_');
+        if (!injectPath || injectPath.length < 2) {
+          return;
+        }
 
-      if (injectPath.length < 2) {
-        return;
-      }
+        injectPath = injectPath[1].split('_');
 
-      fs.copySync(path.resolve(file), path.resolve(config.path.public, injectPath[0], injectPath[1]));
+        if (injectPath.length < 2) {
+          return;
+        }
+
+        fs.copySync(path.resolve(file), path.resolve(config.path.public, injectPath[0], injectPath[1]));
+      });
     });
 
     done();
