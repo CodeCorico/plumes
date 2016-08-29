@@ -1,18 +1,18 @@
 .accent {
-  color: #00bcd4 !important;
+  color: #00BCD4 !important;
 }
 .accent-bg {
-  background-color: #00bcd4 !important;
+  background-color: #00BCD4 !important;
 }
 .accent-selection-hover:hover {
   background-color: rgba(0, 188, 212, 0.1) !important;
 }
 .accent-selection {
-  background-color: #00bcd4 !important;
+  background-color: #00BCD4 !important;
   color: white !important;
 }
 .accent-selection.accent-selection-hover:hover {
-  background-color: #00bcd4 !important;
+  background-color: #00BCD4 !important;
 }
 .accent-highlight {
   background: rgba(0, 188, 212, 0.2) !important;
@@ -21,40 +21,40 @@
   background: rgba(0, 188, 212, 0.3) !important;
 }
 .accent-borders {
-  border-color: #00bcd4 !important;
+  border-color: #00BCD4 !important;
 }
 .accent-border-top {
-  border-top-color: #00bcd4 !important;
+  border-top-color: #00BCD4 !important;
 }
 .accent-border-right {
-  border-right-color: #00bcd4 !important;
+  border-right-color: #00BCD4 !important;
 }
 .accent-border-bottom {
-  border-bottom-color: #00bcd4 !important;
+  border-bottom-color: #00BCD4 !important;
 }
 .accent-border-left {
-  border-left-color: #00bcd4 !important;
+  border-left-color: #00BCD4 !important;
 }
 .success {
-  color: #4caf50 !important;
+  color: #4CAF50 !important;
 }
 .success-bg {
-  background-color: #4caf50 !important;
+  background-color: #4CAF50 !important;
 }
 .success-borders {
-  border-color: #4caf50 !important;
+  border-color: #4CAF50 !important;
 }
 .success-border-top {
-  border-top-color: #4caf50 !important;
+  border-top-color: #4CAF50 !important;
 }
 .success-border-right {
-  border-right-color: #4caf50 !important;
+  border-right-color: #4CAF50 !important;
 }
 .success-border-bottom {
-  border-bottom-color: #4caf50 !important;
+  border-bottom-color: #4CAF50 !important;
 }
 .success-border-left {
-  border-left-color: #4caf50 !important;
+  border-left-color: #4CAF50 !important;
 }
 .warning {
   color: #ff6600 !important;
@@ -78,65 +78,65 @@
   border-left-color: #ff6600 !important;
 }
 .error {
-  color: #f44336 !important;
+  color: #F44336 !important;
 }
 .error-bg {
-  background-color: #f44336 !important;
+  background-color: #F44336 !important;
 }
 .error-borders {
-  border-color: #f44336 !important;
+  border-color: #F44336 !important;
 }
 .error-border-top {
-  border-top-color: #f44336 !important;
+  border-top-color: #F44336 !important;
 }
 .error-border-right {
-  border-right-color: #f44336 !important;
+  border-right-color: #F44336 !important;
 }
 .error-border-bottom {
-  border-bottom-color: #f44336 !important;
+  border-bottom-color: #F44336 !important;
 }
 .error-border-left {
-  border-left-color: #f44336 !important;
+  border-left-color: #F44336 !important;
 }
 .dark {
-  color: #333333 !important;
+  color: #333 !important;
 }
 .dark-bg {
-  background-color: #333333 !important;
+  background-color: #333 !important;
 }
 .dark-borders {
-  border-color: #333333 !important;
+  border-color: #333 !important;
 }
 .dark-border-top {
-  border-top-color: #333333 !important;
+  border-top-color: #333 !important;
 }
 .dark-border-right {
-  border-right-color: #333333 !important;
+  border-right-color: #333 !important;
 }
 .dark-border-bottom {
-  border-bottom-color: #333333 !important;
+  border-bottom-color: #333 !important;
 }
 .dark-border-left {
-  border-left-color: #333333 !important;
+  border-left-color: #333 !important;
 }
 .light {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 .light-bg {
-  background-color: #ffffff !important;
+  background-color: #fff !important;
 }
 .light-borders {
-  border-color: #ffffff !important;
+  border-color: #fff !important;
 }
 .light-border-top {
-  border-top-color: #ffffff !important;
+  border-top-color: #fff !important;
 }
 .light-border-right {
-  border-right-color: #ffffff !important;
+  border-right-color: #fff !important;
 }
 .light-border-bottom {
-  border-bottom-color: #ffffff !important;
+  border-bottom-color: #fff !important;
 }
 .light-border-left {
-  border-left-color: #ffffff !important;
+  border-left-color: #fff !important;
 }

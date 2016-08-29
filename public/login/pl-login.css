@@ -198,7 +198,7 @@
   transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .pl-login .pl-login-content .pl-login-form .input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #00bcd4 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #00BCD4 inset;
   -webkit-text-fill-color: white !important;
 }
 .pl-login .pl-login-content .pl-login-form .input::-webkit-input-placeholder {
