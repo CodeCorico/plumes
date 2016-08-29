@@ -6,7 +6,7 @@ var extend = require('extend'),
     glob = require('glob'),
     sourcemaps = require('gulp-sourcemaps'),
     less = require('gulp-less'),
-    minifyCSS = require('gulp-minify-css'),
+    cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     insert = require('gulp-insert');
@@ -71,7 +71,7 @@ var Plumes = function(gulp, config) {
       }))
       .pipe(rename(_publicByFeature))
       .pipe(gulp.dest(config.path.public))
-      .pipe(minifyCSS({
+      .pipe(cleanCSS({
         keepSpecialComments: 0,
         processImport: false
       }))
