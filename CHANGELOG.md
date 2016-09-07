@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.6.1"></a>
+# 1.6.1 (2016-09-07)
+
+[Release 1.6.1](https://github.com/CodeCorico/plumes/releases/tag/1.6.1)
+
+### Breaking changes
+
+- **Plumes**
+  - "public" option can be a gulp plugin.
+
+### Hotfixes
+
+- **Grouped buttons**
+  - Hide right oriented buttons on no-buttons mode.
+
 <a name="1.6.0"></a>
 # 1.6.0 (2016-08-29)
 
