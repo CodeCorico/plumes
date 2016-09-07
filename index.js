@@ -4,6 +4,7 @@ var extend = require('extend'),
     fs = require('fs-extra'),
     path = require('path'),
     glob = require('glob'),
+    through = require('through2'),
     sourcemaps = require('gulp-sourcemaps'),
     less = require('gulp-less'),
     cleanCSS = require('gulp-clean-css'),
@@ -33,9 +34,14 @@ var Plumes = function(gulp, config) {
   config.path.html = typeof config.path.html == 'string' ? [config.path.html] : config.path.html;
   config.path.resources = typeof config.path.resources == 'string' ? [config.path.resources] : config.path.resources;
 
+  function _public() {
+    return typeof config.path.public == 'function' ? config.path.public() : gulp.dest(config.path.public);
+  }
+
   function _publicByFeature(filePath) {
     var featuresDir = 'features' + path.sep,
         featuresPosition = filePath.dirname.indexOf(featuresDir);
+
     if (featuresPosition < 0) {
       filePath.dirname = filePath.dirname.split(path.sep)[0];
 
@@ -48,6 +54,21 @@ var Plumes = function(gulp, config) {
     filePath.dirname = featuresPosition.split(path.sep)[0];
   }
 
+  function _renameByFeature(file) {
+    var featuresDir = 'features' + path.sep,
+        featuresPosition = file.path.indexOf(featuresDir);
+
+    if (featuresPosition < 0) {
+      return;
+    }
+
+    featuresPosition += featuresDir.length;
+    featuresPosition = file.path.substr(featuresPosition, file.path.length - featuresPosition);
+    featuresPosition = featuresPosition.split(path.sep);
+
+    file.path = featuresPosition[0] + '/' + featuresPosition.pop();
+  }
+
   config.default = config.default || [];
 
   var defaultTask = ['less', 'minify', 'html', 'resources'].concat(config.default);
@@ -57,20 +78,19 @@ var Plumes = function(gulp, config) {
 
   gulp.task('default', defaultTask);
 
-  fs.removeSync(config.path.public);
-
   gulp.task('less', function(done) {
     if (!config.path.less || !config.path.less.length) {
       return done();
     }
 
-    gulp.src(config.path.less)
+    gulp
+      .src(config.path.less)
       .pipe(less({
         paths: config.lessPaths,
         plugins: (config.lessPlugins || []).concat([require('less-plugin-glob')])
       }))
       .pipe(rename(_publicByFeature))
-      .pipe(gulp.dest(config.path.public))
+      .pipe(_public())
       .pipe(cleanCSS({
         keepSpecialComments: 0,
         processImport: false
@@ -78,7 +98,7 @@ var Plumes = function(gulp, config) {
       .pipe(rename({
         extname: '.min.css'
       }))
-      .pipe(gulp.dest(config.path.public))
+      .pipe(_public())
       .on('end', done);
   });
 
@@ -87,16 +107,17 @@ var Plumes = function(gulp, config) {
       return done();
     }
 
-    gulp.src(config.path.js)
+    gulp
+      .src(config.path.js)
       .pipe(sourcemaps.init())
       .pipe(rename(_publicByFeature))
-      .pipe(gulp.dest(config.path.public))
+      .pipe(_public())
       .pipe(uglify())
       .pipe(rename({
         extname: '.min.js'
       }))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(config.path.public))
+      .pipe(_public())
       .on('end', done);
   });
 
@@ -123,7 +144,8 @@ var Plumes = function(gulp, config) {
       }
     });
 
-    gulp.src(config.path.html)
+    gulp
+      .src(config.path.html)
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
         contents = contents.replace(/({{#inject (.*?[^\/])}}([\S\s]*?){{\/inject}})/ig, function(match, full, name, content) {
@@ -140,7 +162,7 @@ var Plumes = function(gulp, config) {
 
         return contents;
       }))
-      .pipe(gulp.dest(config.path.public))
+      .pipe(_public())
       .on('end', done);
   });
 
@@ -149,48 +171,85 @@ var Plumes = function(gulp, config) {
       return done();
     }
 
-    var resourcesPatterns = [];
+    var resourcesSrc = [],
+        injectsSrc = [],
+        files = [];
 
-    config.path.resources.forEach(function(resourcesPattern) {
-      if (resourcesPattern.indexOf('**') < 0) {
-        return;
-      }
-
-      var featureIndex = resourcesPattern.split('**')[0].split('/').length - 1;
-
-      glob.sync(resourcesPattern).forEach(function(directory) {
-        var featureName = directory.split('/')[featureIndex];
-
-        fs.copySync(directory, path.resolve(config.path.public, featureName));
-      });
-
-      resourcesPatterns.push(resourcesPattern + path.sep + 'inject-*');
+    config.path.resources.forEach(function(p) {
+      resourcesSrc.push(p + '/*');
+      injectsSrc.push(p + '/inject-*');
     });
 
-    if (!resourcesPatterns.length) {
-      return done();
+    for (var i = 0; i < config.path.resources.length; i++) {
+      var p = config.path.resources[i];
+
+      config.path.resources[i] += p.substr(p.length - 2, 2) != '/*' ? '/*' : '';
     }
 
-    resourcesPatterns.forEach(function(resourcesPattern) {
-
-      glob.sync(resourcesPattern).forEach(function(file) {
-        var injectPath = file.match(/inject-(?=[^inject-])(.*?\..*?)$/);
-
-        if (!injectPath || injectPath.length < 2) {
-          return;
+    gulp
+      .src(resourcesSrc, {
+        base: './'
+      })
+      .pipe(through.obj(function(file, encoding, throughDone) {
+        if (file.path.split(path.sep).pop().indexOf('inject-') < 0) {
+          files.push(file);
         }
 
-        injectPath = injectPath[1].split('_');
+        throughDone();
+      }, function(throughDone) {
+        var transform = this;
 
-        if (injectPath.length < 2) {
-          return;
-        }
+        files.forEach(function(file) {
+          _renameByFeature(file);
 
-        fs.copySync(path.resolve(file), path.resolve(config.path.public, injectPath[0], injectPath[1]));
+          transform.push(file);
+        });
+
+        throughDone();
+
+        transform.emit('end');
+      }))
+      .pipe(_public())
+      .on('end', function() {
+
+        files = [];
+
+        gulp
+          .src(injectsSrc, {
+            base: './'
+          })
+          .pipe(through.obj(function(file, encoding, throughDone) {
+            files.push(file);
+
+            throughDone();
+          }, function(throughDone) {
+            var transform = this;
+
+            files.forEach(function(file) {
+              var injectPath = file.path.match(/inject-(?=[^inject-])(.*?\..*?)$/);
+
+              if (!injectPath || injectPath.length < 2) {
+                return;
+              }
+
+              injectPath = injectPath[1].split('_');
+
+              if (injectPath.length < 2) {
+                return;
+              }
+
+              file.path = injectPath[0] + '/' + injectPath[1];
+
+              transform.push(file);
+            });
+
+            throughDone();
+
+            transform.emit('end');
+          }))
+          .pipe(_public())
+          .on('end', done);
       });
-    });
-
-    done();
   });
 
   gulp.task('watch', function() {
