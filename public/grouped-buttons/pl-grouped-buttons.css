@@ -62,3 +62,7 @@
   text-shadow: 0px 1px 1px white;
   color: rgba(0, 0, 0, 0.75);
 }
+.pl-grouped-buttons.orientation-right .pl-grouped-button-compact-button.no-buttons {
+  right: -100px !important;
+  left: auto !important;
+}
