@@ -1,6 +1,6 @@
 <button class="pl-button-indicator {{cls}} {{showMessage ? 'opened' : ''}}" on-click="action">
   <div class="pl-button-indicator-bg {{showMessage ? 'accent-bg' : ''}}"></div>
-  <div class="pl-button-indicator-image {{opened ? 'hide' : ''}}" style="background-image: url('{{image}}');" />
+  <div class="pl-button-indicator-image accent-bg {{opened ? 'hide' : ''}}" style="background-image: url('{{image}}');" />
   {{#notificationPicture}}
     <img class="pl-button-indicator-notification-picture" src="{{notificationPicture}}" />
   {{/notificationPicture}}
