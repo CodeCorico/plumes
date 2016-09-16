@@ -295,6 +295,10 @@
         _resize(orientation);
       });
 
+      component.on('beforeClose', function() {
+        $(component.el).find('.pl-group').removeClass('opened');
+      });
+
       component.on('close', function(event) {
         LayoutPlatform.set(orientation + 'ContextOpened', false);
 
@@ -362,6 +366,10 @@
           }
 
           if ($group.hasClass('opened')) {
+            if (args.userBehavior) {
+              return context.close(null, true);
+            }
+
             return context.open(null, args.userBehavior);
           }
 
