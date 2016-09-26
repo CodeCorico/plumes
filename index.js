@@ -127,7 +127,8 @@ var Plumes = function(gulp, config) {
     }
 
     var injectFiles = [],
-        injects = {};
+        injects = {},
+        files = [];
 
     config.path.html.forEach(function(htmlPattern) {
       injectFiles = injectFiles.concat(glob.sync(htmlPattern.replace('*.html', 'inject-*.html')));
@@ -146,6 +147,23 @@ var Plumes = function(gulp, config) {
 
     gulp
       .src(config.path.html)
+      .pipe(through.obj(function(file, encoding, throughDone) {
+        if (file.path.split(path.sep).pop().indexOf('inject-') < 0) {
+          files.push(file);
+        }
+
+        throughDone();
+      }, function(throughDone) {
+        var transform = this;
+
+        files.forEach(function(file) {
+          transform.push(file);
+        });
+
+        throughDone();
+
+        transform.emit('end');
+      }))
       .pipe(rename(_publicByFeature))
       .pipe(insert.transform(function(contents) {
         contents = contents.replace(/({{#inject (.*?[^\/])}}([\S\s]*?){{\/inject}})/ig, function(match, full, name, content) {
