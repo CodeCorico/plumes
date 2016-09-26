@@ -1,5 +1,22 @@
 # Plumes - Changelog
 
+<a name="1.6.2"></a>
+# 1.6.2 (2016-09-26)
+
+[Release 1.6.2](https://github.com/CodeCorico/plumes/releases/tag/1.6.2)
+
+### Breaking changes
+
+- **Layout Platform**
+  - Re-Click on a gouped button linked to a context closes it.
+- **Plumes**
+  - Don't publish "inject-*.html" files to public anymore.
+
+### Hotfixes
+
+- **Plumes**
+  - Tiny CSS fine-tuning.
+
 <a name="1.6.1"></a>
 # 1.6.1 (2016-09-07)
 
