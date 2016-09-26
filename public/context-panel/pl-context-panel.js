@@ -105,26 +105,33 @@
             }, (($sections.length - 1) * 80) + 450);
           },
 
-          close: function(callback, userBehavior) {
+          close: function(callback, userBehavior, withoutCloseContent) {
             userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
+            withoutCloseContent = withoutCloseContent || false;
+
+            if (!withoutCloseContent) {
+              this.closeContent(function() {
+                ContextPanel.close(callback, userBehavior, true);
+              }, userBehavior);
+
+              return;
+            }
 
             ContextPanel.fire('beforeClose', {
               userBehavior: userBehavior
             });
 
-            this.closeContent(function() {
-              ContextPanel.set('opened', false);
+            ContextPanel.set('opened', false);
 
-              setTimeout(function() {
-                ContextPanel.fire('close', {
-                  userBehavior: userBehavior
-                });
+            setTimeout(function() {
+              ContextPanel.fire('close', {
+                userBehavior: userBehavior
+              });
 
-                if (callback) {
-                  callback();
-                }
-              }, 250);
-            }, userBehavior);
+              if (callback) {
+                callback();
+              }
+            }, 250);
           },
 
           closeIfGroupOpened: function(groupName) {
