@@ -458,6 +458,17 @@
           },
           rightContext: function() {
             return _contexts.right;
+          },
+
+          closeOnNotDesktop: function(groups) {
+            groups = typeof groups == 'string' ? [groups] : groups;
+
+            if (LayoutPlatform.get('screen') != 'screen-desktop') {
+              groups.forEach(function(group) {
+                LayoutPlatform.leftContext().closeIfGroupOpened(group);
+                LayoutPlatform.rightContext().closeIfGroupOpened(group);
+              });
+            }
           }
         }),
         Page = LayoutPlatform.parentRequire,
@@ -594,6 +605,8 @@
             });
 
             Title.on('titleSelected', function(args) {
+              console.log('titleSelected', args);
+
               var cls = Page.get('cls') || [];
               cls = cls.filter(function(value) {
                 return value.indexOf('app-') !== 0;

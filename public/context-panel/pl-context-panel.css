@@ -169,3 +169,43 @@
   -o-transition: all 0.45s cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: all 0.45s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+.screen-desktop .pl-context-panel.left-cross .pl-context-panel-title::before,
+.screen-tablet .pl-context-panel.left-cross .pl-context-panel-title::before,
+.screen-desktop .pl-context-panel.right-cross .pl-context-panel-title::before,
+.screen-tablet .pl-context-panel.right-cross .pl-context-panel-title::before,
+.screen-desktop .pl-context-panel.left-cross .pl-context-panel-title::after,
+.screen-tablet .pl-context-panel.left-cross .pl-context-panel-title::after,
+.screen-desktop .pl-context-panel.right-cross .pl-context-panel-title::after,
+.screen-tablet .pl-context-panel.right-cross .pl-context-panel-title::after {
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+}
+.screen-desktop .pl-context-panel.left-cross .pl-context-panel-title-cross,
+.screen-tablet .pl-context-panel.left-cross .pl-context-panel-title-cross,
+.screen-desktop .pl-context-panel.right-cross .pl-context-panel-title-cross,
+.screen-tablet .pl-context-panel.right-cross .pl-context-panel-title-cross {
+  display: none;
+}
+.screen-desktop .pl-context-panel.left-cross.usable .pl-context-panel-title::before,
+.screen-tablet .pl-context-panel.left-cross.usable .pl-context-panel-title::before,
+.screen-desktop .pl-context-panel.right-cross.usable .pl-context-panel-title::before,
+.screen-tablet .pl-context-panel.right-cross.usable .pl-context-panel-title::before,
+.screen-desktop .pl-context-panel.left-cross.usable .pl-context-panel-title::after,
+.screen-tablet .pl-context-panel.left-cross.usable .pl-context-panel-title::after,
+.screen-desktop .pl-context-panel.right-cross.usable .pl-context-panel-title::after,
+.screen-tablet .pl-context-panel.right-cross.usable .pl-context-panel-title::after {
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+}
+.screen-desktop .pl-context-panel.left-cross.usable .pl-context-panel-title-cross,
+.screen-tablet .pl-context-panel.left-cross.usable .pl-context-panel-title-cross,
+.screen-desktop .pl-context-panel.right-cross.usable .pl-context-panel-title-cross,
+.screen-tablet .pl-context-panel.right-cross.usable .pl-context-panel-title-cross {
+  display: none;
+}

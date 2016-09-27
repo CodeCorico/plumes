@@ -110,7 +110,14 @@
       }
 
       if (DropdownTitle.get('opened')) {
-        _close();
+        var selected = DropdownTitle.get('selected');
+
+        if (selected && typeof selected.index == 'number') {
+          _select(selected.index);
+        }
+        else {
+          _close();
+        }
       }
       else {
         DropdownTitle.fire('open', {
