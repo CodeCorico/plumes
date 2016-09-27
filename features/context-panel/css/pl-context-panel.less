@@ -160,3 +160,27 @@
     }
   }
 }
+
+.screen-desktop, .screen-tablet {
+  .pl-context-panel {
+    &.left-cross, &.right-cross {
+      .pl-context-panel-title::before, .pl-context-panel-title::after {
+        .transform(rotate(0));
+      }
+
+      .pl-context-panel-title-cross {
+        display: none;
+      }
+
+      &.usable {
+        .pl-context-panel-title::before, .pl-context-panel-title::after {
+          .transform(rotate(0));
+        }
+
+        .pl-context-panel-title-cross {
+          display: none;
+        }
+      }
+    }
+  }
+}
