@@ -1,5 +1,19 @@
 # Plumes - Changelog
 
+<a name="1.6.3"></a>
+# 1.6.3 (2016-09-27)
+
+[Release 1.6.3](https://github.com/CodeCorico/plumes/releases/tag/1.6.3)
+
+### Breaking changes
+
+- **Layout Platform**
+  - Add closeOnNotDesktop generic method
+- **Context Panel**
+  - Don't display context title cross to close on desktop and tablets anymore.
+- **Dropdown Title**
+  - Re-fire "selected" when selecting the title already selected.
+
 <a name="1.6.2"></a>
 # 1.6.2 (2016-09-26)
 
