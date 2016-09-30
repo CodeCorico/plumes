@@ -1,5 +1,20 @@
 # Plumes - Changelog
 
+<a name="1.6.4"></a>
+# 1.6.4 (2016-09-30)
+
+[Release 1.6.4](https://github.com/CodeCorico/plumes/releases/tag/1.6.4)
+
+### Breaking changes
+
+- **Context Panel**
+  - Add isGroupOpened() and groupOpened() methods.
+
+### Hotfixes
+
+- **Plumes**
+  - Copy the resources subdirectories to /public.
+
 <a name="1.6.3"></a>
 # 1.6.3 (2016-09-27)
 
