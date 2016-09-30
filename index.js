@@ -54,19 +54,25 @@ var Plumes = function(gulp, config) {
     filePath.dirname = featuresPosition.split(path.sep)[0];
   }
 
-  function _renameByFeature(file) {
+  function _renameResoucesByFeature(file) {
     var featuresDir = 'features' + path.sep,
-        featuresPosition = file.path.indexOf(featuresDir);
+        featuresPosition = file.path.indexOf(featuresDir),
+        resourcesFolder = path.sep + 'resources' + path.sep;
 
     if (featuresPosition < 0) {
       return;
     }
 
     featuresPosition += featuresDir.length;
-    featuresPosition = file.path.substr(featuresPosition, file.path.length - featuresPosition);
-    featuresPosition = featuresPosition.split(path.sep);
 
-    file.path = featuresPosition[0] + '/' + featuresPosition.pop();
+    file.path = file.path.substr(featuresPosition, file.path.length - featuresPosition);
+
+    var feature = file.path.split(path.sep)[0];
+    featuresPosition = file.path.indexOf(resourcesFolder) + resourcesFolder.length;
+
+    file.path = feature + '/' + file.path
+      .substr(featuresPosition, file.path.length - featuresPosition)
+      .replace(path.sep, '/');
   }
 
   config.default = config.default || [];
@@ -88,6 +94,10 @@ var Plumes = function(gulp, config) {
       .pipe(less({
         paths: config.lessPaths,
         plugins: (config.lessPlugins || []).concat([require('less-plugin-glob')])
+      }).on('error', function(err) {
+        console.log('Plumes error: less', err);
+
+        this.emit('end');
       }))
       .pipe(rename(_publicByFeature))
       .pipe(_public())
@@ -112,7 +122,11 @@ var Plumes = function(gulp, config) {
       .pipe(sourcemaps.init())
       .pipe(rename(_publicByFeature))
       .pipe(_public())
-      .pipe(uglify())
+      .pipe(uglify().on('error', function(err) {
+        console.log('Plumes error: uglify', err);
+
+        this.emit('end');
+      }))
       .pipe(rename({
         extname: '.min.js'
       }))
@@ -194,7 +208,7 @@ var Plumes = function(gulp, config) {
         files = [];
 
     config.path.resources.forEach(function(p) {
-      resourcesSrc.push(p + '/*');
+      resourcesSrc.push(p + '/**/*');
       injectsSrc.push(p + '/inject-*');
     });
 
@@ -218,7 +232,7 @@ var Plumes = function(gulp, config) {
         var transform = this;
 
         files.forEach(function(file) {
-          _renameByFeature(file);
+          _renameResoucesByFeature(file);
 
           transform.push(file);
         });
