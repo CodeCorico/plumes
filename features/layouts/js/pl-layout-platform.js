@@ -605,8 +605,6 @@
             });
 
             Title.on('titleSelected', function(args) {
-              console.log('titleSelected', args);
-
               var cls = Page.get('cls') || [];
               cls = cls.filter(function(value) {
                 return value.indexOf('app-') !== 0;

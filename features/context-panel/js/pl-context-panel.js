@@ -124,6 +124,10 @@
             ContextPanel.set('opened', false);
 
             setTimeout(function() {
+              if (_inOpen) {
+                return;
+              }
+
               ContextPanel.fire('close', {
                 userBehavior: userBehavior
               });
@@ -134,7 +138,7 @@
             }, 250);
           },
 
-          closeIfGroupOpened: function(groupName) {
+          groupOpened: function(groupName) {
             var $group = null;
 
             _$el.panel.find('.pl-group.opened').each(function() {
@@ -144,6 +148,16 @@
                 return false;
               }
             });
+
+            return $group;
+          },
+
+          isGroupOpened: function(groupName) {
+            return !!this.groupOpened(groupName);
+          },
+
+          closeIfGroupOpened: function(groupName) {
+            var $group = this.groupOpened(groupName);
 
             if ($group) {
               ContextPanel.close(function() {
