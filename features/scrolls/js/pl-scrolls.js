@@ -169,7 +169,7 @@
         }, 150, data.easing || 'swing');
     });
 
-    $.each(_mousewheelBinds, function(i, bind) {
+    _mousewheelBinds.forEach(function(bind) {
       _$el.vertical.on(bind, function(event) {
         var cloneEvent = new window.WheelEvent(bind, event.originalEvent);
 

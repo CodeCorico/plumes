@@ -10,10 +10,10 @@
     data.opened = false;
 
     if (data.titles) {
-      $.each(data.titles, function(i) {
-        if (this.selected) {
+      data.titles.forEach(function(title, i) {
+        if (title.selected) {
           data.selected.index = i;
-          data.selected.name = this.name;
+          data.selected.name = title.name;
         }
       });
     }
@@ -38,7 +38,7 @@
       var titles = DropdownTitle.get('titles'),
           titleToSelect = null;
 
-      $.each(titles, function(i, title) {
+      titles.forEach(function(title, i) {
         if (typeof indexOrName == 'string' && indexOrName == title.name) {
           indexOrName = i;
         }
