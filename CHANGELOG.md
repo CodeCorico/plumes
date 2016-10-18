@@ -1,5 +1,17 @@
 # Plumes - Changelog
 
+<a name="1.6.5"></a>
+# 1.6.5 (2016-10-18)
+
+[Release 1.6.5](https://github.com/CodeCorico/plumes/releases/tag/1.6.5)
+
+### Fixes
+
+- **Layout Platform**
+  - Fix bug when open/close contexts too quickly.
+- **Plumes**
+  - Replace all $.each() by Array.forEach().
+
 <a name="1.6.4"></a>
 # 1.6.4 (2016-09-30)
 
@@ -10,7 +22,7 @@
 - **Context Panel**
   - Add isGroupOpened() and groupOpened() methods.
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Copy the resources subdirectories to /public.
@@ -41,7 +53,7 @@
 - **Plumes**
   - Don't publish "inject-*.html" files to public anymore.
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Tiny CSS fine-tuning.
@@ -56,7 +68,7 @@
 - **Plumes**
   - "public" option can be a gulp plugin.
 
-### Hotfixes
+### Fixes
 
 - **Grouped buttons**
   - Hide right oriented buttons on no-buttons mode.
@@ -114,7 +126,7 @@
 - **Plumes**
   - Add "else" logic in inject tag.
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - remove check last "inject-" from "inject-*.html" regexp.
@@ -129,7 +141,7 @@
 - **Common**
   - Add the "warning" color.
 
-### Hotfixes
+### Fixes
 
 - **Notifications Panel**
   - Use the common accent-highlight color instead of internal highlight color.
@@ -146,7 +158,7 @@
 - **Plumes**
   - Add the possibility to inject resources from a feature to an other one with "inject-*" at the beginning of the file's name.
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Rename "import-*" to "inject-*" files.
@@ -167,7 +179,7 @@
 
 [Release 1.5.4](https://github.com/CodeCorico/plumes/releases/tag/1.5.4)
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Fix multiple imports injection in the same page.
@@ -177,7 +189,7 @@
 
 [Release 1.5.3](https://github.com/CodeCorico/plumes/releases/tag/1.5.3)
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Fix imports injection.
@@ -197,7 +209,7 @@
 
 [Release 1.5.1](https://github.com/CodeCorico/plumes/releases/tag/1.5.1)
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Don't process less imports
@@ -230,7 +242,7 @@
 
 [Release 1.3.3](https://github.com/CodeCorico/plumes/releases/tag/1.3.3)
 
-### Hotfixes
+### Fixes
 
 - **Button onoff**
   - Refine the styles.
@@ -240,7 +252,7 @@
 
 [Release 1.3.2](https://github.com/CodeCorico/plumes/releases/tag/1.3.2)
 
-### Hotfixes
+### Fixes
 
 - **Scrolls**
   - Don't use custom scrolls in mobile views
@@ -250,7 +262,7 @@
 
 [Release 1.3.1](https://github.com/CodeCorico/plumes/releases/tag/1.3.1)
 
-### Hotfixes
+### Fixes
 
 - **Layout Platform**
   - Missing arguments for direct callbacks
@@ -270,7 +282,7 @@
 
 [Release 1.2.1](https://github.com/CodeCorico/plumes/releases/tag/1.2.1)
 
-### Hotfixes
+### Fixes
 
 - **Layout Platform**
   - Refine and fix behaviors
@@ -290,7 +302,7 @@
 
 [Release 1.1.4](https://github.com/CodeCorico/plumes/releases/tag/1.1.4)
 
-### Hotfixes
+### Fixes
 
 - **Autocomplete**
   - Refine and fix behaviors
@@ -300,7 +312,7 @@
 
 [Release 1.1.3](https://github.com/CodeCorico/plumes/releases/tag/1.1.3)
 
-### Hotfixes
+### Fixes
 
 - **Autocomplete**
   - Improve behaviors
@@ -315,7 +327,7 @@
 - **Plumes**
   - Rename "base" feature to Plumes feature to scope Plumes inside Ractive
 
-### Hotfixes
+### Fixes
 
 - **Autocomplete**
   - The mouse hover the list doesn't create a second focus
@@ -325,7 +337,7 @@
 
 [Release 1.1.1](https://github.com/CodeCorico/plumes/releases/tag/1.1.1)
 
-### Hotfixes
+### Fixes
 
 - **Autocomplete**
   - Tiny fixes to work
@@ -340,7 +352,7 @@
 - **Autocomplete**
   - New component!
 
-### Hotfixes
+### Fixes
 
 - **Notifications panel**
   - Bad scrolls require path
@@ -350,7 +362,7 @@
 
 [Release 1.0.16](https://github.com/CodeCorico/plumes/releases/tag/1.0.16)
 
-### Hotfixes
+### Fixes
 
 - **Button Indicator**
   - Update missing cls
@@ -360,7 +372,7 @@
 
 [Release 1.0.15](https://github.com/CodeCorico/plumes/releases/tag/1.0.15)
 
-### Hotfixes
+### Fixes
 
 - **Button Indicator**
   - Re-style notification picture
@@ -370,7 +382,7 @@
 
 [Release 1.0.14](https://github.com/CodeCorico/plumes/releases/tag/1.0.14)
 
-### Hotfixes
+### Fixes
 
 - **Layout Platform**
   - Better text-shadow
@@ -391,7 +403,7 @@
   - Better styles
   - Send more objects in events
 
-### Hotfixes
+### Fixes
 
 - **Screen-Message**
   - Layout fixed on the top of others
@@ -410,7 +422,7 @@
 - **Layout Platform**
   - Add new events
 
-### Hotfixes
+### Fixes
 
 - **Base Plumes**
   - Min .pl-title font-size
@@ -425,7 +437,7 @@
 - **Base Plumes**
   - Add .pl-title CSS class
 
-### Hotfixes
+### Fixes
 
 - **Layout Platform**
   - Center the title to the content view
@@ -458,7 +470,7 @@
   - Bigger width
   - Animate scroll on click on the vertical bar
 
-### Hotfixes
+### Fixes
 
 - **Scrolls**
   - Disable scroll when don't needed
@@ -469,7 +481,7 @@
 
 [Release 1.0.8](https://github.com/CodeCorico/plumes/releases/tag/1.0.8)
 
-### Hotfixes
+### Fixes
 
 - **Scrolls**
   - Disable scroll when don't needed
@@ -480,7 +492,7 @@
 
 [Release 1.0.7](https://github.com/CodeCorico/plumes/releases/tag/1.0.7)
 
-### Hotfixes
+### Fixes
 
 - **Context panel**
   - Remove default scrollbar
@@ -499,7 +511,7 @@
 - **Scrolls**
   - New custom scrolls for all browsers
 
-### Hotfixes
+### Fixes
 
 - **Base**
   - The Segoe UI wasn't displayed correctly
@@ -509,7 +521,7 @@
 
 [Release 1.0.5](https://github.com/CodeCorico/plumes/releases/tag/1.0.5)
 
-### Hotfixes
+### Fixes
 
 - **Button Indicator**
   - Cover image instead of resize it
@@ -519,7 +531,7 @@
 
 [Release 1.0.4](https://github.com/CodeCorico/plumes/releases/tag/1.0.4)
 
-### Hotfixes
+### Fixes
 
 - **Grouped button**
   - Indicator buttons have better margins in the right orientation
@@ -529,7 +541,7 @@
 
 [Release 1.0.3](https://github.com/CodeCorico/plumes/releases/tag/1.0.3)
 
-### Hotfixes
+### Fixes
 
 - **Grouped button**
   - Some buttons don't move when an indicator button notification is displayed
@@ -539,7 +551,7 @@
 
 [Release 1.0.2](https://github.com/CodeCorico/plumes/releases/tag/1.0.2)
 
-### Hotfixes
+### Fixes
 
 - **Context Panel**
   - Fix closeIfGroupOpened() method
@@ -554,7 +566,7 @@
 - **Grouped buttons**
   - Create the "compact" mode to give the user access to many buttons in mobile view
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Fix some tiny bugs of the release 1.0
@@ -584,7 +596,7 @@
 
 [Release 0.6.5](https://github.com/CodeCorico/plumes/releases/tag/0.6.5)
 
-### Hotfixes
+### Fixes
 
 - **Login**
   - Remove useless animation on hide
@@ -604,7 +616,7 @@
 
 [Release 0.6.3](https://github.com/CodeCorico/plumes/releases/tag/0.6.3)
 
-### Hotfixes
+### Fixes
 
 - **Plumes**
   - Build distribution files. My bad.
@@ -614,7 +626,7 @@
 
 [Release 0.6.2](https://github.com/CodeCorico/plumes/releases/tag/0.6.2)
 
-### Hotfixes
+### Fixes
 
 - **Layout Platform**
   - Remove too long loading page
@@ -624,7 +636,7 @@
 
 [Release 0.6.1](https://github.com/CodeCorico/plumes/releases/tag/0.6.1)
 
-### Hotfixes
+### Fixes
 
 - **Layout Notifications**
   - Restyle the component.
@@ -647,7 +659,7 @@
 - **Example Layout**
   - Add a button to display notifications.
 
-### Hotfixes
+### Fixes
 
 - **Layout Sidebars**
   - Left align on the content area when no left-content.
@@ -657,7 +669,7 @@
 
 [Release 0.5.2](https://github.com/CodeCorico/plumes/releases/tag/0.5.2)
 
-### Hotfixes
+### Fixes
 
 - **Layout Sidebars**
   - Search Layout Platform in all of its parents to detect the opened menu.
@@ -667,7 +679,7 @@
 
 [Release 0.5.1](https://github.com/CodeCorico/plumes/releases/tag/0.5.1)
 
-### Hotfixes
+### Fixes
 
 - **Layout Platfom**
   - Display the missing apps dropdown
@@ -699,7 +711,7 @@
 - **Layouts**
   - Split main layout to "layout-platform" and "layout-sidebars".
 
-### Hotfixes
+### Fixes
 
 - **Layout Sidebars**
   - Fix start animation for collapsed sidebars
@@ -724,7 +736,7 @@
 - **Layout**
   - Double bind the left and right content options.
 
-### Hotfixes
+### Fixes
 
 - **Pagination**
   - Fix previous and next button navigation
@@ -735,7 +747,7 @@
 
 [Release 0.3.2](https://github.com/CodeCorico/plumes/releases/tag/0.3.2)
 
-### Hotfixes
+### Fixes
 
 - **Layout**
   - Build distribution files. My bad.
@@ -775,7 +787,7 @@
 
 [Release 0.2.8](https://github.com/CodeCorico/plumes/releases/tag/0.2.8)
 
-### Hotfixes
+### Fixes
 
 - **Index**
   - Fix _resources_ subfolders copy
@@ -785,7 +797,7 @@
 
 [Release 0.2.7](https://github.com/CodeCorico/plumes/releases/tag/0.2.7)
 
-### Hotfixes
+### Fixes
 
 - **Index**
   - Copy _resources_ subfolders
@@ -795,7 +807,7 @@
 
 [Release 0.2.6](https://github.com/CodeCorico/plumes/releases/tag/0.2.6)
 
-### Hotfixes
+### Fixes
 
 - **Common**
   - Use !important for theme colors
@@ -823,7 +835,7 @@
 
 [Release 0.2.4](https://github.com/CodeCorico/plumes/releases/tag/0.2.4)
 
-### Hotfixes
+### Fixes
 
 - **Grouped-list**
   - Fix last item (of each index) position that doesn't fix.
@@ -842,7 +854,7 @@
 
 [Release 0.2.3](https://github.com/CodeCorico/plumes/releases/tag/0.2.3)
 
-### Hotfixes
+### Fixes
 
 - **Message**
   - Fix Message split words regex
@@ -857,7 +869,7 @@
 - **Layout**
   - Split the theme in a new layout-theme.less file. Used to overide the theme color variables.
 
-### Hotfixes
+### Fixes
 
 - **Login**
   - Teardown properly the login layout
@@ -869,7 +881,7 @@
 
 [Release 0.2.1](https://github.com/CodeCorico/plumes/releases/tag/0.2.1)
 
-### Hotfixes
+### Fixes
 
 - **Login**
   - Fix default avatar loads error
