@@ -4,17 +4,18 @@
   window.Ractive.controller('pl-pagination', function(component, data, el, config, done) {
 
     var refs = {
-      totalPages: 'total-pages',
-      pageSelected: 'page-selected',
-      displayPagesCount: 'display-pages-count',
-      displayFirstButton: 'display-first-button',
-      displayLastButton: 'display-last-button',
-      displayPreviousButton: 'display-previous-button',
-      displayNextButton: 'display-next-button'
-    };
+          totalPages: 'total-pages',
+          pageSelected: 'page-selected',
+          displayPagesCount: 'display-pages-count',
+          displayFirstButton: 'display-first-button',
+          displayLastButton: 'display-last-button',
+          displayPreviousButton: 'display-previous-button',
+          displayNextButton: 'display-next-button'
+        },
+        refsKeys = Object.keys(refs);
 
-    $.each(refs, function(key, value) {
-      data[key] = data[value] && data[value] == 'false' ? false : true;
+    refsKeys.forEach(function(key) {
+      data[key] = data[refs[key]] && data[refs[key]] == 'false' ? false : true;
     });
 
     data.totalPages = data['total-pages'] ? parseInt(data['total-pages'], 10) : 20;
@@ -46,8 +47,8 @@
       Pagination.set('pages', pages);
     }
 
-    $.each(refs, function(key, value) {
-      Pagination.observe(value, function(newValue) {
+    refsKeys.forEach(function(key) {
+      Pagination.observe(refs[key], function(newValue) {
         newValue = typeof newValue == 'undefined' ? true : newValue;
 
         Pagination.set(key,

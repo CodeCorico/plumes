@@ -320,7 +320,7 @@
       });
     }
 
-    function _displayContextGroup(orientation, context, $context, $group, userBehavior) {
+    function _displayContextGroup(orientation, context, $context, group, $group, userBehavior) {
       $context.find('.pl-group').removeClass('opened');
 
       $group.addClass('opened');
@@ -339,11 +339,12 @@
       LayoutPlatform.fire('groupOpened', {
         orientation: orientation,
         context: context,
+        group: group,
         $group: $group,
         userBehavior: userBehavior
       });
 
-      context.open(null, userBehavior);
+      context.open(null, userBehavior, group);
     }
 
     function _beforeButtonsAction(args) {
@@ -370,17 +371,21 @@
               return context.close(null, true);
             }
 
-            return context.open(null, args.userBehavior);
+            return context.open(null, args.userBehavior, args.button.group);
           }
 
           beforeGroup(context, $group, args.userBehavior, function callback() {
+            if ($group.hasClass('opened')) {
+              return _displayContextGroup(orientation, context, $context, args.button.group, $group, args.userBehavior);
+            }
+
             if (context.isOpened()) {
               context.closeContent(function callback() {
-                _displayContextGroup(orientation, context, $context, $group, args.userBehavior);
+                _displayContextGroup(orientation, context, $context, args.button.group, $group, args.userBehavior);
               }, args.userBehavior);
             }
             else {
-              _displayContextGroup(orientation, context, $context, $group, args.userBehavior);
+              _displayContextGroup(orientation, context, $context, args.button.group, $group, args.userBehavior);
             }
           });
         });

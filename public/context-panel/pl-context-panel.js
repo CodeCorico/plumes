@@ -17,10 +17,10 @@
             usable: false
           }, data),
 
-          open: function(callback, userBehavior) {
+          open: function(callback, userBehavior, groupToOpen) {
             userBehavior = typeof userBehavior == 'undefined' || userBehavior ? true : false;
 
-            _inOpen = true;
+            _inOpen = groupToOpen || true;
 
             ContextPanel.fire('beforeOpen', {
               userBehavior: userBehavior
@@ -29,7 +29,7 @@
             ContextPanel.set('opened', true);
 
             setTimeout(function() {
-              if (!_inOpen) {
+              if (!ContextPanel || !_inOpen) {
                 return;
               }
 
@@ -39,7 +39,7 @@
                 var $section = $(this);
 
                 setTimeout(function() {
-                  if (!_inOpen) {
+                  if (!ContextPanel || !_inOpen) {
                     return;
                   }
 
@@ -48,7 +48,7 @@
               });
 
               setTimeout(function() {
-                if (!_inOpen) {
+                if (!ContextPanel || !_inOpen) {
                   return;
                 }
 
@@ -82,7 +82,7 @@
               var $section = $(this);
 
               setTimeout(function() {
-                if (_inOpen) {
+                if (!ContextPanel || _inOpen) {
                   return;
                 }
 
@@ -91,7 +91,7 @@
             });
 
             setTimeout(function() {
-              if (_inOpen) {
+              if (!ContextPanel || _inOpen) {
                 return;
               }
 
@@ -124,7 +124,7 @@
             ContextPanel.set('opened', false);
 
             setTimeout(function() {
-              if (_inOpen) {
+              if (!ContextPanel || _inOpen) {
                 return;
               }
 
@@ -153,7 +153,7 @@
           },
 
           isGroupOpened: function(groupName) {
-            return !!this.groupOpened(groupName);
+            return this.groupOpened(groupName) || _inOpen === groupName;
           },
 
           closeIfGroupOpened: function(groupName) {
