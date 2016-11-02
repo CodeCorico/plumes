@@ -2,7 +2,7 @@
 - [ ] The commit message follows our guidelines: https://github.com/CodeCorico/plumes/blob/master/CONTRIBUTING.md#commit
 
 
-**What kind of change does this PR introduce?** (check one with "x")
+**What kind of change does this PR introduce?** <!-- check one with "x" -->
 ```
 [ ] Bugfix
 [ ] Feature
