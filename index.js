@@ -78,11 +78,8 @@ var Plumes = function(gulp, config) {
   config.default = config.default || [];
 
   var defaultTask = ['less', 'minify', 'html', 'resources'].concat(config.default);
-  if (config.watcher) {
-    defaultTask.push('watch');
-  }
 
-  gulp.task('default', defaultTask);
+  gulp.task('default', config.watcher ? defaultTask.concat('watch') : defaultTask);
 
   gulp.task('less', function(done) {
     if (!config.path.less || !config.path.less.length) {
@@ -284,18 +281,20 @@ var Plumes = function(gulp, config) {
       });
   });
 
-  gulp.task('watch', function() {
-    gulp.watch(config.path.less, ['less']);
-    gulp.watch(config.path.js, ['minify']);
-    gulp.watch(config.path.html, ['html']);
-    gulp.watch(config.path.resources, ['resources']);
+  if (config.watcher) {
+    gulp.task('watch', defaultTask, function() {
+      gulp.watch(config.path.less, ['less']);
+      gulp.watch(config.path.js, ['minify']);
+      gulp.watch(config.path.html, ['html']);
+      gulp.watch(config.path.resources, ['resources']);
 
-    if (config.watchs && config.watchs.length) {
-      config.watchs.forEach(function(watchFunc) {
-        watchFunc();
-      });
-    }
-  });
+      if (config.watchs && config.watchs.length) {
+        config.watchs.forEach(function(watchFunc) {
+          watchFunc();
+        });
+      }
+    });
+  }
 
 };
 
