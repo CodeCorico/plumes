@@ -1,4 +1,11 @@
-# Plumes - Changelog
+<a name="1.6.6"></a>
+# [1.6.6](https://github.com/CodeCorico/plumes/compare/1.6.5...1.6.6) (2016-11-02)
+
+### Features
+* **contributions:** refine the contributions rules files [#2d9a186](https://github.com/CodeCorico/plumes/commit/2d9a186)
+
+### Bug Fixes
+* **index:** start the watcher after all tasks [#d0cb5cc](https://github.com/CodeCorico/plumes/commit/d0cb5cc)
 
 <a name="1.6.5"></a>
 # 1.6.5 (2016-10-18)
