@@ -79,7 +79,11 @@ var Plumes = function(gulp, config) {
 
   var defaultTask = ['less', 'minify', 'html', 'resources'].concat(config.default);
 
-  gulp.task('default', config.watcher ? defaultTask.concat('watch') : defaultTask);
+  gulp.task('default', config.watcher ? defaultTask.concat('watch') : defaultTask, function() {
+    if (!config.watcher) {
+      process.nextTick(process.exit);
+    }
+  });
 
   gulp.task('less', function(done) {
     if (!config.path.less || !config.path.less.length) {
