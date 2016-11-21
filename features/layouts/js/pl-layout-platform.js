@@ -295,6 +295,39 @@
         _resize(orientation);
       });
 
+      component.on('beforeCloseContent', function() {
+        var group = $(component.el).find('.pl-group.opened').attr('data-group');
+
+        if (!group) {
+          return;
+        }
+
+        var buttons = LayoutPlatform.get('buttons' + orientation) || [],
+            buttonsEls = LayoutPlatform[orientation + 'GroupedButtons']().childrenRequire,
+            buttonIndex = null;
+
+        for (var i = 0; i < buttons.length; i++) {
+          if (buttons[i].group == group) {
+            buttonIndex = i;
+
+            break;
+          }
+        }
+
+        if (buttonIndex === null || buttonsEls.length <= buttonIndex) {
+          return;
+        }
+
+        for (var i = 0; i < buttonsEls.length; i++) {
+          if ($(buttonsEls[i].el).attr('data-index') == buttonIndex) {
+            buttonsEls[i].set('selected', false);
+
+            break;
+          }
+        }
+
+      });
+
       component.on('beforeClose', function() {
         $(component.el).find('.pl-group').removeClass('opened');
       });
@@ -371,10 +404,17 @@
               return context.close(null, true);
             }
 
+            args.component.set('selected', true);
+
             return context.open(null, args.userBehavior, args.button.group);
           }
 
+          args.component.set('selected', true);
+          args.component.set('loading', true);
+
           beforeGroup(context, $group, args.userBehavior, function callback() {
+            args.component.set('loading', false);
+
             if ($group.hasClass('opened')) {
               return _displayContextGroup(orientation, context, $context, args.button.group, $group, args.userBehavior);
             }
