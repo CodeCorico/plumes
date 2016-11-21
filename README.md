@@ -1,8 +1,6 @@
 # Plumes
 
 [![Join the chat at https://gitter.im/CodeCorico/plumes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CodeCorico/plumes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Issue Stats](http://issuestats.com/github/codecorico/plumes/badge/issue)](http://issuestats.com/github/codecorico/plumes)
-[![Issue Stats](http://issuestats.com/github/codecorico/plumes/badge/pr)](http://issuestats.com/github/codecorico/plumes)
 
 Flying-fast Metro future vision components
 
