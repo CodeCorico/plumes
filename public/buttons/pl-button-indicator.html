@@ -1,3 +1,8 @@
+<div class="
+  pl-button-indicator-selector accent-borders
+  {{selected ? 'show' : ''}}
+  {{selected && loading ? 'loading' : ''}}
+"></div>
 <button class="pl-button-indicator {{cls}} {{showMessage ? 'opened' : ''}}" on-click="action">
   <div class="pl-button-indicator-bg {{showMessage ? 'accent-bg' : ''}}"></div>
   <div class="pl-button-indicator-image accent-bg {{opened ? 'hide' : ''}}" style="background-image: url('{{image}}');" />
