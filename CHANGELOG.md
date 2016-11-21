@@ -1,3 +1,14 @@
+<a name="1.6.7"></a>
+# [1.6.7](https://github.com/CodeCorico/plumes/compare/1.6.6...1.6.7) (2016-11-21)
+
+### Features
+* **buttons indicator:** add a selector border [#dfa962d](https://github.com/CodeCorico/plumes/commit/dfa962d)
+* **buttons rounded:** add a selector border [#b49ca5b](https://github.com/CodeCorico/plumes/commit/b49ca5b)
+* **layout platform:** display a loading and selector on grouped buttons [#69d4760](https://github.com/CodeCorico/plumes/commit/69d4760)
+
+### Bug Fixes
+* **index:** exit the process after the default task when no watcher [#46d46a5](https://github.com/CodeCorico/plumes/commit/46d46a5)
+
 <a name="1.6.6"></a>
 # [1.6.6](https://github.com/CodeCorico/plumes/compare/1.6.5...1.6.6) (2016-11-02)
 
