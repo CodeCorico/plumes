@@ -1,3 +1,9 @@
+<a name="1.6.8"></a>
+# [1.6.8](https://github.com/CodeCorico/plumes/compare/1.6.7...1.6.8) (2017-03-26)
+
+### Features
+* **layout platform:** display fullscreen button in tablet mode [#fb5d37c](https://github.com/CodeCorico/plumes/commit/fb5d37c)
+
 <a name="1.6.7"></a>
 # [1.6.7](https://github.com/CodeCorico/plumes/compare/1.6.6...1.6.7) (2016-11-21)
 
