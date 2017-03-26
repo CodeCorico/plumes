@@ -74,7 +74,7 @@
           }
           if (_groupedButtons.right) {
             if (_useFullscreen() == 'mobile') {
-              _removeFullscreenButton();
+              _addFullscreenButton();
             }
             _groupedButtons.right.defaultMode();
           }
